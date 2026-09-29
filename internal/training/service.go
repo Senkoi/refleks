@@ -352,6 +352,7 @@ func (s *Service) expire() {
 func (s *Service) advance(outcome string, now time.Time) {
 	p := s.state.Plan
 	p.Blocks[p.Index].Outcome = outcome
+	p.Reminder = ""
 	p.Index++
 	p.BlockElapsed = 0
 	p.AcceptAfter = now.UnixMilli()
