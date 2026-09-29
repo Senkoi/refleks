@@ -16,6 +16,7 @@ import {
 } from "@/shared/lib";
 import {
   Activity,
+  Target,
   HelpCircle,
   LayoutGrid,
   PanelLeft,
@@ -196,6 +197,7 @@ export function Sidebar({ open, onToggle }: SidebarProps) {
     if (location.pathname.startsWith("/settings")) return null;
     if (location.pathname.startsWith("/history")) return 1;
     if (location.pathname.startsWith("/benchmarks")) return 2;
+    if (location.pathname.startsWith("/training")) return 3;
     return 0;
   }, [location.pathname]);
 
@@ -277,7 +279,16 @@ export function Sidebar({ open, onToggle }: SidebarProps) {
               showActiveBackground={false}
               to={benchmarksTarget}
             />
+            <SidebarItem
+              active={location.pathname.startsWith("/training")}
+              icon={<Target />}
+              label="训练工作台"
+              open={open}
+              showActiveBackground={false}
+              to="/training"
+            />
           </nav>
+
 
           {favBenchmarks.length > 0 && (
             <section className="mt-auto flex flex-col gap-2 pt-4">

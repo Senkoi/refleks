@@ -7,6 +7,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 const loadHistoryFeature = () => import("@/features/history");
 const loadBenchmarksFeature = () => import("@/features/benchmarks");
 const loadSettingsFeature = () => import("@/features/settings");
+const TrainingPage = lazy(() => import("@/features/training/TrainingPage"));
 
 const HistoryPage = lazy(() =>
   loadHistoryFeature().then((m) => ({ default: m.HistoryPage })),
@@ -67,6 +68,7 @@ export function AppRoutes() {
       <Route path="/" element={<AppLayout />}>
         <Route index element={<IndexRoute />} />
         <Route path="overview" element={<OverviewPage />} />
+        <Route path="training" element={<RouteSuspense><TrainingPage /></RouteSuspense>} />
         <Route
           path="history"
           element={

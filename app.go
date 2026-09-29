@@ -21,6 +21,7 @@ import (
 	"refleks/internal/runs/screen"
 	"refleks/internal/scenarios"
 	appsettings "refleks/internal/settings"
+	"refleks/internal/training"
 	"refleks/internal/updater"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
@@ -28,6 +29,9 @@ import (
 
 // App struct
 type App struct {
+	trainingSvc    *training.Service
+	trainingErr    error
+	trainingCancel context.CancelFunc
 	ctx            context.Context
 	runsRuntimeSvc *runs.RuntimeService
 	settingsSvc    *appsettings.Service
@@ -110,6 +114,7 @@ func (a *App) startup(ctx context.Context) {
 	// Auto-start watcher. RuntimeService logs a start failure at its owner
 	// boundary before returning it, so avoid emitting the same error twice.
 	_ = a.runsRuntimeSvc.StartWatcher()
+	a.startTraining()
 
 	// Fire-and-forget benchmark definitions + progress cache warmup/sync
 	go func() {
@@ -530,23 +535,13 @@ func (a *App) LaunchKovaaksPlaylist(sharecode string) error {
 
 // CheckForUpdates queries GitHub releases and returns update availability and download URL.
 func (a *App) CheckForUpdates() (models.UpdateInfo, error) {
-	return a.updaterSvc.CheckForUpdates(a.ctx)
+	// This fork has no release feed yet; upstream installers would remove its features.
+	return models.UpdateInfo{CurrentVersion: constants.AppVersion, HasUpdate: false}, nil
 }
 
 // DownloadAndInstallUpdate downloads the specified (or latest) installer and starts it, then quits the app.
 func (a *App) DownloadAndInstallUpdate(version string) error {
-	if err := a.updaterSvc.DownloadAndInstallUpdate(a.ctx, version); err != nil {
-		return err
-	}
-	// Gracefully quit current app so installer can proceed. Mark this as an
-	// intentional exit so the close handler does not convert it into a hidden
-	// background instance when autostart is enabled.
-	a.isQuitting.Store(true)
-	go func() {
-		time.Sleep(1 * time.Second)
-		runtime.Quit(a.ctx)
-	}()
-	return nil
+	return fmt.Errorf("Adaptive 开发版暂未设置更新源，请使用本分支的新构建")
 }
 
 // SaveScenarioNote persists a user note and sensitivity for a scenario.
@@ -651,6 +646,12 @@ func (a *App) hideWindow() {
 // It stops capture and performs best-effort cleanup of temporary segments;
 // startup cleanup removes any files that were locked or left by a forced exit.
 func (a *App) shutdown(ctx context.Context) {
+	if a.trainingCancel != nil {
+		a.trainingCancel()
+	}
+	if a.trainingSvc != nil {
+		_, _ = a.trainingSvc.Action("pause", time.Now(), a.GetRecentRuns(0))
+	}
 	if a.runsRuntimeSvc != nil {
 		a.runsRuntimeSvc.Shutdown()
 	}

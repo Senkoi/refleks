@@ -9,6 +9,7 @@ import { STORAGE_KEYS } from "./storageKeys";
 
 export const LAST_ROUTE_STORAGE_KEY = STORAGE_KEYS.navLastPath;
 const RESTORABLE_ROUTE_PREFIXES = [
+  "/training",
   "/overview",
   "/history",
   "/benchmarks",
