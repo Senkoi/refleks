@@ -43,6 +43,9 @@ func New(dir string) (*Service, error) {
 			item := &s.state.Catalog[i]
 			item.Benchmarks = mergeMemberships(nil, memberships(*item))
 		}
+		if s.state.Preferences.ExecutionMode == "" {
+			s.state.Preferences.ExecutionMode = "playlist"
+		}
 	}
 	if p := s.state.Plan; p != nil && (p.Status == "running" || p.Status == "ready" || p.Status == "waiting") {
 		p.Status = "paused"
@@ -268,7 +271,9 @@ func (s *Service) Action(action string, now time.Time, runs []models.RunRecord) 
 		p.LastTick = now.UnixMilli()
 		p.Status = "running"
 		s.state.Error = ""
-		launch = p.Blocks[p.Index].Scenario.Name
+		if p.Preferences.ExecutionMode != "playlist" {
+			launch = p.Blocks[p.Index].Scenario.Name
+		}
 	case "pause":
 		if p.Status == "running" || p.Status == "ready" || p.Status == "waiting" {
 			s.clock(now)
@@ -433,7 +438,15 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 				b.Reason += " 本模块检测到版本或设置变化，已取消原阈值。"
 			}
 			outcome := ""
-			if b.Role == "benchmark" {
+			if p.Preferences.ExecutionMode == "playlist" {
+				count := b.PlayCount
+				if count < 1 {
+					count = 1
+				}
+				if b.Runs >= count {
+					outcome = "list_complete"
+				}
+			} else if b.Role == "benchmark" {
 				outcome = "measured"
 			} else if b.Target > 0 && sum.Score >= b.Target {
 				outcome = "threshold"
@@ -441,8 +454,14 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 				outcome = "time_limit"
 			}
 			if outcome != "" {
-				s.advance(outcome, now)
-				if p.Status == "ready" && p.Preferences.AutoAdvance {
+				boundary := now
+				if p.Preferences.ExecutionMode == "playlist" {
+					boundary = end
+				}
+				s.advance(outcome, boundary)
+				if p.Status == "ready" && p.Preferences.ExecutionMode == "playlist" {
+					p.Status = "running"
+				} else if p.Status == "ready" && p.Preferences.AutoAdvance {
 					next := p.Blocks[p.Index]
 					if p.Elapsed+float64(next.Scenario.Seconds) <= float64(p.Preferences.Minutes*60) {
 						p.Status = "running"
@@ -452,7 +471,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			}
 		}
 		// No run was completed at the cap: do not launch another scenario over a live run.
-		if p.Status == "running" && p.BlockElapsed >= float64(p.Blocks[p.Index].Budget) {
+		if p.Status == "running" && p.Preferences.ExecutionMode != "playlist" && p.BlockElapsed >= float64(p.Blocks[p.Index].Budget) {
 			p.Status = "waiting"
 		}
 	}
@@ -486,7 +505,11 @@ func (s *Service) Export() ([]byte, error) {
 	}
 	rows := []map[string]any{}
 	for _, b := range p.Blocks {
-		rows = append(rows, map[string]any{"scenarioName": b.Scenario.Name, "playCount": 1})
+		count := b.PlayCount
+		if count < 1 {
+			count = 1
+		}
+		rows = append(rows, map[string]any{"scenarioName": b.Scenario.Name, "playCount": count})
 	}
 	return json.MarshalIndent(map[string]any{"playlistName": "Refleks Adaptive " + p.ID, "scenarioList": rows, "isFavorite": false}, "", "  ")
 }

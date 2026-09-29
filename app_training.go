@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -210,9 +211,53 @@ func (a *App) ExportTrainingPlaylist() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "导出训练列表（每图一次；动态阈值由本应用管理）", DefaultFilename: "Refleks-Adaptive.json", Filters: []runtime.FileFilter{{DisplayName: "KovaaK's playlist", Pattern: "*.json"}}})
+	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "导出训练列表（次数按模块时长生成）", DefaultFilename: "Refleks-Adaptive.json", Filters: []runtime.FileFilter{{DisplayName: "KovaaK's playlist", Pattern: "*.json"}}})
 	if err != nil || path == "" {
 		return "", err
 	}
 	return path, os.WriteFile(path, b, 0600)
+}
+
+// InstallTrainingPlaylist places the generated local playlist in KovaaK's
+// SaveGames directory. The game loads it as a Local Playlist on next launch.
+func (a *App) InstallTrainingPlaylist() (string, error) {
+	if err := a.trainingReady(); err != nil {
+		return "", err
+	}
+	base := a.settingsSvc.Get().KovaaksInstallDir
+	gameDir := filepath.Join(base, "FPSAimTrainer")
+	if base == "" {
+		return "", fmt.Errorf("请先在设置中指定 KovaaK's 安装目录")
+	}
+	if info, err := os.Stat(gameDir); err != nil || !info.IsDir() {
+		return "", fmt.Errorf("未找到 KovaaK's 游戏目录：%s", gameDir)
+	}
+	b, err := a.trainingSvc.Export()
+	if err != nil {
+		return "", err
+	}
+	var playlist struct {
+		Name string `json:"playlistName"`
+	}
+	if err = json.Unmarshal(b, &playlist); err != nil || !strings.HasPrefix(playlist.Name, "Refleks Adaptive ") {
+		return "", fmt.Errorf("生成的列表无效")
+	}
+	id := strings.TrimPrefix(playlist.Name, "Refleks Adaptive ")
+	if id == "" || strings.ContainsAny(id, "\\/.:\x00") {
+		return "", fmt.Errorf("列表标识无效")
+	}
+	dir := filepath.Join(gameDir, "Saved", "SaveGames", "Playlists")
+	if err = os.MkdirAll(dir, 0700); err != nil {
+		return "", err
+	}
+	path := filepath.Join(dir, "Refleks-Adaptive-"+id+".json")
+	tmp := path + ".tmp"
+	if err = os.WriteFile(tmp, b, 0600); err != nil {
+		return "", err
+	}
+	if err = os.Rename(tmp, path); err != nil {
+		_ = os.Remove(tmp)
+		return "", err
+	}
+	return path, nil
 }

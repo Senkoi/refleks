@@ -7,8 +7,8 @@ import "./training.css";
 const labels: Record<string, string> = { auto: "自动 · 按弱项与周覆盖", static: "静态点击", dynamic: "动态点击", smooth: "平滑追踪", reactive: "反应追踪", switching: "目标切换", unknown: "待分类" };
 const roles: Record<string, string> = { warmup: "准备", practice: "专项练习", explore: "探索", benchmark: "参考测量" };
 const statuses: Record<string, string> = { draft: "待开始", running: "训练中", ready: "下一模块待开始", paused: "已暂停", waiting: "模块到时 · 等待本局结束", completed: "已结束" };
-const outcomes: Record<string,string> = { pending: "待完成", threshold: "阈值达标", measured: "已测量", time_limit: "模块到时", session_limit: "总时长到达", skipped: "已跳过" };
-const initial: Preferences = { minutes: 30, focus: "auto", difficulty: "any", benchmark: "", variety: .25, thresholdRatio: .9, autoAdvance: false, autoDiscover: true };
+const outcomes: Record<string,string> = { pending: "待完成", list_complete: "列表次数完成", threshold: "阈值达标", measured: "已测量", time_limit: "模块到时", session_limit: "总时长到达", skipped: "已跳过" };
+const initial: Preferences = { minutes: 30, executionMode: "playlist", focus: "auto", difficulty: "any", benchmark: "", variety: .25, thresholdRatio: .9, autoAdvance: false, autoDiscover: true };
 function clock(seconds: number) { const s = Math.max(0, Math.floor(seconds)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; }
 function external(url: string) { if (/^https:\/\//i.test(url)) openURL(url); }
 
@@ -39,7 +39,7 @@ export default function TrainingPage() {
   }, [refresh]);
   async function perform(name: string, fn: () => Promise<unknown>, message = "") {
     if (busy) return; setBusy(name); setError(""); setNotice("");
-    try { await fn(); await refresh(); if (mounted.current) setNotice(message); }
+    try { await fn(); await refresh(); if (mounted.current && message) setNotice(message); }
     catch (e) { if (mounted.current) setError(String(e)); }
     finally { if (mounted.current) setBusy(""); }
   }
@@ -70,14 +70,15 @@ export default function TrainingPage() {
           <h2><SlidersHorizontal size={18} /> 今天怎么练</h2>
           <fieldset disabled={active || !!busy}>
             <label>可用时间 <span>包含切换与休息</span><div className="training-number"><input aria-label="可用时间" type="number" min={5} max={120} value={prefs.minutes} onChange={e => pset("minutes", Number(e.target.value))} /><span>分钟</span></div></label>
+            <label>执行方式<select value={prefs.executionMode || "playlist"} onChange={e => pset("executionMode", e.target.value as Preferences["executionMode"])}><option value="playlist">游戏内列表（默认）</option><option value="adaptive">逐关自适应切换</option></select></label>
             <label>训练重点<select value={prefs.focus} onChange={e => pset("focus", e.target.value)}>{Object.entries(labels).filter(([k]) => k !== "unknown").map(([k,v]) => <option key={k} value={k}>{v}</option>)}</select></label>
             <label>难度<select value={prefs.difficulty} onChange={e => pset("difficulty", e.target.value)}><option value="any">全部难度</option><option value="novice">Novice</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label>
             <fieldset className="training-benchmark-options"><legend>可轮换的 benchmark</legend><small>从勾选的体系中选择本次参考测量；同一关卡可属于多套体系。</small><div className="training-benchmark-list">{benchmarks.map(b => <label className="training-checkbox" key={b}><input type="checkbox" checked={(prefs.benchmarks ?? (prefs.benchmark ? [prefs.benchmark] : [])).includes(b)} onChange={e => setPrefs(p => ({ ...p, benchmark: "", benchmarks: e.target.checked ? [...(p.benchmarks ?? (p.benchmark ? [p.benchmark] : [])), b] : (p.benchmarks ?? (p.benchmark ? [p.benchmark] : [])).filter(x => x !== b) }))} />{b}</label>)}</div>{benchmarks.length === 0 && <small>先在「发现内容」同步 benchmark；也可暂不加入测量关卡。</small>}</fieldset>
             <label>变化偏好 <strong>{Math.round(prefs.variety * 100)}%</strong><input aria-label="变化偏好" type="range" min={0} max={.5} step={.05} value={prefs.variety} onChange={e => pset("variety", Number(e.target.value))} /><small>控制探索概率和近期重复惩罚；不是保证替换的时长比例。</small></label>
-            <label>个人分数阈值 <strong>{Math.round(prefs.thresholdRatio * 100)}%</strong><input aria-label="分数阈值" type="range" min={.5} max={1} step={.01} value={prefs.thresholdRatio} onChange={e => pset("thresholdRatio", Number(e.target.value))} /><small>同版本/设置近 20 局最佳分的比例；至少 5 局才启用，仅用于专项练习。</small></label>
-            <label className="training-checkbox"><input type="checkbox" checked={prefs.autoAdvance} onChange={e => pset("autoAdvance", e.target.checked)} /> 完整对局达标后自动启动下一关</label>
+            {prefs.executionMode === "adaptive" && <label>个人分数阈值 <strong>{Math.round(prefs.thresholdRatio * 100)}%</strong><input aria-label="分数阈值" type="range" min={.5} max={1} step={.01} value={prefs.thresholdRatio} onChange={e => pset("thresholdRatio", Number(e.target.value))} /><small>同版本/设置近 20 局最佳分的比例；至少 5 局才启用，仅用于专项练习。</small></label>}
+            {prefs.executionMode === "adaptive" && <label className="training-checkbox"><input type="checkbox" checked={prefs.autoAdvance} onChange={e => pset("autoAdvance", e.target.checked)} /> 完整对局达标后自动启动下一关</label>}
             <label className="training-checkbox"><input type="checkbox" checked={prefs.autoDiscover} onChange={e => pset("autoDiscover", e.target.checked)} /> 应用运行时每周自动发现内容</label>
-            <button className="training-primary" disabled={!enabled || !!busy} onClick={() => perform("生成计划", () => call("GenerateTrainingPlan", JSON.stringify(prefs)))}><Target size={16} />生成本次计划 <ArrowRight size={16} /></button>
+            <button className="training-primary" disabled={!enabled || !!busy} onClick={() => perform("生成计划", async () => { await call("GenerateTrainingPlan", JSON.stringify(prefs)); if (prefs.executionMode === "playlist") { const path = await call<string>("InstallTrainingPlaylist"); setNotice(`列表已安装：${path}。重启 KovaaK’s 后，在 Local Playlists 中选择 Refleks Adaptive 列表。`); } })}><Target size={16} />{prefs.executionMode === "playlist" ? "生成并安装本次列表" : "生成本次计划"} <ArrowRight size={16} /></button>
           </fieldset>
           {!enabled && <p className="training-muted">先在「发现内容」扫描公开列表或导入本地列表。</p>}
         </section>
@@ -88,19 +89,20 @@ export default function TrainingPage() {
               <div className="training-metrics"><div><strong>{clock(Math.max(0, plan.preferences.minutes * 60 - plan.elapsed))}</strong><span>剩余时间</span></div><div><strong>{clock(plan.recorded)}</strong><span>已记录练习</span></div><div><strong>{plan.blocks.filter(b => b.outcome !== "pending").length} / {plan.blocks.length}</strong><span>训练模块</span></div></div>
               <div className="training-progress"><span style={{ width: `${Math.min(100, plan.elapsed / (plan.preferences.minutes * 60) * 100)}%` }} /></div>
               <div className="training-actions">
-                {["draft","ready","paused"].includes(plan.status) && <button className="training-primary" disabled={!!busy} onClick={() => perform("启动关卡", () => call("TrainingAction", "start"))}><Play size={15} />{plan.status === "paused" ? "继续并启动当前关卡" : "开始当前模块"}</button>}
+                {plan.preferences.executionMode === "playlist" && <button disabled={!!busy} onClick={() => perform("安装列表", async () => { const path = await call<string>("InstallTrainingPlaylist"); setNotice(`列表已安装：${path}。重启 KovaaK’s 后从 Local Playlists 打开。`); })}>安装到 KovaaK’s</button>}
+                {["draft","ready","paused"].includes(plan.status) && <button className="training-primary" disabled={!!busy} onClick={() => perform(plan.preferences.executionMode === "playlist" ? "开始计时" : "启动关卡", () => call("TrainingAction", "start"))}><Play size={15} />{plan.preferences.executionMode === "playlist" ? (plan.status === "paused" ? "继续列表计时" : "开始列表计时") : (plan.status === "paused" ? "继续并启动当前关卡" : "开始当前模块")}</button>}
                 {["running","ready","waiting"].includes(plan.status) && <button disabled={!!busy} onClick={() => perform("暂停", () => call("TrainingAction", "pause"))}>暂停计时</button>}
                 {["running","paused","waiting"].includes(plan.status) && <button disabled={!!busy} onClick={() => perform("跳过模块", () => call("TrainingAction", "next"))}>{plan.status === "waiting" ? "本局已结束，继续" : "跳过模块"}</button>}
                 {active && <button disabled={!!busy} onClick={() => perform("结束训练", () => call("TrainingAction", "finish"))}>结束本次</button>}
-                <button disabled={!!busy} onClick={() => perform("导出列表", () => call("ExportTrainingPlaylist"), "已处理导出。导出的静态列表每图一次；动态阈值由训练工作台管理。 ")}><Download size={15} />导出列表</button>
+                <button disabled={!!busy} onClick={() => perform("导出列表", () => call("ExportTrainingPlaylist"), "已导出列表，重复次数按模块时长估算。")}><Download size={15} />导出列表</button>
               </div>
               {current && active && <p className="training-current">当前：{current.scenario.name} · 模块已用 {clock(plan.blockElapsed)} / {clock(current.budget)}。到时不会中断游戏内正在进行的一局。</p>}
-              <p className="training-muted">完成并写出的对局自动计入。中途重开尚不能精确累计；切图和休息消耗总预算，暂停按钮暂停工作台计时。</p>
+              <p className="training-muted">{plan.preferences.executionMode === "playlist" ? "在 KovaaK’s 的 Local Playlists 中运行已安装列表；工作台只记录时间和成绩，不代替游戏切图。列表需在游戏重启后加载。总预算到时请在游戏里手动停止。" : "完成并写出的对局自动计入。中途重开尚不能精确累计；切图和休息消耗总预算，暂停按钮暂停工作台计时。"}</p>
             </> : <div className="training-empty"><Target size={35} /><p>选择时间与训练重点，生成一份可直接执行的计划。</p><small>每个模块都带有选图理由、练习提示和时间上限。</small></div>}
           </div>
           {plan?.blocks.map((b,i) => <article key={`${plan.id}-${i}`} className={`training-card training-block ${i === plan.index && active ? "current" : ""}`}>
             <div className="training-block-number">{b.outcome !== "pending" ? <Check size={17} /> : String(i + 1).padStart(2,"0")}</div>
-            <div className="training-block-body"><div className="training-section-title"><span className="training-eyebrow">{roles[b.role]} · {labels[b.scenario.skill]}</span><span className="training-badge">上限 {clock(b.budget)}</span></div><h3>{b.scenario.name}</h3>{b.benchmark && <small>本次测量：{b.benchmark}</small>}<p>{b.cue}</p><details><summary>为什么选这张图</summary><p>{b.reason}</p>{b.scenario.sources?.map((s,i) => <button className="training-link" key={i} onClick={() => external(s.url)}>{s.title}</button>)}</details><div className="training-block-footer"><span>{b.target > 0 ? `目标 ≥ ${b.target.toFixed(1)}` : b.role === "benchmark" ? "固定完成一次" : "不设分数门槛"}</span><span>{b.runs} 局 · {clock(b.recorded)} · {outcomes[b.outcome]} <button className="training-link" onClick={() => setEditing({ ...b.scenario })}>评价关卡</button></span></div></div>
+            <div className="training-block-body"><div className="training-section-title"><span className="training-eyebrow">{roles[b.role]} · {labels[b.scenario.skill]}</span><span className="training-badge">{plan.preferences.executionMode === "playlist" ? `${b.playCount || 1} 局 · 约 ${clock(b.budget)}` : `上限 ${clock(b.budget)}`}</span></div><h3>{b.scenario.name}</h3>{b.benchmark && <small>本次测量：{b.benchmark}</small>}<p>{b.cue}</p><details><summary>为什么选这张图</summary><p>{b.reason}</p>{b.scenario.sources?.map((s,i) => <button className="training-link" key={i} onClick={() => external(s.url)}>{s.title}</button>)}</details><div className="training-block-footer"><span>{b.target > 0 ? `目标 ≥ ${b.target.toFixed(1)}` : b.role === "benchmark" ? "固定完成一次" : "不设分数门槛"}</span><span>{b.runs} 局 · {clock(b.recorded)} · {outcomes[b.outcome]} <button className="training-link" onClick={() => setEditing({ ...b.scenario })}>评价关卡</button></span></div></div>
           </article>)}
           {!!plan?.warnings.length && <div className="training-alert"><ul>{plan.warnings.map(w => <li key={w}>{w}</li>)}</ul></div>}
         </section>

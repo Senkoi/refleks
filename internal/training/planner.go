@@ -226,6 +226,9 @@ func familyKey(s Scenario) string {
 }
 
 func validatePreferences(p Preferences) error {
+	if p.ExecutionMode != "playlist" && p.ExecutionMode != "adaptive" {
+		return fmt.Errorf("无效执行方式")
+	}
 	if p.Minutes < 5 || p.Minutes > 120 {
 		return fmt.Errorf("训练预算须为 5–120 分钟")
 	}
@@ -248,6 +251,9 @@ func validatePreferences(p Preferences) error {
 }
 
 func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, rng *rand.Rand) (*Plan, error) {
+	if p.ExecutionMode == "" {
+		p.ExecutionMode = "playlist"
+	}
 	if err := validatePreferences(p); err != nil {
 		return nil, err
 	}
@@ -406,7 +412,30 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		s := pool[best]
 		chosen[s.Name] = true
 		families[familyKey(s)] = true
-		b := Block{Scenario: s, Role: role, Budget: budget, Outcome: "pending", Reason: "匹配能力与难度，并降低近期重复；时长为上限。", Cue: "留意动作质量；本模块到时即可继续，不要求无限重开。"}
+		dur := s.Seconds
+		if dur <= 0 {
+			dur = 60
+		}
+		measuredDurations := []float64{}
+		for _, r := range comparable(obs[strings.ToLower(s.Name)]) {
+			if r.duration > 0 {
+				measuredDurations = append(measuredDurations, r.duration)
+			}
+		}
+		if d := median(measuredDurations); d > 0 {
+			dur = int(math.Ceil(d))
+		}
+		count := budget / dur
+		if count < 1 {
+			count = 1
+		}
+		if role == "benchmark" || role == "explore" {
+			count = 1
+		}
+		b := Block{Scenario: s, Role: role, Budget: budget, PlayCount: count, Outcome: "pending", Reason: "匹配能力与难度，并降低近期重复；时长为上限。", Cue: "留意动作质量；本模块到时即可继续，不要求无限重开。"}
+		if p.ExecutionMode == "playlist" {
+			b.Reason = fmt.Sprintf("匹配能力与难度，并降低近期重复；游戏内列表安排 %d 局，次数按模块预算与预计单局时长估算。", count)
+		}
 		if related(s, selected) && role == "practice" {
 			b.Reason += " 手动关联至本次参考 benchmark 的能力训练。"
 		}
@@ -423,7 +452,7 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 			b.Reason += " 难度尚未核验。"
 		}
 		rows := comparable(obs[strings.ToLower(s.Name)])
-		if role == "practice" && len(rows) >= 5 {
+		if p.ExecutionMode == "adaptive" && role == "practice" && len(rows) >= 5 {
 			bestScore := 0.0
 			for _, r := range rows {
 				bestScore = math.Max(bestScore, r.score)
@@ -451,6 +480,9 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		return nil, fmt.Errorf("可用关卡时长均超出模块预算，请增加训练时间")
 	}
 	plan.Warnings = append(plan.Warnings, "预留约 10% 时间用于休息与切换；未知关卡默认按 60 秒估计。", "有效练习量来自完成并写入记录的对局；未写出的中途重开不能精确统计。")
+	if p.ExecutionMode == "playlist" {
+		plan.Warnings = append(plan.Warnings, "游戏内列表使用固定次数；总预算到时，工作台停止计时但不会中断 KovaaK’s，请手动结束列表。")
+	}
 	if p.Benchmark == "" && len(p.Benchmarks) == 0 && p.Focus == "auto" {
 		plan.Warnings = append(plan.Warnings, "尚未选择参考 benchmark；本次按周覆盖与历史重复均衡选图，不宣称已经诊断弱项。")
 	}

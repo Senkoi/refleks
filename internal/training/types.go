@@ -47,6 +47,7 @@ type Discovery struct {
 
 type Preferences struct {
 	Minutes        int      `json:"minutes"`
+	ExecutionMode  string   `json:"executionMode"`
 	Focus          string   `json:"focus"`
 	Difficulty     string   `json:"difficulty"`
 	Benchmark      string   `json:"benchmark"`
@@ -70,6 +71,7 @@ type Block struct {
 	Scenario  Scenario `json:"scenario"`
 	Role      string   `json:"role"`
 	Budget    int      `json:"budget"`
+	PlayCount int      `json:"playCount"`
 	Target    float64  `json:"target"`
 	Reason    string   `json:"reason"`
 	Cue       string   `json:"cue"`
@@ -110,7 +112,7 @@ type State struct {
 }
 
 func defaults() Preferences {
-	return Preferences{Minutes: 30, Focus: "auto", Difficulty: "any", Variety: 0.25, ThresholdRatio: 0.9, AutoDiscover: true}
+	return Preferences{Minutes: 30, ExecutionMode: "playlist", Focus: "auto", Difficulty: "any", Variety: 0.25, ThresholdRatio: 0.9, AutoDiscover: true}
 }
 
 var skills = []string{"static", "dynamic", "smooth", "reactive", "switching"}

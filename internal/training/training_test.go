@@ -216,6 +216,43 @@ func TestExportRoundTrip(t *testing.T) {
 	}
 }
 
+func TestPlaylistExecutionUsesGeneratedCountsAndTracksNextBlock(t *testing.T) {
+	s := fixture(t)
+	s.state.Plan.Preferences.ExecutionMode = "playlist"
+	s.state.Plan.Blocks[0].PlayCount = 2
+	s.state.Plan.Blocks[1].PlayCount = 1
+	b, err := s.Export()
+	if err != nil {
+		t.Fatal(err)
+	}
+	var file struct {
+		Scenarios []struct {
+			Name  string `json:"scenarioName"`
+			Count int    `json:"playCount"`
+		} `json:"scenarioList"`
+	}
+	if json.Unmarshal(b, &file) != nil || len(file.Scenarios) != 2 || file.Scenarios[0].Count != 2 {
+		t.Fatalf("wrong playlist: %s", b)
+	}
+	launch, err := s.Action("start", epoch, nil)
+	if err != nil || launch != "" {
+		t.Fatalf("playlist should be started in-game: %q %v", launch, err)
+	}
+	// Both records arrive in one watcher poll. The second belongs to the first
+	// playlist row and the next record to the benchmark row.
+	s.Tick(epoch.Add(2*time.Minute), []models.RunRecord{
+		record("one", "Smooth", 60, 70, epoch.Add(time.Minute)),
+		record("two", "Smooth", 60, 80, epoch.Add(2*time.Minute)),
+	})
+	if p := s.Snapshot(nil).Plan; p.Index != 1 || p.Blocks[0].Runs != 2 || p.Blocks[0].Outcome != "list_complete" {
+		t.Fatalf("list row not completed: %+v", p)
+	}
+	s.Tick(epoch.Add(3*time.Minute), []models.RunRecord{record("three", "Benchmark", 60, 15, epoch.Add(3*time.Minute))})
+	if p := s.Snapshot(nil).Plan; p.Status != "completed" || p.Recorded != 180 {
+		t.Fatalf("list execution not attributed: %+v", p)
+	}
+}
+
 func TestRejectPrivateAndNonHTTPDiscovery(t *testing.T) {
 	for _, u := range []string{"file:///etc/passwd", "http://example.com", "https://127.0.0.1/a", "https://[::1]/", "https://user:pass@example.com/"} {
 		if publicURL(context.Background(), u) == nil {

@@ -6,11 +6,11 @@ export type Scenario = {
   sources: { url: string; title: string; retrieved: string }[];
 };
 export type Preferences = {
-  minutes: number; focus: string; difficulty: string; benchmark: string; benchmarks?: string[];
+  minutes: number; executionMode: "playlist" | "adaptive"; focus: string; difficulty: string; benchmark: string; benchmarks?: string[];
   variety: number; thresholdRatio: number; autoAdvance: boolean; autoDiscover: boolean;
 };
 export type Block = {
-  scenario: Scenario; role: string; budget: number; target: number; reason: string; benchmark?: string;
+  scenario: Scenario; role: string; budget: number; playCount: number; target: number; reason: string; benchmark?: string;
   cue: string; recorded: number; runs: number; best: number; outcome: string;
 };
 export type Plan = {
