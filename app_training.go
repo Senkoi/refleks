@@ -38,6 +38,9 @@ func (a *App) startTraining() {
 						a.trainingSvc.LaunchFailed(err)
 					}
 				}
+				if reminder := a.trainingSvc.TakeReminder(); reminder != "" {
+					showTrainingReminder(reminder)
+				}
 				if a.trainingSvc.DiscoveryDue(now) {
 					go func() { _, _ = a.trainingSvc.Discover(ctx) }()
 				}
@@ -88,6 +91,9 @@ func (a *App) TrainingAction(action string) error {
 	if err != nil {
 		return err
 	}
+	if reminder := a.trainingSvc.TakeReminder(); reminder != "" {
+		showTrainingReminder(reminder)
+	}
 	if name != "" {
 		if err = a.LaunchKovaaksScenario(name, "challenge"); err != nil {
 			a.trainingSvc.LaunchFailed(err)
@@ -95,6 +101,14 @@ func (a *App) TrainingAction(action string) error {
 		}
 	}
 	return nil
+}
+
+// TestTrainingReminder allows a real in-game check of borderless overlay visibility.
+func (a *App) TestTrainingReminder() {
+	go func() {
+		time.Sleep(10 * time.Second)
+		showTrainingReminder("Refleks 测试提醒：如果游戏中能看到这条消息，浮层已正常显示。")
+	}()
 }
 
 func (a *App) DiscoverTrainingContent() (string, error) {

@@ -97,6 +97,9 @@ type Plan struct {
 	LastTick     int64       `json:"lastTick"`
 	AcceptAfter  int64       `json:"acceptAfter"`
 	Seen         []string    `json:"seen"`
+	RemindedBlock int         `json:"remindedBlock,omitempty"`
+	RemindedEnd   bool        `json:"remindedEnd,omitempty"`
+	Reminder      string      `json:"reminder,omitempty"`
 }
 
 type State struct {

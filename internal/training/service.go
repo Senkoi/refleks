@@ -21,7 +21,17 @@ type Service struct {
 	mu          sync.Mutex
 	path        string
 	state       State
-	discovering bool
+	discovering     bool
+	pendingReminder string
+}
+
+// TakeReminder returns each cue once to the desktop notification layer.
+func (s *Service) TakeReminder() string {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	message := s.pendingReminder
+	s.pendingReminder = ""
+	return message
 }
 
 func New(dir string) (*Service, error) {
@@ -323,6 +333,11 @@ func (s *Service) clock(now time.Time) {
 func (s *Service) expire() {
 	p := s.state.Plan
 	if p != nil && p.Elapsed >= float64(p.Preferences.Minutes*60) {
+		if !p.RemindedEnd {
+			p.RemindedEnd = true
+			p.Reminder = "训练总时长已到。完成当前局后，请在游戏中结束列表并休息。"
+			s.pendingReminder = p.Reminder
+		}
 		if p.EndedAt == 0 {
 			p.EndedAt = p.LastTick - int64((p.Elapsed-float64(p.Preferences.Minutes*60))*1000)
 		}
@@ -474,6 +489,11 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 		if p.Status == "running" && p.Preferences.ExecutionMode != "playlist" && p.BlockElapsed >= float64(p.Blocks[p.Index].Budget) {
 			p.Status = "waiting"
 		}
+	}
+	if p.Status == "running" && p.Preferences.ExecutionMode == "playlist" && p.Index < len(p.Blocks) && p.BlockElapsed >= float64(p.Blocks[p.Index].Budget) && p.RemindedBlock != p.Index+1 {
+		p.RemindedBlock = p.Index+1
+		p.Reminder = "当前关卡已达到本次时间预算。完成当前局后，请检查游戏列表并换关；若反复重开，请停止这一关。"
+		s.pendingReminder = p.Reminder
 	}
 	s.expire()
 	if p.Status == "completed" {

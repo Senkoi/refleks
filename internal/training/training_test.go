@@ -32,6 +32,28 @@ func fixture(t *testing.T) *Service {
 	return s
 }
 
+func TestPlaylistReminderOncePerBlockAndAtSessionCap(t *testing.T) {
+	s := fixture(t)
+	s.state.Plan.Preferences.ExecutionMode = "playlist"
+	s.state.Plan.Blocks[0].Budget = 60
+	s.state.Plan.Blocks[0].PlayCount = 2
+	if _, err := s.Action("start", epoch, nil); err != nil {
+		t.Fatal(err)
+	}
+	s.Tick(epoch.Add(61*time.Second), nil)
+	if s.TakeReminder() == "" || s.TakeReminder() != "" {
+		t.Fatal("expected one block reminder")
+	}
+	s.Tick(epoch.Add(62*time.Second), nil)
+	if s.TakeReminder() != "" {
+		t.Fatal("duplicate block reminder")
+	}
+	s.Tick(epoch.Add(5*time.Minute), nil)
+	if s.TakeReminder() == "" || s.TakeReminder() != "" {
+		t.Fatal("expected one session reminder")
+	}
+}
+
 func TestPlaylistEvidenceAndManualCorrection(t *testing.T) {
 	b := []byte(`{"playlistName":"Author routine","scenarioList":[{"scenarioName":"Smoothbot Easy"},{"scenarioName":"Smoothbot Easy"},{"scenarioName":"Mystery"}]}`)
 	ss, err := ParsePlaylist(b, Source{URL: "https://example.com/playlist.json"})

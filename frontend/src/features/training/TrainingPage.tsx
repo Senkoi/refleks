@@ -89,6 +89,7 @@ export default function TrainingPage() {
               <div className="training-metrics"><div><strong>{clock(Math.max(0, plan.preferences.minutes * 60 - plan.elapsed))}</strong><span>剩余时间</span></div><div><strong>{clock(plan.recorded)}</strong><span>已记录练习</span></div><div><strong>{plan.blocks.filter(b => b.outcome !== "pending").length} / {plan.blocks.length}</strong><span>训练模块</span></div></div>
               <div className="training-progress"><span style={{ width: `${Math.min(100, plan.elapsed / (plan.preferences.minutes * 60) * 100)}%` }} /></div>
               <div className="training-actions">
+                <button disabled={!!busy} onClick={() => perform("测试提醒", () => call("TestTrainingReminder"), "10 秒后显示提醒。现在切回 KovaaK’s，检查游戏画面和声音。")}>测试游戏内提醒</button>
                 {plan.preferences.executionMode === "playlist" && <button disabled={!!busy} onClick={() => perform("安装列表", async () => { const path = await call<string>("InstallTrainingPlaylist"); setNotice(`列表已安装：${path}。重启 KovaaK’s 后从 Local Playlists 打开。`); })}>安装到 KovaaK’s</button>}
                 {["draft","ready","paused"].includes(plan.status) && <button className="training-primary" disabled={!!busy} onClick={() => perform(plan.preferences.executionMode === "playlist" ? "开始计时" : "启动关卡", () => call("TrainingAction", "start"))}><Play size={15} />{plan.preferences.executionMode === "playlist" ? (plan.status === "paused" ? "继续列表计时" : "开始列表计时") : (plan.status === "paused" ? "继续并启动当前关卡" : "开始当前模块")}</button>}
                 {["running","ready","waiting"].includes(plan.status) && <button disabled={!!busy} onClick={() => perform("暂停", () => call("TrainingAction", "pause"))}>暂停计时</button>}
@@ -97,7 +98,8 @@ export default function TrainingPage() {
                 <button disabled={!!busy} onClick={() => perform("导出列表", () => call("ExportTrainingPlaylist"), "已导出列表，重复次数按模块时长估算。")}><Download size={15} />导出列表</button>
               </div>
               {current && active && <p className="training-current">当前：{current.scenario.name} · 模块已用 {clock(plan.blockElapsed)} / {clock(current.budget)}。到时不会中断游戏内正在进行的一局。</p>}
-              <p className="training-muted">{plan.preferences.executionMode === "playlist" ? "在 KovaaK’s 的 Local Playlists 中运行已安装列表；工作台只记录时间和成绩，不代替游戏切图。列表需在游戏重启后加载。总预算到时请在游戏里手动停止。" : "完成并写出的对局自动计入。中途重开尚不能精确累计；切图和休息消耗总预算，暂停按钮暂停工作台计时。"}</p>
+              {plan.reminder && <div role="alert" className="training-alert">{plan.reminder}</div>}
+              <p className="training-muted">{plan.preferences.executionMode === "playlist" ? "在 KovaaK’s 的 Local Playlists 中运行已安装列表。单关或总预算到时会响铃并显示浮层提醒；无边框窗口可显示浮层，全屏独占可能只听到声音。应用不会代替游戏切图，中途重开无法精确统计。" : "完成并写出的对局自动计入。中途重开尚不能精确累计；切图和休息消耗总预算，暂停按钮暂停工作台计时。"}</p>
             </> : <div className="training-empty"><Target size={35} /><p>选择时间与训练重点，生成一份可直接执行的计划。</p><small>每个模块都带有选图理由、练习提示和时间上限。</small></div>}
           </div>
           {plan?.blocks.map((b,i) => <article key={`${plan.id}-${i}`} className={`training-card training-block ${i === plan.index && active ? "current" : ""}`}>

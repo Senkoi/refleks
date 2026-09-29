@@ -16,6 +16,7 @@ export type Block = {
 export type Plan = {
   id: string; created: string; preferences: Preferences; blocks: Block[]; warnings: string[];
   status: string; index: number; elapsed: number; recorded: number; blockElapsed: number;
+  reminder?: string;
 };
 export type State = {
   version: number; catalog: Scenario[]; preferences: Preferences; plan: Plan | null;
