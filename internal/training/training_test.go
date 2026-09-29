@@ -327,9 +327,9 @@ func TestManualPauseAndFinishCollectFreshRuns(t *testing.T) {
 func TestManualVariantAndRelatedBenchmarkAreDistinct(t *testing.T) {
 	s := fixture(t)
 	s.state.Catalog = []Scenario{
-		{Name: "Measured", Skill: "smooth", Family: "measured", Seconds: 60, Enabled: true, Benchmarks: []BenchmarkMembership{{Name: "System A"}}},
-		{Name: "Measured Easy", Skill: "smooth", Family: "measured", Seconds: 60, Enabled: true},
-		{Name: "Speed Match", Skill: "smooth", Family: "speed match", Seconds: 60, Enabled: true},
+		{Name: "Measured", Skill: "smooth", Family: "measured", Difficulty: "unknown", Seconds: 60, Enabled: true, Benchmarks: []BenchmarkMembership{{Name: "System A"}}},
+		{Name: "Measured Easy", Skill: "smooth", Family: "measured", Difficulty: "unknown", Seconds: 60, Enabled: true},
+		{Name: "Speed Match", Skill: "smooth", Family: "speed match", Difficulty: "unknown", Seconds: 60, Enabled: true},
 	}
 	item := s.state.Catalog[1]
 	item.VariantOf = "Measured"
