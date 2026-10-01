@@ -10,6 +10,7 @@ export type Preferences = {
   variety: number; thresholdRatio: number; autoAdvance: boolean; autoDiscover: boolean;
 };
 export type Block = {
+  timing?: { seconds: number; source: string; samples: number; recentSeconds: number; weeklySeconds: number };
   scenario: Scenario; role: string; budget: number; playCount: number; target: number; reason: string; benchmark?: string;
   cue: string; recorded: number; runs: number; best: number; outcome: string;
 };

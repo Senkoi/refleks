@@ -266,7 +266,7 @@ func TestPlaylistExecutionUsesGeneratedCountsAndTracksNextBlock(t *testing.T) {
 		record("one", "Smooth", 60, 70, epoch.Add(time.Minute)),
 		record("two", "Smooth", 60, 80, epoch.Add(2*time.Minute)),
 	})
-	if p := s.Snapshot(nil).Plan; p.Index != 1 || p.Blocks[0].Runs != 2 || p.Blocks[0].Outcome != "list_complete" {
+	if p := s.Snapshot(nil).Plan; p.Index != 0 || p.Blocks[0].Runs != 2 || p.Blocks[0].Outcome != "list_complete" {
 		t.Fatalf("list row not completed: %+v", p)
 	}
 	s.Tick(epoch.Add(3*time.Minute), []models.RunRecord{record("three", "Benchmark", 60, 15, epoch.Add(3*time.Minute))})
@@ -285,7 +285,7 @@ func TestFinishedLaterPlaylistRunRealignsProgress(t *testing.T) {
 	}
 	s.Tick(epoch.Add(time.Minute), []models.RunRecord{record("later", "Benchmark", 60, 40, epoch.Add(time.Minute))})
 	p := s.Snapshot(nil).Plan
-	if p.Index != 1 || p.Blocks[0].Outcome != "missed" || p.Blocks[1].Runs != 1 || p.Recorded != 60 {
+	if p.Index != 1 || p.Blocks[0].Outcome != "missed" || p.Blocks[1].Runs != 1 || p.Recorded != 60 || p.BlockElapsed != 60 {
 		t.Fatalf("finished later row was dropped: %+v", p)
 	}
 }

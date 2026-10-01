@@ -168,7 +168,7 @@ func selectedBenchmark(p Preferences, name string) bool {
 func chooseBenchmark(catalog []Scenario, obs map[string][]observation, p Preferences, now time.Time, budget int, rng *rand.Rand) string {
 	counts := map[string]int{}
 	for _, s := range catalog {
-		if !s.Enabled || s.Seconds > budget || (p.Difficulty != "any" && s.Difficulty != "unknown" && s.Difficulty != p.Difficulty) {
+		if !s.Enabled || estimateTiming(s, obs[strings.ToLower(s.Name)], now).Seconds > budget || (p.Difficulty != "any" && s.Difficulty != "unknown" && s.Difficulty != p.Difficulty) {
 			continue
 		}
 		for _, m := range memberships(s) {
@@ -278,34 +278,38 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 	// Reserve 10%% for loading and breaks. A block is a time cap, not a promise of repetitions.
 	seconds := p.Minutes * 60
 	usable := int(float64(seconds) * 0.9)
-	n := 3
-	if p.Minutes >= 15 {
-		n = 4
+	timings := map[string]TimingEstimate{}
+	for _, scenario := range pool {
+		timings[scenario.Name] = estimateTiming(scenario, obs[strings.ToLower(scenario.Name)], now)
 	}
-	if p.Minutes >= 30 {
-		n = 5
+	remaining := usable
+	selected := chooseBenchmark(pool, obs, p, now, usable, rng)
+	reserved := 0
+	for _, scenario := range pool {
+		if _, ok := member(scenario, selected); ok {
+			d := timings[scenario.Name].Seconds
+			if d <= usable && (reserved == 0 || d < reserved) { reserved = d }
+		}
 	}
-	if len(pool) < n {
-		n = len(pool)
-	}
-	budget := usable / n
-	selected := chooseBenchmark(pool, obs, p, now, budget, rng)
+	if reserved == 0 { selected = "" }
 	if selected == "" && (p.Benchmark != "" || len(p.Benchmarks) > 0) {
 		plan.Warnings = append(plan.Warnings, "所选 benchmark 中没有符合当前时长和难度的测量关卡；本次不插入测量。")
 	}
 	chosen := map[string]bool{}
 	families := map[string]bool{}
-	for i := 0; i < n; i++ {
+	for i := 0; i < len(pool); i++ {
 		role := "practice"
 		if i == 0 {
 			role = "warmup"
 		}
-		if i == n-1 && selected != "" {
+		if i == len(pool)-1 && selected != "" {
 			role = "benchmark"
 		}
 		if role == "practice" && rng.Float64() < p.Variety {
 			role = "explore"
 		}
+		budget := remaining - reserved
+		if role == "benchmark" { budget = remaining }
 		best := -1
 		bestKey := math.Inf(1)
 		for j, s := range pool {
@@ -319,22 +323,8 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 			if role != "benchmark" && isBenchmark {
 				continue
 			}
-			dur := s.Seconds
-			if dur <= 0 {
-				dur = 60
-			}
+			dur := timings[s.Name].Seconds
 			rows := comparable(obs[strings.ToLower(s.Name)])
-			if len(rows) > 0 {
-				ds := []float64{}
-				for _, r := range rows {
-					if r.duration > 0 {
-						ds = append(ds, r.duration)
-					}
-				}
-				if d := median(ds); d > 0 {
-					dur = int(math.Ceil(d))
-				}
-			}
 			if dur > budget {
 				continue
 			}
@@ -407,34 +397,24 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 			if role == "benchmark" {
 				plan.Warnings = append(plan.Warnings, "所选 benchmark 没有适合本次时长/难度且未重复的关卡，未强行插入。")
 			}
-			continue
+			if selected != "" && role != "benchmark" {
+				i = len(pool)-2 // Try the reserved measurement once, then finish.
+				continue
+			}
+			break
 		}
 		s := pool[best]
 		chosen[s.Name] = true
 		families[familyKey(s)] = true
-		dur := s.Seconds
-		if dur <= 0 {
-			dur = 60
-		}
-		measuredDurations := []float64{}
-		for _, r := range comparable(obs[strings.ToLower(s.Name)]) {
-			if r.duration > 0 {
-				measuredDurations = append(measuredDurations, r.duration)
-			}
-		}
-		if d := median(measuredDurations); d > 0 {
-			dur = int(math.Ceil(d))
-		}
-		count := budget / dur
-		if count < 1 {
-			count = 1
-		}
-		if role == "benchmark" || role == "explore" {
-			count = 1
-		}
-		b := Block{Scenario: s, Role: role, Budget: budget, PlayCount: count, Outcome: "pending", Reason: "匹配能力与难度，并降低近期重复；时长为上限。", Cue: "留意动作质量；本模块到时即可继续，不要求无限重开。"}
+		timing := timings[s.Name]
+		dur := timing.Seconds
+		count := plannedRepetitions(timing, role)
+		if count > budget/dur { count = budget/dur }
+		blockBudget := count * dur
+		remaining -= blockBudget
+		b := Block{Scenario: s, Timing: timing, Role: role, Budget: blockBudget, PlayCount: count, Outcome: "pending", Reason: "匹配能力与难度，并降低近期重复；时长为上限。", Cue: "留意动作质量；本模块到时即可继续，不要求无限重开。"}
 		if p.ExecutionMode == "playlist" {
-			b.Reason = fmt.Sprintf("匹配能力与难度，并降低近期重复；游戏内列表安排 %d 局，次数按模块预算与预计单局时长估算。", count)
+			b.Reason = fmt.Sprintf("匹配能力与难度，并降低近期重复；游戏内列表安排 %d 局，次数根据单局长度与近 24 小时、近 7 天的已记录练习量估算。", count)
 		}
 		if related(s, selected) && role == "practice" {
 			b.Reason += " 手动关联至本次参考 benchmark 的能力训练。"
@@ -474,10 +454,18 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		if s.Skill == "reactive" {
 			b.Cue = "观察换向后的恢复，并区分实际换向与提前反向。需要结合目标录像判断。"
 		}
+		if timing.Source == "history" {
+			b.Reason += fmt.Sprintf(" 单局约 %d 秒，取最近 %d 条同版本/设置记录的中位数。", dur, timing.Samples)
+		} else {
+			b.Reason += fmt.Sprintf(" 可比历史不足 3 局，单局暂按关卡库或默认时长预估 %d 秒。", dur)
+		}
 		plan.Blocks = append(plan.Blocks, b)
 	}
 	if len(plan.Blocks) == 0 {
 		return nil, fmt.Errorf("可用关卡时长均超出模块预算，请增加训练时间")
+	}
+	if remaining > 0 {
+		plan.Warnings = append(plan.Warnings, fmt.Sprintf("本次另有 %d 秒未分配：保持完整局数和少量重复，不为填满时间延长单关。", remaining))
 	}
 	plan.Warnings = append(plan.Warnings, "预留约 10% 时间用于休息与切换；未知关卡默认按 60 秒估计。", "有效练习量来自完成并写入记录的对局；未写出的中途重开不能精确统计。")
 	if p.ExecutionMode == "playlist" {

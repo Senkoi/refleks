@@ -299,8 +299,13 @@ func (s *Service) Action(action string, now time.Time, runs []models.RunRecord) 
 		}
 		s.clock(now)
 		s.expire()
+		paused := p.Status == "paused"
 		if p.Status != "completed" {
 			s.advance("skipped", now)
+			if p.Status == "ready" && p.Preferences.ExecutionMode == "playlist" {
+				p.Status = "running"
+				if paused { p.Status = "paused" }
+			}
 		}
 	case "finish":
 		s.clock(now)
@@ -450,7 +455,14 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 					if strings.EqualFold(p.Blocks[i].Scenario.Name, sum.Scenario) { future = i; break }
 				}
 				if future >= 0 {
-					for p.Index < future { s.advance("missed", end) }
+					for p.Index < future {
+						outcome := "missed"
+						if p.Blocks[p.Index].Outcome == "list_complete" { outcome = "list_complete" }
+						s.advance(outcome, start)
+					}
+					// Backdate to this completed run's start, not its file-arrival
+					// time. The first run of the next scenario already used time.
+					p.BlockElapsed = math.Min(p.Elapsed, math.Max(0, now.Sub(start).Seconds()))
 					p.Status = "running"
 				}
 			}
@@ -471,7 +483,14 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 					count = 1
 				}
 				if b.Runs >= count {
-					outcome = "list_complete"
+					b.Outcome = "list_complete"
+					// Repetitions are a target, not evidence that the player has
+					// changed scenarios. Keep attributing extra runs to this block.
+					if p.Index == len(p.Blocks)-1 {
+						outcome = "list_complete"
+						p.Reminder = "本次列表计划已完成，可以结束训练并休息。"
+						s.pendingReminder = p.Reminder
+					}
 				}
 			} else if b.Role == "benchmark" {
 				outcome = "measured"

@@ -67,6 +67,7 @@ type SkillStatus struct {
 }
 
 type Block struct {
+	Timing    TimingEstimate `json:"timing"`
 	Signature string   `json:"signature,omitempty"`
 	Scenario  Scenario `json:"scenario"`
 	Role      string   `json:"role"`
@@ -80,6 +81,14 @@ type Block struct {
 	Runs      int      `json:"runs"`
 	Best      float64  `json:"best"`
 	Outcome   string   `json:"outcome"`
+}
+
+type TimingEstimate struct {
+	Seconds       int     `json:"seconds"`
+	Source        string  `json:"source"`
+	Samples       int     `json:"samples"`
+	RecentSeconds float64 `json:"recentSeconds"`
+	WeeklySeconds float64 `json:"weeklySeconds"`
 }
 
 type Plan struct {
