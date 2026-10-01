@@ -280,6 +280,8 @@ func (s *Service) Action(action string, now time.Time, runs []models.RunRecord) 
 		p.AcceptAfter = now.UnixMilli()
 		p.LastTick = now.UnixMilli()
 		p.Status = "running"
+		p.Game.Phase = ""
+		p.Game.StartedAt = 0
 		s.state.Error = ""
 		if p.Preferences.ExecutionMode != "playlist" {
 			launch = p.Blocks[p.Index].Scenario.Name
@@ -356,6 +358,7 @@ func (s *Service) advance(outcome string, now time.Time) {
 	p.Index++
 	p.BlockElapsed = 0
 	p.AcceptAfter = now.UnixMilli()
+	p.Game = GameState{}
 	p.Status = "ready"
 	if p.Index >= len(p.Blocks) {
 		p.Status = "completed"
@@ -438,13 +441,24 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			if start.UnixMilli() < p.AcceptAfter-2000 || end.After(now.Add(2*time.Second)) {
 				continue
 			}
-			b := &p.Blocks[p.Index]
-			if !strings.EqualFold(b.Scenario.Name, sum.Scenario) {
-				continue
-			}
 			if sum.Duration <= 0 || math.IsNaN(sum.Duration) || math.IsInf(sum.Duration, 0) || sum.Score < 0 || math.IsNaN(sum.Score) || math.IsInf(sum.Score, 0) {
 				continue
 			}
+			if p.Preferences.ExecutionMode == "playlist" && !strings.EqualFold(p.Blocks[p.Index].Scenario.Name, sum.Scenario) {
+				// A finished run in a later playlist row is stronger evidence than
+				// the generated play counts. Keep the local plan aligned if the
+				// player skipped a row or manually advanced in-game.
+				future := -1
+				for i := p.Index + 1; i < len(p.Blocks); i++ {
+					if strings.EqualFold(p.Blocks[i].Scenario.Name, sum.Scenario) { future = i; break }
+				}
+				if future >= 0 {
+					for p.Index < future { s.advance("missed", end) }
+					p.Status = "running"
+				}
+			}
+			b := &p.Blocks[p.Index]
+			if !strings.EqualFold(b.Scenario.Name, sum.Scenario) { continue }
 			b.Recorded += sum.Duration
 			p.Recorded += sum.Duration
 			b.Runs++
@@ -493,7 +507,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 	}
 	if p.Status == "running" && p.Preferences.ExecutionMode == "playlist" && p.Index < len(p.Blocks) && p.BlockElapsed >= float64(p.Blocks[p.Index].Budget) && p.RemindedBlock != p.Index+1 {
 		p.RemindedBlock = p.Index+1
-		p.Reminder = "当前关卡已达到本次时间预算。完成当前局后，请检查游戏列表并换关；若反复重开，请停止这一关。"
+		p.Reminder = "当前关卡已达到本次时间预算。完成当前局后，请在游戏中换关或休息。"
 		s.pendingReminder = p.Reminder
 	}
 	s.expire()

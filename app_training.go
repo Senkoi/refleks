@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	_ "embed"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -14,6 +15,49 @@ import (
 	"refleks/internal/training"
 )
 
+//go:embed ue4ss-mod/RefleksBridge/Scripts/main.lua
+var refleksBridgeLua string
+
+// InstallTrainingBridge installs only our Lua observer into an existing UE4SS
+// installation. It never deploys an injector or changes game executables.
+func (a *App) InstallTrainingBridge() (string, error) {
+	if err := a.trainingReady(); err != nil { return "", err }
+	base := a.settingsSvc.Get().KovaaksInstallDir
+	if base == "" { return "", fmt.Errorf("请先在设置中指定 KovaaK's 安装目录") }
+	bin := filepath.Join(base, "FPSAimTrainer", "Binaries", "Win64")
+	if _, err := os.Stat(filepath.Join(bin, "UE4SS.dll")); err != nil {
+		return "", fmt.Errorf("未找到现有 UE4SS.dll；请先按 UE4SS 官方说明安装，并确认 KovaaK's 的 Binaries/Win64 路径")
+	}
+	mods := filepath.Join(bin, "Mods")
+	list := filepath.Join(mods, "mods.txt")
+	data, err := os.ReadFile(list)
+	if err != nil { return "", fmt.Errorf("未找到 UE4SS Mods/mods.txt：%w", err) }
+	script := filepath.Join(mods, "RefleksBridge", "Scripts", "main.lua")
+	if current, err := os.ReadFile(script); err == nil && string(current) != refleksBridgeLua {
+		return "", fmt.Errorf("已有自定义 RefleksBridge 脚本；请先自行备份后处理")
+	} else if err != nil && !os.IsNotExist(err) { return "", err }
+	if err := os.MkdirAll(filepath.Dir(script), 0755); err != nil { return "", err }
+	if err := os.WriteFile(script, []byte(refleksBridgeLua), 0644); err != nil { return "", err }
+	lines := strings.Split(string(data), "\n")
+	found := false
+	for i, line := range lines {
+		parts := strings.SplitN(line, ":", 2)
+		if len(parts) == 2 && strings.EqualFold(strings.TrimSpace(parts[0]), "RefleksBridge") {
+			lines[i] = "RefleksBridge : 1"
+			found = true
+		}
+	}
+	if !found { lines = append(lines, "RefleksBridge : 1") }
+	updated := strings.Join(lines, "\n")
+	if !strings.HasSuffix(updated, "\n") { updated += "\n" }
+	backup := list + ".refleks.bak"
+	if _, err := os.Stat(backup); os.IsNotExist(err) {
+		if err := os.WriteFile(backup, data, 0644); err != nil { return "", err }
+	}
+	if err := os.WriteFile(list, []byte(updated), 0644); err != nil { return "", err }
+	return script, nil
+}
+
 func (a *App) startTraining() {
 	dir, err := appsettings.EnsureConfigDir()
 	if err == nil {
@@ -25,6 +69,9 @@ func (a *App) startTraining() {
 	}
 	ctx, cancel := context.WithCancel(a.ctx)
 	a.trainingCancel = cancel
+	events := training.NewEventReader(filepath.Join(dir, training.GameEventsFile))
+	// Start after the existing file's EOF. A prior game session is not replayed.
+	_, _ = events.Read()
 	go func() {
 		ticker := time.NewTicker(2 * time.Second)
 		defer ticker.Stop()
@@ -33,6 +80,11 @@ func (a *App) startTraining() {
 			case <-ctx.Done():
 				return
 			case now := <-ticker.C:
+				if observed, err := events.Read(); err == nil {
+					for _, event := range observed {
+						_ = a.trainingSvc.ApplyGameEvent(event, now)
+					}
+				}
 				if name := a.trainingSvc.Tick(now, a.GetRecentRuns(0)); name != "" {
 					if err := a.LaunchKovaaksScenario(name, "challenge"); err != nil {
 						a.trainingSvc.LaunchFailed(err)
