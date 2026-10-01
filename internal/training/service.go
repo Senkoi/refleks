@@ -205,6 +205,8 @@ func (s *Service) UpdateScenario(item Scenario) error {
 			e.Skill = item.Skill
 			e.Family = item.Family
 			e.Difficulty = item.Difficulty
+			e.DifficultySource = "manual"
+			e.Technique = technique(item.Name, item.Skill)
 			e.Seconds = item.Seconds
 			e.VariantOf = strings.TrimSpace(item.VariantOf)
 			e.RelatedBenchmarks = mergeStrings(nil, item.RelatedBenchmarks)

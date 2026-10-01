@@ -18,6 +18,8 @@ type Scenario struct {
 	Skill              string                `json:"skill"`
 	Family             string                `json:"family"`
 	Difficulty         string                `json:"difficulty"`
+	DifficultySource   string                `json:"difficultySource,omitempty"`
+	Technique          string                `json:"technique,omitempty"`
 	Seconds            int                   `json:"seconds"`
 	Benchmark          string                `json:"benchmark"`
 	Thresholds         []float64             `json:"thresholds,omitempty"`
@@ -68,6 +70,7 @@ type SkillStatus struct {
 
 type Block struct {
 	Timing    TimingEstimate `json:"timing"`
+	DifficultyEvidence DifficultyEvidence `json:"difficultyEvidence"`
 	Signature string   `json:"signature,omitempty"`
 	Scenario  Scenario `json:"scenario"`
 	Role      string   `json:"role"`
@@ -91,7 +94,15 @@ type TimingEstimate struct {
 	WeeklySeconds float64 `json:"weeklySeconds"`
 }
 
+type DifficultyEvidence struct {
+	Level   string `json:"level"`
+	Source  string `json:"source"`
+	Fit     string `json:"fit"`
+	Samples int    `json:"samples"`
+}
+
 type Plan struct {
+	Theme        string      `json:"theme,omitempty"`
 	EndedAt      int64       `json:"endedAt,omitempty"`
 	ID           string      `json:"id"`
 	Created      string      `json:"created"`

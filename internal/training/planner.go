@@ -275,15 +275,26 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		return nil, fmt.Errorf("没有可编排关卡。请先发现/导入列表，或调整分类和难度。")
 	}
 	plan := &Plan{ID: fmt.Sprintf("%d-%x", now.UnixMilli(), rng.Uint32()), Created: now.Format(time.RFC3339), Preferences: p, Status: "draft", Blocks: []Block{}, Warnings: []string{}, Seen: []string{}}
+	if p.Focus == "auto" {
+		plan.Theme = chooseTheme(pool, obs, now)
+	}
 	// Reserve 10%% for loading and breaks. A block is a time cap, not a promise of repetitions.
 	seconds := p.Minutes * 60
 	usable := int(float64(seconds) * 0.9)
 	timings := map[string]TimingEstimate{}
+	difficulties := map[string]DifficultyEvidence{}
 	for _, scenario := range pool {
 		timings[scenario.Name] = estimateTiming(scenario, obs[strings.ToLower(scenario.Name)], now)
+		difficulties[scenario.Name] = assessDifficulty(scenario, obs[strings.ToLower(scenario.Name)], now)
 	}
 	remaining := usable
-	selected := chooseBenchmark(pool, obs, p, now, usable, rng)
+	benchmarkPool := pool
+	if plan.Theme != "" {
+		focused := []Scenario{}
+		for _, scenario := range pool { if scenarioTheme(scenario) == plan.Theme { focused = append(focused, scenario) } }
+		if chooseBenchmark(focused, obs, p, now, usable, rand.New(rand.NewSource(1))) != "" { benchmarkPool = focused }
+	}
+	selected := chooseBenchmark(benchmarkPool, obs, p, now, usable, rng)
 	reserved := 0
 	for _, scenario := range pool {
 		if _, ok := member(scenario, selected); ok {
@@ -329,6 +340,23 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 				continue
 			}
 			w := priority[s.Skill] / (1 + minutes[s.Skill]/30)
+			if plan.Theme != "" && role == "practice" {
+				if scenarioTheme(s) == plan.Theme { w *= 7 } else { w *= .3 }
+			}
+			evidence := difficulties[s.Name]
+			switch evidence.Fit {
+			case "challenging": w *= .45
+			case "suitable": w *= 1.4
+			case "comfortable": w *= .8
+			}
+			// Progress from easier preparation to more demanding practice, but
+			// never treat unknown tiers as a proven order.
+			if role == "warmup" {
+				if evidence.Level == "novice" { w *= 2 }
+				if evidence.Level == "advanced" { w *= .25 }
+			} else if role == "practice" && evidence.Level == "advanced" && len(plan.Blocks) < 3 {
+				w *= .35
+			}
 			if p.Focus != "auto" {
 				if s.Skill == p.Focus {
 					w *= 8
@@ -412,7 +440,7 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		if count > budget/dur { count = budget/dur }
 		blockBudget := count * dur
 		remaining -= blockBudget
-		b := Block{Scenario: s, Timing: timing, Role: role, Budget: blockBudget, PlayCount: count, Outcome: "pending", Reason: "匹配能力与难度，并降低近期重复；时长为上限。", Cue: "留意动作质量；本模块到时即可继续，不要求无限重开。"}
+		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: difficulties[s.Name], Role: role, Budget: blockBudget, PlayCount: count, Outcome: "pending", Reason: "匹配能力与难度，并降低近期重复；时长为上限。", Cue: "留意动作质量；本模块到时即可继续，不要求无限重开。"}
 		if p.ExecutionMode == "playlist" {
 			b.Reason = fmt.Sprintf("匹配能力与难度，并降低近期重复；游戏内列表安排 %d 局，次数根据单局长度与近 24 小时、近 7 天的已记录练习量估算。", count)
 		}
@@ -448,6 +476,12 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		if role == "explore" {
 			b.Reason = "探索内容，不设成绩阈值；先建立个人基线。"
 		}
+		if plan.Theme != "" && scenarioTheme(s) == plan.Theme && role == "practice" {
+			b.Reason += " 本次自动轮换到该 VDIM 专项，优先安排同类练习。"
+		}
+		if b.DifficultyEvidence.Fit != "unknown" {
+			b.Reason += fmt.Sprintf(" 个人适配评估为 %s；依据该关卡可比成绩或你的反馈，不等同于全体玩家难度。", b.DifficultyEvidence.Fit)
+		}
 		if s.Skill == "smooth" {
 			b.Cue = "观察长横移是否连续匹配速度，而不是反复停顿追赶。参考 MattyOW Speed Matching；不据轨迹断言握力。"
 		}
@@ -466,6 +500,9 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 	}
 	if remaining > 0 {
 		plan.Warnings = append(plan.Warnings, fmt.Sprintf("本次另有 %d 秒未分配：保持完整局数和少量重复，不为填满时间延长单关。", remaining))
+	}
+	if plan.Theme != "" {
+		plan.Warnings = append(plan.Warnings, "按 VDIM 六类专项轮换并参考近七天完成记录；这是可变时长的改造编排，不是原作者的原样列表。")
 	}
 	plan.Warnings = append(plan.Warnings, "预留约 10% 时间用于休息与切换；未知关卡默认按 60 秒估计。", "有效练习量来自完成并写入记录的对局；未写出的中途重开不能精确统计。")
 	if p.ExecutionMode == "playlist" {

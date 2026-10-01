@@ -42,6 +42,17 @@ func difficulty(name string) string {
 	return "unknown"
 }
 
+func technique(name, skill string) string {
+	n := strings.ToLower(name)
+	if skill == "switching" {
+		if strings.Contains(n, "evas") || strings.Contains(n, "drift") || strings.Contains(n, "flyts") || strings.Contains(n, "reactive ts") {
+			return "switching_evasive"
+		}
+		return "switching_speed"
+	}
+	return skill
+}
+
 func memberships(s Scenario) []BenchmarkMembership {
 	if len(s.Benchmarks) > 0 {
 		return s.Benchmarks
@@ -135,7 +146,12 @@ func ParsePlaylist(data []byte, source Source) ([]Scenario, error) {
 		}
 		seen[strings.ToLower(name)] = true
 		skill := classify(name)
-		result = append(result, Scenario{Name: name, Skill: skill, Family: family(name), Difficulty: difficulty(name), Seconds: 60, Sources: []Source{source}, Classification: "inferred", Enabled: validSkill(skill)})
+		level, origin := difficulty(name), "name"
+		if level == "unknown" {
+			level, origin = difficulty(p.Name), "playlist"
+			if level == "unknown" { origin = "unknown" }
+		}
+		result = append(result, Scenario{Name: name, Skill: skill, Technique: technique(name+" "+p.Name, skill), Family: family(name), Difficulty: level, DifficultySource: origin, Seconds: 60, Sources: []Source{source}, Classification: "inferred", Enabled: validSkill(skill)})
 	}
 	return result, nil
 }
@@ -163,6 +179,12 @@ func mergeCatalog(existing, incoming []Scenario) []Scenario {
 			}
 			e.Benchmarks = mergeMemberships(memberships(*e), memberships(s))
 			e.RelatedBenchmarks = mergeStrings(e.RelatedBenchmarks, s.RelatedBenchmarks)
+			if e.Classification != "manual" && difficultyRank(s.DifficultySource) > difficultyRank(e.DifficultySource) {
+				e.Difficulty, e.DifficultySource = s.Difficulty, s.DifficultySource
+			}
+			if e.Classification != "manual" && s.Technique != "" && (e.Technique == "" || s.Classification == "benchmark") {
+				e.Technique = s.Technique
+			}
 			if e.Classification != "manual" && s.VariantOf != "" {
 				e.VariantOf = s.VariantOf
 			}
@@ -171,6 +193,7 @@ func mergeCatalog(existing, incoming []Scenario) []Scenario {
 				e.Classification = s.Classification
 				e.Enabled = validSkill(s.Skill)
 				e.Difficulty = s.Difficulty
+				e.DifficultySource = "benchmark"
 			}
 		} else if len(existing) < 10000 {
 			s.Benchmarks = mergeMemberships(nil, memberships(s))

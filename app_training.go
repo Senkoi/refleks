@@ -194,9 +194,9 @@ func (a *App) ImportTrainingBenchmarks() (int, error) {
 							skill = "static"
 						case strings.Contains(hint, "dynamic"), strings.Contains(hint, "linear"), strings.Contains(hint, "timing"):
 							skill = "dynamic"
-						case strings.Contains(hint, "reactiv"), strings.Contains(hint, "control"):
+						case strings.Contains(hint, "reactiv"):
 							skill = "reactive"
-						case strings.Contains(hint, "smooth"), strings.Contains(hint, "precis"), strings.Contains(hint, "stability"):
+						case strings.Contains(hint, "smooth"), strings.Contains(hint, "precis"), strings.Contains(hint, "control"):
 							skill = "smooth"
 						}
 						diff := "unknown"
@@ -205,7 +205,7 @@ func (a *App) ImportTrainingBenchmarks() (int, error) {
 								diff = v
 							}
 						}
-						items = append(items, training.Scenario{Name: s.Name, Skill: skill, Family: strings.ToLower(s.Name), Difficulty: diff, Seconds: 60, Benchmarks: []training.BenchmarkMembership{{Name: b.BenchmarkName + " / " + d.DifficultyName, Thresholds: s.Thresholds}}, Classification: "benchmark", Enabled: skill != "unknown", Sources: []training.Source{{URL: b.SpreadsheetURL, Title: b.BenchmarkName + " / " + g.Name, Retrieved: time.Now().UTC().Format(time.RFC3339)}}})
+						items = append(items, training.Scenario{Name: s.Name, Skill: skill, Technique: training.BenchmarkTechnique(c.Name, g.Name, skill), Family: strings.ToLower(s.Name), Difficulty: diff, DifficultySource: "benchmark", Seconds: 60, Benchmarks: []training.BenchmarkMembership{{Name: b.BenchmarkName + " / " + d.DifficultyName, Thresholds: s.Thresholds}}, Classification: "benchmark", Enabled: skill != "unknown", Sources: []training.Source{{URL: b.SpreadsheetURL, Title: b.BenchmarkName + " / " + g.Name, Retrieved: time.Now().UTC().Format(time.RFC3339)}}})
 					}
 				}
 			}

@@ -1,5 +1,5 @@
 export type Scenario = {
-  name: string; skill: string; family: string; difficulty: string; seconds: number;
+  name: string; skill: string; technique?: string; family: string; difficulty: string; difficultySource?: string; seconds: number;
   benchmark: string; thresholds?: number[]; benchmarks?: { name: string; thresholds?: number[] }[];
   relatedBenchmarks?: string[]; variantOf?: string; preference?: string; personalDifficulty?: string;
   classification: string; enabled: boolean;
@@ -11,11 +11,12 @@ export type Preferences = {
 };
 export type Block = {
   timing?: { seconds: number; source: string; samples: number; recentSeconds: number; weeklySeconds: number };
+  difficultyEvidence?: { level: string; source: string; fit: string; samples: number };
   scenario: Scenario; role: string; budget: number; playCount: number; target: number; reason: string; benchmark?: string;
   cue: string; recorded: number; runs: number; best: number; outcome: string;
 };
 export type Plan = {
-  id: string; created: string; preferences: Preferences; blocks: Block[]; warnings: string[];
+  id: string; created: string; theme?: string; preferences: Preferences; blocks: Block[]; warnings: string[];
   status: string; index: number; elapsed: number; recorded: number; blockElapsed: number;
   reminder?: string;
 };
