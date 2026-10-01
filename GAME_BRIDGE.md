@@ -1,6 +1,8 @@
 # KovaaK's 游戏事件桥接（试验性）
 
-这部分代码用于验证 UE4SS 能否在当前 KovaaK's 版本稳定读取挑战状态。它尚未通过真实 Windows 游戏测试。RefleK's 不会自动安装 UE4SS；用户先按 [UE4SS 官方说明](https://docs.ue4ss.com/installation-guide)安装，再在训练工作台点击「安装试验性游戏事件桥接」，重启游戏。安装操作仅写入 `Mods/RefleksBridge/Scripts/main.lua` 和 `Mods/mods.txt`，第一次修改 `mods.txt` 时保留 `mods.txt.refleks.bak`。
+默认训练无需 UE4SS：生成并运行本地列表、归集完成成绩、按模块和总时长弹出提醒都由 RefleK's 自身完成。游戏未完成的重开不会写出完整成绩，默认流程因此只能按墙钟时间提醒，无法准确辨别每一次重开。
+
+这部分代码用于验证 UE4SS 能否在当前 KovaaK's 版本稳定读取挑战状态。它尚未通过真实 Windows 游戏测试。只有已经使用 UE4SS 且愿意试验更细致的重开提醒时，才需要在训练工作台展开可选入口安装桥接脚本。RefleK's 不会自动安装 UE4SS；可参考 [UE4SS 官方说明](https://docs.ue4ss.com/installation-guide)。安装脚本只写入 `Mods/RefleksBridge/Scripts/main.lua` 和 `Mods/mods.txt`，第一次修改 `mods.txt` 时保留 `mods.txt.refleks.bak`。
 
 脚本读取 `ScenarioManager:IsInChallenge()`、当前场景对象和挑战剩余时间，每秒观察一次；出现挑战开始、重开、结束边界时向 `%USERPROFILE%\.refleks\kovaaks-events.jsonl` 追加一行 JSON。RefleK's 启动时跳过旧事件，每两秒读取新增的完整行。格式示例：
 
