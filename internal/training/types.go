@@ -100,26 +100,6 @@ type Plan struct {
 	RemindedBlock int         `json:"remindedBlock,omitempty"`
 	RemindedEnd   bool        `json:"remindedEnd,omitempty"`
 	Reminder      string      `json:"reminder,omitempty"`
-	Game          GameState   `json:"game"`
-}
-
-// GameState contains observations from an optional in-game bridge. Completed
-// runs remain the source of truth for score and recorded practice time.
-type GameState struct {
-	Scenario       string  `json:"scenario,omitempty"`
-	Phase          string  `json:"phase,omitempty"`
-	StartedAt      int64   `json:"startedAt,omitempty"`
-	LastEventAt    int64   `json:"lastEventAt,omitempty"`
-	LastEventType  string  `json:"lastEventType,omitempty"`
-	Restarts       int     `json:"restarts,omitempty"`
-	AbortedSeconds float64 `json:"abortedSeconds,omitempty"`
-	RestartReminder bool  `json:"restartReminder,omitempty"`
-}
-
-type GameEvent struct {
-	Type     string `json:"type"`
-	Scenario string `json:"scenario"`
-	At       int64  `json:"at"` // Unix milliseconds from the game bridge.
 }
 
 type State struct {

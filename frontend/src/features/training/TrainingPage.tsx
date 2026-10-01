@@ -94,15 +94,9 @@ export default function TrainingPage() {
                 {active && <button disabled={!!busy} onClick={() => perform("结束训练", () => call("TrainingAction", "finish"))}>结束本次</button>}
                 <button disabled={!!busy} onClick={() => perform("导出列表", () => call("ExportTrainingPlaylist"), "已导出列表，重复次数按模块时长估算。")}><Download size={15} />导出列表</button>
               </div>
-              <details className="training-optional-bridge">
-                <summary>可选：已有 UE4SS 时试用游戏事件识别</summary>
-                <p>正常训练、成绩归集和时间提醒无需插件。这个实验功能只用于识别未完成的重开；需要你已自行安装 UE4SS，游戏版本兼容性尚待验证。</p>
-                <button disabled={!!busy} onClick={() => perform("安装游戏事件桥接", () => call("InstallTrainingBridge"), "已写入试验性 UE4SS 脚本。重启 KovaaK’s 后，训练中检查是否收到游戏事件。")}>安装桥接脚本</button>
-              </details>
               {current && active && <p className="training-current">当前：{current.scenario.name} · 模块已用 {clock(plan.blockElapsed)} / {clock(current.budget)}。到时不会中断游戏内正在进行的一局。</p>}
-              {plan.game?.lastEventAt && <p className="training-current">游戏事件：{plan.game.scenario || "未知关卡"} · {plan.game.phase === "playing" ? "挑战中" : "局间"} · 重开 {plan.game.restarts || 0} 次 · 未完成练习约 {clock(plan.game.abortedSeconds || 0)}。{current && plan.game.scenario && plan.game.scenario.toLowerCase() !== current.scenario.name.toLowerCase() ? "实际关卡与计划不同，成绩不会归入当前模块。" : ""}</p>}
               {plan.reminder && <div role="alert" className="training-alert">{plan.reminder}</div>}
-              <p className="training-muted">{plan.preferences.executionMode === "playlist" ? "在 KovaaK’s 的 Local Playlists 中运行已安装列表。无需插件：模块或总时间到时会响铃提醒，完成的对局会自动计入。未完成的重开无法由成绩文件识别；如果已接入实验性游戏事件脚本，还可在反复重开时提醒。列表切关仍由游戏执行。无边框窗口可显示浮层，全屏独占可能只听到声音。" : "完成并写出的对局自动计入。切图和休息消耗总预算，暂停按钮暂停工作台计时。"}</p>
+              <p className="training-muted">{plan.preferences.executionMode === "playlist" ? "在 KovaaK’s 的 Local Playlists 中运行已安装列表。模块和总时间按计时提醒，完成的对局自动计入；即使中途反复重开，计时也会继续。列表切关仍由游戏执行。无边框窗口可显示浮层，全屏独占可能只听到声音。" : "完成并写出的对局自动计入。切图和休息消耗总预算，暂停按钮暂停工作台计时。"}</p>
             </> : <div className="training-empty"><Target size={35} /><p>选择时间与训练重点，生成一份可直接执行的计划。</p><small>每个模块都带有选图理由、练习提示和时间上限。</small></div>}
           </div>
           {plan?.blocks.map((b,i) => <article key={`${plan.id}-${i}`} className={`training-card training-block ${i === plan.index && active ? "current" : ""}`}>

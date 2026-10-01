@@ -280,8 +280,6 @@ func (s *Service) Action(action string, now time.Time, runs []models.RunRecord) 
 		p.AcceptAfter = now.UnixMilli()
 		p.LastTick = now.UnixMilli()
 		p.Status = "running"
-		p.Game.Phase = ""
-		p.Game.StartedAt = 0
 		s.state.Error = ""
 		if p.Preferences.ExecutionMode != "playlist" {
 			launch = p.Blocks[p.Index].Scenario.Name
@@ -358,7 +356,6 @@ func (s *Service) advance(outcome string, now time.Time) {
 	p.Index++
 	p.BlockElapsed = 0
 	p.AcceptAfter = now.UnixMilli()
-	p.Game = GameState{}
 	p.Status = "ready"
 	if p.Index >= len(p.Blocks) {
 		p.Status = "completed"

@@ -17,7 +17,6 @@ export type Plan = {
   id: string; created: string; preferences: Preferences; blocks: Block[]; warnings: string[];
   status: string; index: number; elapsed: number; recorded: number; blockElapsed: number;
   reminder?: string;
-  game?: { scenario?: string; phase?: string; lastEventAt?: number; restarts?: number; abortedSeconds?: number };
 };
 export type State = {
   version: number; catalog: Scenario[]; preferences: Preferences; plan: Plan | null;

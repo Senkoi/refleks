@@ -275,6 +275,21 @@ func TestPlaylistExecutionUsesGeneratedCountsAndTracksNextBlock(t *testing.T) {
 	}
 }
 
+func TestFinishedLaterPlaylistRunRealignsProgress(t *testing.T) {
+	s := fixture(t)
+	s.state.Plan.Preferences.ExecutionMode = "playlist"
+	s.state.Plan.Blocks[0].PlayCount = 5
+	s.state.Plan.Blocks[1].PlayCount = 2
+	if _, err := s.Action("start", epoch, nil); err != nil {
+		t.Fatal(err)
+	}
+	s.Tick(epoch.Add(time.Minute), []models.RunRecord{record("later", "Benchmark", 60, 40, epoch.Add(time.Minute))})
+	p := s.Snapshot(nil).Plan
+	if p.Index != 1 || p.Blocks[0].Outcome != "missed" || p.Blocks[1].Runs != 1 || p.Recorded != 60 {
+		t.Fatalf("finished later row was dropped: %+v", p)
+	}
+}
+
 func TestRejectPrivateAndNonHTTPDiscovery(t *testing.T) {
 	for _, u := range []string{"file:///etc/passwd", "http://example.com", "https://127.0.0.1/a", "https://[::1]/", "https://user:pass@example.com/"} {
 		if publicURL(context.Background(), u) == nil {
