@@ -112,6 +112,7 @@ def extract(content):
                        "fields": [fact(section, f) for f in fields] if fields else section["fields"]}
         refs = {"Bot Profile": [("CharacterProfile", "Character Profile"), ("DodgeProfileNames", "Dodge Profile")],
                 "Character Profile": [("WeaponProfileNames", "Weapon Profile"), ("AbilityProfileNames", "Ability Profile")],
+                "Weapon Ability Profile": [("WeaponProfile", "Weapon Profile")],
                 "Bot Rotation Profile": [("ProfileNames", "Bot Profile")]}.get(kind, [])
         for field, dest in refs:
             value = raw(section, field)
@@ -124,7 +125,7 @@ def extract(content):
                 if not token:
                     continue
                 if dest == "Ability Profile":
-                    ability_kind = {"abilmov": "Movement Ability Profile", "abilwep": "Weapon Ability Profile"}.get(token.rsplit(".", 1)[-1])
+                    ability_kind = {"abilmov": "Movement Ability Profile", "abilwep": "Weapon Ability Profile", "abilmelee": "Melee Ability Profile"}.get(token.rsplit(".", 1)[-1])
                     if ability_kind:
                         resolve(ability_kind, token.rsplit(".", 1)[0], {"profile": name, "field": field, "slot": slot}, stack + (key,))
                     else:
@@ -167,5 +168,5 @@ def extract(content):
                             "line_count": len(map_data.splitlines()), "geometry_status": "unsupported"},
             "geometry_features": {"angular_size": None, "angular_speed": None, "transition_angle": None},
             "geometry_status": "unknown_pending_map_and_engine_validation",
-            "reference_scope": "root_bot_rotation_character_dodge_weapon_movement_and_weapon_abilities; weapon_reachability_is_not_active_firing",
+            "reference_scope": "root_bot_rotation_character_dodge_weapon_movement_weapon_melee_abilities; weapon_reachability_is_not_active_firing",
             "full_mechanics_verified": False, "calibration_eligible": False}

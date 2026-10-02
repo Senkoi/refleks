@@ -5637,13 +5637,7 @@
         "Weapon Profile": 1,
         "Melee Ability Profile": 1
       },
-      "referenceDiagnostics": [
-        {
-          "status": "unsupported_ability_reference",
-          "token": "Frog's Random Jump.abilmelee",
-          "profile": "Jump"
-        }
-      ],
+      "referenceDiagnostics": [],
       "fullMechanicsVerified": false,
       "calibrationEligible": false
     },
@@ -6046,13 +6040,7 @@
         "Weapon Profile": 3,
         "Melee Ability Profile": 1
       },
-      "referenceDiagnostics": [
-        {
-          "status": "unsupported_ability_reference",
-          "token": "Launch.abilmelee",
-          "profile": "Rocketman"
-        }
-      ],
+      "referenceDiagnostics": [],
       "fullMechanicsVerified": false,
       "calibrationEligible": false
     },
@@ -11066,13 +11054,7 @@
         "Weapon Ability Profile": 1,
         "Melee Ability Profile": 1
       },
-      "referenceDiagnostics": [
-        {
-          "status": "unsupported_ability_reference",
-          "token": "Melee.abilmelee",
-          "profile": "McCoy Frozen V9999"
-        }
-      ],
+      "referenceDiagnostics": [],
       "fullMechanicsVerified": false,
       "calibrationEligible": false
     },
