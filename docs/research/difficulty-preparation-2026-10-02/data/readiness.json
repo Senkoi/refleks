@@ -1,0 +1,20 @@
+{
+  "benchmark_groups": 11,
+  "scenario_memberships": 303,
+  "unique_leaderboard_ids": 286,
+  "pilot_scenarios": 81,
+  "candidate_families": 75,
+  "candidate_leakage_groups": 46,
+  "unassigned_candidates": [],
+  "historical_files_probed": 15,
+  "current_verified_sce_files": 0,
+  "independently_recomputed_player_pairs": 0,
+  "community_pairs_audited": 39,
+  "algorithm_fitting_ready": false,
+  "official_metadata_matched": 81,
+  "public_source_preparation_complete": true,
+  "current_file_calibration_preparation_complete": false,
+  "algorithm_determined": false,
+  "application_training_logic_changed": false,
+  "platform_aim_type_conflicts_in_community_pairs": 8
+}

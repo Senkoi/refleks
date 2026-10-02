@@ -1,0 +1,5042 @@
+[
+  {
+    "family_candidate": "aether",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "air-lineage"
+    ],
+    "candidate_scenario_count": 7,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Aether Novice S5",
+        "leaderboard_id": 101370,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Aether Intermediate S5",
+        "leaderboard_id": 101369,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Aether Advanced S5",
+        "leaderboard_id": 100140,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      },
+      {
+        "name": "VT Aether Bot 1 Easier",
+        "leaderboard_id": 186530,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Speed"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "VT Aether Novice S5 Hard Bot 1 90%",
+        "leaderboard_id": 184784,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Speed"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "VT Aether Intermediate S5 Hard Bot 1",
+        "leaderboard_id": 140200,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Speed"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "VT Aether Advanced S5 bot 1",
+        "leaderboard_id": 106773,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Speed"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "aimerz-static-switching",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "static-switching-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "aimerz+ Static Switching 6 Bot Slightly Larger",
+        "leaderboard_id": 185407,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "aimerz+ Static Switching 5 Bot Slightly Larger",
+        "leaderboard_id": 185211,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "aimerz+ Static Switching 5 Bot",
+        "leaderboard_id": 184753,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "aimerz+ Static Switching",
+        "leaderboard_id": 54520,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "air-angelic",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "air-lineage"
+    ],
+    "candidate_scenario_count": 5,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Air Angelic Advanced S5",
+        "leaderboard_id": 200696,
+        "memberships": [
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      },
+      {
+        "name": "Air Angelic 4 Voltaic Easy 70%",
+        "leaderboard_id": 14155,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Air Angelic 4 Voltaic Easy 90%",
+        "leaderboard_id": 13692,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Air Angelic 4 Voltaic 90%",
+        "leaderboard_id": 2537,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Air Angelic 4 Voltaic Slightly Smaller",
+        "leaderboard_id": 184839,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "air-celestial",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "air-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Air CELESTIAL No UFO Easier",
+        "leaderboard_id": 185640,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Air CELESTIAL No UFO Medium",
+        "leaderboard_id": 184763,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Air CELESTIAL Harder",
+        "leaderboard_id": 185225,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Air CELESTIAL Expert",
+        "leaderboard_id": 185401,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "air-pure",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "air-lineage"
+    ],
+    "candidate_scenario_count": 7,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Air Pure Easier No UFO",
+        "leaderboard_id": 185405,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Reading"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Air Pure Medium",
+        "leaderboard_id": 184766,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Reading"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Air Pure Hard",
+        "leaderboard_id": 185019,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Reading"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Air Pure",
+        "leaderboard_id": 13213,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Reading"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      },
+      {
+        "name": "Air Pure Revosect Entry",
+        "leaderboard_id": 142837,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "Air Pure Revosect Int",
+        "leaderboard_id": 142834,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "Air Pure Revosect",
+        "leaderboard_id": 142823,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "air-smooth",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "air-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Air Smooth Revosect Entry",
+        "leaderboard_id": 142839,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "Air Smooth Revosect Int",
+        "leaderboard_id": 142840,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "Air Smooth Revosect",
+        "leaderboard_id": 142841,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "air-spectral",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "air-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Air Spectral Easy 85%",
+        "leaderboard_id": 185693,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Control"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Air Spectral Easy",
+        "leaderboard_id": 143228,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Control"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Air Spectral",
+        "leaderboard_id": 142893,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Control"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Air Spectral Harder",
+        "leaderboard_id": 185018,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Control"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "air-voltaic",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "air-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Air Voltaic Invincible 4 Easier",
+        "leaderboard_id": 185406,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Reading"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Air Voltaic Invincible 4 Medium",
+        "leaderboard_id": 184775,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Reading"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Air Voltaic Invincible 4 Slightly Slower",
+        "leaderboard_id": 185402,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Reading"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Air Voltaic Invincible 4",
+        "leaderboard_id": 1092,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Reading"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "angleswitch",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "angleswitch"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "AngleSwitch Revosect Entry",
+        "leaderboard_id": 143238,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "AngleSwitch Revosect Int",
+        "leaderboard_id": 143207,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "AngleSwitch Revosect",
+        "leaderboard_id": 141047,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "avasivets",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "avasivets"
+    ],
+    "candidate_scenario_count": 1,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT AvasiveTS Advanced S5",
+        "leaderboard_id": 173542,
+        "memberships": [
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "b180t",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "bounce180-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "B180T Voltaic Easy Slower",
+        "leaderboard_id": 185571,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "B180T Voltaic Easy",
+        "leaderboard_id": 543,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "B180T Voltaic",
+        "leaderboard_id": 947,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "B180T Voltaic 15% Smaller",
+        "leaderboard_id": 16045,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "beants",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "beants"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "beanTS Larger",
+        "leaderboard_id": 129353,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "beanTS",
+        "leaderboard_id": 2648,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "beanTS 200%",
+        "leaderboard_id": 58888,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "beanTS 200% Slightly Smaller",
+        "leaderboard_id": 185022,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "bounceshot",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "bounceshot"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Bounceshot Viscose Easier",
+        "leaderboard_id": 185392,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "VT Bounceshot Viscose Medium",
+        "leaderboard_id": 185237,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "VT Bounceshot Viscose Hard",
+        "leaderboard_id": 185230,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "VT Bounceshot Viscose Expert",
+        "leaderboard_id": 185236,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "catclick",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "catclick"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "CatClick Easier",
+        "leaderboard_id": 184866,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "CatClick Medium",
+        "leaderboard_id": 184780,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "CatClick",
+        "leaderboard_id": 179408,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "CatClick Harder",
+        "leaderboard_id": 184865,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "cloverrawcontrol",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "raw-control-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "cloverRawControl Viscose Easier 50cm",
+        "leaderboard_id": 185349,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "cloverRawControl Viscose 50cm",
+        "leaderboard_id": 184567,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "cloverRawControl Viscose Hard 50cm",
+        "leaderboard_id": 184568,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "cloverRawControl Viscose Expert 50cm",
+        "leaderboard_id": 184840,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "controlsphere-superbaim",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "controlsphere-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Controlsphere SuperbAim Viscose Easier",
+        "leaderboard_id": 185345,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Controlsphere SuperbAim Viscose",
+        "leaderboard_id": 184352,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Controlsphere SuperbAim Viscose Hard",
+        "leaderboard_id": 184502,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Controlsphere SuperbAim Viscose Expert",
+        "leaderboard_id": 184836,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "controlts",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "controlts"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT ControlTS Novice S5",
+        "leaderboard_id": 105132,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Switching",
+              "Stability"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT ControlTS Intermediate S5",
+        "leaderboard_id": 104890,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Switching",
+              "Stability"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT ControlTS Advanced S5",
+        "leaderboard_id": 104833,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Switching",
+              "Stability"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Switching",
+              "Stability"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "domiclick",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "domiclick"
+    ],
+    "candidate_scenario_count": 1,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT domiClick Advanced S5",
+        "leaderboard_id": 200664,
+        "memberships": [
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "domiswitch",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "domiswitch"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "domiSwitch Easier",
+        "leaderboard_id": 185428,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "domiSwitch Easy",
+        "leaderboard_id": 83043,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "domiSwitch",
+        "leaderboard_id": 83035,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "domiSwitch Harder",
+        "leaderboard_id": 185226,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "dotswitch",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "static-switching-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "DotSwitch Revosect Entry",
+        "leaderboard_id": 143241,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "DotSwitch Revosect Int",
+        "leaderboard_id": 143208,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "DotSwitch Revosect",
+        "leaderboard_id": 141048,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "dotts",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "static-switching-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT DotTS Novice S5",
+        "leaderboard_id": 104868,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT DotTS Intermediate S5",
+        "leaderboard_id": 104865,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT DotTS Advanced S5",
+        "leaderboard_id": 104961,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "driftts",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "driftts"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT DriftTS Novice S5",
+        "leaderboard_id": 104862,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT DriftTS Intermediate S5",
+        "leaderboard_id": 104863,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT DriftTS Advanced S5",
+        "leaderboard_id": 104866,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "eddiets",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "eddiets"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT EddieTS Novice S5",
+        "leaderboard_id": 104835,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT EddieTS Intermediate S5",
+        "leaderboard_id": 105176,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT EddieTS Advanced S5",
+        "leaderboard_id": 104864,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "eth-pasu-micro",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "pasu-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "eth Pasu Micro Easier",
+        "leaderboard_id": 185394,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "eth Pasu Micro Medium",
+        "leaderboard_id": 184790,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "eth Pasu Micro Hard",
+        "leaderboard_id": 185017,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "eth Pasu Micro Expert",
+        "leaderboard_id": 185223,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "evoclick",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "evoclick"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "EvoClick Revosect Entry",
+        "leaderboard_id": 142851,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "EvoClick Revosect Int",
+        "leaderboard_id": 142850,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "EvoClick Revosect",
+        "leaderboard_id": 141058,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "floating-heads",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "floating-heads-lineage"
+    ],
+    "candidate_scenario_count": 10,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Floating Heads Novice S5",
+        "leaderboard_id": 98054,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Clicking",
+              "Linear"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Floating Heads Intermediate S5",
+        "leaderboard_id": 98055,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Clicking",
+              "Linear"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Floating Heads Advanced S5",
+        "leaderboard_id": 98012,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Clicking",
+              "Linear"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Clicking",
+              "Linear"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      },
+      {
+        "name": "VT Floating Heads Viscose Easier",
+        "leaderboard_id": 185409,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "VT Floating Heads Viscose Medium",
+        "leaderboard_id": 184827,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "VT Floating Heads Viscose Hard",
+        "leaderboard_id": 184829,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "VT Floating Heads Viscose Expert",
+        "leaderboard_id": 185221,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      },
+      {
+        "name": "Floating Heads Revosect Entry",
+        "leaderboard_id": 142902,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "Floating Heads Revosect Int",
+        "leaderboard_id": 142901,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "Floating Heads Revosect",
+        "leaderboard_id": 142724,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "floodtrack",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "floodtrack"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "FloodTrack Revosect Entry",
+        "leaderboard_id": 142826,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "FloodTrack Revosect Int",
+        "leaderboard_id": 142824,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "FloodTrack Revosect",
+        "leaderboard_id": 141140,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "flower",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "flower"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Flower Easier 50cm",
+        "leaderboard_id": 185354,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Flower 50cm",
+        "leaderboard_id": 184580,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Flower Hard 50cm",
+        "leaderboard_id": 184591,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Flower Expert 50cm",
+        "leaderboard_id": 184842,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Fingertip"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "flyts",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "flyts"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT FlyTS Novice S5",
+        "leaderboard_id": 104830,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT FlyTS Intermediate S5",
+        "leaderboard_id": 105142,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT FlyTS Advanced S5",
+        "leaderboard_id": 105143,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "frogtagon",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "frogtagon"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Frogtagon Novice S5",
+        "leaderboard_id": 106186,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Clicking",
+              "Linear"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Frogtagon Intermediate S5",
+        "leaderboard_id": 105828,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Clicking",
+              "Linear"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Frogtagon Advanced S5",
+        "leaderboard_id": 105776,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Clicking",
+              "Linear"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Clicking",
+              "Linear"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "ground-plaza",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "ground-plaza-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Ground Plaza Sparky v3 Easy",
+        "leaderboard_id": 134502,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Control"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Ground Plaza Sparky V3",
+        "leaderboard_id": 517,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Control"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Ground Plaza Sparky V3 Viscose Hard",
+        "leaderboard_id": 184795,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Control"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Ground Plaza Sparky V3 Thin",
+        "leaderboard_id": 1408,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Control"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "kints",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "kints"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "kinTS Voltaic Easy 85%",
+        "leaderboard_id": 185408,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "kinTS Voltaic Easy",
+        "leaderboard_id": 542,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "kinTS Voltaic",
+        "leaderboard_id": 604,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "kinTS Voltaic Elite",
+        "leaderboard_id": 100251,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Post-Flick"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "leapstrafes",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "leapstrafes-lineage"
+    ],
+    "candidate_scenario_count": 7,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Leapstrafes Control wobin Easier",
+        "leaderboard_id": 185344,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Leapstrafes Control wobin",
+        "leaderboard_id": 184561,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Leapstrafes Control wobin Hard",
+        "leaderboard_id": 184845,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Leapstrafes Control wobin Expert",
+        "leaderboard_id": 185014,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      },
+      {
+        "name": "Leapstrafes Revosect Entry",
+        "leaderboard_id": 142829,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "Leapstrafes Revosect Int",
+        "leaderboard_id": 142828,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "Leapstrafes Revosect",
+        "leaderboard_id": 142725,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "novaswitch",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "novaswitch"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "NovaSwitch Revosect Entry",
+        "leaderboard_id": 143231,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "NovaSwitch Revosect Int",
+        "leaderboard_id": 143209,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "NovaSwitch Revosect",
+        "leaderboard_id": 140936,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "pasu-perfect-micro",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "pasu-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "1w3ts Pasu Perfected Micro Goated Larger 80%",
+        "leaderboard_id": 128920,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "1w3ts Pasu Perfected Micro Goated Larger",
+        "leaderboard_id": 125923,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "1w3ts Pasu Perfected Micro Goated",
+        "leaderboard_id": 65396,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "1w3ts Pasu Perfected Micro Goated 10% small",
+        "leaderboard_id": 172862,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "pasu-revosect",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "pasu-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Pasu Revosect Entry",
+        "leaderboard_id": 142881,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "Pasu Revosect Int",
+        "leaderboard_id": 143200,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "Pasu Revosect",
+        "leaderboard_id": 140941,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "pasu-ts",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "pasu-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "PasuTS Revosect Entry",
+        "leaderboard_id": 143244,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "PasuTS Revosect Int",
+        "leaderboard_id": 142908,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "PasuTS Revosect",
+        "leaderboard_id": 140945,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "pasu-voltaic-reload",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "pasu-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Pasu Voltaic Reload Easier",
+        "leaderboard_id": 185636,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Pasu Voltaic Reload Easy",
+        "leaderboard_id": 163323,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Pasu Voltaic Reload",
+        "leaderboard_id": 10412,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Pasu Voltaic Reload 15% Smaller",
+        "leaderboard_id": 185233,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Click Timing",
+              "Reading"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "penta-bounce",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "penta-bounce"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Penta Bounce Novice S5",
+        "leaderboard_id": 103262,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Switching",
+              "Stability"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Penta Bounce Intermediate S5",
+        "leaderboard_id": 103261,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Switching",
+              "Stability"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Penta Bounce Advanced S5",
+        "leaderboard_id": 98619,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Switching",
+              "Stability"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Switching",
+              "Stability"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "pgti",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "pgt-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "PGTI Voltaic Easy Smoother",
+        "leaderboard_id": 184878,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "PGTI Voltaic Slower - 80%",
+        "leaderboard_id": 509,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "PGTI Voltaic",
+        "leaderboard_id": 99,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "plaza-pure",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "ground-plaza-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Plaza Pure Revosect Entry",
+        "leaderboard_id": 142843,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "Plaza Pure Revosect Int",
+        "leaderboard_id": 142844,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "Plaza Pure Revosect",
+        "leaderboard_id": 143331,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "plaza-smooth",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "ground-plaza-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Plaza Smooth Revosect Entry",
+        "leaderboard_id": 142847,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "Plaza Smooth Revosect Int",
+        "leaderboard_id": 142848,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "Plaza Smooth Revosect",
+        "leaderboard_id": 143415,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "plink-palace",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "ground-plaza-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Plink Palace Easy Less Blinks",
+        "leaderboard_id": 184534,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Speed"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Plink Palace Easy",
+        "leaderboard_id": 184526,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Speed"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Plink Palace",
+        "leaderboard_id": 184516,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Speed"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Plink Palace Hard",
+        "leaderboard_id": 184869,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Reactive Tracking",
+              "Speed"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "popcorn",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "popcorn-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Popcorn MV Easier",
+        "leaderboard_id": 185398,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Popcorn MV Medium",
+        "leaderboard_id": 184781,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Popcorn MV Hard",
+        "leaderboard_id": 185400,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Popcorn MV Advanced",
+        "leaderboard_id": 76966,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "preciseorb",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "preciseorb"
+    ],
+    "candidate_scenario_count": 1,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT PreciseOrb Intermediate 15% Slower",
+        "leaderboard_id": 41595,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "psalmts-click",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "psalmts-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "psalmTS Viscose Click Easier",
+        "leaderboard_id": 185609,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "psalmTS Viscose Click",
+        "leaderboard_id": 185603,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "psalmTS Viscose Click Hard",
+        "leaderboard_id": 185604,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "psalmTS Viscose Click Expert",
+        "leaderboard_id": 185607,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "rawcontrolsphere",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "raw-control-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "RawControlSphere Easier",
+        "leaderboard_id": 185356,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "RawControlSphere",
+        "leaderboard_id": 184301,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "RawControlSphere Hard",
+        "leaderboard_id": 184794,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "RawControlSphere Expert",
+        "leaderboard_id": 184846,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Blending"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "skyclick",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "skyclick"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "skyClick Goated Easier",
+        "leaderboard_id": 185490,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "skyClick Goated Medium",
+        "leaderboard_id": 185491,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "skyClick Goated Hard",
+        "leaderboard_id": 185492,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "skyClick Goated Expert",
+        "leaderboard_id": 185489,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Click Timing",
+              "Precision"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "smooth-ts",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "smooth-ts"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "SmoothTS Revosect Entry",
+        "leaderboard_id": 142911,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "SmoothTS Revosect Int",
+        "leaderboard_id": 142909,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "SmoothTS Revosect",
+        "leaderboard_id": 141143,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "smoothbot-perfected",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "smoothbot-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "SmoothBot Perfected Easier",
+        "leaderboard_id": 184652,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "SmoothBot Perfected",
+        "leaderboard_id": 184298,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "SmoothBot Perfected Hard",
+        "leaderboard_id": 184347,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "SmoothBot Perfected Expert",
+        "leaderboard_id": 184832,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "smoothsphere",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "smoothsphere"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Smoothsphere Viscose Easier",
+        "leaderboard_id": 185342,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Smoothsphere Viscose",
+        "leaderboard_id": 184106,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Smoothsphere Viscose Hard",
+        "leaderboard_id": 184518,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Smoothsphere Viscose Expert",
+        "leaderboard_id": 184830,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "snake-track",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "snake-track"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Snake Track Novice S5",
+        "leaderboard_id": 101560,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Snake Track Intermediate S5",
+        "leaderboard_id": 98045,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Snake Track Advanced S5",
+        "leaderboard_id": 98297,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "snowclick",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "snowclick"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "SnowClick Revosect Entry",
+        "leaderboard_id": 142900,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "SnowClick Revosect Int",
+        "leaderboard_id": 142899,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "SnowClick Revosect",
+        "leaderboard_id": 142723,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "spring-ts",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "spring-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "SpringTS Revosect Entry",
+        "leaderboard_id": 143242,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "SpringTS Revosect Int",
+        "leaderboard_id": 142904,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "SpringTS Revosect",
+        "leaderboard_id": 141258,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "springclick",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "spring-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "SpringClick Revosect Entry",
+        "leaderboard_id": 142898,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "SpringClick Revosect Int",
+        "leaderboard_id": 143204,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "SpringClick Revosect",
+        "leaderboard_id": 141144,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "static-switching-vox",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "static-switching-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "StaticSwitchingVox",
+        "leaderboard_id": 15659,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "StaticSwitchingVox Small",
+        "leaderboard_id": 15662,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "StaticSwitchingVox xSmall",
+        "leaderboard_id": 15766,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "StaticSwitchingVox xxSmall",
+        "leaderboard_id": 18203,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "strawberryclick",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "strawberryclick"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "StrawberryClick Revosect Entry",
+        "leaderboard_id": 142853,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "StrawberryClick Revosect Int",
+        "leaderboard_id": 142852,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "StrawberryClick Revosect",
+        "leaderboard_id": 140996,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "tornadosphere",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "tornadosphere"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Tornadosphere Revosect Entry",
+        "leaderboard_id": 142822,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "Tornadosphere Revosect Int",
+        "leaderboard_id": 142821,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "Tornadosphere Revosect",
+        "leaderboard_id": 139438,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "voxtargetswitch-2",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "voxts-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "voxTargetSwitch 2 Large",
+        "leaderboard_id": 84880,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "voxTargetSwitch 2",
+        "leaderboard_id": 551,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "voxTargetSwitch 2 10% Smaller",
+        "leaderboard_id": 185192,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "voxTargetSwitch 2 20% Smaller",
+        "leaderboard_id": 89093,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "voxts-click",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "voxts-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VoxTS Click Easier",
+        "leaderboard_id": 136076,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "VoxTS Click Medium",
+        "leaderboard_id": 136098,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "VoxTS Click Medium 10% Smaller",
+        "leaderboard_id": 185015,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "VoxTS Click Hard",
+        "leaderboard_id": 136746,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Click Timing",
+              "Stability"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "vt-controlsphere",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "controlsphere-lineage"
+    ],
+    "candidate_scenario_count": 7,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Controlsphere Novice S5",
+        "leaderboard_id": 103765,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Tracking",
+              "Control"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Controlsphere Intermediate S5",
+        "leaderboard_id": 103353,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Tracking",
+              "Control"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Controlsphere Advanced S5",
+        "leaderboard_id": 103114,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Tracking",
+              "Control"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Tracking",
+              "Control"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      },
+      {
+        "name": "VT Controlsphere Viscose Easier",
+        "leaderboard_id": 184157,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "VT Controlsphere Viscose",
+        "leaderboard_id": 184153,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "VT Controlsphere Viscose Hard",
+        "leaderboard_id": 184152,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "VT Controlsphere Viscose Expert",
+        "leaderboard_id": 184831,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Wrist"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "vt-ground",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "ground-plaza-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Ground Novice S5",
+        "leaderboard_id": 101744,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Ground Intermediate S5",
+        "leaderboard_id": 101743,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Ground Advanced S5",
+        "leaderboard_id": 100768,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Tracking",
+              "Reactive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "vt-pasu",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "pasu-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Pasu Novice S5",
+        "leaderboard_id": 98059,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Pasu Intermediate S5",
+        "leaderboard_id": 98330,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Pasu Advanced S5",
+        "leaderboard_id": 98023,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "vt-pgt",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "pgt-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT PGT Novice S5",
+        "leaderboard_id": 98060,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT PGT Intermediate S5",
+        "leaderboard_id": 98331,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT PGT Advanced S5",
+        "leaderboard_id": 98255,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "vt-popcorn",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "popcorn-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Popcorn Novice S5",
+        "leaderboard_id": 98285,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Popcorn Intermediate S5",
+        "leaderboard_id": 98333,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Popcorn Advanced S5",
+        "leaderboard_id": 98024,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Clicking",
+              "Dynamic"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "vt-raw-control",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "raw-control-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT Raw Control Novice S5",
+        "leaderboard_id": 98047,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Tracking",
+              "Control"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT Raw Control Intermediate S5",
+        "leaderboard_id": 98048,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Tracking",
+              "Control"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT Raw Control Advanced S5",
+        "leaderboard_id": 98253,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Tracking",
+              "Control"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Tracking",
+              "Control"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "vt-voxts",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "voxts-lineage"
+    ],
+    "candidate_scenario_count": 1,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT voxTS Advanced S5",
+        "leaderboard_id": 174654,
+        "memberships": [
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "vtp",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "vtp"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VTP Revosect Entry",
+        "leaderboard_id": 142831,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "VTP Revosect Int",
+        "leaderboard_id": 142830,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VTP Revosect",
+        "leaderboard_id": 141259,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Tracking",
+              "Precise"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "waldots",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "waldots"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "waldoTS Novice",
+        "leaderboard_id": 113019,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "waldoTS Intermediate",
+        "leaderboard_id": 111273,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "waldoTS",
+        "leaderboard_id": 81042,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "waldoTS Elite",
+        "leaderboard_id": 111257,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "wall-micro",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "wall-clicking-lineage"
+    ],
+    "candidate_scenario_count": 4,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "1w2ts reload smallflicks larger",
+        "leaderboard_id": 185518,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "1w2ts reload smallflicks slightly larger",
+        "leaderboard_id": 184777,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "1w2ts reload smallflicks",
+        "leaderboard_id": 36,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "1w2ts reload smallflicks 25% smaller",
+        "leaderboard_id": 32659,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Micro"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "wall-reload",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "wall-clicking-lineage"
+    ],
+    "candidate_scenario_count": 10,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "1w6ts reload v2 20% bigger",
+        "leaderboard_id": 21620,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "1w6ts reload v2",
+        "leaderboard_id": 666,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "1w5ts reload",
+        "leaderboard_id": 2308,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "1w4ts Voltaic",
+        "leaderboard_id": 319,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Stability"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      },
+      {
+        "name": "1w5ts vbr Revosect Entry",
+        "leaderboard_id": 142873,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "1w4t Pressure Revosect Entry",
+        "leaderboard_id": 142878,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "1w5ts vbr Revosect Int",
+        "leaderboard_id": 142874,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "1w4t Pressure Revosect Int",
+        "leaderboard_id": 143201,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "1w5ts vbr Revosect",
+        "leaderboard_id": 139429,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      },
+      {
+        "name": "1w4t Pressure Revosect",
+        "leaderboard_id": 139428,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "wall-small",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "wall-clicking-lineage"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT 1w4ts Novice S5",
+        "leaderboard_id": 103210,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT 1w3ts Intermediate S5",
+        "leaderboard_id": 103209,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT 1w2ts Advanced S5",
+        "leaderboard_id": 98025,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "waveswitch",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "waveswitch"
+    ],
+    "candidate_scenario_count": 3,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "WaveSwitch Revosect Entry",
+        "leaderboard_id": 142903,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "WaveSwitch Revosect Int",
+        "leaderboard_id": 143210,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "WaveSwitch Revosect",
+        "leaderboard_id": 141138,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Switching",
+              "Speed"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "whisphere",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "whisphere-lineage"
+    ],
+    "candidate_scenario_count": 7,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "Whisphere Viscose Easier",
+        "leaderboard_id": 185346,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "Whisphere Viscose",
+        "leaderboard_id": 184107,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "Whisphere Viscose Hard",
+        "leaderboard_id": 185238,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "Whisphere Viscose Expert",
+        "leaderboard_id": 185239,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Control Tracking",
+              "Arm"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      },
+      {
+        "name": "WhisphereTS Revosect Entry",
+        "leaderboard_id": 142906,
+        "memberships": [
+          {
+            "benchmark_id": 823,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Entry"
+          }
+        ]
+      },
+      {
+        "name": "WhisphereTS Revosect Int",
+        "leaderboard_id": 142905,
+        "memberships": [
+          {
+            "benchmark_id": 822,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "WhisphereTS Revosect",
+        "leaderboard_id": 141052,
+        "memberships": [
+          {
+            "benchmark_id": 821,
+            "native_category_path": [
+              "Switching",
+              "Evasive"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "family_candidate": "wide-wall",
+    "identity_status": "provisional; no current file or lineage confirmation",
+    "leakage_groups": [
+      "wall-clicking-lineage"
+    ],
+    "candidate_scenario_count": 7,
+    "verified_current_files": 0,
+    "calibration_eligible": false,
+    "scenarios": [
+      {
+        "name": "VT ww5t Novice S5",
+        "leaderboard_id": 98030,
+        "memberships": [
+          {
+            "benchmark_id": 459,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Novice"
+          }
+        ]
+      },
+      {
+        "name": "VT ww5t Intermediate S5",
+        "leaderboard_id": 98029,
+        "memberships": [
+          {
+            "benchmark_id": 458,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Intermediate"
+          }
+        ]
+      },
+      {
+        "name": "VT ww5t Advanced S5",
+        "leaderboard_id": 98026,
+        "memberships": [
+          {
+            "benchmark_id": 460,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Advanced"
+          },
+          {
+            "benchmark_id": 2070,
+            "native_category_path": [
+              "Clicking",
+              "Static"
+            ],
+            "tier": "Advanced"
+          }
+        ]
+      },
+      {
+        "name": "ww5t Voltaic Slightly Larger",
+        "leaderboard_id": 185378,
+        "memberships": [
+          {
+            "benchmark_id": 2335,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Easier"
+          }
+        ]
+      },
+      {
+        "name": "ww4t Voltaic",
+        "leaderboard_id": 23921,
+        "memberships": [
+          {
+            "benchmark_id": 2336,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Medium"
+          }
+        ]
+      },
+      {
+        "name": "ww3t Voltaic",
+        "leaderboard_id": 68,
+        "memberships": [
+          {
+            "benchmark_id": 2337,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Hard"
+          }
+        ]
+      },
+      {
+        "name": "ww3t Voltaic 10% Smaller",
+        "leaderboard_id": 92573,
+        "memberships": [
+          {
+            "benchmark_id": 2338,
+            "native_category_path": [
+              "Flick Tech",
+              "Speed"
+            ],
+            "tier": "Expert"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-02T02:06:23.077424+00:00",
+  "checks": {
+    "11_groups_303_memberships_286_ids": true,
+    "cutoff_counts_and_order": true,
+    "no_placeholders_1_through_9": true,
+    "303_unique_membership_keys": true,
+    "candidate_names_match": true,
+    "collection_lists": true,
+    "81_exact_metadata_matches": true,
+    "39_pairs_linked": true,
+    "15_historical_probes_have_provenance": true,
+    "75_provisional_families_cover_286": true,
+    "all_calibration_disabled": true,
+    "document_links": true,
+    "existing_project_files_unchanged": true
+  },
+  "all_passed": true,
+  "broken_links": [],
+  "changed_existing_files": [],
+  "limits": [
+    "No Windows/game execution",
+    "No current benchmark .sce verified",
+    "No difficulty algorithm fitted",
+    "Historical structural probes do not resolve all runtime semantics",
+    "Only two top-100 leaderboard samples; no representative calibration"
+  ]
+}

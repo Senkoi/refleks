@@ -1,0 +1,2798 @@
+[
+  {
+    "section": "Aim Profile",
+    "key": "AimingSpeed",
+    "files_or_profiles_observed": 12,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "AimingStyle",
+    "files_or_profiles_observed": 12,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "FlickError",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "FlickFOV",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "FlickSpeed",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxError",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxReactionTime",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxRecenterTime",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxSeekPitch",
+    "files_or_profiles_observed": 12,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxSeekYaw",
+    "files_or_profiles_observed": 12,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxSelfMovementCorrectionTime",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxShootDelay",
+    "files_or_profiles_observed": 12,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxSpreadDistFactor",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxTolerableSpread",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MaxTurnAngleFromPadCenter",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MinReactionTime",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MinRecenterTime",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MinSelfMovementCorrectionTime",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MinShootDelay",
+    "files_or_profiles_observed": 12,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "MinTolerableSpread",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "Name",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "OptimalAimFOV",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "OuterAimPenalty",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "ScanSpeedMultiplier",
+    "files_or_profiles_observed": 12,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "ShootFOV",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "TolerableSpreadDist",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "TrackError",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "TrackSpeed",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Aim Profile",
+    "key": "VerticalAimOffset",
+    "files_or_profiles_observed": 27,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "AbilityUseTimer",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "AimingProfileNames",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "CharacterProfile",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "DodgeProfileMaxChangeTime",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "DodgeProfileMinChangeTime",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "DodgeProfileNames",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "DodgeProfileWeights",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "LaserAlpha",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "LaserRGB",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "Name",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "NoAiming",
+    "files_or_profiles_observed": 28,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "NoDodging",
+    "files_or_profiles_observed": 28,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "SeeThroughWalls",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "ShowLaser",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "UseAbilityFreqMaxTime",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "UseAbilityFreqMinTime",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "UseAbilityFrequency",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "UseWeapons",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "WeaponProfileWeights",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Profile",
+    "key": "WeaponSwitchTime",
+    "files_or_profiles_observed": 60,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Rotation Profile",
+    "key": "Name",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Rotation Profile",
+    "key": "ProfileNames",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Rotation Profile",
+    "key": "ProfileWeights",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Bot Rotation Profile",
+    "key": "Randomized",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "AbilityProfileNames",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "Acceleration",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "AerialFriction",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "AirAcceleration",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "AirControl",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "AirJumpCount",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "AirJumpExtraControl",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "AirJumpVelocity",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "AllowBufferedJumps",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "BackSpeedMult",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "BlockSelfDamage",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "BlockSpawnDistance",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "BlockSpawnFOV",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "BlockTeamDamage",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "BlockedSpawnRadius",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "BounceOffWalls",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "BrakingDeceleration",
+    "files_or_profiles_observed": 42,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "BrakingFrictionFactor",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "CameraOffset",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "CanCrouch",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "CanCrouchInAir",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "CanJumpFromCrouch",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "CanPogoJump",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "CharacterModel",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "CharacterSkin",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "CrouchAnimationSpeed",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "CrouchHeightModifier",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "DamageKnockbackFactor",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "EnemyBodyColor",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "EnemyHeadColor",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "FlightObeysPitch",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "FlightVelocityDown",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "FlightVelocityUp",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ForwardSpeedBias",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "Friction",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "Gravity",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "HasJetpack",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "HeadshotOnly",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "HealthRegainedonkill",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "HealthRegenDelay",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "HealthRegenPerSec",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "HideWeapon",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "InvertBlockedSpawn",
+    "files_or_profiles_observed": 34,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "InvincibleBots",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "InvinciblePlayer",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "IsFlyer",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JetpackActivationDelay",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JetpackAirControlWithThrust",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JetpackFuelIncPerSec",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JetpackFuelRegensInAir",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JetpackFullFuelTime",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JetpackMaxZVelocity",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JetpackThrust",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JumpSpeedPenaltyDuration",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JumpSpeedPenaltyPercent",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "JumpVelocity",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "LeanAngle",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "LeanDisplacement",
+    "files_or_profiles_observed": 52,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MainBBHasHead",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MainBBHeadOffset",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MainBBHeadRadius",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MainBBHeight",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MainBBHide",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MainBBRadius",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MainBBType",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MaxCrouchSpeed",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MaxHealth",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MaxRespawnDelay",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MaxSpeed",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MinRespawnDelay",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "MovementType",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "Name",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ProjBBHasHead",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ProjBBHeadOffset",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ProjBBHeadRadius",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ProjBBHeight",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ProjBBHide",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ProjBBRadius",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ProjBBType",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "RespawnAnimationDuration",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "RespawnInvulnTime",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "SpawnXOffset",
+    "files_or_profiles_observed": 34,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "SpawnYOffset",
+    "files_or_profiles_observed": 34,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "StepUpHeight",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "StrafeSpeedMult",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "TPSArmLength",
+    "files_or_profiles_observed": 42,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "TPSOffset",
+    "files_or_profiles_observed": 42,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "TeamBodyColor",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "TeamHeadColor",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "TerminalVelocity",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ThirdPersonCamera",
+    "files_or_profiles_observed": 42,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "VerticalSpawnOffset",
+    "files_or_profiles_observed": 42,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ViewBobAffectsShots",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ViewBobAngleAdjustment",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ViewBobCameraZOffset",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "ViewBobTime",
+    "files_or_profiles_observed": 30,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Character Profile",
+    "key": "WeaponProfileNames",
+    "files_or_profiles_observed": 62,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "BackTimeMult",
+    "files_or_profiles_observed": 9,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "BlockedMovementPercent",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "BlockedMovementReactionMax",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "BlockedMovementReactionMin",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "CrouchInAirFrequency",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "CrouchOnGroundFrequency",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "DamageReactionChanceToIgnore",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "DamageReactionChangesDirection",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "DamageReactionChangesFB",
+    "files_or_profiles_observed": 9,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "DamageReactionCooldown",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "DamageReactionMaximumDelay",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "DamageReactionMinimumDelay",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "DamageReactionResetTimer",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "DamageReactionThreshold",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "ForwardTimeMult",
+    "files_or_profiles_observed": 9,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "IgnoreShotChance",
+    "files_or_profiles_observed": 9,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "JumpFrequency",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "LeftStrafeTimeMult",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MaxCrouchTime",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MaxFBTimeChange",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MaxJumpTime",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MaxLRTimeChange",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MaxProfileChangeTime",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MaxTargetDistance",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MaxTimeBeforeShot",
+    "files_or_profiles_observed": 9,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MinCrouchTime",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MinFBTimeChange",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MinJumpTime",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MinLRTimeChange",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MinProfileChangeTime",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MinTargetDistance",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "MinTimeBeforeShot",
+    "files_or_profiles_observed": 9,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "Name",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "RightStrafeTimeMult",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "StrafeSwapMaxPause",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "StrafeSwapMinPause",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "TargetStrafeMaxDelay",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "TargetStrafeMinDelay",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "TargetStrafeOverride",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "ToggleForwardBack",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "ToggleLeftRight",
+    "files_or_profiles_observed": 29,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "WaypointLogic",
+    "files_or_profiles_observed": 9,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Dodge Profile",
+    "key": "WaypointTurnRate",
+    "files_or_profiles_observed": 9,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIDamageReaction",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIDamageReactionCooldown",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIDamageReactionIgnoreChance",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIDamageReactionMaxDelay",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIDamageReactionMinDelay",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIDamageReactionResetTimer",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIDamageReactionThreshold",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIMaxSelfHealth",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIMaxTargDist",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIMaxTargFOV",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIMaxTargHealth",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIMinSelfHealth",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIMinTargDist",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIMinTargHealth",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIReuseTimer",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIUseInAir",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIUseInCombat",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIUseOnGround",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AIUseOutOfCombat",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AbilityBlocksAttack",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AbilityBlocksMovement",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AbilityBlocksTurning",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AbilityDuration",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AbilityReloadsWeapon",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "AttackCancelsAbility",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "ChargeTimer",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "ChargesRefundedOnKill",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "DelayAfterUse",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "EndVelocityFactor",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "FullyAuto",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "HealthRestore",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "Hurtbox",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "HurtboxAirKnockbackFactor",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "HurtboxDamage",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "HurtboxGroundKnockbackFactor",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "HurtboxRadius",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "LockDirectionForDuration",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "MainVelocity",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "MainVelocityCanGoVertical",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "MainVelocitySetToMovementKeys",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "MaxCharges",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "Name",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "NegateGravityForDuration",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Movement Ability Profile",
+    "key": "UpVelocity",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIDamageReaction",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIDamageReactionCooldown",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIDamageReactionIgnoreChance",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIDamageReactionMaxDelay",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIDamageReactionMinDelay",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIDamageReactionResetTimer",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIDamageReactionThreshold",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIMaxSelfHealth",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIMaxTargDist",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIMaxTargFOV",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIMaxTargHealth",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIMinSelfHealth",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIMinTargDist",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIMinTargHealth",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIReuseTimer",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIUseInAir",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIUseInCombat",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIUseOnGround",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AIUseOutOfCombat",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AbilityBlockedWhenAttacking",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "AmmoPerShot",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "BlockAttackTimer",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "ChargeTimer",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "ChargesRefundedOnKill",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "DelayAfterUse",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "FullyAuto",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "MaxCharges",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "Name",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Ability Profile",
+    "key": "WeaponProfile",
+    "files_or_profiles_observed": 24,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "3rdPersonWeaponModel",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "3rdPersonWeaponSkin",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AAAlpha",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AABackOnTimer",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AABlocksMouse",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AADeadZone",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AAFOV",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AAMaxSpeed",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AAMode",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AANeedsLOS",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AAOffTimer",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AAPreferClosestPlayer",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSAllowUserOverrideFOV",
+    "files_or_profiles_observed": 43,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSBlocksShooting",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSCameraOffsetX",
+    "files_or_profiles_observed": 31,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSCameraOffsetY",
+    "files_or_profiles_observed": 31,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSCameraOffsetZ",
+    "files_or_profiles_observed": 31,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSFOVOverride",
+    "files_or_profiles_observed": 43,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSFOVScale",
+    "files_or_profiles_observed": 43,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSMoveFactor",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSScope",
+    "files_or_profiles_observed": 43,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSShoot",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSStartDelay",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSZoomDelay",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSZoomFactor",
+    "files_or_profiles_observed": 3,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ADSZoomSensFactor",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AccelIncludeVertical",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AimPunchAmount",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AimPunchCooldown",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AimPunchCosmeticOnly",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AimPunchHeadshotOnly",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AimPunchResetTime",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AimPunchUpTime",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AlsoShoot",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AmmoPerShot",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "AmmoReloadedOnKill",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "BeamTracksCrosshair",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "BlockedByWorld",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "BounceCount",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "BounceFactor",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "BounceOffWorld",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "BurstFullyAuto",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "BurstShotCount",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "CanAimDownSight",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "CancelReloadOnKill",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "Category",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ChargeMoveSpeedModifier",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ChargeStartDamage",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ChargeStartVelocity",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ChargeTimeToAutoRelease",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ChargeTimeToCap",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "CircularSpread",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "CooldownTimer",
+    "files_or_profiles_observed": 3,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "CooldownType",
+    "files_or_profiles_observed": 3,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DamageAtCenter",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DamageAtEdge",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DamageAtMaxRange",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DamageFalloffStartDistance",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DamageFalloffStopDistance",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DamagePerShot",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DecalSize",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DecalType",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DelayAfterEnemyContact",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DelayAfterShooting",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DelayAfterSpawn",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DelayAfterWorldContact",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DelayBeforeShot",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "DisableLockOnKill",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ExplodesOnContactWithEnemy",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ExplodesOnContactWithWorld",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ExplodesOnNextAttack",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "Explosive",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "FirstShotRecoilMult",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "FlatKnockbackHorizontal",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "FlatKnockbackHorizontalMin",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "FlatKnockbackVertical",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "FlatKnockbackVerticalMin",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ForceFirstPersonInADS",
+    "files_or_profiles_observed": 32,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "GravityScale",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HeadLock",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HeadshotCapable",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HeadshotMultiplier",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HitParticleEffect",
+    "files_or_profiles_observed": 18,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HitSoundCooldown",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HitscanGraphicOriginAtWeapon",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HitscanRadius",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HitscanVisualEffect",
+    "files_or_profiles_observed": 18,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HitscanVisualOffset",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HitscanVisualRadius",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "HomingProjectileAcceleration",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "IncReloadAmmoPerLoop",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "IncReloadCancelWithShoot",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "IncReloadEndTime",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "IncReloadLoopTime",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "IncReloadStartupTime",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "InheritOwnerVelocity",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "IsBurstWeapon",
+    "files_or_profiles_observed": 31,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "KnockbackFactor",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "KnockbackFactorAir",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MagazineMax",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MaxCharges",
+    "files_or_profiles_observed": 3,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MaxHitscanRange",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MaxRecoilHoriz",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MaxRecoilUp",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MaxTravelTime",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MinRecoilHoriz",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MinRecoilUp",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MinimumDecelVelocity",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MuzzleVelocityMax",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "MuzzleVelocityMin",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "Name",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "OriginOffset",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS0",
+    "files_or_profiles_observed": 42,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS1",
+    "files_or_profiles_observed": 1,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS2",
+    "files_or_profiles_observed": 1,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS3",
+    "files_or_profiles_observed": 1,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS4",
+    "files_or_profiles_observed": 1,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS5",
+    "files_or_profiles_observed": 1,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS6",
+    "files_or_profiles_observed": 1,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS7",
+    "files_or_profiles_observed": 1,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS8",
+    "files_or_profiles_observed": 1,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PBS9",
+    "files_or_profiles_observed": 1,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRADSScale",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRAutoReset",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRCapLeft",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRCapRight",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRCapUp",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRCrouchScale",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRLoopStartIndex",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRManualNegation",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRResetDegreesPerSec",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRTimeToPeak",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PSRViewRecoilTracking",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ParticleBodyImpact",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ParticleBodyImpactScale",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ParticleHitscanTrace",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ParticleMuzzleFlash",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ParticleMuzzleFlashScale",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ParticleProjectileTrail",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ParticleProjectileTrailScale",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ParticleWallImpact",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ParticleWallImpactScale",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "PassiveCharging",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "Pierces",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ProjectileAcceleration",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ProjectileEnemyHitRadius",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ProjectileGraphic",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ProjectileGraphicOriginAtWeapon",
+    "files_or_profiles_observed": 2,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ProjectileTrail",
+    "files_or_profiles_observed": 18,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ProjectileVisualOffset",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ProjectileWorldHitRadius",
+    "files_or_profiles_observed": 3,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "QuickSwitchTime",
+    "files_or_profiles_observed": 31,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "Radius",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "RecoilADSScale",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "RecoilAutoReset",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "RecoilCrouchScale",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "RecoilNegatable",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ReloadBeforeRecovery",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ReloadTimeFromEmpty",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ReloadTimeFromPartial",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SelfDamageMultiplier",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ShootSound",
+    "files_or_profiles_observed": 3,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ShootSoundCooldown",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ShootingBlocksADS",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ShotsPerClick",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadDecayDelay",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadMCA",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadMCH",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadMSA",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadMSH",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadSCA",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadSCH",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadSSA",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadSSH",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "SpreadStationaryVelocity",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "StickyLock",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "StunDuration",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TaggingDuration",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TaggingHitFactor",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TaggingMaxFactor",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TimeBetweenBursts",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TimeBetweenShots",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TimeToRecoilPeak",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TimeToRecoilReset",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TrackHorizontal",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TrackVertical",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TriggerBotDelay",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TriggerBotEnabled",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "TriggerBotFOV",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "Type",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "UseIncReload",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "UsePerBulletSpread",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "UsePerShotRecoil",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "VerticalOffset",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "VisualLifetime",
+    "files_or_profiles_observed": 44,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "WallParticleEffect",
+    "files_or_profiles_observed": 18,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "WeaponAnimation",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "WeaponModel",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "WeaponSkin",
+    "files_or_profiles_observed": 26,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  },
+  {
+    "section": "Weapon Profile",
+    "key": "ZoomBlockedInAir",
+    "files_or_profiles_observed": 31,
+    "semantic_status": "requires_documented_semantics_and_active_reference_resolution"
+  }
+]
