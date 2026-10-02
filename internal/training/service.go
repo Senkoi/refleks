@@ -97,7 +97,14 @@ func (s *Service) save() error {
 func (s *Service) Snapshot(runs []models.RunRecord) State {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	s.state.PlayerLevels = PlayerLevels(s.state.Catalog, runs, time.Now())
+	now := time.Now()
+	references := automaticReferences(s.state.Catalog, s.state.Preferences)
+	obs := observed(runs)
+	for i := range s.state.Catalog {
+		c := &s.state.Catalog[i]
+		c.Evaluation = assessCatalog(*c, obs[strings.ToLower(c.Name)], now, references)
+	}
+	s.state.PlayerLevels = PlayerLevels(s.state.Catalog, runs, now)
 	s.state.Skills = SkillProfile(s.state.Catalog, runs, automaticReferences(s.state.Catalog, s.state.Preferences), time.Now())
 	s.state.SearchConfigured = os.Getenv("REFLEKS_BRAVE_API_KEY") != ""
 	b, _ := json.Marshal(s.state)
@@ -252,18 +259,14 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 	} else {
 		p.PlanningPolicy = "curriculum"
 		var t *Curriculum
-		t, err = selectCurriculum(s.state.Curricula, s.state.Catalog, p, runs, now)
+		history := append([]Plan(nil), s.state.History...)
+		if old := s.state.Plan; old != nil {
+			history = append(history, *old)
+		}
+		t, err = selectCurriculumWithHistory(s.state.Curricula, s.state.Catalog, p, runs, now, history)
 		if err == nil {
-			history := append([]Plan(nil), s.state.History...)
-			if old := s.state.Plan; old != nil {
-				history = append(history, *old)
-			}
 			explored := curriculumBaseline(*t, history)
-			windowPreferences := p
-			if explored && t.OfficialCode != "" {
-				windowPreferences.Minutes = int(math.Ceil(float64(p.Minutes) * (1 - p.Variety)))
-			}
-			window, start, end, windowErr := curriculumWindow(*t, s.state.Catalog, runs, windowPreferences, now, history)
+			window, start, end, windowErr := curriculumWindow(*t, s.state.Catalog, runs, p, now, history)
 			if windowErr != nil {
 				return nil, windowErr
 			}
@@ -273,7 +276,7 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 				plan.CurriculumEnd = end
 				plan.CurriculumTotal = len(t.Rows)
 				if start != 0 || end != len(t.Rows) {
-					plan.Warnings = append(plan.Warnings, fmt.Sprintf("按原顺序运行 VDIM 第 %d–%d / %d 行；次数保留，完成后下一次从后续段落继续。", start+1, end, len(t.Rows)))
+					plan.Warnings = append(plan.Warnings, fmt.Sprintf("按原顺序运行 VDIM 第 %d–%d / %d 行；本次使用自适应短组，完成后下一次接续后续段落。", start+1, end, len(t.Rows)))
 				}
 			}
 		}

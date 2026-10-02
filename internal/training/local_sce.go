@@ -27,6 +27,7 @@ type SCEField struct {
 type LocalAssessment struct {
 	Measurements         []FileMeasurement     `json:"measurements,omitempty"`
 	PrecisionComparisons []PrecisionComparison `json:"precisionComparisons,omitempty"`
+	FilePaths            []string              `json:"filePaths,omitempty"`
 	Status               string                `json:"status"`
 	FileSHA256           string                `json:"fileSHA256,omitempty"`
 	GameVersion          string                `json:"gameVersion,omitempty"`
@@ -274,7 +275,13 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 		defer s.mu.Unlock()
 		for i := range s.state.Catalog {
 			c := &s.state.Catalog[i]
-			if c.LocalAssessment != nil && c.LocalAssessment.FilePath == path && c.LocalAssessment.Status != status {
+			matches := c.LocalAssessment != nil && c.LocalAssessment.FilePath == path
+			if c.LocalAssessment != nil {
+				for _, p := range c.LocalAssessment.FilePaths {
+					matches = matches || p == path
+				}
+			}
+			if matches && c.LocalAssessment.Status != status {
 				c.Mechanics = nil
 				if c.Classification == "sce_description" {
 					c.Skill = "unknown"
@@ -388,6 +395,23 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 		c := &s.state.Catalog[i]
 		versions := byName[strings.ToLower(c.Name)]
 		if len(versions) == 0 {
+			// Persisted assessments must not survive deleted files after an app restart.
+			// A truncated scan cannot prove absence, so retain its previous state.
+			if remaining > 0 && c.LocalAssessment != nil && (c.LocalAssessment.Status == "file_parsed_model_unfitted" || c.LocalAssessment.Status == "ambiguous_local_versions") {
+				status := "local_file_unavailable"
+				paths := append([]string{c.LocalAssessment.FilePath}, c.LocalAssessment.FilePaths...)
+				for _, path := range paths {
+					if visited[path] {
+						status = "waiting_for_stable_local_file"
+					}
+				}
+				c.Mechanics = nil
+				if c.Classification == "sce_description" {
+					c.Skill, c.Technique, c.Classification, c.Enabled = "unknown", "unknown", "inferred", false
+				}
+				c.LocalAssessment = &LocalAssessment{Status: status, FilePaths: paths}
+				changed = true
+			}
 			continue
 		}
 		p := versions[0]
@@ -400,7 +424,11 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 		if conflict {
 			if c.LocalAssessment == nil || c.LocalAssessment.Status != "ambiguous_local_versions" {
 				c.Mechanics = nil
-				c.LocalAssessment = &LocalAssessment{Status: "ambiguous_local_versions", Issues: []string{"same_name_different_content_hashes"}}
+				paths := []string{}
+				for _, v := range versions {
+					paths = append(paths, v.assessment.FilePath)
+				}
+				c.LocalAssessment = &LocalAssessment{Status: "ambiguous_local_versions", FilePaths: paths, Issues: []string{"same_name_different_content_hashes"}}
 				changed = true
 			}
 			continue

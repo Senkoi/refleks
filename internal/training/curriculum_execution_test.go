@@ -68,6 +68,8 @@ func TestAutomaticTemplateSelectionFitsBudgetAndIgnoresStaleManualTier(t *testin
 	}
 	prefs := defaults()
 	prefs.Minutes = 5
+	// A single long run exceeds the budget even after adaptive repetition.
+	s.state.Catalog[0].Seconds = 600
 	// The long template has less recent exposure and would previously win.
 	runs := []models.RunRecord{record("short-history", "Smooth Short", 60, 1, time.Now().Add(-time.Hour))}
 	p, err := s.Generate(prefs, runs)

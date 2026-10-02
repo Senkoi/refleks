@@ -20,6 +20,7 @@ type BenchmarkMembership struct {
 }
 
 type Scenario struct {
+	Evaluation         *CatalogAssessment    `json:"evaluation,omitempty"`
 	Name               string                `json:"name"`
 	Skill              string                `json:"skill"`
 	Family             string                `json:"family"`
@@ -100,6 +101,7 @@ type Block struct {
 	Scenario           Scenario           `json:"scenario"`
 	Role               string             `json:"role"`
 	Budget             int                `json:"budget"`
+	SourcePlayCount    int                `json:"sourcePlayCount,omitempty"`
 	PlayCount          int                `json:"playCount"`
 	Target             float64            `json:"target"`
 	Reason             string             `json:"reason"`
@@ -129,6 +131,7 @@ type DifficultyEvidence struct {
 
 type Plan struct {
 	CurriculumID    string      `json:"curriculumId,omitempty"`
+	CurriculumHash  string      `json:"curriculumHash,omitempty"`
 	CurriculumName  string      `json:"curriculumName,omitempty"`
 	CurriculumStart int         `json:"curriculumStart,omitempty"`
 	CurriculumEnd   int         `json:"curriculumEnd,omitempty"`

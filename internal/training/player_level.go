@@ -102,7 +102,7 @@ func levelObservations(runs []models.RunRecord, now time.Time) map[string][]obse
 	filtered := []models.RunRecord{}
 	for _, r := range runs {
 		v := r.Stats.Summary
-		if v.Duration <= 0 || v.Duration > 3600 || v.TimeRemaining > 1 || v.AvgTargetScale != 0 && math.Abs(v.AvgTargetScale-1) > .001 || v.AvgTimeDilation != 0 && math.Abs(v.AvgTimeDilation-1) > .001 {
+		if math.IsNaN(v.Duration) || math.IsInf(v.Duration, 0) || math.IsNaN(v.TimeRemaining) || math.IsInf(v.TimeRemaining, 0) || math.IsNaN(v.AvgTargetScale) || math.IsInf(v.AvgTargetScale, 0) || math.IsNaN(v.AvgTimeDilation) || math.IsInf(v.AvgTimeDilation, 0) || v.Duration <= 0 || v.Duration > 3600 || v.TimeRemaining > 1 || v.AvgTargetScale != 0 && math.Abs(v.AvgTargetScale-1) > .001 || v.AvgTimeDilation != 0 && math.Abs(v.AvgTimeDilation-1) > .001 {
 			continue
 		}
 		cheated := false

@@ -15,9 +15,10 @@ import (
 )
 
 type CurriculumRow struct {
-	Name  string `json:"scenarioName"`
-	Count int    `json:"playCount"`
-	Role  string `json:"role,omitempty"`
+	Name        string `json:"scenarioName"`
+	Count       int    `json:"playCount"`
+	SourceCount int    `json:"sourcePlayCount,omitempty"`
+	Role        string `json:"role,omitempty"`
 }
 
 type Curriculum struct {
@@ -51,6 +52,7 @@ func parseCurriculum(data []byte, src Source) (*Curriculum, error) {
 	}
 	for i := range p.Rows {
 		r := &p.Rows[i]
+		r.SourceCount = 0 // Source JSON cannot manufacture an adaptive completion proof.
 		if strings.TrimSpace(r.Name) == "" || len(r.Name) > 300 || strings.ContainsAny(r.Name, "\r\n\x00") {
 			return nil, fmt.Errorf("VDIM 模板含无效场景名")
 		}
@@ -113,6 +115,10 @@ func (s *Service) mergeCurricula(items []Scenario) {
 }
 
 func selectCurriculum(ts []Curriculum, catalog []Scenario, p Preferences, runs []models.RunRecord, now time.Time) (*Curriculum, error) {
+	return selectCurriculumWithHistory(ts, catalog, p, runs, now, nil)
+}
+
+func selectCurriculumWithHistory(ts []Curriculum, catalog []Scenario, p Preferences, runs []models.RunRecord, now time.Time, history []Plan) (*Curriculum, error) {
 	// Explicit template selection takes precedence over automatic theme/tier
 	// filters. GenerateCurriculum still validates its contents and full budget.
 	if p.CurriculumID != "" {
@@ -135,7 +141,7 @@ func selectCurriculum(ts []Curriculum, catalog []Scenario, p Preferences, runs [
 		matched = true
 		// Reuse generation's timing and validation rather than picking an
 		// oversized/unavailable template and failing while another one fits.
-		window, _, _, windowErr := curriculumWindow(t, catalog, runs, p, now, nil)
+		window, _, _, windowErr := curriculumWindow(t, catalog, runs, p, now, history)
 		if windowErr != nil {
 			continue
 		}
@@ -201,6 +207,9 @@ func selectCurriculum(ts []Curriculum, catalog []Scenario, p Preferences, runs [
 		if (eligible[i].Theme == preferred) != (eligible[j].Theme == preferred) {
 			return eligible[i].Theme == preferred
 		}
+		if (eligible[i].OfficialCode != "") != (eligible[j].OfficialCode != "") {
+			return eligible[i].OfficialCode != ""
+		}
 		return eligible[i].Name < eligible[j].Name
 	})
 	return &eligible[0], nil
@@ -210,6 +219,9 @@ func selectCurriculum(ts []Curriculum, catalog []Scenario, p Preferences, runs [
 // skipped rows and time caps do not establish a full foundation session.
 // Compare rows/counts too, so an edited template requires its own baseline.
 func completedCurriculum(p Plan, t Curriculum) bool {
+	if p.CurriculumHash != "" && t.ContentSHA256 != "" && p.CurriculumHash != t.ContentSHA256 {
+		return false
+	}
 	if p.CurriculumID != t.ID || p.Status != "completed" || len(p.Blocks) < len(t.Rows) || len(t.Rows) == 0 {
 		return false
 	}
@@ -219,7 +231,11 @@ func completedCurriculum(p Plan, t Curriculum) bool {
 		if role == "" {
 			role = "practice"
 		}
-		if !strings.EqualFold(b.Scenario.Name, row.Name) || b.Role != role || b.PlayCount != row.Count || b.Runs < row.Count || b.Recorded <= 0 || b.Outcome != "list_complete" {
+		sourceMatches := b.PlayCount == row.Count
+		if b.SourcePlayCount > 0 {
+			sourceMatches = b.SourcePlayCount == originalRowCount(row) && b.PlayCount > 0 && b.PlayCount <= b.SourcePlayCount
+		}
+		if !strings.EqualFold(b.Scenario.Name, row.Name) || b.Role != role || !sourceMatches || b.Runs < b.PlayCount || b.Recorded <= 0 || b.Outcome != "list_complete" {
 			return false
 		}
 	}
@@ -246,8 +262,7 @@ func goalCompatible(anchor, candidate Scenario) bool {
 		}
 		return true
 	}
-	return strings.EqualFold(candidate.VariantOf, anchor.Name) ||
-		(anchor.Classification != "inferred" && candidate.Classification != "inferred")
+	return strings.EqualFold(candidate.VariantOf, anchor.Name)
 }
 
 func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, rng *rand.Rand, explored bool) (*Plan, error) {
@@ -262,7 +277,7 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 	for _, s := range catalog {
 		index[strings.ToLower(s.Name)] = enrichMechanics(s)
 	}
-	plan := &Plan{ID: fmt.Sprintf("%d-%x", now.UnixMilli(), rng.Uint32()), Created: now.Format(time.RFC3339), Preferences: p, Status: "draft", CurriculumID: t.ID, CurriculumName: t.Name, Theme: t.Theme, Blocks: []Block{}, Warnings: []string{}, Seen: []string{}}
+	plan := &Plan{ID: fmt.Sprintf("%d-%x", now.UnixMilli(), rng.Uint32()), Created: now.Format(time.RFC3339), Preferences: p, Status: "draft", CurriculumID: t.ID, CurriculumName: t.Name, CurriculumHash: t.ContentSHA256, Theme: t.Theme, Blocks: []Block{}, Warnings: []string{}, Seen: []string{}}
 	used := 0
 	baseNames := map[string]bool{}
 	for _, row := range t.Rows {
@@ -278,7 +293,7 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 		if role == "" {
 			role = "practice"
 		}
-		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: assessDifficultyFor(s, obs[strings.ToLower(s.Name)], now, p), Role: role, PlayCount: row.Count, Budget: timing.Seconds * row.Count, Outcome: "pending", Reason: "保留 VDIM 模板原场景、顺序和次数；首次运行允许尚未评估。", Cue: "按原训练目标完成；下载后评估只影响下一次生成。"}
+		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: assessDifficultyFor(s, obs[strings.ToLower(s.Name)], now, p), Role: role, SourcePlayCount: originalRowCount(row), PlayCount: row.Count, Budget: timing.Seconds * row.Count, Outcome: "pending", Reason: "保留 VDIM 场景顺序和训练目标；按单局时长、近期重复量与预算分配短组。", Cue: "按原训练目标完成；下载后评估只影响下一次生成。"}
 		if role == "benchmark" {
 			b.Target = 0
 		}
@@ -352,6 +367,6 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 			addDemandTime(c, float64(timing.Seconds), exposure)
 		}
 	}
-	plan.Warnings = append(plan.Warnings, "原模板角色仅在来源显式提供时采用；不将前半列表擅自标作作者热身，也不改变原序列。", "首次模板运行不插入探索；后续只在剩余预算内追加同目标探索，当前列表不会实时改写。", "SCE 仅从游戏已保存的本地文件评估；没有文件时保持待评估，不额外下载场景。")
+	plan.Warnings = append(plan.Warnings, "保留模板场景顺序；原次数作为上限，单局时长与近期训练量决定本次短组次数。", "首次模板运行不插入探索；后续只在剩余预算内追加同目标探索，当前列表不会实时改写。", "SCE 仅从游戏已保存的本地文件评估；没有文件时保持待评估，不额外下载场景。")
 	return plan, nil
 }

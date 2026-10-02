@@ -250,9 +250,8 @@ func validatePreferences(p Preferences) error {
 	if math.IsNaN(p.ThresholdRatio) || p.ThresholdRatio < 0.5 || p.ThresholdRatio > 1 {
 		return fmt.Errorf("阈值比例须在 50–100%% 之间")
 	}
-	if len(p.Benchmarks) > 20 {
-		return fmt.Errorf("最多选择 20 套 benchmark")
-	}
+	// Benchmark references are resolved automatically from the bounded catalog.
+	// A former manual selection limit must not reject automatic initialization.
 	return nil
 }
 

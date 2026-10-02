@@ -78,13 +78,13 @@ func automaticTrainingPreferences(p Preferences) Preferences {
 // A session is an ordered, whole-row window of the original routine. Continue
 // only after recorded completion, never after a manual finish or skipped row.
 func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, history []Plan) (Curriculum, int, int, error) {
-	if t.OfficialCode == "" {
-		return t, 0, len(t.Rows), nil
+	if len(t.Rows) == 0 {
+		return t, 0, 0, fmt.Errorf("VDIM 模板没有场景")
 	}
 	start := 0
 	for i := len(history) - 1; i >= 0; i-- {
 		h := history[i]
-		if h.CurriculumID != t.ID || h.CurriculumTotal != len(t.Rows) {
+		if h.CurriculumID != t.ID || h.CurriculumTotal != len(t.Rows) || h.CurriculumHash != "" && h.CurriculumHash != t.ContentSHA256 {
 			continue
 		}
 		if h.CurriculumStart < 0 || h.CurriculumEnd > len(t.Rows) || h.CurriculumEnd <= h.CurriculumStart {
@@ -105,25 +105,39 @@ func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord,
 		index[strings.ToLower(c.Name)] = c
 	}
 	end, used := start, 0
-	usable := p.Minutes * 60 * 9 / 10
+	totalUsable := p.Minutes * 60 * 9 / 10
+	usable := totalUsable
+	if curriculumBaseline(t, history) && p.Variety > 0 {
+		usable -= int(float64(totalUsable) * p.Variety)
+	}
+	rows := []CurriculumRow{}
 	for end < len(t.Rows) {
 		row := t.Rows[end]
 		c, ok := index[strings.ToLower(row.Name)]
 		if !ok {
 			return t, 0, 0, fmt.Errorf("模板场景 %s 不在关卡库", row.Name)
 		}
-		cost := estimateTiming(c, obs[strings.ToLower(c.Name)], now).Seconds * row.Count
-		if used+cost > usable {
+		timing := estimateTiming(c, obs[strings.ToLower(c.Name)], now)
+		row.SourceCount = row.Count
+		row.Count = curriculumRepetitions(row, timing)
+		// A required long single run takes precedence over the exploration reserve.
+		if end == start && timing.Seconds > usable && timing.Seconds <= totalUsable {
+			usable = totalUsable
+		}
+		remaining := (usable - used) / timing.Seconds
+		if remaining < 1 {
 			break
 		}
-		used += cost
+		row.Count = min(row.Count, remaining)
+		used += timing.Seconds * row.Count
+		rows = append(rows, row)
 		end++
 	}
 	if end == start {
-		return t, 0, 0, fmt.Errorf("当前 VDIM 段落至少需 %d 分钟，请增加可用时间", (estimateTiming(index[strings.ToLower(t.Rows[start].Name)], obs[strings.ToLower(t.Rows[start].Name)], now).Seconds*t.Rows[start].Count*10+539)/540)
+		return t, 0, 0, fmt.Errorf("当前 VDIM 段落至少需 %d 分钟，请增加可用时间", (estimateTiming(index[strings.ToLower(t.Rows[start].Name)], obs[strings.ToLower(t.Rows[start].Name)], now).Seconds*10+539)/540)
 	}
 	window := t
-	window.Rows = append([]CurriculumRow(nil), t.Rows[start:end]...)
+	window.Rows = rows
 	return window, start, end, nil
 }
 
