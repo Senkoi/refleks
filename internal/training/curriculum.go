@@ -21,6 +21,7 @@ type CurriculumRow struct {
 }
 
 type Curriculum struct {
+	OfficialCode  string          `json:"officialCode,omitempty"`
 	ID            string          `json:"id"`
 	Name          string          `json:"name"`
 	Theme         string          `json:"theme"`
@@ -134,22 +135,52 @@ func selectCurriculum(ts []Curriculum, catalog []Scenario, p Preferences, runs [
 		matched = true
 		// Reuse generation's timing and validation rather than picking an
 		// oversized/unavailable template and failing while another one fits.
-		if _, err := GenerateCurriculum(t, catalog, runs, p, now, rand.New(rand.NewSource(0)), false); err != nil {
+		window, _, _, windowErr := curriculumWindow(t, catalog, runs, p, now, nil)
+		if windowErr != nil {
+			continue
+		}
+		if _, err := GenerateCurriculum(window, catalog, runs, p, now, rand.New(rand.NewSource(0)), false); err != nil {
 			continue
 		}
 		eligible = append(eligible, t)
 	}
 	if len(eligible) == 0 {
 		if matched {
-			return nil, fmt.Errorf("符合重点与档位的 VDIM 模板均无法在当前预算内完整运行，或含不可用场景；请增加预算或显式选择模板查看原因")
+			return nil, fmt.Errorf("符合重点与档位的 VDIM 模板均无法在当前预算内完整运行，或含不可用场景；请增加可用时间或检查禁用的场景")
 		}
-		return nil, fmt.Errorf("尚无符合条件的真实 VDIM 模板；请从游戏保存的 VDIM JSON/PLO 导入，分享码不能代替场景顺序和次数")
+		return nil, fmt.Errorf("尚无符合条件的真实 VDIM 模板；自动初始化未完成，请检查初始化错误")
 	}
+	levels := PlayerLevels(catalog, runs, now)
+	bestDistance := map[string]int{}
+	distance := func(t Curriculum) int {
+		d := tierIndex(t.Tier) - tierIndex(inferredTier(t.Theme, levels))
+		if d < 0 {
+			return -d
+		}
+		return d * 10
+	}
+	for _, t := range eligible {
+		d := distance(t)
+		old, ok := bestDistance[t.Theme]
+		if !ok || d < old {
+			bestDistance[t.Theme] = d
+		}
+	}
+	fitted := []Curriculum{}
+	for _, t := range eligible {
+		if distance(t) == bestDistance[t.Theme] {
+			fitted = append(fitted, t)
+		}
+	}
+	eligible = fitted
 	obs := observed(runs)
 	score := func(t Curriculum) float64 {
 		v := 0.0
-		for _, row := range t.Rows {
-			for _, r := range obs[strings.ToLower(row.Name)] {
+		for _, scene := range catalog {
+			if scenarioTheme(scene) != t.Theme {
+				continue
+			}
+			for _, r := range obs[strings.ToLower(scene.Name)] {
 				if !r.at.After(now) && !r.at.Before(now.AddDate(0, 0, -7)) {
 					v += r.duration
 				}
@@ -263,6 +294,8 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 	// add-on after at least one completed, recorded template session, never a
 	// replacement of a foundation or measurement slot.
 	if explored && p.Variety > 0 {
+		levels := PlayerLevels(catalog, runs, now)
+		p = automaticReferences(catalog, p)
 		limit := int(float64(usable) * p.Variety)
 		if limit > usable-used {
 			limit = usable - used
@@ -282,6 +315,10 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 				if baseNames[strings.ToLower(c.Name)] || !goalCompatible(base.Scenario, c) {
 					continue
 				}
+				_, aligned := explorationReference(c, levels, p)
+				if len(memberships(c)) > 0 && !aligned {
+					continue
+				}
 				// VDIM tier describes the template's audience, not the candidate's
 				// mechanism difficulty. Personal feedback remains authoritative.
 				if c.PersonalDifficulty == "hard" || c.Preference == "disliked" {
@@ -292,6 +329,9 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 					continue
 				}
 				w := demandWeight(c, exposure)/(1+float64(len(obs[strings.ToLower(c.Name)]))) + .001*rng.Float64()
+				if aligned {
+					w += 2
+				}
 				if w > bestWeight {
 					best, bestWeight = i, w
 				}
@@ -302,11 +342,16 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 			c := enrichMechanics(catalog[best])
 			timing := estimateTiming(c, obs[strings.ToLower(c.Name)], now)
 			plan.Blocks = append(plan.Blocks, Block{Scenario: c, Timing: timing, DifficultyEvidence: assessDifficultyFor(c, obs[strings.ToLower(c.Name)], now, p), AnchorScenario: base.Scenario.Name, Role: "explore", Budget: timing.Seconds, PlayCount: 1, Outcome: "pending", Reason: "保留原模板后额外探索；匹配原场景训练目标，允许新增细分维度；未评估难度保持未知。", Cue: "单次探索，不设分数阈值；结果只影响下一份列表。"})
+			if reference, ok := explorationReference(c, levels, p); ok {
+				b := &plan.Blocks[len(plan.Blocks)-1]
+				b.Benchmark = reference.Name
+				b.Reason = "保留原训练目标，自动插入最新可用 benchmark 的同分类、对应原生难度场景作为探索变体；不是额外的独立测量任务。"
+			}
 			baseNames[strings.ToLower(c.Name)] = true
 			limit -= timing.Seconds
 			addDemandTime(c, float64(timing.Seconds), exposure)
 		}
 	}
-	plan.Warnings = append(plan.Warnings, "原模板角色仅在来源显式提供时采用；不将前半列表擅自标作作者热身，也不额外插入测量改变原序列。", "首次模板运行不插入探索；后续只在剩余预算内追加同目标探索，当前列表不会实时改写。", "SCE 仅从游戏已保存的本地文件评估；没有文件时保持待评估，不额外下载场景。")
+	plan.Warnings = append(plan.Warnings, "原模板角色仅在来源显式提供时采用；不将前半列表擅自标作作者热身，也不改变原序列。", "首次模板运行不插入探索；后续只在剩余预算内追加同目标探索，当前列表不会实时改写。", "SCE 仅从游戏已保存的本地文件评估；没有文件时保持待评估，不额外下载场景。")
 	return plan, nil
 }

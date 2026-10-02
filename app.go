@@ -121,9 +121,13 @@ func (a *App) startup(ctx context.Context) {
 		if err := a.benchmarkSvc.SyncBenchmarksCache(); err != nil {
 			runtime.LogErrorf(a.ctx, "benchmark definitions sync failed: %v", err)
 		}
-		_, err := a.benchmarkSvc.GetAllBenchmarkProgresses()
+		progress, err := a.benchmarkSvc.GetAllBenchmarkProgresses()
 		if err != nil {
 			runtime.LogErrorf(a.ctx, "benchmark cache sync failed: %v", err)
+		} else if a.trainingSvc != nil {
+			if catalog, e := a.GetBenchmarks(); e == nil {
+				_, _ = a.trainingSvc.Add(training.BenchmarkScenarios(catalog, progress, time.Now()))
+			}
 		}
 	}()
 

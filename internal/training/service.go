@@ -57,6 +57,7 @@ func New(dir string) (*Service, error) {
 		for i := range s.state.Catalog {
 			item := &s.state.Catalog[i]
 			item.Benchmarks = mergeMemberships(nil, memberships(*item))
+			calculateFileEvidence(item.LocalAssessment)
 			*item = enrichMechanics(*item)
 			if item.DifficultySource == "playlist" && item.Classification != "manual" {
 				item.Difficulty, item.DifficultySource = "unknown", "unknown"
@@ -96,7 +97,8 @@ func (s *Service) save() error {
 func (s *Service) Snapshot(runs []models.RunRecord) State {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	s.state.Skills = SkillProfile(s.state.Catalog, runs, latestBenchmarkPreferences(s.state.Catalog, s.state.Preferences), time.Now())
+	s.state.PlayerLevels = PlayerLevels(s.state.Catalog, runs, time.Now())
+	s.state.Skills = SkillProfile(s.state.Catalog, runs, automaticReferences(s.state.Catalog, s.state.Preferences), time.Now())
 	s.state.SearchConfigured = os.Getenv("REFLEKS_BRAVE_API_KEY") != ""
 	b, _ := json.Marshal(s.state)
 	var copy State
@@ -239,7 +241,10 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 	}
 	now := time.Now()
 	rng := rand.New(rand.NewSource(now.UnixNano()))
-	planningPreferences := latestBenchmarkPreferences(s.state.Catalog, p)
+	if p.PlanningPolicy != "legacy" {
+		p = automaticTrainingPreferences(p)
+	}
+	planningPreferences := automaticReferences(s.state.Catalog, p)
 	var plan *Plan
 	var err error
 	if p.PlanningPolicy == "legacy" {
@@ -249,16 +254,28 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 		var t *Curriculum
 		t, err = selectCurriculum(s.state.Curricula, s.state.Catalog, p, runs, now)
 		if err == nil {
-			explored := false
-			for _, h := range s.state.History {
-				if completedCurriculum(h, *t) {
-					explored = true
+			history := append([]Plan(nil), s.state.History...)
+			if old := s.state.Plan; old != nil {
+				history = append(history, *old)
+			}
+			explored := curriculumBaseline(*t, history)
+			windowPreferences := p
+			if explored && t.OfficialCode != "" {
+				windowPreferences.Minutes = int(math.Ceil(float64(p.Minutes) * (1 - p.Variety)))
+			}
+			window, start, end, windowErr := curriculumWindow(*t, s.state.Catalog, runs, windowPreferences, now, history)
+			if windowErr != nil {
+				return nil, windowErr
+			}
+			plan, err = GenerateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored)
+			if err == nil {
+				plan.CurriculumStart = start
+				plan.CurriculumEnd = end
+				plan.CurriculumTotal = len(t.Rows)
+				if start != 0 || end != len(t.Rows) {
+					plan.Warnings = append(plan.Warnings, fmt.Sprintf("按原顺序运行 VDIM 第 %d–%d / %d 行；次数保留，完成后下一次从后续段落继续。", start+1, end, len(t.Rows)))
 				}
 			}
-			if old := s.state.Plan; old != nil && completedCurriculum(*old, *t) {
-				explored = true
-			}
-			plan, err = GenerateCurriculum(*t, s.state.Catalog, runs, planningPreferences, now, rng, explored)
 		}
 	}
 	if err != nil {

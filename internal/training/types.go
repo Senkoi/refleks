@@ -16,6 +16,7 @@ type BenchmarkMembership struct {
 	Category         string    `json:"category,omitempty"`
 	Group            string    `json:"group,omitempty"`
 	Thresholds       []float64 `json:"thresholds,omitempty"`
+	Ranks            []string  `json:"ranks,omitempty"`
 }
 
 type Scenario struct {
@@ -127,29 +128,33 @@ type DifficultyEvidence struct {
 }
 
 type Plan struct {
-	CurriculumID   string      `json:"curriculumId,omitempty"`
-	CurriculumName string      `json:"curriculumName,omitempty"`
-	Theme          string      `json:"theme,omitempty"`
-	EndedAt        int64       `json:"endedAt,omitempty"`
-	ID             string      `json:"id"`
-	Created        string      `json:"created"`
-	Preferences    Preferences `json:"preferences"`
-	Blocks         []Block     `json:"blocks"`
-	Warnings       []string    `json:"warnings"`
-	Status         string      `json:"status"`
-	Index          int         `json:"index"`
-	Elapsed        float64     `json:"elapsed"`
-	Recorded       float64     `json:"recorded"`
-	BlockElapsed   float64     `json:"blockElapsed"`
-	LastTick       int64       `json:"lastTick"`
-	AcceptAfter    int64       `json:"acceptAfter"`
-	Seen           []string    `json:"seen"`
-	RemindedBlock  int         `json:"remindedBlock,omitempty"`
-	RemindedEnd    bool        `json:"remindedEnd,omitempty"`
-	Reminder       string      `json:"reminder,omitempty"`
+	CurriculumID    string      `json:"curriculumId,omitempty"`
+	CurriculumName  string      `json:"curriculumName,omitempty"`
+	CurriculumStart int         `json:"curriculumStart,omitempty"`
+	CurriculumEnd   int         `json:"curriculumEnd,omitempty"`
+	CurriculumTotal int         `json:"curriculumTotal,omitempty"`
+	Theme           string      `json:"theme,omitempty"`
+	EndedAt         int64       `json:"endedAt,omitempty"`
+	ID              string      `json:"id"`
+	Created         string      `json:"created"`
+	Preferences     Preferences `json:"preferences"`
+	Blocks          []Block     `json:"blocks"`
+	Warnings        []string    `json:"warnings"`
+	Status          string      `json:"status"`
+	Index           int         `json:"index"`
+	Elapsed         float64     `json:"elapsed"`
+	Recorded        float64     `json:"recorded"`
+	BlockElapsed    float64     `json:"blockElapsed"`
+	LastTick        int64       `json:"lastTick"`
+	AcceptAfter     int64       `json:"acceptAfter"`
+	Seen            []string    `json:"seen"`
+	RemindedBlock   int         `json:"remindedBlock,omitempty"`
+	RemindedEnd     bool        `json:"remindedEnd,omitempty"`
+	Reminder        string      `json:"reminder,omitempty"`
 }
 
 type State struct {
+	PlayerLevels     []PlayerLevel `json:"playerLevels"`
 	Curricula        []Curriculum  `json:"curricula,omitempty"`
 	Version          int           `json:"version"`
 	Catalog          []Scenario    `json:"catalog"`

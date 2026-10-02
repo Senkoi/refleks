@@ -1,0 +1,738 @@
+[
+  {
+    "a": "1w2ts reload smallflicks larger",
+    "b": "1w2ts reload smallflicks slightly larger",
+    "hashA": "fd6690a07e49a896568692c3fffd3c0c6c9441a766d0092f1f00d7f93cad2960",
+    "hashB": "382dbe29dac2d41662bcadf2521012d3fed38513cf0eccb162a3a15a9f0b1da0",
+    "profile": "target",
+    "ratio": 0.8918918918918919
+  },
+  {
+    "a": "1w5ts vbr Revosect Entry",
+    "b": "1w5ts vbr Revosect",
+    "hashA": "cd6d3994b18ecd952441145cae5d823d90b6355c921e3d1ddddeb820cc216075",
+    "hashB": "7a67ff51f91f5aa33562d1c194d8ac26d4ff5df137dede441f53cf9e076f5aa5",
+    "profile": "vbr Close",
+    "ratio": 0.4166666666666667
+  },
+  {
+    "a": "1w5ts vbr Revosect Entry",
+    "b": "1w5ts vbr Revosect",
+    "hashA": "cd6d3994b18ecd952441145cae5d823d90b6355c921e3d1ddddeb820cc216075",
+    "hashB": "7a67ff51f91f5aa33562d1c194d8ac26d4ff5df137dede441f53cf9e076f5aa5",
+    "profile": "vbr Far",
+    "ratio": 0.7142857142857143
+  },
+  {
+    "a": "1w5ts vbr Revosect Entry",
+    "b": "1w5ts vbr Revosect",
+    "hashA": "cd6d3994b18ecd952441145cae5d823d90b6355c921e3d1ddddeb820cc216075",
+    "hashB": "7a67ff51f91f5aa33562d1c194d8ac26d4ff5df137dede441f53cf9e076f5aa5",
+    "profile": "vbr Furthest",
+    "ratio": 0.673469387755102
+  },
+  {
+    "a": "1w5ts vbr Revosect Entry",
+    "b": "1w5ts vbr Revosect",
+    "hashA": "cd6d3994b18ecd952441145cae5d823d90b6355c921e3d1ddddeb820cc216075",
+    "hashB": "7a67ff51f91f5aa33562d1c194d8ac26d4ff5df137dede441f53cf9e076f5aa5",
+    "profile": "vbr Mid",
+    "ratio": 0.5882352941176471
+  },
+  {
+    "a": "EvoClick Revosect Entry",
+    "b": "EvoClick Revosect Int",
+    "hashA": "06178d3e74a18c56e5263f28f2c276179eb9a937e2dc708ed2734cfbf0dabc51",
+    "hashB": "967810aeb0e8f7f0a25b6ece8e7a4389de9c98d221bec6262d05ed3c6a6ad900",
+    "profile": "Evolve",
+    "ratio": 0.6363636363636364
+  },
+  {
+    "a": "EvoClick Revosect Entry",
+    "b": "EvoClick Revosect Int",
+    "hashA": "06178d3e74a18c56e5263f28f2c276179eb9a937e2dc708ed2734cfbf0dabc51",
+    "hashB": "967810aeb0e8f7f0a25b6ece8e7a4389de9c98d221bec6262d05ed3c6a6ad900",
+    "profile": "Evolver",
+    "ratio": 0.6363636363636364
+  },
+  {
+    "a": "EvoClick Revosect Entry",
+    "b": "EvoClick Revosect",
+    "hashA": "06178d3e74a18c56e5263f28f2c276179eb9a937e2dc708ed2734cfbf0dabc51",
+    "hashB": "0e085d5d39eb1f16c527f8f63cdcd48cc47614ecdcc80ae72a44276626bbfb01",
+    "profile": "Evolve",
+    "ratio": 0.5
+  },
+  {
+    "a": "EvoClick Revosect Entry",
+    "b": "EvoClick Revosect",
+    "hashA": "06178d3e74a18c56e5263f28f2c276179eb9a937e2dc708ed2734cfbf0dabc51",
+    "hashB": "0e085d5d39eb1f16c527f8f63cdcd48cc47614ecdcc80ae72a44276626bbfb01",
+    "profile": "Evolver",
+    "ratio": 0.5
+  },
+  {
+    "a": "EvoClick Revosect Int",
+    "b": "EvoClick Revosect",
+    "hashA": "967810aeb0e8f7f0a25b6ece8e7a4389de9c98d221bec6262d05ed3c6a6ad900",
+    "hashB": "0e085d5d39eb1f16c527f8f63cdcd48cc47614ecdcc80ae72a44276626bbfb01",
+    "profile": "Evolve",
+    "ratio": 0.7857142857142857
+  },
+  {
+    "a": "EvoClick Revosect Int",
+    "b": "EvoClick Revosect",
+    "hashA": "967810aeb0e8f7f0a25b6ece8e7a4389de9c98d221bec6262d05ed3c6a6ad900",
+    "hashB": "0e085d5d39eb1f16c527f8f63cdcd48cc47614ecdcc80ae72a44276626bbfb01",
+    "profile": "Evolver",
+    "ratio": 0.7857142857142857
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target 1",
+    "ratio": 0.8181818181818182
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target 2",
+    "ratio": 0.8181818181818182
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target 3",
+    "ratio": 0.8181818181818182
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 1 a",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 1 b",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 1 c",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 1 d",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 2 a",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 2 b",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 2 c",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 2 d",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 3 a",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 3 b",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 3 c",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 3 d",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 4 a",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 4 b",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 4 c",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 4 d",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 5 a",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 5 b",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 5 c",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 5 d",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 6 a",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 6 b",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 6 c",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect Int",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "profile": "target seed 6 d",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target 1",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target 2",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target 3",
+    "ratio": 0.7272727272727273
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 1 a",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 1 b",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 1 c",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 1 d",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 2 a",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 2 b",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 2 c",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 2 d",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 3 a",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 3 b",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 3 c",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 3 d",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 4 a",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 4 b",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 4 c",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 4 d",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 5 a",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 5 b",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 5 c",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 5 d",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 6 a",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 6 b",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 6 c",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Entry",
+    "b": "StrawberryClick Revosect",
+    "hashA": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 6 d",
+    "ratio": 0.5968772727272728
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target 1",
+    "ratio": 0.8888888888888888
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target 2",
+    "ratio": 0.8888888888888888
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target 3",
+    "ratio": 0.8888888888888888
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 1 a",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 1 b",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 1 c",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 1 d",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 2 a",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 2 b",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 2 c",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 2 d",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 3 a",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 3 b",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 3 c",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 3 d",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 4 a",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 4 b",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 4 c",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 4 d",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 5 a",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 5 b",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 5 c",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 5 d",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 6 a",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 6 b",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 6 c",
+    "ratio": 0.82070625
+  },
+  {
+    "a": "StrawberryClick Revosect Int",
+    "b": "StrawberryClick Revosect",
+    "hashA": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+    "hashB": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+    "profile": "target seed 6 d",
+    "ratio": 0.82070625
+  }
+]

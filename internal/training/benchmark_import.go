@@ -25,7 +25,7 @@ func BenchmarkScenarios(catalog []models.Benchmark, progress map[int]models.Benc
 						switch {
 						case strings.Contains(hint, "switch"):
 							skill = "switching"
-						case strings.Contains(hint, "static"):
+						case strings.Contains(hint, "static"), strings.Contains(hint, "flick tech"):
 							skill = "static"
 						case strings.Contains(hint, "dynamic"), strings.Contains(hint, "linear"), strings.Contains(hint, "timing"):
 							skill = "dynamic"
@@ -34,7 +34,18 @@ func BenchmarkScenarios(catalog []models.Benchmark, progress map[int]models.Benc
 						case strings.Contains(hint, "smooth"), strings.Contains(hint, "precis"), strings.Contains(hint, "control"):
 							skill = "smooth"
 						}
-						m := BenchmarkMembership{Name: b.BenchmarkName + " / " + d.DifficultyName, BenchmarkID: d.KovaaksBenchmarkID, System: b.BenchmarkName, NativeDifficulty: d.DifficultyName, Category: c.Name, Group: g.Name, Thresholds: append([]float64(nil), s.Thresholds...)}
+						ranks := []string{}
+						definitions := p.Ranks
+						if len(definitions) == 0 {
+							definitions = d.Ranks
+						}
+						for _, rank := range definitions {
+							name := strings.TrimSpace(rank.Name)
+							if name != "" && !strings.EqualFold(name, "No Rank") {
+								ranks = append(ranks, name)
+							}
+						}
+						m := BenchmarkMembership{Ranks: ranks, Name: b.BenchmarkName + " / " + d.DifficultyName, BenchmarkID: d.KovaaksBenchmarkID, System: b.BenchmarkName, NativeDifficulty: d.DifficultyName, Category: c.Name, Group: g.Name, Thresholds: append([]float64(nil), s.Thresholds...)}
 						items = append(items, Scenario{Name: s.Name, Skill: skill, Technique: BenchmarkTechnique(c.Name, g.Name, skill), Family: strings.ToLower(s.Name), Difficulty: "unknown", DifficultySource: "unknown", Seconds: 60, Benchmarks: []BenchmarkMembership{m}, Classification: "benchmark", Enabled: skill != "unknown", Sources: []Source{{URL: b.SpreadsheetURL, Title: m.Name + " / " + g.Name, Retrieved: now.UTC().Format(time.RFC3339)}}})
 					}
 				}

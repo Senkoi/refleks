@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
+	"refleks/internal/models"
 	appsettings "refleks/internal/settings"
 	"refleks/internal/training"
 )
@@ -22,9 +23,25 @@ func (a *App) startTraining() {
 		a.trainingErr = err
 		return
 	}
+	if err = a.trainingSvc.InitializeTraining(); err != nil {
+		a.trainingErr = err
+		return
+	}
+	a.pollTrainingLocal(time.Now())
 	ctx, cancel := context.WithCancel(a.ctx)
 	a.trainingCancel = cancel
 	go func() {
+		if catalog, e := a.GetBenchmarks(); e == nil {
+			progress := map[int]models.BenchmarkProgress{}
+			for _, b := range catalog {
+				for _, d := range b.Difficulties {
+					if p, ok := a.benchmarkSvc.GetCachedBenchmarkProgress(d.KovaaksBenchmarkID); ok {
+						progress[d.KovaaksBenchmarkID] = p
+					}
+				}
+			}
+			_, _ = a.trainingSvc.Add(training.BenchmarkScenarios(catalog, progress, time.Now()))
+		}
 		localTicker := time.NewTicker(15 * time.Second)
 		defer localTicker.Stop()
 		for {
@@ -238,4 +255,14 @@ func (a *App) pollTrainingLocal(now time.Time) {
 		playlists = filepath.Join(base, "FPSAimTrainer", "Saved", "SaveGames", "Playlists")
 	}
 	a.trainingSvc.PollLocal(training.LocalRoots(base, settings.SteamInstallDir), playlists, now)
+}
+
+// RefreshTrainingLocal reports real scan results; the poller retains its quiet
+// period instead of pretending a partial Steam write is a finished download.
+func (a *App) RefreshTrainingLocal() error {
+	if err := a.trainingReady(); err != nil {
+		return err
+	}
+	a.pollTrainingLocal(time.Now())
+	return nil
 }

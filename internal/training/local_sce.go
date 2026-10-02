@@ -25,13 +25,15 @@ type SCEField struct {
 	Line    int    `json:"line"`
 }
 type LocalAssessment struct {
-	Status      string     `json:"status"`
-	FileSHA256  string     `json:"fileSHA256,omitempty"`
-	GameVersion string     `json:"gameVersion,omitempty"`
-	ObservedAt  string     `json:"observedAt,omitempty"`
-	FilePath    string     `json:"filePath,omitempty"`
-	Fields      []SCEField `json:"fields,omitempty"`
-	Issues      []string   `json:"issues,omitempty"`
+	Measurements         []FileMeasurement     `json:"measurements,omitempty"`
+	PrecisionComparisons []PrecisionComparison `json:"precisionComparisons,omitempty"`
+	Status               string                `json:"status"`
+	FileSHA256           string                `json:"fileSHA256,omitempty"`
+	GameVersion          string                `json:"gameVersion,omitempty"`
+	ObservedAt           string                `json:"observedAt,omitempty"`
+	FilePath             string                `json:"filePath,omitempty"`
+	Fields               []SCEField            `json:"fields,omitempty"`
+	Issues               []string              `json:"issues,omitempty"`
 }
 type localParsedSCE struct {
 	name       string
@@ -233,6 +235,7 @@ func ParseLocalSCE(data []byte) (string, *Mechanics, *LocalAssessment, error) {
 	}
 	sort.Strings(m.Tags)
 	sort.Strings(a.Issues)
+	calculateFileEvidence(a)
 	return name, m, a, nil
 }
 
@@ -251,7 +254,7 @@ func LocalRoots(game, steam string) []string {
 
 // PollLocal scans bounded roots and waits for the same file metadata on two
 // polls, plus a two-second quiet period. Partial Steam writes are not assessed.
-// Only catalog scenes are evaluated; the active plan's copied blocks stay fixed.
+// Every downloaded scene is added and evaluated; the active plan's copied blocks stay fixed.
 func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 	s.localScanMu.Lock()
 	defer s.localScanMu.Unlock()
@@ -263,12 +266,6 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 	if playlists != "" {
 		s.pollCurricula(playlists)
 	}
-	s.mu.Lock()
-	wanted := map[string]bool{}
-	for _, c := range s.state.Catalog {
-		wanted[strings.ToLower(c.Name)] = true
-	}
-	s.mu.Unlock()
 	visited := map[string]bool{}
 	changed := s.localDirty
 	invalidate := func(path, status string) {
@@ -344,9 +341,6 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 				invalidate(path, "invalid_local_file")
 				return nil
 			}
-			if !wanted[strings.ToLower(name)] {
-				return nil
-			}
 			a.FilePath = path
 			a.ObservedAt = now.UTC().Format(time.RFC3339)
 			s.localParsed[path] = localParsedSCE{name, m, a}
@@ -374,6 +368,22 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
+	known := map[string]bool{}
+	for _, c := range s.state.Catalog {
+		known[strings.ToLower(c.Name)] = true
+	}
+	names := []string{}
+	for name := range byName {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	for _, name := range names {
+		if !known[name] && len(s.state.Catalog) < 10000 {
+			v := byName[name][0]
+			s.state.Catalog = append(s.state.Catalog, scenarioFromLocal(v.name, v.assessment.FilePath, v.mechanics, v.assessment))
+			changed = true
+		}
+	}
 	for i := range s.state.Catalog {
 		c := &s.state.Catalog[i]
 		versions := byName[strings.ToLower(c.Name)]
