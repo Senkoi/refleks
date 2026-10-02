@@ -1,0 +1,1278 @@
+[
+  {
+    "scenario_name": "VT 1w4ts Novice S5",
+    "leaderboard_id": 103210,
+    "family_candidate": "wall-small",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 459,
+        "benchmark_name": "Voltaic S5",
+        "tier": "Novice",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Iron": 820,
+          "Bronze": 915,
+          "Silver": 1010,
+          "Gold": 1110
+        },
+        "threshold_snapshot_response_sha256": "4d5d63892d33efd8ad14bc2bf505ac369adfd343be572be66c911b2c3b4b7779",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "VT ww5t Novice S5",
+    "leaderboard_id": 98030,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 459,
+        "benchmark_name": "Voltaic S5",
+        "tier": "Novice",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Iron": 990,
+          "Bronze": 1090,
+          "Silver": 1190,
+          "Gold": 1290
+        },
+        "threshold_snapshot_response_sha256": "4d5d63892d33efd8ad14bc2bf505ac369adfd343be572be66c911b2c3b4b7779",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "VT 1w3ts Intermediate S5",
+    "leaderboard_id": 103209,
+    "family_candidate": "wall-small",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 458,
+        "benchmark_name": "Voltaic S5",
+        "tier": "Intermediate",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Platinum": 1120,
+          "Diamond": 1220,
+          "Jade": 1300,
+          "Master": 1380
+        },
+        "threshold_snapshot_response_sha256": "aabf1118ca9e3d6ff11af5691afe55f6407bc1e4c162996e5bc19e07a843909f",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "VT ww5t Intermediate S5",
+    "leaderboard_id": 98029,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 458,
+        "benchmark_name": "Voltaic S5",
+        "tier": "Intermediate",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Platinum": 1310,
+          "Diamond": 1400,
+          "Jade": 1490,
+          "Master": 1560
+        },
+        "threshold_snapshot_response_sha256": "aabf1118ca9e3d6ff11af5691afe55f6407bc1e4c162996e5bc19e07a843909f",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "VT 1w2ts Advanced S5",
+    "leaderboard_id": 98025,
+    "family_candidate": "wall-small",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 460,
+        "benchmark_name": "Voltaic S5",
+        "tier": "Advanced",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Grandmaster": 1320,
+          "Nova": 1420,
+          "Astra": 1520,
+          "Celestial": 1620
+        },
+        "threshold_snapshot_response_sha256": "e25ed429cfdb8b3beafea19ec44de93c784007a75d69eff73e8471c6441191c6",
+        "cross_benchmark_rank_equivalence_verified": false
+      },
+      {
+        "benchmark_id": 2070,
+        "benchmark_name": "Voltaic S5.5",
+        "tier": "Advanced",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Grandmaster": 1310,
+          "Nova": 1420,
+          "Astra": 1500,
+          "Celestial": 1600
+        },
+        "threshold_snapshot_response_sha256": "3dd56934151776e4bcb8892f4b11a3a47dba66e1fd71cd214532771f0493c578",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "VT ww5t Advanced S5",
+    "leaderboard_id": 98026,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 460,
+        "benchmark_name": "Voltaic S5",
+        "tier": "Advanced",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Grandmaster": 1510,
+          "Nova": 1610,
+          "Astra": 1720,
+          "Celestial": 1860
+        },
+        "threshold_snapshot_response_sha256": "e25ed429cfdb8b3beafea19ec44de93c784007a75d69eff73e8471c6441191c6",
+        "cross_benchmark_rank_equivalence_verified": false
+      },
+      {
+        "benchmark_id": 2070,
+        "benchmark_name": "Voltaic S5.5",
+        "tier": "Advanced",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Grandmaster": 1480,
+          "Nova": 1590,
+          "Astra": 1690,
+          "Celestial": 1780
+        },
+        "threshold_snapshot_response_sha256": "3dd56934151776e4bcb8892f4b11a3a47dba66e1fd71cd214532771f0493c578",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "ww5t Voltaic Slightly Larger",
+    "leaderboard_id": 185378,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2335,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Easier",
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "rank_cutoffs": {
+          "Lemming": 70,
+          "Hare": 80,
+          "Ermine": 92,
+          "Puffin": 97,
+          "Penguin": 101,
+          "Fox": 108,
+          "Mammoth": 113,
+          "Orca": 119,
+          "Seal": 125
+        },
+        "threshold_snapshot_response_sha256": "444ec805a62eb01e0a66aae7e0da47b30cb61058b6f652b3aaa8d0e393e90246",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w6ts reload v2 20% bigger",
+    "leaderboard_id": 21620,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2335,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Easier",
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "rank_cutoffs": {
+          "Lemming": 64,
+          "Hare": 71,
+          "Ermine": 78,
+          "Puffin": 85,
+          "Penguin": 91,
+          "Fox": 97,
+          "Mammoth": 103,
+          "Orca": 109,
+          "Seal": 115
+        },
+        "threshold_snapshot_response_sha256": "444ec805a62eb01e0a66aae7e0da47b30cb61058b6f652b3aaa8d0e393e90246",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks larger",
+    "leaderboard_id": 185518,
+    "family_candidate": "wall-micro",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2335,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Easier",
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "rank_cutoffs": {
+          "Lemming": 76,
+          "Hare": 85,
+          "Ermine": 93,
+          "Puffin": 100,
+          "Penguin": 106,
+          "Fox": 112,
+          "Mammoth": 118,
+          "Orca": 124,
+          "Seal": 130
+        },
+        "threshold_snapshot_response_sha256": "444ec805a62eb01e0a66aae7e0da47b30cb61058b6f652b3aaa8d0e393e90246",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "ww4t Voltaic",
+    "leaderboard_id": 23921,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2336,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Medium",
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "rank_cutoffs": {
+          "Cinnabar": 90,
+          "Vermillion": 102,
+          "Saffron": 112,
+          "Celadon": 118,
+          "Viridian": 126,
+          "Cerulean": 133,
+          "Lavender": 141,
+          "Indigo": 152,
+          "Fuchsia": 160
+        },
+        "threshold_snapshot_response_sha256": "28f194d829d2be3882c51e5ab4d3029bd9eca344ffff5551b2881bbba07e2d95",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w6ts reload v2",
+    "leaderboard_id": 666,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2336,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Medium",
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "rank_cutoffs": {
+          "Cinnabar": 70,
+          "Vermillion": 82,
+          "Saffron": 94,
+          "Celadon": 105,
+          "Viridian": 116,
+          "Cerulean": 123,
+          "Lavender": 130,
+          "Indigo": 138,
+          "Fuchsia": 146
+        },
+        "threshold_snapshot_response_sha256": "28f194d829d2be3882c51e5ab4d3029bd9eca344ffff5551b2881bbba07e2d95",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks slightly larger",
+    "leaderboard_id": 184777,
+    "family_candidate": "wall-micro",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2336,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Medium",
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "rank_cutoffs": {
+          "Cinnabar": 99,
+          "Vermillion": 109,
+          "Saffron": 119,
+          "Celadon": 127,
+          "Viridian": 135,
+          "Cerulean": 142,
+          "Lavender": 150,
+          "Indigo": 161,
+          "Fuchsia": 169
+        },
+        "threshold_snapshot_response_sha256": "28f194d829d2be3882c51e5ab4d3029bd9eca344ffff5551b2881bbba07e2d95",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "ww3t Voltaic",
+    "leaderboard_id": 68,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2337,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Hard",
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "rank_cutoffs": {
+          "Wool": 131,
+          "Rayon": 138,
+          "Linen": 144,
+          "Velvet": 150,
+          "Chiffon": 157,
+          "Tricot": 163,
+          "Satin": 170,
+          "Silk": 175
+        },
+        "threshold_snapshot_response_sha256": "aa6044fe8b7b2744c6dee281869d6dbc190d3e10ab6537132fefa7ce6faf3113",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w5ts reload",
+    "leaderboard_id": 2308,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2337,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Hard",
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "rank_cutoffs": {
+          "Wool": 117,
+          "Rayon": 123,
+          "Linen": 130,
+          "Velvet": 137,
+          "Chiffon": 144,
+          "Tricot": 149,
+          "Satin": 156,
+          "Silk": 162
+        },
+        "threshold_snapshot_response_sha256": "aa6044fe8b7b2744c6dee281869d6dbc190d3e10ab6537132fefa7ce6faf3113",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks",
+    "leaderboard_id": 36,
+    "family_candidate": "wall-micro",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2337,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Hard",
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "rank_cutoffs": {
+          "Wool": 145,
+          "Rayon": 151,
+          "Linen": 157,
+          "Velvet": 163,
+          "Chiffon": 168,
+          "Tricot": 173,
+          "Satin": 179,
+          "Silk": 184
+        },
+        "threshold_snapshot_response_sha256": "aa6044fe8b7b2744c6dee281869d6dbc190d3e10ab6537132fefa7ce6faf3113",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "ww3t Voltaic 10% Smaller",
+    "leaderboard_id": 92573,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2338,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Expert",
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "rank_cutoffs": {
+          "Interloper": 152,
+          "Attuned": 158,
+          "Heroic": 163,
+          "Mythic": 168,
+          "Ascension": 173,
+          "Eclipse": 178
+        },
+        "threshold_snapshot_response_sha256": "c68eb2d2bb3c14eab637e3752ae791904feb3345efcabddd39934e39fdab0a08",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w4ts Voltaic",
+    "leaderboard_id": 319,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2338,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Expert",
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "rank_cutoffs": {
+          "Interloper": 138,
+          "Attuned": 144,
+          "Heroic": 150,
+          "Mythic": 156,
+          "Ascension": 161,
+          "Eclipse": 167
+        },
+        "threshold_snapshot_response_sha256": "c68eb2d2bb3c14eab637e3752ae791904feb3345efcabddd39934e39fdab0a08",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks 25% smaller",
+    "leaderboard_id": 32659,
+    "family_candidate": "wall-micro",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 2338,
+        "benchmark_name": "Viscose Benchmarks S2",
+        "tier": "Expert",
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "rank_cutoffs": {
+          "Interloper": 146,
+          "Attuned": 152,
+          "Heroic": 158,
+          "Mythic": 163,
+          "Ascension": 168,
+          "Eclipse": 173
+        },
+        "threshold_snapshot_response_sha256": "c68eb2d2bb3c14eab637e3752ae791904feb3345efcabddd39934e39fdab0a08",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "EvoClick Revosect Entry",
+    "leaderboard_id": 142851,
+    "family_candidate": "evoclick",
+    "leakage_group_candidate": "evoclick",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 823,
+        "benchmark_name": "Revosect S5",
+        "tier": "Entry",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Bronze": 520,
+          "Silver": 600,
+          "Gold": 680,
+          "Platinum": 760
+        },
+        "threshold_snapshot_response_sha256": "4d318fcc2e6ae120ecbdf9fb932110e4546327f9c8fe5e0d77e631af3890738c",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect Entry",
+    "leaderboard_id": 142853,
+    "family_candidate": "strawberryclick",
+    "leakage_group_candidate": "strawberryclick",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 823,
+        "benchmark_name": "Revosect S5",
+        "tier": "Entry",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Bronze": 730,
+          "Silver": 780,
+          "Gold": 830,
+          "Platinum": 880
+        },
+        "threshold_snapshot_response_sha256": "4d318fcc2e6ae120ecbdf9fb932110e4546327f9c8fe5e0d77e631af3890738c",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect Entry",
+    "leaderboard_id": 142873,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 823,
+        "benchmark_name": "Revosect S5",
+        "tier": "Entry",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Bronze": 860,
+          "Silver": 930,
+          "Gold": 1000,
+          "Platinum": 1070
+        },
+        "threshold_snapshot_response_sha256": "4d318fcc2e6ae120ecbdf9fb932110e4546327f9c8fe5e0d77e631af3890738c",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect Entry",
+    "leaderboard_id": 142878,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 823,
+        "benchmark_name": "Revosect S5",
+        "tier": "Entry",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Bronze": 1020,
+          "Silver": 1100,
+          "Gold": 1180,
+          "Platinum": 1260
+        },
+        "threshold_snapshot_response_sha256": "4d318fcc2e6ae120ecbdf9fb932110e4546327f9c8fe5e0d77e631af3890738c",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "EvoClick Revosect Int",
+    "leaderboard_id": 142850,
+    "family_candidate": "evoclick",
+    "leakage_group_candidate": "evoclick",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 822,
+        "benchmark_name": "Revosect S5",
+        "tier": "Intermediate",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Ace": 730,
+          "Legend": 830,
+          "Sentinel": 930,
+          "Valour": 1030,
+          "Mythic": 1130
+        },
+        "threshold_snapshot_response_sha256": "fee60a0da5a90e2ae6acf0deaacc284afde1ea8b16324c28355284a88777918d",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect Int",
+    "leaderboard_id": 142852,
+    "family_candidate": "strawberryclick",
+    "leakage_group_candidate": "strawberryclick",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 822,
+        "benchmark_name": "Revosect S5",
+        "tier": "Intermediate",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Ace": 850,
+          "Legend": 925,
+          "Sentinel": 1000,
+          "Valour": 1075,
+          "Mythic": 1150
+        },
+        "threshold_snapshot_response_sha256": "fee60a0da5a90e2ae6acf0deaacc284afde1ea8b16324c28355284a88777918d",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect Int",
+    "leaderboard_id": 142874,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 822,
+        "benchmark_name": "Revosect S5",
+        "tier": "Intermediate",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Ace": 1040,
+          "Legend": 1140,
+          "Sentinel": 1240,
+          "Valour": 1340,
+          "Mythic": 1440
+        },
+        "threshold_snapshot_response_sha256": "fee60a0da5a90e2ae6acf0deaacc284afde1ea8b16324c28355284a88777918d",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect Int",
+    "leaderboard_id": 143201,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 822,
+        "benchmark_name": "Revosect S5",
+        "tier": "Intermediate",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Ace": 1230,
+          "Legend": 1330,
+          "Sentinel": 1430,
+          "Valour": 1530,
+          "Mythic": 1630
+        },
+        "threshold_snapshot_response_sha256": "fee60a0da5a90e2ae6acf0deaacc284afde1ea8b16324c28355284a88777918d",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "EvoClick Revosect",
+    "leaderboard_id": 141058,
+    "family_candidate": "evoclick",
+    "leakage_group_candidate": "evoclick",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 821,
+        "benchmark_name": "Revosect S5",
+        "tier": "Advanced",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Immortal": 1050,
+          "Ascended": 1125,
+          "Ethereal": 1200,
+          "Divine": 1275,
+          "Eternal": 1350
+        },
+        "threshold_snapshot_response_sha256": "4aeb41c70aedd5083d9c1fec10fd0c898e68dc2ba22ec7bc02eec67a977e88cf",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect",
+    "leaderboard_id": 140996,
+    "family_candidate": "strawberryclick",
+    "leakage_group_candidate": "strawberryclick",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 821,
+        "benchmark_name": "Revosect S5",
+        "tier": "Advanced",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Immortal": 1040,
+          "Ascended": 1130,
+          "Ethereal": 1220,
+          "Divine": 1310,
+          "Eternal": 1400
+        },
+        "threshold_snapshot_response_sha256": "4aeb41c70aedd5083d9c1fec10fd0c898e68dc2ba22ec7bc02eec67a977e88cf",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect",
+    "leaderboard_id": 139429,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 821,
+        "benchmark_name": "Revosect S5",
+        "tier": "Advanced",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Immortal": 1260,
+          "Ascended": 1350,
+          "Ethereal": 1440,
+          "Divine": 1530,
+          "Eternal": 1620
+        },
+        "threshold_snapshot_response_sha256": "4aeb41c70aedd5083d9c1fec10fd0c898e68dc2ba22ec7bc02eec67a977e88cf",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect",
+    "leaderboard_id": 139428,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false,
+    "sampling_view": "static_clicking_and_flick_tech_candidates",
+    "mechanism_category_verified": false,
+    "native_labels": [
+      {
+        "benchmark_id": 821,
+        "benchmark_name": "Revosect S5",
+        "tier": "Advanced",
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "rank_cutoffs": {
+          "Immortal": 1600,
+          "Ascended": 1690,
+          "Ethereal": 1780,
+          "Divine": 1870,
+          "Eternal": 1960
+        },
+        "threshold_snapshot_response_sha256": "4aeb41c70aedd5083d9c1fec10fd0c898e68dc2ba22ec7bc02eec67a977e88cf",
+        "cross_benchmark_rank_equivalence_verified": false
+      }
+    ]
+  }
+]

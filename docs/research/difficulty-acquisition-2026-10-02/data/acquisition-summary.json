@@ -1,0 +1,13 @@
+{
+  "downloaded_source_files": 25,
+  "unique_file_sha256": 24,
+  "candidate_exact_names_with_historical_file": 7,
+  "pilot_exact_names_with_historical_file": 2,
+  "pilot_current_files_verified": 0,
+  "fit_eligible_samples": 0,
+  "all_candidates": 286,
+  "pilot_candidates": 81,
+  "download_failures": 0,
+  "all_source_trees_checked": true,
+  "source_coverage_scope": "only_the_pinned_repositories_not_all_public_sources"
+}

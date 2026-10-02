@@ -1,0 +1,30 @@
+VT 1w4ts Novice S5
+VT ww5t Novice S5
+VT 1w3ts Intermediate S5
+VT ww5t Intermediate S5
+VT 1w2ts Advanced S5
+VT ww5t Advanced S5
+ww5t Voltaic Slightly Larger
+1w6ts reload v2 20% bigger
+1w2ts reload smallflicks larger
+ww4t Voltaic
+1w6ts reload v2
+1w2ts reload smallflicks slightly larger
+ww3t Voltaic
+1w5ts reload
+1w2ts reload smallflicks
+ww3t Voltaic 10% Smaller
+1w4ts Voltaic
+1w2ts reload smallflicks 25% smaller
+EvoClick Revosect Entry
+StrawberryClick Revosect Entry
+1w5ts vbr Revosect Entry
+1w4t Pressure Revosect Entry
+EvoClick Revosect Int
+StrawberryClick Revosect Int
+1w5ts vbr Revosect Int
+1w4t Pressure Revosect Int
+EvoClick Revosect
+StrawberryClick Revosect
+1w5ts vbr Revosect
+1w4t Pressure Revosect
