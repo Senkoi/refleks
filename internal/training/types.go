@@ -9,8 +9,13 @@ type Source struct {
 
 // A scenario can be scored in several benchmark systems with different cutoffs.
 type BenchmarkMembership struct {
-	Name       string    `json:"name"`
-	Thresholds []float64 `json:"thresholds,omitempty"`
+	Name             string    `json:"name"`
+	BenchmarkID      int       `json:"benchmarkId,omitempty"`
+	System           string    `json:"system,omitempty"`
+	NativeDifficulty string    `json:"nativeDifficulty,omitempty"`
+	Category         string    `json:"category,omitempty"`
+	Group            string    `json:"group,omitempty"`
+	Thresholds       []float64 `json:"thresholds,omitempty"`
 }
 
 type Scenario struct {
@@ -32,18 +37,20 @@ type Scenario struct {
 	Classification     string                `json:"classification"`
 	Enabled            bool                  `json:"enabled"`
 	Mechanics          *Mechanics            `json:"mechanics,omitempty"`
+	LocalAssessment    *LocalAssessment      `json:"localAssessment,omitempty"`
+	ImportedCurriculum *Curriculum           `json:"-"`
 }
 
 // A content snapshot describes demands, not a calibrated difficulty score.
 type Mechanics struct {
-	FileSHA256 string `json:"fileSHA256"`
-	DeclaredSkill string `json:"declaredSkill,omitempty"`
-	DeclaredSeconds int `json:"declaredSeconds,omitempty"`
-	Tags []string `json:"tags"`
-	Status string `json:"status"`
-	Role string `json:"role"`
-	GeometryStatus string `json:"geometryStatus"`
-	AngularSize *float64 `json:"angularSize"`
+	FileSHA256      string   `json:"fileSHA256"`
+	DeclaredSkill   string   `json:"declaredSkill,omitempty"`
+	DeclaredSeconds int      `json:"declaredSeconds,omitempty"`
+	Tags            []string `json:"tags"`
+	Status          string   `json:"status"`
+	Role            string   `json:"role"`
+	GeometryStatus  string   `json:"geometryStatus"`
+	AngularSize     *float64 `json:"angularSize"`
 	TransitionAngle *float64 `json:"transitionAngle"`
 }
 
@@ -62,6 +69,8 @@ type Discovery struct {
 }
 
 type Preferences struct {
+	PlanningPolicy string   `json:"planningPolicy,omitempty"`
+	CurriculumID   string   `json:"curriculumId,omitempty"`
 	Minutes        int      `json:"minutes"`
 	ExecutionMode  string   `json:"executionMode"`
 	Focus          string   `json:"focus"`
@@ -83,21 +92,22 @@ type SkillStatus struct {
 }
 
 type Block struct {
-	Timing    TimingEstimate `json:"timing"`
+	AnchorScenario     string             `json:"anchorScenario,omitempty"`
+	Timing             TimingEstimate     `json:"timing"`
 	DifficultyEvidence DifficultyEvidence `json:"difficultyEvidence"`
-	Signature string   `json:"signature,omitempty"`
-	Scenario  Scenario `json:"scenario"`
-	Role      string   `json:"role"`
-	Budget    int      `json:"budget"`
-	PlayCount int      `json:"playCount"`
-	Target    float64  `json:"target"`
-	Reason    string   `json:"reason"`
-	Cue       string   `json:"cue"`
-	Recorded  float64  `json:"recorded"`
-	Benchmark string   `json:"benchmark,omitempty"`
-	Runs      int      `json:"runs"`
-	Best      float64  `json:"best"`
-	Outcome   string   `json:"outcome"`
+	Signature          string             `json:"signature,omitempty"`
+	Scenario           Scenario           `json:"scenario"`
+	Role               string             `json:"role"`
+	Budget             int                `json:"budget"`
+	PlayCount          int                `json:"playCount"`
+	Target             float64            `json:"target"`
+	Reason             string             `json:"reason"`
+	Cue                string             `json:"cue"`
+	Recorded           float64            `json:"recorded"`
+	Benchmark          string             `json:"benchmark,omitempty"`
+	Runs               int                `json:"runs"`
+	Best               float64            `json:"best"`
+	Outcome            string             `json:"outcome"`
 }
 
 type TimingEstimate struct {
@@ -109,34 +119,38 @@ type TimingEstimate struct {
 }
 
 type DifficultyEvidence struct {
-	Level   string `json:"level"`
-	Source  string `json:"source"`
-	Fit     string `json:"fit"`
-	Samples int    `json:"samples"`
+	Benchmarks []BenchmarkMembership `json:"benchmarks,omitempty"`
+	Level      string                `json:"level"`
+	Source     string                `json:"source"`
+	Fit        string                `json:"fit"`
+	Samples    int                   `json:"samples"`
 }
 
 type Plan struct {
-	Theme        string      `json:"theme,omitempty"`
-	EndedAt      int64       `json:"endedAt,omitempty"`
-	ID           string      `json:"id"`
-	Created      string      `json:"created"`
-	Preferences  Preferences `json:"preferences"`
-	Blocks       []Block     `json:"blocks"`
-	Warnings     []string    `json:"warnings"`
-	Status       string      `json:"status"`
-	Index        int         `json:"index"`
-	Elapsed      float64     `json:"elapsed"`
-	Recorded     float64     `json:"recorded"`
-	BlockElapsed float64     `json:"blockElapsed"`
-	LastTick     int64       `json:"lastTick"`
-	AcceptAfter  int64       `json:"acceptAfter"`
-	Seen         []string    `json:"seen"`
-	RemindedBlock int         `json:"remindedBlock,omitempty"`
-	RemindedEnd   bool        `json:"remindedEnd,omitempty"`
-	Reminder      string      `json:"reminder,omitempty"`
+	CurriculumID   string      `json:"curriculumId,omitempty"`
+	CurriculumName string      `json:"curriculumName,omitempty"`
+	Theme          string      `json:"theme,omitempty"`
+	EndedAt        int64       `json:"endedAt,omitempty"`
+	ID             string      `json:"id"`
+	Created        string      `json:"created"`
+	Preferences    Preferences `json:"preferences"`
+	Blocks         []Block     `json:"blocks"`
+	Warnings       []string    `json:"warnings"`
+	Status         string      `json:"status"`
+	Index          int         `json:"index"`
+	Elapsed        float64     `json:"elapsed"`
+	Recorded       float64     `json:"recorded"`
+	BlockElapsed   float64     `json:"blockElapsed"`
+	LastTick       int64       `json:"lastTick"`
+	AcceptAfter    int64       `json:"acceptAfter"`
+	Seen           []string    `json:"seen"`
+	RemindedBlock  int         `json:"remindedBlock,omitempty"`
+	RemindedEnd    bool        `json:"remindedEnd,omitempty"`
+	Reminder       string      `json:"reminder,omitempty"`
 }
 
 type State struct {
+	Curricula        []Curriculum  `json:"curricula,omitempty"`
 	Version          int           `json:"version"`
 	Catalog          []Scenario    `json:"catalog"`
 	Discovery        Discovery     `json:"discovery"`
@@ -149,7 +163,7 @@ type State struct {
 }
 
 func defaults() Preferences {
-	return Preferences{Minutes: 30, ExecutionMode: "playlist", Focus: "auto", Difficulty: "any", Variety: 0.25, ThresholdRatio: 0.9, AutoDiscover: true}
+	return Preferences{Minutes: 30, PlanningPolicy: "curriculum", ExecutionMode: "playlist", Focus: "auto", Difficulty: "any", Variety: 0.25, ThresholdRatio: 0.9, AutoDiscover: true}
 }
 
 var skills = []string{"static", "dynamic", "smooth", "reactive", "switching"}

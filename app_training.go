@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 	"time"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
@@ -25,6 +24,18 @@ func (a *App) startTraining() {
 	}
 	ctx, cancel := context.WithCancel(a.ctx)
 	a.trainingCancel = cancel
+	go func() {
+		localTicker := time.NewTicker(15 * time.Second)
+		defer localTicker.Stop()
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case now := <-localTicker.C:
+				a.pollTrainingLocal(now)
+			}
+		}
+	}()
 	go func() {
 		ticker := time.NewTicker(2 * time.Second)
 		defer ticker.Stop()
@@ -75,6 +86,7 @@ func (a *App) GenerateTrainingPlan(request string) (string, error) {
 	if err := json.Unmarshal([]byte(request), &p); err != nil {
 		return "", err
 	}
+	a.pollTrainingLocal(time.Now())
 	plan, err := a.trainingSvc.Generate(p, a.GetRecentRuns(0))
 	if err != nil {
 		return "", err
@@ -149,7 +161,7 @@ func (a *App) ImportTrainingPlaylist() (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	return a.trainingSvc.Import(b, training.Source{URL: "local-import", Title: "本地列表"})
+	return a.trainingSvc.Import(b, training.Source{URL: "local-import", Title: filepath.Base(path)})
 }
 
 func (a *App) UpdateTrainingScenario(payload string) error {
@@ -175,42 +187,7 @@ func (a *App) ImportTrainingBenchmarks() (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	items := []training.Scenario{}
-	for _, b := range catalog {
-		for _, d := range b.Difficulties {
-			p, ok := progress[d.KovaaksBenchmarkID]
-			if !ok {
-				continue
-			}
-			for _, c := range p.Categories {
-				for _, g := range c.Groups {
-					for _, s := range g.Scenarios {
-						skill := "unknown"
-						hint := strings.ToLower(c.Name + " " + g.Name)
-						switch {
-						case strings.Contains(hint, "switch"):
-							skill = "switching"
-						case strings.Contains(hint, "static"):
-							skill = "static"
-						case strings.Contains(hint, "dynamic"), strings.Contains(hint, "linear"), strings.Contains(hint, "timing"):
-							skill = "dynamic"
-						case strings.Contains(hint, "reactiv"):
-							skill = "reactive"
-						case strings.Contains(hint, "smooth"), strings.Contains(hint, "precis"), strings.Contains(hint, "control"):
-							skill = "smooth"
-						}
-						diff := "unknown"
-						for _, v := range []string{"novice", "intermediate", "advanced"} {
-							if strings.Contains(strings.ToLower(d.DifficultyName), v) {
-								diff = v
-							}
-						}
-						items = append(items, training.Scenario{Name: s.Name, Skill: skill, Technique: training.BenchmarkTechnique(c.Name, g.Name, skill), Family: strings.ToLower(s.Name), Difficulty: diff, DifficultySource: "benchmark", Seconds: 60, Benchmarks: []training.BenchmarkMembership{{Name: b.BenchmarkName + " / " + d.DifficultyName, Thresholds: s.Thresholds}}, Classification: "benchmark", Enabled: skill != "unknown", Sources: []training.Source{{URL: b.SpreadsheetURL, Title: b.BenchmarkName + " / " + g.Name, Retrieved: time.Now().UTC().Format(time.RFC3339)}}})
-					}
-				}
-			}
-		}
-	}
+	items := training.BenchmarkScenarios(catalog, progress, time.Now())
 	if len(items) == 0 {
 		return 0, fmt.Errorf("尚无可用 benchmark 关卡定义。请先在 Benchmarks 页面完成同步")
 	}
@@ -246,32 +223,16 @@ func (a *App) InstallTrainingPlaylist() (string, error) {
 	if info, err := os.Stat(gameDir); err != nil || !info.IsDir() {
 		return "", fmt.Errorf("未找到 KovaaK's 游戏目录：%s", gameDir)
 	}
-	b, err := a.trainingSvc.Export()
-	if err != nil {
-		return "", err
-	}
-	var playlist struct {
-		Name string `json:"playlistName"`
-	}
-	if err = json.Unmarshal(b, &playlist); err != nil || !strings.HasPrefix(playlist.Name, "Refleks Adaptive ") {
-		return "", fmt.Errorf("生成的列表无效")
-	}
-	id := strings.TrimPrefix(playlist.Name, "Refleks Adaptive ")
-	if id == "" || strings.ContainsAny(id, "\\/.:\x00") {
-		return "", fmt.Errorf("列表标识无效")
-	}
 	dir := filepath.Join(gameDir, "Saved", "SaveGames", "Playlists")
-	if err = os.MkdirAll(dir, 0700); err != nil {
-		return "", err
+	return a.trainingSvc.Install(dir)
+}
+
+func (a *App) pollTrainingLocal(now time.Time) {
+	settings := a.settingsSvc.Get()
+	base := settings.KovaaksInstallDir
+	playlists := ""
+	if base != "" {
+		playlists = filepath.Join(base, "FPSAimTrainer", "Saved", "SaveGames", "Playlists")
 	}
-	path := filepath.Join(dir, "Refleks-Adaptive-"+id+".json")
-	tmp := path + ".tmp"
-	if err = os.WriteFile(tmp, b, 0600); err != nil {
-		return "", err
-	}
-	if err = os.Rename(tmp, path); err != nil {
-		_ = os.Remove(tmp)
-		return "", err
-	}
-	return path, nil
+	a.trainingSvc.PollLocal(training.LocalRoots(base, settings.SteamInstallDir), playlists, now)
 }

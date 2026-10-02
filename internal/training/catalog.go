@@ -102,7 +102,10 @@ func mergeMemberships(a, b []BenchmarkMembership) []BenchmarkMembership {
 		}
 		found := false
 		for i := range out {
-			if out[i].Name == item.Name {
+			if out[i].Name == item.Name && (out[i].BenchmarkID == item.BenchmarkID || out[i].BenchmarkID == 0 || item.BenchmarkID == 0) {
+				if item.BenchmarkID != 0 {
+					out[i] = item
+				}
 				if len(item.Thresholds) > 0 {
 					out[i].Thresholds = item.Thresholds
 				}
@@ -119,6 +122,10 @@ func mergeMemberships(a, b []BenchmarkMembership) []BenchmarkMembership {
 
 // ParsePlaylist accepts actual KovaaK's playlist JSON, not arbitrary text or invented scenario names.
 func ParsePlaylist(data []byte, source Source) ([]Scenario, error) {
+	template, err := parseCurriculum(data, source)
+	if err != nil {
+		return nil, err
+	}
 	var p struct {
 		Name      string `json:"playlistName"`
 		Scenarios []struct {
@@ -159,6 +166,9 @@ func ParsePlaylist(data []byte, source Source) ([]Scenario, error) {
 		}
 		result = append(result, item)
 	}
+	if template != nil && len(result) > 0 {
+		result[0].ImportedCurriculum = template
+	}
 	return result, nil
 }
 
@@ -176,7 +186,9 @@ func mergeCatalog(existing, incoming []Scenario) []Scenario {
 		s = enrichMechanics(s)
 		if i, ok := index[strings.ToLower(s.Name)]; ok {
 			e := &existing[i]
-			if e.Mechanics == nil { e.Mechanics = s.Mechanics }
+			if e.Mechanics == nil {
+				e.Mechanics = s.Mechanics
+			}
 			for _, src := range s.Sources {
 				found := false
 				for j, old := range e.Sources {

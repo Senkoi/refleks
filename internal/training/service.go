@@ -18,11 +18,16 @@ import (
 )
 
 type Service struct {
-	mu          sync.Mutex
-	path        string
-	state       State
+	mu              sync.Mutex
+	path            string
+	state           State
 	discovering     bool
 	pendingReminder string
+	localScanMu     sync.Mutex
+	localFiles      map[string]string
+	localAttempts   map[string]time.Time
+	localParsed     map[string]localParsedSCE
+	localDirty      bool
 }
 
 // TakeReminder returns each cue once to the desktop notification layer.
@@ -112,6 +117,7 @@ func (s *Service) Add(items []Scenario) (int, error) {
 	defer s.mu.Unlock()
 	n := len(s.state.Catalog)
 	s.state.Catalog = mergeCatalog(s.state.Catalog, items)
+	s.mergeCurricula(items)
 	return len(s.state.Catalog) - n, s.save()
 }
 
@@ -150,6 +156,7 @@ func (s *Service) Discover(ctx context.Context) (Discovery, error) {
 	defer s.mu.Unlock()
 	before := len(s.state.Catalog)
 	s.state.Catalog = mergeCatalog(s.state.Catalog, items)
+	s.mergeCurricula(items)
 	d.Imported = len(s.state.Catalog) - before
 	s.state.Discovery = d
 	return d, s.save()
@@ -230,7 +237,29 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 	if old := s.state.Plan; old != nil && (old.Status == "running" || old.Status == "ready" || old.Status == "paused" || old.Status == "waiting") {
 		return nil, fmt.Errorf("请先结束当前计划，再生成新计划")
 	}
-	plan, err := Generate(s.state.Catalog, runs, p, time.Now(), rand.New(rand.NewSource(time.Now().UnixNano())))
+	now := time.Now()
+	rng := rand.New(rand.NewSource(now.UnixNano()))
+	var plan *Plan
+	var err error
+	if p.PlanningPolicy == "legacy" {
+		plan, err = Generate(s.state.Catalog, runs, p, now, rng)
+	} else {
+		p.PlanningPolicy = "curriculum"
+		var t *Curriculum
+		t, err = selectCurriculum(s.state.Curricula, p, runs, now)
+		if err == nil {
+			explored := false
+			for _, h := range s.state.History {
+				if h.CurriculumID == t.ID && h.Status == "completed" && h.Recorded > 0 {
+					explored = true
+				}
+			}
+			if old := s.state.Plan; old != nil && old.CurriculumID == t.ID && old.Status == "completed" && old.Recorded > 0 {
+				explored = true
+			}
+			plan, err = GenerateCurriculum(*t, s.state.Catalog, runs, p, now, rng, explored)
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -310,7 +339,9 @@ func (s *Service) Action(action string, now time.Time, runs []models.RunRecord) 
 			s.advance("skipped", now)
 			if p.Status == "ready" && p.Preferences.ExecutionMode == "playlist" {
 				p.Status = "running"
-				if paused { p.Status = "paused" }
+				if paused {
+					p.Status = "paused"
+				}
 			}
 		}
 	case "finish":
@@ -458,12 +489,17 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 				// player skipped a row or manually advanced in-game.
 				future := -1
 				for i := p.Index + 1; i < len(p.Blocks); i++ {
-					if strings.EqualFold(p.Blocks[i].Scenario.Name, sum.Scenario) { future = i; break }
+					if strings.EqualFold(p.Blocks[i].Scenario.Name, sum.Scenario) {
+						future = i
+						break
+					}
 				}
 				if future >= 0 {
 					for p.Index < future {
 						outcome := "missed"
-						if p.Blocks[p.Index].Outcome == "list_complete" { outcome = "list_complete" }
+						if p.Blocks[p.Index].Outcome == "list_complete" {
+							outcome = "list_complete"
+						}
 						s.advance(outcome, start)
 					}
 					// Backdate to this completed run's start, not its file-arrival
@@ -473,7 +509,9 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 				}
 			}
 			b := &p.Blocks[p.Index]
-			if !strings.EqualFold(b.Scenario.Name, sum.Scenario) { continue }
+			if !strings.EqualFold(b.Scenario.Name, sum.Scenario) {
+				continue
+			}
 			b.Recorded += sum.Duration
 			p.Recorded += sum.Duration
 			b.Runs++
@@ -528,7 +566,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 		}
 	}
 	if p.Status == "running" && p.Preferences.ExecutionMode == "playlist" && p.Index < len(p.Blocks) && p.BlockElapsed >= float64(p.Blocks[p.Index].Budget) && p.RemindedBlock != p.Index+1 {
-		p.RemindedBlock = p.Index+1
+		p.RemindedBlock = p.Index + 1
 		p.Reminder = "当前关卡已达到本次时间预算。完成当前局后，请在游戏中换关或休息。"
 		s.pendingReminder = p.Reminder
 	}
@@ -556,6 +594,10 @@ func (s *Service) LaunchFailed(err error) {
 func (s *Service) Export() ([]byte, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
+	return s.exportLocked()
+}
+
+func (s *Service) exportLocked() ([]byte, error) {
 	p := s.state.Plan
 	if p == nil {
 		return nil, fmt.Errorf("请先生成计划")

@@ -1,27 +1,30 @@
 export type Scenario = {
   name: string; skill: string; technique?: string; family: string; difficulty: string; difficultySource?: string; seconds: number;
-  benchmark: string; thresholds?: number[]; benchmarks?: { name: string; thresholds?: number[] }[];
+  benchmark: string; thresholds?: number[]; benchmarks?: { name: string; benchmarkId?: number; system?: string; nativeDifficulty?: string; category?: string; group?: string; thresholds?: number[] }[];
   relatedBenchmarks?: string[]; variantOf?: string; preference?: string; personalDifficulty?: string;
   classification: string; enabled: boolean;
+  localAssessment?: { status: string; fileSHA256?: string; observedAt?: string; issues?: string[] };
   mechanics?: { fileSHA256: string; tags: string[]; status: string; role: string; geometryStatus: string; angularSize: number | null; transitionAngle: number | null };
   sources: { url: string; title: string; retrieved: string }[];
 };
 export type Preferences = {
+  planningPolicy?: "curriculum" | "legacy"; curriculumId?: string;
   minutes: number; executionMode: "playlist" | "adaptive"; focus: string; difficulty: string; benchmark: string; benchmarks?: string[];
   variety: number; thresholdRatio: number; autoAdvance: boolean; autoDiscover: boolean;
 };
 export type Block = {
   timing?: { seconds: number; source: string; samples: number; recentSeconds: number; weeklySeconds: number };
-  difficultyEvidence?: { level: string; source: string; fit: string; samples: number };
-  scenario: Scenario; role: string; budget: number; playCount: number; target: number; reason: string; benchmark?: string;
+  difficultyEvidence?: { level: string; source: string; fit: string; samples: number; benchmarks?: Scenario["benchmarks"] };
+  anchorScenario?: string; scenario: Scenario; role: string; budget: number; playCount: number; target: number; reason: string; benchmark?: string;
   cue: string; recorded: number; runs: number; best: number; outcome: string;
 };
 export type Plan = {
-  id: string; created: string; theme?: string; preferences: Preferences; blocks: Block[]; warnings: string[];
+  curriculumId?: string; curriculumName?: string; id: string; created: string; theme?: string; preferences: Preferences; blocks: Block[]; warnings: string[];
   status: string; index: number; elapsed: number; recorded: number; blockElapsed: number;
   reminder?: string;
 };
 export type State = {
+  curricula?: { id: string; name: string; theme: string; tier?: string; rows: { scenarioName: string; playCount: number }[] }[];
   version: number; catalog: Scenario[]; preferences: Preferences; plan: Plan | null;
   history: Plan[]; searchConfigured: boolean; error: string;
   skills: { skill: string; priority: number; minutes: number; samples: number; evidence: string }[];
