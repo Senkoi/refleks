@@ -31,6 +31,20 @@ type Scenario struct {
 	Sources            []Source              `json:"sources"`
 	Classification     string                `json:"classification"`
 	Enabled            bool                  `json:"enabled"`
+	Mechanics          *Mechanics            `json:"mechanics,omitempty"`
+}
+
+// A content snapshot describes demands, not a calibrated difficulty score.
+type Mechanics struct {
+	FileSHA256 string `json:"fileSHA256"`
+	DeclaredSkill string `json:"declaredSkill,omitempty"`
+	DeclaredSeconds int `json:"declaredSeconds,omitempty"`
+	Tags []string `json:"tags"`
+	Status string `json:"status"`
+	Role string `json:"role"`
+	GeometryStatus string `json:"geometryStatus"`
+	AngularSize *float64 `json:"angularSize"`
+	TransitionAngle *float64 `json:"transitionAngle"`
 }
 
 type Candidate struct {

@@ -168,6 +168,7 @@ func selectedBenchmark(p Preferences, name string) bool {
 func chooseBenchmark(catalog []Scenario, obs map[string][]observation, p Preferences, now time.Time, budget int, rng *rand.Rand) string {
 	counts := map[string]int{}
 	for _, s := range catalog {
+		if s.Mechanics != nil && s.Mechanics.Role == "warmup" { continue }
 		if !s.Enabled || estimateTiming(s, obs[strings.ToLower(s.Name)], now).Seconds > budget || (p.Difficulty != "any" && s.Difficulty != "unknown" && s.Difficulty != p.Difficulty) {
 			continue
 		}
@@ -268,7 +269,7 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 	pool := []Scenario{}
 	for _, s := range catalog {
 		if s.Enabled && validSkill(s.Skill) && (p.Difficulty == "any" || s.Difficulty == "unknown" || s.Difficulty == p.Difficulty) {
-			pool = append(pool, s)
+			pool = append(pool, enrichMechanics(s))
 		}
 	}
 	if len(pool) == 0 {
@@ -288,18 +289,23 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		difficulties[scenario.Name] = assessDifficulty(scenario, obs[strings.ToLower(scenario.Name)], now)
 	}
 	remaining := usable
+	warmupRemaining := usable / 2
+	practiceRemaining := usable - warmupRemaining
+	warming := true
+	exposure := map[string]float64{}
+	for _, s := range pool { addDemandTime(s, timings[s.Name].WeeklySeconds, exposure) }
 	benchmarkPool := pool
 	if plan.Theme != "" {
 		focused := []Scenario{}
 		for _, scenario := range pool { if scenarioTheme(scenario) == plan.Theme { focused = append(focused, scenario) } }
-		if chooseBenchmark(focused, obs, p, now, usable, rand.New(rand.NewSource(1))) != "" { benchmarkPool = focused }
+		if chooseBenchmark(focused, obs, p, now, practiceRemaining, rand.New(rand.NewSource(1))) != "" { benchmarkPool = focused }
 	}
-	selected := chooseBenchmark(benchmarkPool, obs, p, now, usable, rng)
+	selected := chooseBenchmark(benchmarkPool, obs, p, now, practiceRemaining, rng)
 	reserved := 0
 	for _, scenario := range pool {
-		if _, ok := member(scenario, selected); ok {
+		if _, ok := member(scenario, selected); ok && (scenario.Mechanics == nil || scenario.Mechanics.Role != "warmup") {
 			d := timings[scenario.Name].Seconds
-			if d <= usable && (reserved == 0 || d < reserved) { reserved = d }
+			if d <= practiceRemaining && (reserved == 0 || d < reserved) { reserved = d }
 		}
 	}
 	if reserved == 0 { selected = "" }
@@ -308,19 +314,27 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 	}
 	chosen := map[string]bool{}
 	families := map[string]bool{}
-	for i := 0; i < len(pool); i++ {
+	for i := 0; i < len(pool)+2; i++ {
 		role := "practice"
-		if i == 0 {
+		if warming {
 			role = "warmup"
-		}
-		if i == len(pool)-1 && selected != "" {
-			role = "benchmark"
 		}
 		if role == "practice" && rng.Float64() < p.Variety {
 			role = "explore"
 		}
-		budget := remaining - reserved
-		if role == "benchmark" { budget = remaining }
+		budget := practiceRemaining - reserved
+		if warming { budget = warmupRemaining }
+		// If an eligible lower-pressure scene fits, do not stack pressure
+		// scenes or use them for preparation. Unknown is not "easy".
+		avoidPressure := false
+		if role != "benchmark" && (warming || (len(plan.Blocks) > 0 && pressureDemand(plan.Blocks[len(plan.Blocks)-1].Scenario))) {
+			for _, candidate := range pool {
+				_, measured := member(candidate, selected)
+				if !chosen[candidate.Name] && !measured && !pressureDemand(candidate) && timings[candidate.Name].Seconds <= budget && (warming || candidate.Mechanics == nil || candidate.Mechanics.Role != "warmup") && len(demandTags(candidate)) > 0 {
+					avoidPressure = true; break
+				}
+			}
+		}
 		best := -1
 		bestKey := math.Inf(1)
 		for j, s := range pool {
@@ -334,12 +348,18 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 			if role != "benchmark" && isBenchmark {
 				continue
 			}
+			if !warming && s.Mechanics != nil && s.Mechanics.Role == "warmup" { continue }
+			if avoidPressure && pressureDemand(s) { continue }
 			dur := timings[s.Name].Seconds
 			rows := comparable(obs[strings.ToLower(s.Name)])
 			if dur > budget {
 				continue
 			}
 			w := priority[s.Skill] / (1 + minutes[s.Skill]/30)
+			w *= demandWeight(s, exposure)
+			if len(plan.Blocks) > 0 && role != "benchmark" {
+				w *= 1 - .7*demandSimilarity(s, plan.Blocks[len(plan.Blocks)-1].Scenario)
+			}
 			if plan.Theme != "" && role == "practice" {
 				if scenarioTheme(s) == plan.Theme { w *= 7 } else { w *= .3 }
 			}
@@ -422,14 +442,26 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 			}
 		}
 		if best < 0 {
+			if warming {
+				warming = false
+				if warmupRemaining > 0 { plan.Warnings = append(plan.Warnings, fmt.Sprintf("热身半程有 %d 秒未填满：候选不足或完整单局放不下；保留完整局数。", warmupRemaining)) }
+				continue
+			}
 			if role == "benchmark" {
 				plan.Warnings = append(plan.Warnings, "所选 benchmark 没有适合本次时长/难度且未重复的关卡，未强行插入。")
 			}
 			if selected != "" && role != "benchmark" {
-				i = len(pool)-2 // Try the reserved measurement once, then finish.
-				continue
+				// Append the reserved fixed measurement after both phases.
+				role = "benchmark"
+				for j, candidate := range pool {
+					_, measured := member(candidate, selected)
+					if measured && !chosen[candidate.Name] && timings[candidate.Name].Seconds <= practiceRemaining && (candidate.Mechanics == nil || candidate.Mechanics.Role != "warmup") { best = j; break }
+				}
+				if best < 0 { break }
+				budget = practiceRemaining
+			} else {
+				break
 			}
-			break
 		}
 		s := pool[best]
 		chosen[s.Name] = true
@@ -438,8 +470,12 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		dur := timing.Seconds
 		count := plannedRepetitions(timing, role)
 		if count > budget/dur { count = budget/dur }
+		// Pressure is a planning precaution, not a fatigue diagnosis.
+		if pressureDemand(s) { count = 1 }
 		blockBudget := count * dur
 		remaining -= blockBudget
+		if warming { warmupRemaining -= blockBudget } else { practiceRemaining -= blockBudget }
+		addDemandTime(s, float64(blockBudget), exposure)
 		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: difficulties[s.Name], Role: role, Budget: blockBudget, PlayCount: count, Outcome: "pending", Reason: "匹配能力与难度，并降低近期重复；时长为上限。", Cue: "留意动作质量；本模块到时即可继续，不要求无限重开。"}
 		if p.ExecutionMode == "playlist" {
 			b.Reason = fmt.Sprintf("匹配能力与难度，并降低近期重复；游戏内列表安排 %d 局，次数根据单局长度与近 24 小时、近 7 天的已记录练习量估算。", count)
@@ -493,7 +529,9 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		} else {
 			b.Reason += fmt.Sprintf(" 可比历史不足 3 局，单局暂按关卡库或默认时长预估 %d 秒。", dur)
 		}
+		b.Reason += mechanicsReason(s)
 		plan.Blocks = append(plan.Blocks, b)
+		if role == "benchmark" { break }
 	}
 	if len(plan.Blocks) == 0 {
 		return nil, fmt.Errorf("可用关卡时长均超出模块预算，请增加训练时间")
@@ -505,6 +543,7 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 		plan.Warnings = append(plan.Warnings, "按 VDIM 六类专项轮换并参考近七天完成记录；这是可变时长的改造编排，不是原作者的原样列表。")
 	}
 	plan.Warnings = append(plan.Warnings, "预留约 10% 时间用于休息与切换；未知关卡默认按 60 秒估计。", "有效练习量来自完成并写入记录的对局；未写出的中途重开不能精确统计。")
+	plan.Warnings = append(plan.Warnings, "前半程预算用于热身，后半程用于专项、探索和固定测量；细分维度用于覆盖与负荷控制，尚不据此诊断细分弱项或计算统一难度。")
 	if p.ExecutionMode == "playlist" {
 		plan.Warnings = append(plan.Warnings, "游戏内列表使用固定次数；总预算到时，工作台停止计时但不会中断 KovaaK’s，请手动结束列表。")
 	}

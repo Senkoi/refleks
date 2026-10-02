@@ -2,7 +2,7 @@ name: Adaptive Alpha Windows
 
 on:
   push:
-    branches: [adaptive-alpha]
+    branches: [adaptive-alpha, research/scenario-difficulty-preparation]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -32,6 +32,11 @@ jobs:
           npm run build
       - name: Adaptive training tests
         run: go test ./internal/training
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: SCE extraction tests
+        run: python -m unittest discover -s docs/research/difficulty-acquisition-2026-10-02/tools -p "test_*.py"
       - name: Application compile check
         run: go test .
       - name: Install Wails CLI

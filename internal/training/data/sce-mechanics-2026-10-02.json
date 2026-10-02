@@ -1,0 +1,2390 @@
+{
+  "archiveSHA256": "56fe10278fd0529e47678e80ffc7670aab1b0c0f1ed69d29f3ce5d127853e138",
+  "scenarios": [
+    {
+      "name": "1w2ts reload smallflicks 25% smaller",
+      "mechanics": {
+        "fileSHA256": "7faf1826a9adf0efb937d42cdd43a301cd800e2b3a1756e85bdfbbd55756b8b7",
+        "tags": [
+          "micro_adjustment",
+          "precision",
+          "reload_constraint",
+          "short_transfer"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "short_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "precision",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w2ts reload smallflicks larger",
+      "mechanics": {
+        "fileSHA256": "fd6690a07e49a896568692c3fffd3c0c6c9441a766d0092f1f00d7f93cad2960",
+        "tags": [
+          "micro_adjustment",
+          "precision",
+          "reload_constraint",
+          "short_transfer"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "short_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "precision",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w2ts reload smallflicks slightly larger",
+      "mechanics": {
+        "fileSHA256": "382dbe29dac2d41662bcadf2521012d3fed38513cf0eccb162a3a15a9f0b1da0",
+        "tags": [
+          "micro_adjustment",
+          "precision",
+          "reload_constraint",
+          "short_transfer"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "short_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "precision",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w2ts reload smallflicks",
+      "mechanics": {
+        "fileSHA256": "b767dd4c1a46e347b897035c427dccd59644511b9e4626dd4a90789ce2513199",
+        "tags": [
+          "micro_adjustment",
+          "precision",
+          "reload_constraint",
+          "short_transfer"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "short_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "precision",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "two close, small targets"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w4t Pressure Revosect Entry",
+      "mechanics": {
+        "fileSHA256": "cb5d9ee8a2326320cc9491b464e25b72137e79a7a0691d2bfb82b4f9c7107925",
+        "tags": [
+          "accuracy_constraint",
+          "time_pressure"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 120,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "time_pressure",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "before they reach you"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "1.0",
+            "ReloadTimeFromPartial": "1.0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w4t Pressure Revosect Int",
+      "mechanics": {
+        "fileSHA256": "319f16ee3dd5ee4a756932f2306133c38d2e995965a09fcc215450a94447656c",
+        "tags": [
+          "accuracy_constraint",
+          "time_pressure"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 120,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "time_pressure",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "before they reach you"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "1.0",
+            "ReloadTimeFromPartial": "1.0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w4t Pressure Revosect",
+      "mechanics": {
+        "fileSHA256": "3d8448c603d869b15fb6b569ff5791d59b009b6740ce66bdcc7d94c0712984cf",
+        "tags": [
+          "accuracy_constraint",
+          "time_pressure"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 120,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "time_pressure",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "before they reach you"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "1.0",
+            "ReloadTimeFromPartial": "1.0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w4ts Voltaic",
+      "mechanics": {
+        "fileSHA256": "ec77fdc48e49f5ed56b649fa9feaf4707a5fd3fd84b797300ec2dcb391a5c6fd",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "4",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w5ts reload",
+      "mechanics": {
+        "fileSHA256": "b9699f7661001919ee53b1f4debaba3d3801b1c6016036e0ecd178050270ad45",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "4",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w5ts vbr Revosect Entry",
+      "mechanics": {
+        "fileSHA256": "cd6d3994b18ecd952441145cae5d823d90b6355c921e3d1ddddeb820cc216075",
+        "tags": [
+          "micro_adjustment",
+          "precision",
+          "reload_constraint"
+        ],
+        "declaredSkill": "static",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "microadjustments"
+          },
+          {
+            "tag": "precision",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "extra care"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.01",
+            "MagazineMax": "30",
+            "AmmoPerShot": "10",
+            "AmmoReloadedOnKill": "17",
+            "ReloadTimeFromEmpty": "1.2",
+            "ReloadTimeFromPartial": "1.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w5ts vbr Revosect Int",
+      "mechanics": {
+        "fileSHA256": "279afaef03fdace9e70c320d590c41998ce6671f9ca7c0c98aa9211323cd9968",
+        "tags": [
+          "micro_adjustment",
+          "precision",
+          "reload_constraint"
+        ],
+        "declaredSkill": "static",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "microadjustments"
+          },
+          {
+            "tag": "precision",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "extra care"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.01",
+            "MagazineMax": "30",
+            "AmmoPerShot": "10",
+            "AmmoReloadedOnKill": "17",
+            "ReloadTimeFromEmpty": "1.2",
+            "ReloadTimeFromPartial": "1.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w5ts vbr Revosect",
+      "mechanics": {
+        "fileSHA256": "7a67ff51f91f5aa33562d1c194d8ac26d4ff5df137dede441f53cf9e076f5aa5",
+        "tags": [
+          "micro_adjustment",
+          "precision",
+          "reload_constraint"
+        ],
+        "declaredSkill": "static",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "microadjustments"
+          },
+          {
+            "tag": "precision",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "extra care"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.01",
+            "MagazineMax": "30",
+            "AmmoPerShot": "10",
+            "AmmoReloadedOnKill": "17",
+            "ReloadTimeFromEmpty": "1.2",
+            "ReloadTimeFromPartial": "1.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w6ts reload v2 20% bigger",
+      "mechanics": {
+        "fileSHA256": "3fd97c7dd9ef2b0553a971b06c98dc4c00ae2073be313c41df80eaa72b1512db",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "4",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1w6ts reload v2",
+      "mechanics": {
+        "fileSHA256": "56f34e43b66ace886acab8094bba8d5f18c86f10ebc6344ac4c759269c5c1df7",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "4",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1wall 6targets small",
+      "mechanics": {
+        "fileSHA256": "028422e13fdc029c7b32bbc8d28c2b6f34d411fc132d28ab163f9a86acf064cc",
+        "tags": [
+          "accuracy_constraint",
+          "precision"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "precision",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "precision on tiny targets"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "1wall6targets TE",
+      "mechanics": {
+        "fileSHA256": "38df0aa9b3b4253ceb5bdb3dcfa11345c60123a16ccffe9d622476d566bdd8b6",
+        "tags": [
+          "accuracy_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Aimerz+ Week #7 - Suavetrack",
+      "mechanics": {
+        "fileSHA256": "10bf3965740180946cfc32e2bd624ccc2b3c12be77deed7820b9fe0adfa386c1",
+        "tags": [],
+        "declaredSkill": "",
+        "declaredSeconds": 63,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [],
+        "playerWeaponFacts": [
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.046",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cata IC Fast Strafes",
+      "mechanics": {
+        "fileSHA256": "b51edff666a69b466dddf46d784e29983d5a7dc4aa7ba3462cf8414b73cf943d",
+        "tags": [
+          "tracking"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "tracking",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "hitscan tracking"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.046",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cata IC Long Strafes",
+      "mechanics": {
+        "fileSHA256": "2caecd90480be0f1c961f56d3c2b1ef56397038797ae23792c191df4cc51c3b2",
+        "tags": [
+          "tracking"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "tracking",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "hitscan tracking"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.046",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cata IC Pizz Plz LighthawkFPS",
+      "mechanics": {
+        "fileSHA256": "b6a02617d1f52bf268d33c7f542386491f79ea9518ceccac91635d4a18f192a9",
+        "tags": [
+          "tracking"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "tracking",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "hitscan tracking"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.046",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cata Orb Fast Strafes",
+      "mechanics": {
+        "fileSHA256": "b3024b961e89b7678adbe3b47e4f5de1c11e4c1e873f99f6cce103c3ee2a51e7",
+        "tags": [
+          "projectile"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "projectile",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "fast projectile"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "Monk Orb",
+            "Type": "Projectile",
+            "TimeBetweenShots": "0.4",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "2.0",
+            "ReloadTimeFromPartial": "2.0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cata Orb Long Strafes",
+      "mechanics": {
+        "fileSHA256": "14ef16b701f9a802f205ecc09955997e06c8d0759b2d8d34e280eb272ce9e03f",
+        "tags": [
+          "projectile"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "projectile",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "fast projectile"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "Monk Orb",
+            "Type": "Projectile",
+            "TimeBetweenShots": "0.4",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "2.0",
+            "ReloadTimeFromPartial": "2.0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Cockroach Simulator [with easter eggs]",
+      "mechanics": {
+        "fileSHA256": "9b3634e0476ad39a90f64614fa95c77b29e202afb5b22ac10471f6c9ec309416",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 240,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "LG"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.0116",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "5",
+            "ReloadTimeFromEmpty": "1.0",
+            "ReloadTimeFromPartial": "0.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EvoClick Revosect Entry",
+      "mechanics": {
+        "fileSHA256": "06178d3e74a18c56e5263f28f2c276179eb9a937e2dc708ed2734cfbf0dabc51",
+        "tags": [
+          "accuracy_constraint",
+          "pacing",
+          "phased_targets"
+        ],
+        "declaredSkill": "static",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "pacing",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "pacing to increase"
+          },
+          {
+            "tag": "phased_targets",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "number of targets increases every"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.01",
+            "MagazineMax": "0",
+            "AmmoPerShot": "0",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.1",
+            "ReloadTimeFromPartial": "0.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EvoClick Revosect Int",
+      "mechanics": {
+        "fileSHA256": "967810aeb0e8f7f0a25b6ece8e7a4389de9c98d221bec6262d05ed3c6a6ad900",
+        "tags": [
+          "accuracy_constraint",
+          "pacing",
+          "phased_targets"
+        ],
+        "declaredSkill": "static",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "pacing",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "pacing to increase"
+          },
+          {
+            "tag": "phased_targets",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "number of targets increases every"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.01",
+            "MagazineMax": "0",
+            "AmmoPerShot": "0",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.1",
+            "ReloadTimeFromPartial": "0.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EvoClick Revosect",
+      "mechanics": {
+        "fileSHA256": "0e085d5d39eb1f16c527f8f63cdcd48cc47614ecdcc80ae72a44276626bbfb01",
+        "tags": [
+          "accuracy_constraint",
+          "pacing",
+          "phased_targets"
+        ],
+        "declaredSkill": "static",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "pacing",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "pacing to increase"
+          },
+          {
+            "tag": "phased_targets",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "number of targets increases every"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.01",
+            "MagazineMax": "0",
+            "AmmoPerShot": "0",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.1",
+            "ReloadTimeFromPartial": "0.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Fisher Simulator",
+      "mechanics": {
+        "fileSHA256": "3e8ed75ca9b81e5ed188adceeb29e6716993a021e9359d08272e2d4adc6967c3",
+        "tags": [],
+        "declaredSkill": "",
+        "declaredSeconds": 51,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [],
+        "playerWeaponFacts": [
+          {
+            "Name": "Fishing rod",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.4",
+            "ReloadTimeFromPartial": "0.4"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Frog Simulator - @wa11p1per",
+      "mechanics": {
+        "fileSHA256": "5bb78d37a25cf99d51115445fe122ae23f5673c23189e944067a0402b5c30ad5",
+        "tags": [],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [],
+        "playerWeaponFacts": [
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.046",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "KovaaKs Sandbox Intro Scenario",
+      "mechanics": {
+        "fileSHA256": "9daa50e162856834d478d340f6f0fe7ebf3579b3b1e31634952add1f08bef405",
+        "tags": [
+          "tracking"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "tracking",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "hitscan tracking"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "Full auto",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "100",
+            "ReloadTimeFromEmpty": "3.0",
+            "ReloadTimeFromPartial": "3.0"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Midair Mix",
+      "mechanics": {
+        "fileSHA256": "f3b1c466f79a40bdaf1b0c5182764c244c3fce80b3d82dc63a27bdbfb0815892",
+        "tags": [
+          "projectile",
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "projectile",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "midair rockets"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "Rocket Launcher"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "Rocket Launcher",
+            "Type": "Projectile",
+            "TimeBetweenShots": "0.8",
+            "MagazineMax": "1",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "1",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          },
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.046",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          },
+          {
+            "Name": "Railgun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "1.0",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Narrow Strafe",
+      "mechanics": {
+        "fileSHA256": "bf9b0bae92aab752ea7cdb5473de31cb6ad994a66b95fe746e79f2ad7def8eaa",
+        "tags": [
+          "accuracy_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "LG HS v5",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.05",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.1",
+            "ReloadTimeFromPartial": "0.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Night Lantern - @wa11p1per",
+      "mechanics": {
+        "fileSHA256": "4deced3d67c367bae95db42691557c5d0f33ce309a7ab5790ddae25918a87fbb",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "LG"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.0116",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "5",
+            "ReloadTimeFromEmpty": "1.0",
+            "ReloadTimeFromPartial": "0.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "POPCORN",
+      "mechanics": {
+        "fileSHA256": "0b8d6cb59c418c3e8d0729fb71646c0ee6c2647d20d7c29168739b63a63ae0ab",
+        "tags": [
+          "accuracy_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "pistol",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          },
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.01",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Piano Tiles I 50% SLOW",
+      "mechanics": {
+        "fileSHA256": "08be95afc974ed3f94078348e53b7113e036bbfb757db70b29b86f4461aae471",
+        "tags": [
+          "time_pressure"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 0,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "time_pressure",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "falls to the ground"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "Track Master 100",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.01",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pressure Aiming - 10 Targets",
+      "mechanics": {
+        "fileSHA256": "1b36a99a7cd50ea5a01e871041bacb48a8971c3536841fa0b2e6df87a7e555d2",
+        "tags": [
+          "accuracy_constraint",
+          "time_pressure"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 120,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "time_pressure",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "before they despawn or collide"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "Pressure BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pressure Aiming - 7 Targets",
+      "mechanics": {
+        "fileSHA256": "ac9c38b2d77324e4bef6f3f595d04089e7817cc6bc203e8ad4a75a214304e848",
+        "tags": [
+          "accuracy_constraint",
+          "time_pressure"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 120,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "time_pressure",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "before they despawn or collide"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "Pressure BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Reactive Flick",
+      "mechanics": {
+        "fileSHA256": "0da02c2dfda1bdf2930af6b549ab6caca2d33b1500d5427f08fb0a07e0c344c1",
+        "tags": [
+          "reflex_window",
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reflex_window",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "lifetime: 500 ms"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "RF Semi-auto"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "RF Semi-auto",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "4",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "4",
+            "ReloadTimeFromEmpty": "0.7",
+            "ReloadTimeFromPartial": "0.7"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Reflex Flick - Easy",
+      "mechanics": {
+        "fileSHA256": "adadaeac360fe4b4f61be39aa0a26669f60ca3e101c3b108e02c12ec4e6fe542",
+        "tags": [
+          "accuracy_constraint",
+          "reflex_window",
+          "time_pressure"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "time_pressure",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "before it despawns"
+          },
+          {
+            "tag": "reflex_window",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "short-lived target"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "pistol",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Reflex Flick - Fair",
+      "mechanics": {
+        "fileSHA256": "fc5774a2b8179804e7177640b1a62d540df4796e8c7081bc55059db2d39f7143",
+        "tags": [
+          "accuracy_constraint",
+          "reflex_window",
+          "time_pressure"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "time_pressure",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "before it despawns"
+          },
+          {
+            "tag": "reflex_window",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "short-lived target"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "pistol",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Reflex Flick - Hard",
+      "mechanics": {
+        "fileSHA256": "896641db4f76e9f908fa4fe46efecf237803220754275ac4a85d485899e7be91",
+        "tags": [
+          "accuracy_constraint",
+          "reflex_window",
+          "time_pressure"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "time_pressure",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "before it despawns"
+          },
+          {
+            "tag": "reflex_window",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "short-lived target"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "pistol",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Revolving Tracking",
+      "mechanics": {
+        "fileSHA256": "3f6513319c604a2d59e1f52f3b0c8498870b3f7424bea3ea5b7ea00a5d52d976",
+        "tags": [
+          "tracking"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "tracking",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "tracking while revolving"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "RT LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.05",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.1",
+            "ReloadTimeFromPartial": "0.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Skeet Tracking",
+      "mechanics": {
+        "fileSHA256": "b883a3764a8bc1e7f61d355b6bab3c3a7d6c35d860596c04140f098c23d36d99",
+        "tags": [
+          "accuracy_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "Skeet Fully-auto",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.05",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.1",
+            "ReloadTimeFromPartial": "0.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "StrawberryClick Revosect Entry",
+      "mechanics": {
+        "fileSHA256": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+        "tags": [
+          "accuracy_constraint",
+          "micro_adjustment",
+          "phased_targets",
+          "wide_transfer"
+        ],
+        "declaredSkill": "static",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "wide_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "wideflicks"
+          },
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "wideflicks and micros"
+          },
+          {
+            "tag": "phased_targets",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "after killing 3 big bots"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "0",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "StrawberryClick Revosect Int",
+      "mechanics": {
+        "fileSHA256": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+        "tags": [
+          "accuracy_constraint",
+          "micro_adjustment",
+          "phased_targets",
+          "wide_transfer"
+        ],
+        "declaredSkill": "static",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "wide_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "wideflicks"
+          },
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "wideflicks and micros"
+          },
+          {
+            "tag": "phased_targets",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "after killing 3 big bots"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "0",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "StrawberryClick Revosect",
+      "mechanics": {
+        "fileSHA256": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+        "tags": [
+          "accuracy_constraint",
+          "micro_adjustment",
+          "phased_targets",
+          "wide_transfer"
+        ],
+        "declaredSkill": "static",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "wide_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "wideflicks"
+          },
+          {
+            "tag": "micro_adjustment",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "wideflicks and micros"
+          },
+          {
+            "tag": "phased_targets",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "after killing 3 big bots"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "0",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Surge Tags Training Clicking",
+      "mechanics": {
+        "fileSHA256": "feee475403ea19bf6601c33af004089ae948d92fde09e53a1bb820bc47e63ac0",
+        "tags": [],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [],
+        "playerWeaponFacts": [
+          {
+            "Name": "FN SMG WEAPON",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "30",
+            "AmmoPerShot": "0",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "2.2",
+            "ReloadTimeFromPartial": "2.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VT 1w2ts Advanced S5",
+      "mechanics": {
+        "fileSHA256": "81ff240468eacdc1db278f6abbe9873559c2a613172e66f4d6b6553414984ae0",
+        "tags": [
+          "accuracy_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "35",
+            "AmmoReloadedOnKill": "40",
+            "ReloadTimeFromEmpty": "1.2",
+            "ReloadTimeFromPartial": "1.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VT 1w3ts Intermediate S5",
+      "mechanics": {
+        "fileSHA256": "320527e0ca1b3aef9867012270bafe80e0c1f2314aaf74b897311fe6f7b6b6a5",
+        "tags": [
+          "accuracy_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "35",
+            "AmmoReloadedOnKill": "40",
+            "ReloadTimeFromEmpty": "1.2",
+            "ReloadTimeFromPartial": "1.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VT 1w4ts Novice S5",
+      "mechanics": {
+        "fileSHA256": "29bd16da1573da1327287f017529c5d47653f6030dd97e89ee17b5a879cb53fd",
+        "tags": [
+          "accuracy_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "0",
+            "AmmoPerShot": "35",
+            "AmmoReloadedOnKill": "40",
+            "ReloadTimeFromEmpty": "1.2",
+            "ReloadTimeFromPartial": "1.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VT ww5t Advanced S5",
+      "mechanics": {
+        "fileSHA256": "26555d744a7dbafa2afff819b9d019c682b3e6f489bca44cf0ac43b320635132",
+        "tags": [
+          "reload_constraint",
+          "wide_transfer"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "wide_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "wide curved wall"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "100",
+            "AmmoPerShot": "30",
+            "AmmoReloadedOnKill": "35",
+            "ReloadTimeFromEmpty": "1.2",
+            "ReloadTimeFromPartial": "1.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VT ww5t Intermediate S5",
+      "mechanics": {
+        "fileSHA256": "587957dc0931c2bf33a1ef6c40d0647248a9c5642cd239524e429083ce11b818",
+        "tags": [
+          "reload_constraint",
+          "wide_transfer"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "wide_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "wide curved wall"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "100",
+            "AmmoPerShot": "30",
+            "AmmoReloadedOnKill": "37",
+            "ReloadTimeFromEmpty": "1.2",
+            "ReloadTimeFromPartial": "1.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VT ww5t Novice S5",
+      "mechanics": {
+        "fileSHA256": "8a935775ee34b8ef2b335a71dcbb23ac33dc0c19838a734bf613a90398af6399",
+        "tags": [
+          "reload_constraint",
+          "wide_transfer"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "wide_transfer",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "wide curved wall"
+          },
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "BB Gun"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "BB Gun",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "100",
+            "AmmoPerShot": "30",
+            "AmmoReloadedOnKill": "40",
+            "ReloadTimeFromEmpty": "1.2",
+            "ReloadTimeFromPartial": "1.2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "lgc3 Reborn Varied Easy Meso",
+      "mechanics": {
+        "fileSHA256": "e73f1593e401f974a6adb2c826d96f3144fc7b9d21d2595de711bc8b119ed602",
+        "tags": [],
+        "declaredSkill": "",
+        "declaredSeconds": 120,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [],
+        "playerWeaponFacts": [
+          {
+            "Name": "LG",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.046",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "0.5",
+            "ReloadTimeFromPartial": "0.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "mccoyfrozentrack",
+      "mechanics": {
+        "fileSHA256": "6445be82309cf9fff2ac414758247edf5a2a8f5c4623585916f47957ef4f08e7",
+        "tags": [
+          "accuracy_constraint",
+          "tracking"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 30,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "tracking",
+            "source": "author_description",
+            "field": "Description",
+            "matched": "track vertically"
+          },
+          {
+            "tag": "accuracy_constraint",
+            "source": "explicit_field",
+            "field": "ScoreMultAccuracy"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "Six Shooter",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.5",
+            "MagazineMax": "0",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "0",
+            "ReloadTimeFromEmpty": "1.5",
+            "ReloadTimeFromPartial": "1.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ww3t Voltaic 10% Smaller",
+      "mechanics": {
+        "fileSHA256": "2e9e1937f63d7afdf55a7600b2cee4c0fd1dc668f7253d6c45a1c5f83b160bd8",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "pistol"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "pistol",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.7",
+            "ReloadTimeFromPartial": "0.7"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ww3t Voltaic",
+      "mechanics": {
+        "fileSHA256": "5f37baf2d587bf201960a36db388dc791b6dbf5d645e24eb88ca4be8b26ecf80",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "pistol"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "pistol",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.7",
+            "ReloadTimeFromPartial": "0.7"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ww4t Voltaic",
+      "mechanics": {
+        "fileSHA256": "b1eea74d6c44e9ef7ea4ab4bfb7d58ce3a4fece7219ec9f1538bd165e28571ee",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "pistol"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "pistol",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.7",
+            "ReloadTimeFromPartial": "0.7"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ww5t Voltaic Slightly Larger",
+      "mechanics": {
+        "fileSHA256": "df2476e93da31c0ade845ec0c6d34f227af5742b1b47d07ae0f5f5a209535e7e",
+        "tags": [
+          "reload_constraint"
+        ],
+        "declaredSkill": "",
+        "declaredSeconds": 60,
+        "status": "snapshot_unverified_runtime",
+        "role": "unknown",
+        "geometryStatus": "unknown",
+        "angularSize": null,
+        "transitionAngle": null,
+        "evidence": [
+          {
+            "tag": "reload_constraint",
+            "source": "explicit_player_weapon_fields",
+            "profile": "pistol"
+          }
+        ],
+        "playerWeaponFacts": [
+          {
+            "Name": "pistol",
+            "Type": "Hitscan",
+            "TimeBetweenShots": "0.1",
+            "MagazineMax": "3",
+            "AmmoPerShot": "1",
+            "AmmoReloadedOnKill": "3",
+            "ReloadTimeFromEmpty": "0.7",
+            "ReloadTimeFromPartial": "0.7"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -148,10 +148,16 @@ func ParsePlaylist(data []byte, source Source) ([]Scenario, error) {
 		skill := classify(name)
 		level, origin := difficulty(name), "name"
 		if level == "unknown" {
-			level, origin = difficulty(p.Name), "playlist"
-			if level == "unknown" { origin = "unknown" }
+			origin = "unknown"
 		}
-		result = append(result, Scenario{Name: name, Skill: skill, Technique: technique(name+" "+p.Name, skill), Family: family(name), Difficulty: level, DifficultySource: origin, Seconds: 60, Sources: []Source{source}, Classification: "inferred", Enabled: validSkill(skill)})
+		item := enrichMechanics(Scenario{Name: name, Skill: skill, Technique: technique(name+" "+p.Name, skill), Family: family(name), Difficulty: level, DifficultySource: origin, Seconds: 60, Sources: []Source{source}, Classification: "inferred", Enabled: validSkill(skill)})
+		if skill == "unknown" && item.Mechanics != nil && validSkill(item.Mechanics.DeclaredSkill) {
+			item.Skill = item.Mechanics.DeclaredSkill
+			item.Technique = item.Skill
+			item.Enabled = true
+			item.Classification = "sce_description"
+		}
+		result = append(result, item)
 	}
 	return result, nil
 }
@@ -159,11 +165,18 @@ func ParsePlaylist(data []byte, source Source) ([]Scenario, error) {
 func mergeCatalog(existing, incoming []Scenario) []Scenario {
 	index := map[string]int{}
 	for i, s := range existing {
+		existing[i] = enrichMechanics(s)
+		// Player tiers in playlist titles do not establish exercise difficulty.
+		if s.DifficultySource == "playlist" && s.Classification != "manual" {
+			existing[i].Difficulty, existing[i].DifficultySource = "unknown", "unknown"
+		}
 		index[strings.ToLower(s.Name)] = i
 	}
 	for _, s := range incoming {
+		s = enrichMechanics(s)
 		if i, ok := index[strings.ToLower(s.Name)]; ok {
 			e := &existing[i]
+			if e.Mechanics == nil { e.Mechanics = s.Mechanics }
 			for _, src := range s.Sources {
 				found := false
 				for j, old := range e.Sources {

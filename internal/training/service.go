@@ -52,6 +52,10 @@ func New(dir string) (*Service, error) {
 		for i := range s.state.Catalog {
 			item := &s.state.Catalog[i]
 			item.Benchmarks = mergeMemberships(nil, memberships(*item))
+			*item = enrichMechanics(*item)
+			if item.DifficultySource == "playlist" && item.Classification != "manual" {
+				item.Difficulty, item.DifficultySource = "unknown", "unknown"
+			}
 		}
 		if s.state.Preferences.ExecutionMode == "" {
 			s.state.Preferences.ExecutionMode = "playlist"

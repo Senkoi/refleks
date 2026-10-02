@@ -13,7 +13,7 @@ func TestDifficultyEvidencePreservesUnknownAndManualOverride(t *testing.T) {
 	playlist := []byte(`{"playlistName":"VDIM Novice Static","scenarioList":[{"scenarioName":"1w2ts"},{"scenarioName":"Static Advanced"}]}`)
 	items, err := ParsePlaylist(playlist, Source{URL: "https://example.com/a.json"})
 	if err != nil { t.Fatal(err) }
-	if items[0].Difficulty != "novice" || items[0].DifficultySource != "playlist" || items[1].DifficultySource != "name" {
+	if items[0].Difficulty != "unknown" || items[0].DifficultySource != "unknown" || items[1].DifficultySource != "name" {
 		t.Fatalf("lost source provenance: %+v", items)
 	}
 	unknown, _ := ParsePlaylist([]byte(`{"scenarioList":[{"scenarioName":"Smoothbot"}]}`), Source{})

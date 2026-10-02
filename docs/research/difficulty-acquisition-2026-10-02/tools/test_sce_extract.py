@@ -3,9 +3,24 @@ import unittest
 from sce_extract import extract, split_sections
 from capture_vdim import capture_document, secondary_rows
 from capture_workshop import WorkshopItems
+from intake_sce import mechanism
 
 
 class ExtractionTests(unittest.TestCase):
+    def test_abilities_prevent_stationary_assumption_and_case_is_reported(self):
+        result = extract(b'Name=T\nPlayerProfile=P\nAddedBots=target.bot\n[Character Profile]\nName=P\n[Bot Profile]\nName=Target\nCharacterProfile=T\n[Character Profile]\nName=T\nMaxSpeed=0\nAbilityProfileNames=Approach.abilmov\n[Movement Ability Profile]\nName=Approach\nMainVelocity=4000\n')
+        self.assertTrue(any(d['status'] == 'case_variant_reference' for d in result['reference_diagnostics']))
+        self.assertTrue(any(p['section'] == 'Movement Ability Profile' for p in result['reachable_profiles']))
+        self.assertFalse(result['full_mechanics_verified'])
+
+    def test_intake_mixed_labels_and_unknown_without_title_guess(self):
+        _, m = mechanism(b'Name=Pressure Wide Hard\nPlayerProfile=P\nAddedBots=\n[Character Profile]\nName=P\n')
+        self.assertEqual(m['tags'], [])
+        _, m = mechanism(b'Name=T\nDescription=After killing 3 big bots, force wideflicks and micros\nPlayerProfile=P\nAddedBots=\n[Character Profile]\nName=P\n')
+        self.assertEqual(m['tags'], ['micro_adjustment', 'phased_targets', 'wide_transfer'])
+        self.assertIsNone(m['transitionAngle'])
+        self.assertEqual(m['role'], 'unknown')
+
     def test_only_root_reachable_profiles_are_used(self):
         content = b'Name=Test\nPlayerProfile=P\nAddedBots=target.bot;target.bot\n[Character Profile]\nName=P\nWeaponProfileNames=Gun;;;;;;;\n[Weapon Profile]\nName=Gun\nType=Hitscan\n[Bot Profile]\nName=unused\nCharacterProfile=missing\n[Bot Profile]\nName=target\nCharacterProfile=T\n[Character Profile]\nName=T\nMainBBRadius=2\nProjBBRadius=50\nMaxSpeed=0\n'
         result = extract(content)

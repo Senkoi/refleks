@@ -9,11 +9,11 @@ import math
 import re
 
 ROOT_FIELDS = "Name GameVersion AddedBots PlayerProfile MapName MapScale Timelimit Timescale InvincibleBots ScoreToWin ScorePerKill ScorePerDamage ScorePerTime ScoreMultAccuracy LockFOVRange LockedFOVMin LockedFOVMax LockedFOVScale".split()
-CHAR_FIELDS = "Name MainBBType MainBBRadius MainBBHeight MainBBHasHead MainBBHeadRadius ProjBBType ProjBBRadius ProjBBHeight MaxHealth MaxSpeed Acceleration Gravity HealthRegenPerSec HealthRegenDelay MinRespawnDelay MaxRespawnDelay WeaponProfileNames DisableScoring DamageKnockbackFactor".split()
+CHAR_FIELDS = "Name MainBBType MainBBRadius MainBBHeight MainBBHasHead MainBBHeadRadius ProjBBType ProjBBRadius ProjBBHeight MaxHealth MaxSpeed Acceleration Gravity HealthRegenPerSec HealthRegenDelay MinRespawnDelay MaxRespawnDelay WeaponProfileNames AbilityProfileNames DisableScoring DamageKnockbackFactor".split()
 BOT_FIELDS = "Name CharacterProfile DodgeProfileNames DodgeProfileWeights NoDodging UseWeapons AimingProfileNames".split()
 WEAPON_FIELDS = "Name Type Category DamagePerShot TimeBetweenShots MagazineMax ReloadTime HitscanRadius".split()
 BOOL_FIELDS = set("InvincibleBots ScoreMultAccuracy LockFOVRange MainBBHasHead DisableScoring NoDodging UseWeapons".split())
-TEXT_FIELDS = set("Name GameVersion AddedBots PlayerProfile MapName LockedFOVScale MainBBType ProjBBType WeaponProfileNames CharacterProfile DodgeProfileNames DodgeProfileWeights AimingProfileNames Type Category".split())
+TEXT_FIELDS = set("Name GameVersion AddedBots PlayerProfile MapName LockedFOVScale MainBBType ProjBBType WeaponProfileNames AbilityProfileNames CharacterProfile DodgeProfileNames DodgeProfileWeights AimingProfileNames Type Category".split())
 
 
 def split_sections(content):
@@ -85,6 +85,19 @@ def extract(content):
             diagnostics.append({"status": "cyclic_reference", "kind": kind, "name": name, "origin": origin})
             return
         matches = index.get(key, [])
+        # Preserve evidence of a case mismatch. This resolves a candidate
+        # dependency, not proof of the engine's runtime name semantics.
+        if not matches:
+            candidates = [(k, v) for k, v in index.items()
+                          if k[0] == kind and k[1] is not None and k[1].casefold() == name.casefold()]
+            if len(candidates) == 1:
+                key, matches = candidates[0]
+                diagnostics.append({"status": "case_variant_reference", "kind": kind,
+                                    "name": name, "resolved_name": key[1], "origin": origin})
+                name = key[1]
+        if key in stack:
+            diagnostics.append({"status": "cyclic_reference", "kind": kind, "name": name, "origin": origin})
+            return
         if len(matches) != 1:
             diagnostics.append({"status": "unresolved_reference" if not matches else "ambiguous_profile_name",
                                 "kind": kind, "name": name, "origin": origin})
@@ -98,7 +111,7 @@ def extract(content):
         active[key] = {"section": kind, "profile_name": name, "line": section["line"],
                        "fields": [fact(section, f) for f in fields] if fields else section["fields"]}
         refs = {"Bot Profile": [("CharacterProfile", "Character Profile"), ("DodgeProfileNames", "Dodge Profile")],
-                "Character Profile": [("WeaponProfileNames", "Weapon Profile")],
+                "Character Profile": [("WeaponProfileNames", "Weapon Profile"), ("AbilityProfileNames", "Ability Profile")],
                 "Bot Rotation Profile": [("ProfileNames", "Bot Profile")]}.get(kind, [])
         for field, dest in refs:
             value = raw(section, field)
@@ -109,6 +122,13 @@ def extract(content):
             for slot, token in enumerate(value.split(";")):
                 token = token.strip()
                 if not token:
+                    continue
+                if dest == "Ability Profile":
+                    ability_kind = {"abilmov": "Movement Ability Profile", "abilwep": "Weapon Ability Profile"}.get(token.rsplit(".", 1)[-1])
+                    if ability_kind:
+                        resolve(ability_kind, token.rsplit(".", 1)[0], {"profile": name, "field": field, "slot": slot}, stack + (key,))
+                    else:
+                        diagnostics.append({"status": "unsupported_ability_reference", "token": token, "profile": name})
                     continue
                 suffix = ".bot" if dest == "Bot Profile" else ".wpn" if dest == "Weapon Profile" else None
                 target_name = token[:-len(suffix)] if suffix and token.endswith(suffix) else token
@@ -147,5 +167,5 @@ def extract(content):
                             "line_count": len(map_data.splitlines()), "geometry_status": "unsupported"},
             "geometry_features": {"angular_size": None, "angular_speed": None, "transition_angle": None},
             "geometry_status": "unknown_pending_map_and_engine_validation",
-            "reference_scope": "root_bot_rotation_character_dodge_weapon_only",
+            "reference_scope": "root_bot_rotation_character_dodge_weapon_movement_and_weapon_abilities; weapon_reachability_is_not_active_firing",
             "full_mechanics_verified": False, "calibration_eligible": False}

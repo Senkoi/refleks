@@ -3,6 +3,7 @@ export type Scenario = {
   benchmark: string; thresholds?: number[]; benchmarks?: { name: string; thresholds?: number[] }[];
   relatedBenchmarks?: string[]; variantOf?: string; preference?: string; personalDifficulty?: string;
   classification: string; enabled: boolean;
+  mechanics?: { fileSHA256: string; tags: string[]; status: string; role: string; geometryStatus: string; angularSize: number | null; transitionAngle: number | null };
   sources: { url: string; title: string; retrieved: string }[];
 };
 export type Preferences = {
