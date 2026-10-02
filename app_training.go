@@ -179,6 +179,9 @@ func (a *App) ImportTrainingBenchmarks() (int, error) {
 	if err := a.trainingReady(); err != nil {
 		return 0, err
 	}
+	// Refresh definitions before an explicit training sync; cached data remains
+	// usable offline. The catalog service uses ETag for unchanged responses.
+	_ = a.benchmarkSvc.SyncBenchmarksCache()
 	catalog, err := a.GetBenchmarks()
 	if err != nil {
 		return 0, err

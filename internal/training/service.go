@@ -96,7 +96,7 @@ func (s *Service) save() error {
 func (s *Service) Snapshot(runs []models.RunRecord) State {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	s.state.Skills = SkillProfile(s.state.Catalog, runs, s.state.Preferences, time.Now())
+	s.state.Skills = SkillProfile(s.state.Catalog, runs, latestBenchmarkPreferences(s.state.Catalog, s.state.Preferences), time.Now())
 	s.state.SearchConfigured = os.Getenv("REFLEKS_BRAVE_API_KEY") != ""
 	b, _ := json.Marshal(s.state)
 	var copy State
@@ -239,10 +239,11 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 	}
 	now := time.Now()
 	rng := rand.New(rand.NewSource(now.UnixNano()))
+	planningPreferences := latestBenchmarkPreferences(s.state.Catalog, p)
 	var plan *Plan
 	var err error
 	if p.PlanningPolicy == "legacy" {
-		plan, err = Generate(s.state.Catalog, runs, p, now, rng)
+		plan, err = Generate(s.state.Catalog, runs, planningPreferences, now, rng)
 	} else {
 		p.PlanningPolicy = "curriculum"
 		var t *Curriculum
@@ -257,7 +258,7 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 			if old := s.state.Plan; old != nil && old.CurriculumID == t.ID && old.Status == "completed" && old.Recorded > 0 {
 				explored = true
 			}
-			plan, err = GenerateCurriculum(*t, s.state.Catalog, runs, p, now, rng, explored)
+			plan, err = GenerateCurriculum(*t, s.state.Catalog, runs, planningPreferences, now, rng, explored)
 		}
 	}
 	if err != nil {
