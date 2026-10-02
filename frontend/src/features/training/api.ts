@@ -20,12 +20,13 @@ export type Block = {
   cue: string; recorded: number; runs: number; best: number; outcome: string;
 };
 export type Plan = {
-  curriculumId?: string; curriculumName?: string; curriculumStart?: number; curriculumEnd?: number; curriculumTotal?: number; id: string; created: string; theme?: string; preferences: Preferences; blocks: Block[]; warnings: string[];
+  playerTier?: string; templateTier?: string; curriculumId?: string; curriculumName?: string; curriculumStart?: number; curriculumEnd?: number; curriculumTotal?: number; id: string; created: string; theme?: string; preferences: Preferences; blocks: Block[]; warnings: string[];
   status: string; index: number; elapsed: number; recorded: number; blockElapsed: number;
   reminder?: string;
 };
 export type State = {
-  playerLevels?: { theme: string; category?: string; group?: string; system: string; nativeDifficulty: string; rank?: string; tier: string; status: string; scenarios: number; required: number; samples: number; evidence: string }[];
+  initializing?: boolean; notice?: string;
+  playerLevels?: { source?: string; windowDays?: number; lastPlayed?: string; theme: string; category?: string; group?: string; system: string; nativeDifficulty: string; rank?: string; tier: string; status: string; scenarios: number; required: number; samples: number; evidence: string }[];
   curricula?: { id: string; name: string; theme: string; tier?: string; rows: { scenarioName: string; playCount: number }[] }[];
   version: number; catalog: Scenario[]; preferences: Preferences; plan: Plan | null;
   history: Plan[]; searchConfigured: boolean; error: string;

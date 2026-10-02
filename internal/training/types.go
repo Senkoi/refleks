@@ -9,6 +9,7 @@ type Source struct {
 
 // A scenario can be scored in several benchmark systems with different cutoffs.
 type BenchmarkMembership struct {
+	BenchmarkScore   *float64  `json:"benchmarkScore,omitempty"`
 	Name             string    `json:"name"`
 	BenchmarkID      int       `json:"benchmarkId,omitempty"`
 	System           string    `json:"system,omitempty"`
@@ -129,7 +130,12 @@ type DifficultyEvidence struct {
 	Samples    int                   `json:"samples"`
 }
 
+const currentPlannerVersion = 3
+
 type Plan struct {
+	PlayerTier      string      `json:"playerTier,omitempty"`
+	TemplateTier    string      `json:"templateTier,omitempty"`
+	PlannerVersion  int         `json:"plannerVersion,omitempty"`
 	CurriculumID    string      `json:"curriculumId,omitempty"`
 	CurriculumHash  string      `json:"curriculumHash,omitempty"`
 	CurriculumName  string      `json:"curriculumName,omitempty"`
@@ -157,6 +163,8 @@ type Plan struct {
 }
 
 type State struct {
+	Initializing     bool          `json:"initializing,omitempty"`
+	Notice           string        `json:"notice,omitempty"`
 	PlayerLevels     []PlayerLevel `json:"playerLevels"`
 	Curricula        []Curriculum  `json:"curricula,omitempty"`
 	Version          int           `json:"version"`

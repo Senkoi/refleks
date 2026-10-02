@@ -291,3 +291,21 @@ func TestClearAndIdleState(t *testing.T) {
 func statsFileName(scenario string, at time.Time) string {
 	return scenario + " - Challenge - " + at.Format("2006.01.02-15.04.05") + " Stats.csv"
 }
+
+func TestInitialHistoryBarrierWaitsForImportAndCanCancel(t *testing.T) {
+	w := New(context.Background(), models.WatcherConfig{}, nil)
+	if !w.WaitInitialCatchUp(context.Background()) {
+		t.Fatal("no startup import should not block")
+	}
+	pending := make(chan struct{})
+	w.initialCatchUp = pending
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Millisecond)
+	defer cancel()
+	if w.WaitInitialCatchUp(ctx) {
+		t.Fatal("unfinished history was marked ready")
+	}
+	close(pending)
+	if !w.WaitInitialCatchUp(context.Background()) {
+		t.Fatal("finished import not released")
+	}
+}

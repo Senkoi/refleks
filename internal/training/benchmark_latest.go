@@ -1,6 +1,7 @@
 package training
 
 import (
+	"refleks/internal/models"
 	"regexp"
 	"sort"
 	"strconv"
@@ -82,4 +83,38 @@ func latestBenchmarkPreferences(catalog []Scenario, p Preferences) Preferences {
 	}
 	sort.Strings(p.Benchmarks)
 	return p
+}
+
+// InitialLevelReferenceIDs prioritizes the newest Voltaic definition for each
+// native roster. Other/older cached systems remain available as evidence, and
+// the existing app synchronizer continues its ordinary background refreshes.
+func InitialLevelReferenceIDs(catalog []models.Benchmark) []int {
+	versions := map[string][]int{}
+	for _, b := range catalog {
+		series, v := benchmarkSeries(b.BenchmarkName)
+		if series != "voltaic" {
+			continue
+		}
+		for _, d := range b.Difficulties {
+			if old, ok := versions[d.DifficultyName]; !ok || newerBenchmark(v, old) {
+				versions[d.DifficultyName] = v
+			}
+		}
+	}
+	ids := []int{}
+	seen := map[int]bool{}
+	for _, b := range catalog {
+		series, v := benchmarkSeries(b.BenchmarkName)
+		if series != "voltaic" {
+			continue
+		}
+		for _, d := range b.Difficulties {
+			if d.KovaaksBenchmarkID > 0 && !seen[d.KovaaksBenchmarkID] && !newerBenchmark(versions[d.DifficultyName], v) {
+				ids = append(ids, d.KovaaksBenchmarkID)
+				seen[d.KovaaksBenchmarkID] = true
+			}
+		}
+	}
+	sort.Ints(ids)
+	return ids
 }

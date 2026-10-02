@@ -22,6 +22,7 @@ export default function TrainingPage() {
   const [tab, setTab] = useState("plan");
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
+  const [loadError, setLoadError] = useState("");
   const [notice, setNotice] = useState("");
   const [url, setURL] = useState("");
   const [filter, setFilter] = useState("");
@@ -36,12 +37,13 @@ export default function TrainingPage() {
     const s = await readState();
     if (!mounted.current) return;
     setState(s);
-    if (!hydrated.current) { setPrefs({ ...s.preferences, planningPolicy: "curriculum", executionMode: "playlist", autoAdvance: false, curriculumId: "", difficulty: "any", benchmark: "", benchmarks: [] }); hydrated.current = true; }
+    setLoadError("");
+    if (!s.initializing && !hydrated.current) { setPrefs({ ...s.preferences, planningPolicy: "curriculum", executionMode: "playlist", autoAdvance: false, curriculumId: "", difficulty: "any", benchmark: "", benchmarks: [] }); hydrated.current = true; }
   }, []);
   useEffect(() => {
     mounted.current = true;
     let timer: ReturnType<typeof setTimeout>;
-    const poll = async () => { try { await refresh(); } catch (e) { if (mounted.current) setError(String(e)); } finally { if (mounted.current) timer = setTimeout(poll, 2000); } };
+    const poll = async () => { try { await refresh(); } catch (e) { if (mounted.current) setLoadError(String(e)); } finally { if (mounted.current) timer = setTimeout(poll, 2000); } };
     void poll();
     return () => { mounted.current = false; clearTimeout(timer); };
   }, [refresh]);
@@ -51,7 +53,7 @@ export default function TrainingPage() {
     catch (e) { if (mounted.current) setError(String(e)); }
     finally { if (mounted.current) setBusy(""); }
   }
-  const plan = state?.plan;
+  const plan = state?.initializing ? null : state?.plan;
   const active = !!plan && ["running", "ready", "paused", "waiting"].includes(plan.status);
 
   const catalog = filterCatalog(state?.catalog ?? [], filter, fileFilter, difficultyFilter);
@@ -69,6 +71,9 @@ export default function TrainingPage() {
     <nav className="training-tabs" aria-label="训练模块">
       {[["plan", "当次计划"], ["discover", "发现内容"], ["catalog", "关卡库"]].map(([id,title]) => <button key={id} className={tab === id ? "selected" : ""} onClick={() => setTab(id)}>{title}</button>)}
     </nav>
+    {loadError && <div role="alert" className="training-alert error">{loadError}</div>}
+    {state?.initializing && <div role="status" className="training-alert">正在读取已有 benchmark 成绩与近 45 天训练历史，完成后自动生成并安装列表…</div>}
+    {!state?.initializing && state?.notice && <div role="status" className="training-alert">{state.notice}</div>}
     {error && <div role="alert" className="training-alert error">{error}</div>}
     {state?.error && <div role="alert" className="training-alert error">{state.error}</div>}
     {notice && <div role="status" className="training-alert">{notice}</div>}
@@ -78,25 +83,25 @@ export default function TrainingPage() {
       <div className="training-columns">
         <section className="training-card training-config">
           <h2><SlidersHorizontal size={18} /> 今天怎么练</h2>
-          <fieldset disabled={active || !!busy}>
+          <fieldset disabled={active || !!busy || !!state?.initializing}>
             <label>可用时间 <span>包含切换与休息</span><div className="training-number"><input aria-label="可用时间" type="number" min={5} max={120} value={prefs.minutes} onChange={e => pset("minutes", Number(e.target.value))} /><span>分钟</span></div></label>
             <div className="training-muted">VDIM 已自动初始化 · {state?.curricula?.length ?? 0} 套模板。按分类成绩与近期训练覆盖选择本次内容。</div>
             <label>训练重点<select value={prefs.focus} onChange={e => pset("focus", e.target.value)}>{Object.entries(labels).filter(([k]) => k !== "unknown").map(([k,v]) => <option key={k} value={k}>{v}</option>)}</select></label>
             <div className="training-muted">玩家档位按分类自动推断；历史不足时暂用 Novice 起步。Benchmark 按对应分类、原生难度和最新可用版本自动对齐，合适的场景作为探索变体加入后续列表。</div>
             <label>变化偏好 <strong>{Math.round(prefs.variety * 100)}%</strong><input aria-label="变化偏好" type="range" min={0} max={.5} step={.05} value={prefs.variety} onChange={e => pset("variety", Number(e.target.value))} /><small>额外探索的时长上限；首次不探索，后续保留模板顺序与目标，预留探索预算，按单局时长与近期重复量安排次数。</small></label>
             <label className="training-checkbox"><input type="checkbox" checked={prefs.autoDiscover} onChange={e => pset("autoDiscover", e.target.checked)} /> 应用运行时每周自动发现内容</label>
-            <button className="training-primary" disabled={!state || !!busy || active} onClick={() => perform("生成计划", async () => { await call("GenerateTrainingPlan", JSON.stringify({ ...prefs, curriculumId: "", difficulty: "any", benchmark: "", benchmarks: [], planningPolicy: "curriculum", executionMode: "playlist", autoAdvance: false })); const path = await call<string>("InstallTrainingPlaylist"); setNotice(`列表已安装：${path}。自动生成只使用一个固定槽位。重启 KovaaK’s 后，在 Local Playlists 中选择 Refleks Adaptive Current 列表。`); })}><Target size={16} />生成并安装本次列表 <ArrowRight size={16} /></button>
+            <button className="training-primary" disabled={!state || !!busy || active || !!state?.initializing} onClick={() => perform("生成计划", async () => { await call("GenerateTrainingPlan", JSON.stringify({ ...prefs, curriculumId: "", difficulty: "any", benchmark: "", benchmarks: [], planningPolicy: "curriculum", executionMode: "playlist", autoAdvance: false })); const path = await call<string>("InstallTrainingPlaylist"); setNotice(`列表已安装：${path}。自动生成只使用一个固定槽位。重启 KovaaK’s 后，在 Local Playlists 中选择 Refleks Adaptive Current 列表。`); })}><Target size={16} />生成并安装本次列表 <ArrowRight size={16} /></button>
           </fieldset>
           {!state?.curricula?.length && <p className="training-muted">正在读取自动初始化的 VDIM 模板；若初始化失败，生成时会显示具体原因。</p>}
         </section>
         <section className="training-main">
-          <section className="training-card"><h2>自动能力评估</h2><p className="training-muted">每张参考场景至少 3 局可比成绩；30 天窗口、7 天半衰期，需覆盖该分类全部参考场景。不同 benchmark 保留各自等级。</p><div className="training-skill-grid">{Object.entries(themes).map(([theme,label]) => { const levels = state?.playerLevels?.filter(l => l.theme === theme) ?? []; const known = levels.filter(l => l.status === "inferred"); return <div key={theme}><strong>{label}</strong>{known.length ? known.map(l => <p key={`${l.system}/${l.nativeDifficulty}/${l.category}/${l.group}`}>{l.system} / {l.nativeDifficulty} · {l.group || l.category}：{l.rank || "未达到门槛"} · {l.samples} 局{l.system.toLowerCase().startsWith("voltaic") && ` · VDIM ${l.tier}`}</p>) : <p>待推断 · 暂用 Novice<br />已有 {Math.max(0,...levels.map(l => l.scenarios))} 张参考场景达到样本要求</p>}</div>; })}</div></section>
+          <section className="training-card"><h2>自动能力评估</h2><p className="training-muted">优先最近 7 天的可比成绩，不足 3 局时依次扩至 14 / 30 / 45 天；窗口内不按年龄降档。缺少本地样本时参考已有 benchmark 成绩，未提供达成日期的成绩显示为暂定。每个原生分类仍需完整场景覆盖；未玩的分类不压低已有档位。</p><div className="training-skill-grid">{Object.entries(themes).map(([theme,label]) => { const levels = state?.playerLevels?.filter(l => l.theme === theme) ?? []; const known = levels.filter(l => l.status === "inferred" || l.status === "estimated"); return <div key={theme}><strong>{label}</strong>{known.length ? known.map(l => <p key={`${l.system}/${l.nativeDifficulty}/${l.category}/${l.group}`}>{l.system} / {l.nativeDifficulty} · {l.group || l.category}：{l.rank || "未达到门槛"} · {l.status === "estimated" ? "暂定参考" : `${l.samples} 局 · ${l.windowDays ?? 45} 天窗口`}{l.system.toLowerCase().startsWith("voltaic") && ` · VDIM ${l.tier}`}</p>) : <p>待推断 · 暂用 Novice<br />已有 {Math.max(0,...levels.map(l => l.scenarios))} 张参考场景达到样本要求</p>}</div>; })}</div></section>
 
           <div className="training-card">
             <div className="training-section-title"><h2><Clock3 size={18} /> {plan ? statuses[plan.status] : "准备好，再开始"}</h2>{plan && <span className="training-badge">{plan.preferences.minutes} 分钟预算</span>}</div>
             {plan ? <>
               {plan.curriculumName && <p className="training-muted">原模板：{plan.curriculumName} · 第 {(plan.curriculumStart ?? 0) + 1}–{plan.curriculumEnd ?? plan.blocks.length} / {plan.curriculumTotal ?? plan.blocks.length} 行 · 保留本段顺序与目标，次数按时长和近期训练量调整；完成本段后，下次继续后续段落。</p>}
-              {plan.theme && <p className="training-muted">本次 VDIM 专项：{themes[plan.theme] ?? plan.theme} · 按近七天记录自动轮换；列表依然由完成记录校正进度。</p>}
+              {plan.theme && <p className="training-muted">本次 VDIM 专项：{themes[plan.theme] ?? plan.theme}{plan.playerTier && ` · 玩家参考档位 ${plan.playerTier}`}{plan.templateTier && ` · 模板档位 ${plan.templateTier}`} · 按近七天记录自动轮换；列表依然由完成记录校正进度。</p>}
               <div className="training-metrics"><div><strong>{clock(Math.max(0, plan.preferences.minutes * 60 - plan.elapsed))}</strong><span>剩余时间</span></div><div><strong>{clock(plan.recorded)}</strong><span>已记录练习</span></div><div><strong>{plan.blocks.filter(b => b.outcome !== "pending").length} / {plan.blocks.length}</strong><span>训练模块</span></div></div>
               <div className="training-progress"><span style={{ width: `${Math.min(100, plan.elapsed / (plan.preferences.minutes * 60) * 100)}%` }} /></div>
               <div className="training-actions">

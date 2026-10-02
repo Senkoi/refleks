@@ -41,7 +41,7 @@ func observed(runs []models.RunRecord) map[string][]observation {
 		if err != nil {
 			continue
 		}
-		if s.Score < 0 || math.IsNaN(s.Score) || math.IsInf(s.Score, 0) {
+		if s.Score < 0 || math.IsNaN(s.Score) || math.IsInf(s.Score, 0) || s.Duration <= 0 || s.Duration > 3600 || math.IsNaN(s.Duration) || math.IsInf(s.Duration, 0) {
 			continue
 		}
 		sig := signature(s)
@@ -104,17 +104,10 @@ func SkillProfile(catalog []Scenario, runs []models.RunRecord, p Preferences, no
 				if !selectedBenchmark(p, membership.Name) || len(membership.Thresholds) < 2 {
 					continue
 				}
-				cr := comparable(rows)
-				scores := []float64{}
-				for _, r := range cr {
-					if !r.at.Before(now.AddDate(0, 0, -30)) {
-						scores = append(scores, r.score)
-					}
-				}
-				if len(scores) < 3 {
+				m, samples := recentLevelScore(comparable(rows), now)
+				if samples < 3 {
 					continue
 				}
-				m := median(scores)
 				ts := append([]float64{}, membership.Thresholds...)
 				sort.Float64s(ts)
 				rank := 0.0

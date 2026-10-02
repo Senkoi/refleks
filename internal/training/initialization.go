@@ -68,6 +68,8 @@ func (s *Service) InitializeTraining() error {
 
 func automaticTrainingPreferences(p Preferences) Preferences {
 	p.PlanningPolicy = "curriculum"
+	p.ExecutionMode = "playlist"
+	p.AutoAdvance = false
 	p.CurriculumID = ""
 	p.Difficulty = "any"
 	p.Benchmark = ""

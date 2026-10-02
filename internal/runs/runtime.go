@@ -73,7 +73,7 @@ func NewRuntimeService(ctx context.Context, settingsSvc *appsettings.Service, be
 		Path:               appsettings.ResolveKovaaksStatsDir(settings.KovaaksInstallDir),
 		SessionGap:         time.Duration(settings.SessionGapMinutes) * time.Minute,
 		PollInterval:       time.Duration(constants.DefaultPollIntervalSeconds) * time.Second,
-		RecentRunsDays:     settings.RecentRunsDays,
+		RecentRunsDays:     max(45, settings.RecentRunsDays),
 		RecentRunsMinCount: settings.RecentRunsMinCount,
 	}
 
@@ -106,7 +106,7 @@ func (s *RuntimeService) StartWatcher() error {
 		Path:               finalPath,
 		SessionGap:         time.Duration(current.SessionGapMinutes) * time.Minute,
 		PollInterval:       time.Duration(constants.DefaultPollIntervalSeconds) * time.Second,
-		RecentRunsDays:     current.RecentRunsDays,
+		RecentRunsDays:     max(45, current.RecentRunsDays),
 		RecentRunsMinCount: current.RecentRunsMinCount,
 	}
 
@@ -176,6 +176,20 @@ func (s *RuntimeService) GetRecent(limit int) []models.RunRecord {
 		records[i], records[j] = records[j], records[i]
 	}
 	return records
+}
+
+func (s *RuntimeService) TrainingRuns() ([]models.RunRecord, error) {
+	if s.runStore == nil {
+		return nil, nil
+	}
+	return s.runStore.LoadTrainingRuns()
+}
+
+func (s *RuntimeService) WaitInitialHistory(ctx context.Context) bool {
+	if s.watcher == nil {
+		return true
+	}
+	return s.watcher.WaitInitialCatchUp(ctx)
 }
 
 func (s *RuntimeService) IsWatcherRunning() bool {
@@ -482,7 +496,7 @@ func (s *RuntimeService) updateWatcher(newS models.Settings, needsRestart bool) 
 		Path:               appsettings.ResolveKovaaksStatsDir(newS.KovaaksInstallDir),
 		SessionGap:         time.Duration(newS.SessionGapMinutes) * time.Minute,
 		PollInterval:       time.Duration(constants.DefaultPollIntervalSeconds) * time.Second,
-		RecentRunsDays:     newS.RecentRunsDays,
+		RecentRunsDays:     max(45, newS.RecentRunsDays),
 		RecentRunsMinCount: newS.RecentRunsMinCount,
 	}
 

@@ -277,7 +277,7 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 	for _, s := range catalog {
 		index[strings.ToLower(s.Name)] = enrichMechanics(s)
 	}
-	plan := &Plan{ID: fmt.Sprintf("%d-%x", now.UnixMilli(), rng.Uint32()), Created: now.Format(time.RFC3339), Preferences: p, Status: "draft", CurriculumID: t.ID, CurriculumName: t.Name, CurriculumHash: t.ContentSHA256, Theme: t.Theme, Blocks: []Block{}, Warnings: []string{}, Seen: []string{}}
+	plan := &Plan{PlayerTier: inferredTier(t.Theme, PlayerLevels(catalog, runs, now)), TemplateTier: t.Tier, PlannerVersion: currentPlannerVersion, ID: fmt.Sprintf("%d-%x", now.UnixMilli(), rng.Uint32()), Created: now.Format(time.RFC3339), Preferences: p, Status: "draft", CurriculumID: t.ID, CurriculumName: t.Name, CurriculumHash: t.ContentSHA256, Theme: t.Theme, Blocks: []Block{}, Warnings: []string{}, Seen: []string{}}
 	used := 0
 	baseNames := map[string]bool{}
 	for _, row := range t.Rows {

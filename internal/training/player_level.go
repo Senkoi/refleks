@@ -9,6 +9,10 @@ import (
 )
 
 type PlayerLevel struct {
+	AtCeiling        bool   `json:"atCeiling,omitempty"`
+	Source           string `json:"source,omitempty"`
+	WindowDays       int    `json:"windowDays,omitempty"`
+	LastPlayed       string `json:"lastPlayed,omitempty"`
 	Theme            string `json:"theme"`
 	Category         string `json:"category,omitempty"`
 	Group            string `json:"group,omitempty"`
@@ -113,64 +117,106 @@ func levelObservations(runs []models.RunRecord, now time.Time) map[string][]obse
 			continue
 		}
 		at, err := time.Parse(time.RFC3339, v.DatePlayed)
-		if err != nil || at.After(now) || at.Before(now.AddDate(0, 0, -30)) {
+		if err != nil || at.After(now) || at.Before(now.AddDate(0, 0, -45)) {
 			continue
 		}
+		// Benchmark rank is independent of ordinary sensitivity/FOV choices.
+		// Scene revisions remain separate; altered scale/time are rejected above.
+		r.Stats.Summary.HorizSens, r.Stats.Summary.VertSens, r.Stats.Summary.FOV = 0, 0, 0
+		r.Stats.Summary.SensScale = ""
+		r.Stats.Summary.AvgTimeDilation = 1
 		filtered = append(filtered, r)
 	}
 	return observed(filtered)
 }
 
-// Recent weighted median: seven-day half life, minimum three comparable runs
-// and a recent sample. Every scenario in a category/tier roster must establish
-// the threshold before that roster can promote the category.
-func recentLevelScore(rows []observation, now time.Time) (float64, int) {
+// Use the smallest recent window with three comparable scores. Older valid
+// scores retain their value for up to 45 days; age does not subtract rank.
+func levelScoreWindow(rows []observation, now time.Time) (float64, int, int) {
 	rows = comparable(rows)
-	if len(rows) < 3 || now.Sub(rows[0].at) > 7*24*time.Hour {
-		return 0, 0
-	}
-	type weighted struct{ score, weight float64 }
-	values := []weighted{}
-	total := 0.0
-	for _, r := range rows {
-		w := math.Exp2(-now.Sub(r.at).Hours() / (7 * 24))
-		total += w
-		values = append(values, weighted{r.score, w})
-	}
-	sort.Slice(values, func(i, j int) bool { return values[i].score < values[j].score })
-	acc := 0.0
-	for _, v := range values {
-		acc += v.weight
-		if acc >= total/2 {
-			return v.score, len(rows)
+	for _, days := range []int{7, 14, 30, 45} {
+		scores := []float64{}
+		for _, r := range rows {
+			if !r.at.After(now) && !r.at.Before(now.AddDate(0, 0, -days)) {
+				scores = append(scores, r.score)
+				if len(scores) == 7 {
+					break
+				}
+			}
+		}
+		if len(scores) >= 3 {
+			return median(scores), len(scores), days
 		}
 	}
-	return 0, 0
+	return 0, 0, 0
+}
+
+func recentLevelScore(rows []observation, now time.Time) (float64, int) {
+	score, n, _ := levelScoreWindow(rows, now)
+	return score, n
+}
+
+func validRankCutoffs(m BenchmarkMembership) bool {
+	if len(m.Ranks) == 0 || len(m.Ranks) != len(m.Thresholds) {
+		return false
+	}
+	last := -1.0
+	for i, v := range m.Thresholds {
+		if v <= 0 || math.IsNaN(v) || math.IsInf(v, 0) || v <= last || strings.TrimSpace(m.Ranks[i]) == "" {
+			return false
+		}
+		last = v
+	}
+	return true
 }
 
 func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []PlayerLevel {
 	obs := levelObservations(runs, now)
-	p := automaticReferences(catalog, Preferences{})
 	type bucket struct {
-		level  PlayerLevel
-		lowest int
-		ranks  []string
+		level                          PlayerLevel
+		lowest                         int
+		ranks                          []string
+		historyScenes, benchmarkScenes int
+		seen                           map[string]bool
 	}
 	groups := map[string]*bucket{}
 	for _, s := range catalog {
 		for _, m := range memberships(s) {
-			if !selectedBenchmark(p, m.Name) || len(m.Ranks) != len(m.Thresholds) || len(m.Ranks) == 0 {
-				continue
-			}
 			key := scenarioTheme(s) + "|" + m.System + "|" + m.NativeDifficulty + "|" + m.Category + "|" + m.Group
 			b := groups[key]
 			if b == nil {
-				b = &bucket{level: PlayerLevel{Theme: scenarioTheme(s), Category: m.Category, Group: m.Group, System: m.System, NativeDifficulty: m.NativeDifficulty, Tier: "novice", Status: "insufficient"}, lowest: len(m.Ranks), ranks: m.Ranks}
+				b = &bucket{level: PlayerLevel{Theme: scenarioTheme(s), Category: m.Category, Group: m.Group, System: m.System, NativeDifficulty: m.NativeDifficulty, Tier: "novice", Status: "insufficient"}, lowest: len(m.Ranks), ranks: m.Ranks, seen: map[string]bool{}}
 				groups[key] = b
 			}
+			name := strings.ToLower(s.Name)
+			if b.seen[name] {
+				continue
+			}
+			b.seen[name] = true
 			b.level.Required++
-			score, n := recentLevelScore(obs[strings.ToLower(s.Name)], now)
-			if n == 0 {
+			if !validRankCutoffs(m) {
+				continue
+			}
+			ranksMatch := len(b.ranks) == len(m.Ranks)
+			if ranksMatch {
+				for i := range b.ranks {
+					ranksMatch = ranksMatch && b.ranks[i] == m.Ranks[i]
+				}
+			}
+			if !ranksMatch {
+				continue
+			}
+			score, n, days := levelScoreWindow(obs[name], now)
+			if n > 0 {
+				b.historyScenes++
+				b.level.WindowDays = max(b.level.WindowDays, days)
+				if len(obs[name]) > 0 && obs[name][0].at.Format(time.RFC3339) > b.level.LastPlayed {
+					b.level.LastPlayed = obs[name][0].at.Format(time.RFC3339)
+				}
+			} else if m.BenchmarkScore != nil && *m.BenchmarkScore > 0 && !math.IsNaN(*m.BenchmarkScore) && !math.IsInf(*m.BenchmarkScore, 0) {
+				score = *m.BenchmarkScore
+				b.benchmarkScenes++
+			} else {
 				continue
 			}
 			b.level.Scenarios++
@@ -195,9 +241,21 @@ func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []
 	for _, k := range keys {
 		b := groups[k]
 		l := b.level
-		l.Evidence = "每张场景至少 3 局同设置成绩，30 天窗口、7 天半衰期；需覆盖该分类全部场景。"
+		l.Source = "history"
+		l.Evidence = "优先 7 天可比成绩，不足三局依次扩到 14/30/45 天；窗口内不按年龄降档，需覆盖该原生分类全部场景。"
+		if b.benchmarkScenes > 0 {
+			l.Source = "benchmark"
+			if b.historyScenes > 0 {
+				l.Source = "mixed"
+			}
+			l.Evidence += "缺少足够本地历史的场景采用 benchmark 已有成绩；接口未提供达成日期，作为暂定参考，不伪造近期样本。"
+		}
 		if l.Scenarios == l.Required && l.Required >= 1 {
 			l.Status = "inferred"
+			l.AtCeiling = b.lowest == len(b.ranks)-1
+			if b.benchmarkScenes > 0 {
+				l.Status = "estimated"
+			}
 			if b.lowest >= 0 {
 				l.Rank = b.ranks[b.lowest]
 			} else {
@@ -217,27 +275,40 @@ func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []
 }
 
 func inferredTier(theme string, levels []PlayerLevel) string {
-	// Use the weakest covered subcategory after taking its strongest established
-	// native tier. Missing subcategory evidence remains provisional Novice.
-	best := map[string]string{}
+	// A completed top rank on an easier roster is a lower bound, not proof
+	// that the player lost an established higher rank. Unsaturated recent
+	// evidence does take priority over an undated higher PB.
+	local, fallback := map[string]string{}, map[string]string{}
+	bounded := map[string]bool{}
 	for _, l := range levels {
 		series, _ := benchmarkSeries(l.System)
-		if l.Theme != theme || series != "voltaic" {
+		if l.Theme != theme || series != "voltaic" || (l.Status != "inferred" && l.Status != "estimated") {
 			continue
 		}
-		key := l.Category + "|" + l.Group
-		if _, ok := best[key]; !ok {
-			best[key] = ""
+		key := strings.ToLower(l.Category + "|" + l.Group)
+		target := fallback
+		if l.Status == "inferred" || l.Source == "mixed" {
+			target = local
+			bounded[key] = bounded[key] || !l.AtCeiling
 		}
-		if l.Status == "inferred" && tierIndex(l.Tier) > tierIndex(best[key]) {
-			best[key] = l.Tier
+		if tierIndex(l.Tier) > tierIndex(target[key]) {
+			target[key] = l.Tier
+		}
+	}
+	best := map[string]string{}
+	for k, v := range local {
+		best[k] = v
+	}
+	for k, v := range fallback {
+		if bounded[k] {
+			continue
+		}
+		if tierIndex(v) > tierIndex(best[k]) {
+			best[k] = v
 		}
 	}
 	tier := ""
 	for _, t := range best {
-		if t == "" {
-			t = "novice"
-		}
 		if tier == "" || tierIndex(t) < tierIndex(tier) {
 			tier = t
 		}

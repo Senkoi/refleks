@@ -25,7 +25,7 @@ func explorationReference(s Scenario, levels []PlayerLevel, p Preferences) (Benc
 			}
 		}
 		for _, l := range levels {
-			if l.Status == "inferred" && l.Theme == theme && l.System == m.System && l.NativeDifficulty == m.NativeDifficulty && l.Category == m.Category && l.Group == m.Group {
+			if (l.Status == "inferred" || l.Status == "estimated") && l.Theme == theme && l.System == m.System && l.NativeDifficulty == m.NativeDifficulty && l.Category == m.Category && l.Group == m.Group {
 				return m, true
 			}
 		}

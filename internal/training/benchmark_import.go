@@ -1,6 +1,7 @@
 package training
 
 import (
+	"math"
 	"refleks/internal/models"
 	"strings"
 	"time"
@@ -45,7 +46,17 @@ func BenchmarkScenarios(catalog []models.Benchmark, progress map[int]models.Benc
 								ranks = append(ranks, name)
 							}
 						}
-						m := BenchmarkMembership{Ranks: ranks, Name: b.BenchmarkName + " / " + d.DifficultyName, BenchmarkID: d.KovaaksBenchmarkID, System: b.BenchmarkName, NativeDifficulty: d.DifficultyName, Category: c.Name, Group: g.Name, Thresholds: append([]float64(nil), s.Thresholds...)}
+						thresholds := append([]float64(nil), s.Thresholds...)
+						// The progress parser prepends a chart baseline; it is not a rank.
+						if len(ranks) > 0 && len(thresholds) == len(ranks)+1 {
+							thresholds = thresholds[1:]
+						}
+						var score *float64
+						if s.Score > 0 && !math.IsNaN(s.Score) && !math.IsInf(s.Score, 0) {
+							v := s.Score
+							score = &v
+						}
+						m := BenchmarkMembership{BenchmarkScore: score, Ranks: ranks, Name: b.BenchmarkName + " / " + d.DifficultyName, BenchmarkID: d.KovaaksBenchmarkID, System: b.BenchmarkName, NativeDifficulty: d.DifficultyName, Category: c.Name, Group: g.Name, Thresholds: thresholds}
 						items = append(items, Scenario{Name: s.Name, Skill: skill, Technique: BenchmarkTechnique(c.Name, g.Name, skill), Family: strings.ToLower(s.Name), Difficulty: "unknown", DifficultySource: "unknown", Seconds: 60, Benchmarks: []BenchmarkMembership{m}, Classification: "benchmark", Enabled: skill != "unknown", Sources: []Source{{URL: b.SpreadsheetURL, Title: m.Name + " / " + g.Name, Retrieved: now.UTC().Format(time.RFC3339)}}})
 					}
 				}
