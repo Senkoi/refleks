@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "downloaded_source_files_verified": 25,
+  "prior_format_probes_reproduced": 15,
+  "first_family_target_files": 30,
+  "workshop_title_and_app_matches": 30,
+  "official_vdim_playlists": 36,
+  "vdim_secondary_rows": 145,
+  "nonempty_workshop_file_urls": 0,
+  "fit_eligible_samples": 0,
+  "difficulty_weights_fitted": false,
+  "physical_geometry_validation_performed": false,
+  "application_training_logic_modified": false,
+  "powershell_helper_tested_on_windows": false
+}

@@ -17,7 +17,7 @@ func TestNormalizeInstallDir(t *testing.T) {
 		{"   ", ""},
 		{" /a/b/../c ", filepath.Clean("/a/b/../c")},
 		{"/a/b/", filepath.Clean("/a/b/")},
-		{"/already/clean", "/already/clean"},
+		{"/already/clean", filepath.FromSlash("/already/clean")},
 	}
 	for _, tt := range tests {
 		if got := NormalizeInstallDir(tt.in); got != tt.want {
@@ -98,10 +98,10 @@ func TestSanitizeFillsDefaultsAndClamps(t *testing.T) {
 		MouseTrackingEnabled:    true,
 	})
 
-	if s.SteamInstallDir != "/steam" {
+	if s.SteamInstallDir != filepath.FromSlash("/steam") {
 		t.Errorf("SteamInstallDir = %q, want /steam", s.SteamInstallDir)
 	}
-	if s.KovaaksInstallDir != "/kovaaks" {
+	if s.KovaaksInstallDir != filepath.FromSlash("/kovaaks") {
 		t.Errorf("KovaaksInstallDir = %q, want /kovaaks", s.KovaaksInstallDir)
 	}
 	if s.SteamIDOverride != "76561198000000000" {
@@ -181,7 +181,7 @@ func TestSanitizePreservesValidValues(t *testing.T) {
 		RunSyncEnabled:          true,
 	})
 
-	if s.SteamInstallDir != "/custom/steam" || s.KovaaksInstallDir != "/custom/kovaaks" {
+	if s.SteamInstallDir != filepath.FromSlash("/custom/steam") || s.KovaaksInstallDir != filepath.FromSlash("/custom/kovaaks") {
 		t.Errorf("install dirs changed: %q / %q", s.SteamInstallDir, s.KovaaksInstallDir)
 	}
 	if s.SteamIDOverride != "123" || s.PersonaNameOverride != "me" {

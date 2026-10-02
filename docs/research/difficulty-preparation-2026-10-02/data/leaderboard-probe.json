@@ -1,0 +1,50 @@
+{
+  "retrieved_at": "2026-10-02T02:04:19.798642+00:00",
+  "purpose": "bounded API and stable-player-ID join feasibility probe, not difficulty calibration",
+  "sampling": "top 100 from each board; deliberately non-representative",
+  "boards": [
+    {
+      "leaderboard_id": 98048,
+      "source_url": "https://kovaaks.com/webapp-backend/leaderboard/scores/global?leaderboardId=98048&page=0&max=100",
+      "response_sha256": "23ef1095a82c9a2773cea0c2c8a4a854a5fa10bb411c7c6c9f649ee06100d2ec",
+      "returned_total": 62508,
+      "sample_size": 100,
+      "attribute_non_null_counts": {
+        "epoch": 100,
+        "scenarioVersion": 100,
+        "clientBuildVersion": 100,
+        "hash": 100,
+        "pauseCount": 95,
+        "pauseDuration": 95,
+        "sensRandomizer": 0,
+        "modelOverrides": 97,
+        "fov": 100,
+        "cm360": 100
+      }
+    },
+    {
+      "leaderboard_id": 184107,
+      "source_url": "https://kovaaks.com/webapp-backend/leaderboard/scores/global?leaderboardId=184107&page=0&max=100",
+      "response_sha256": "a6e45396968c696d226a40155105bbdacadbfb5ff9d98cbf4da9c42ac939d015",
+      "returned_total": 21518,
+      "sample_size": 100,
+      "attribute_non_null_counts": {
+        "epoch": 100,
+        "scenarioVersion": 100,
+        "clientBuildVersion": 100,
+        "hash": 100,
+        "pauseCount": 100,
+        "pauseDuration": 100,
+        "sensRandomizer": 0,
+        "modelOverrides": 100,
+        "fov": 100,
+        "cm360": 100
+      }
+    }
+  ],
+  "overlapping_player_count": 36,
+  "raw_player_records_retained": false,
+  "mechanical_equivalence_verified": false,
+  "calibration_eligible": false,
+  "version_hash_semantics": "unverified; do not equate API attributes.hash with scenario-file SHA-256"
+}

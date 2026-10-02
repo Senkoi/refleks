@@ -1,0 +1,177 @@
+{
+  "do_now_without_gameplay": [
+    "use file facts and controlled precision order",
+    "resolve map scale/team/default/offset semantics from documentation or source",
+    "model ability activation predicates and rotation phases from files",
+    "fit and validate within-family ordinal baselines after specifying labels and features"
+  ],
+  "optional_independent_validation": "editor/gameplay observations only for specific unresolved semantics; not mandatory for all scenes",
+  "without_benchmark_anchor": [
+    "1wall 6targets small",
+    "1wall6targets TE",
+    "Aimerz+ Week #7 - Suavetrack",
+    "Cata IC Fast Strafes",
+    "Cata IC Long Strafes",
+    "Cata IC Pizz Plz LighthawkFPS",
+    "Cata Orb Fast Strafes",
+    "Cata Orb Long Strafes",
+    "Cockroach Simulator [with easter eggs]",
+    "Fisher Simulator",
+    "Frog Simulator - @wa11p1per",
+    "KovaaKs Sandbox Intro Scenario",
+    "Midair Mix",
+    "Narrow Strafe",
+    "Night Lantern - @wa11p1per",
+    "POPCORN",
+    "Piano Tiles I 50% SLOW",
+    "Pressure Aiming - 10 Targets",
+    "Pressure Aiming - 7 Targets",
+    "Reactive Flick",
+    "Reflex Flick - Easy",
+    "Reflex Flick - Fair",
+    "Reflex Flick - Hard",
+    "Revolving Tracking",
+    "Skeet Tracking",
+    "Surge Tags Training Clicking",
+    "lgc3 Reborn Varied Easy Meso",
+    "mccoyfrozentrack"
+  ],
+  "without_supported_tags": [
+    "Aimerz+ Week #7 - Suavetrack",
+    "Fisher Simulator",
+    "Frog Simulator - @wa11p1per",
+    "Surge Tags Training Clicking",
+    "lgc3 Reborn Varied Easy Meso"
+  ],
+  "without_registered_family": [
+    "1wall 6targets small",
+    "1wall6targets TE",
+    "Aimerz+ Week #7 - Suavetrack",
+    "Cata IC Fast Strafes",
+    "Cata IC Long Strafes",
+    "Cata IC Pizz Plz LighthawkFPS",
+    "Cata Orb Fast Strafes",
+    "Cata Orb Long Strafes",
+    "Cockroach Simulator [with easter eggs]",
+    "Fisher Simulator",
+    "Frog Simulator - @wa11p1per",
+    "KovaaKs Sandbox Intro Scenario",
+    "Midair Mix",
+    "Narrow Strafe",
+    "Night Lantern - @wa11p1per",
+    "POPCORN",
+    "Piano Tiles I 50% SLOW",
+    "Pressure Aiming - 10 Targets",
+    "Pressure Aiming - 7 Targets",
+    "Reactive Flick",
+    "Reflex Flick - Easy",
+    "Reflex Flick - Fair",
+    "Reflex Flick - Hard",
+    "Revolving Tracking",
+    "Skeet Tracking",
+    "Surge Tags Training Clicking",
+    "lgc3 Reborn Varied Easy Meso",
+    "mccoyfrozentrack"
+  ],
+  "conditional_geometry_count": 12,
+  "absolute_geometry_missing_count": 58,
+  "version_binding_missing_count": 30,
+  "family_coverage": [
+    {
+      "family_candidate": "evoclick",
+      "scenario_count": 3,
+      "mechanism_strata": [
+        "evoclick"
+      ],
+      "benchmark_groups": [
+        821,
+        822,
+        823
+      ],
+      "controlled_size_only_pairs": 3
+    },
+    {
+      "family_candidate": "strawberryclick",
+      "scenario_count": 3,
+      "mechanism_strata": [
+        "strawberryclick"
+      ],
+      "benchmark_groups": [
+        821,
+        822,
+        823
+      ],
+      "controlled_size_only_pairs": 3
+    },
+    {
+      "family_candidate": "wall-micro",
+      "scenario_count": 4,
+      "mechanism_strata": [
+        "wall-micro"
+      ],
+      "benchmark_groups": [
+        2335,
+        2336,
+        2337,
+        2338
+      ],
+      "controlled_size_only_pairs": 1
+    },
+    {
+      "family_candidate": "wall-reload",
+      "scenario_count": 10,
+      "mechanism_strata": [
+        "wall-reload",
+        "wall-reload:pressure",
+        "wall-reload:vibration"
+      ],
+      "benchmark_groups": [
+        821,
+        822,
+        823,
+        2335,
+        2336,
+        2337,
+        2338
+      ],
+      "controlled_size_only_pairs": 1
+    },
+    {
+      "family_candidate": "wall-small",
+      "scenario_count": 3,
+      "mechanism_strata": [
+        "wall-small"
+      ],
+      "benchmark_groups": [
+        458,
+        459,
+        460,
+        2070
+      ],
+      "controlled_size_only_pairs": 0
+    },
+    {
+      "family_candidate": "wide-wall",
+      "scenario_count": 7,
+      "mechanism_strata": [
+        "wide-wall"
+      ],
+      "benchmark_groups": [
+        458,
+        459,
+        460,
+        2070,
+        2335,
+        2336,
+        2337,
+        2338
+      ],
+      "controlled_size_only_pairs": 0
+    }
+  ],
+  "model_identifiability": "three ordered tiers per family cannot identify many feature weights; begin with few features and controlled comparisons",
+  "scope": "first 30 targets cover clicking/flick candidates; uploaded extra exercises do not establish multi-tier tracking/switching coverage",
+  "cross_family_scale": "requires defensible bridge evidence; raw rank thresholds and playlist tiers alone do not define equal difficulty",
+  "user_material_required_now": [],
+  "sampling_decision": "finish current-family baseline before requesting additional files"
+}

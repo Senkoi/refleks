@@ -1,0 +1,120 @@
+{
+  "created_at": "2026-10-02T02:41:50.095340+00:00",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 27,
+      "sha256": "9783d76338fab97815e76af7434a889763a0470d26b2962744552a04c1fd1f38"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9136,
+      "sha256": "8dcea70eea89cdea6c304c16d3c607ceec28e2d9b1d9e3661be1a51118cdc7ce"
+    },
+    {
+      "path": "data/acquisition-summary.json",
+      "bytes": 423,
+      "sha256": "96ef4223bd10d8c8b3182bab9d6c23bb4645799bf0122c735ee90de0b19fdb70"
+    },
+    {
+      "path": "data/candidate-file-coverage.json",
+      "bytes": 175549,
+      "sha256": "100ad000761f5248f2776b5e341b3aa7ccbdfa37b3b591a76471d5d21589574a"
+    },
+    {
+      "path": "data/download-manifest.json",
+      "bytes": 25858,
+      "sha256": "d889f34219883a2fa996164f78e7f152d993e0dd2099f2d2676a0bce9f5c3ddf"
+    },
+    {
+      "path": "data/first-family-targets.json",
+      "bytes": 35341,
+      "sha256": "c63589f5ce51f5f65c970ac907f13ae8fd1462269746f5f208fed166cb5db425"
+    },
+    {
+      "path": "data/source-coverage.json",
+      "bytes": 1356,
+      "sha256": "ca8943d9f441065738eae133e793ca9f7ad46088d5f535c73827a44b3f78d058"
+    },
+    {
+      "path": "data/structure-extractions.json",
+      "bytes": 1230015,
+      "sha256": "e1d5d3f92d8f7df934260e3539fc0cb3f1323422813fe44f4d9912acb9d88fa0"
+    },
+    {
+      "path": "data/validation-results.json",
+      "bytes": 495,
+      "sha256": "a8d7203d1a26dbb46bc3d4dd416a1d73e5afb6228015d6eafe727e6e17cf02be"
+    },
+    {
+      "path": "data/vdim-official-playlist-catalog.json",
+      "bytes": 18717,
+      "sha256": "052e91bf595e75a53e1db4975bd38558a5daca473f57571518362efc414d398c"
+    },
+    {
+      "path": "data/vdim-secondary-scenario-leads.json",
+      "bytes": 104336,
+      "sha256": "60fab67187e030fd76c3b656d72f9cdcd3c720755e9c5d27973aeb20a7aa9efc"
+    },
+    {
+      "path": "data/workshop-candidates.json",
+      "bytes": 18439,
+      "sha256": "6a5f43161227eafeacd1c00d05dc35e9cf58690bdfc40a2fd7790eed2425da33"
+    },
+    {
+      "path": "data/workshop-file-metadata.json",
+      "bytes": 9626,
+      "sha256": "d4877a0cc512f55d1e76ab936b7687f36ba1ceec2295044506489b17b4af9f13"
+    },
+    {
+      "path": "first-family-names.txt",
+      "bytes": 707,
+      "sha256": "05b94eabc096715b6c2d1e2d052f92db0bbef3e12f8b57005735ff90113c79d1"
+    },
+    {
+      "path": "missing-current-pilot-names.txt",
+      "bytes": 1997,
+      "sha256": "f4afb877ba17a611b6e75df53160bb3559b66d50a6b01b7f36c5f32d95313256"
+    },
+    {
+      "path": "tools/build_sampling_targets.py",
+      "bytes": 2227,
+      "sha256": "253328a381bb45ddfff8c2d54a381f2f8b0d02b9a121fb565f41e1ba9cfd8192"
+    },
+    {
+      "path": "tools/capture_vdim.py",
+      "bytes": 5956,
+      "sha256": "e25a860d38b4e33f6c70ab942ec4bda89bf59dc108ee93431b405fc4242a0589"
+    },
+    {
+      "path": "tools/capture_workshop.py",
+      "bytes": 4692,
+      "sha256": "1aa15630e3c9bc2e5c220d8b127ca16861634351463e1563f4f2b702c94ad22a"
+    },
+    {
+      "path": "tools/collect_local_sce.ps1",
+      "bytes": 4400,
+      "sha256": "6180f9b585537c3ffa23f802a46f0a62dedcfc1ffae1388fadc6de35a0beb681"
+    },
+    {
+      "path": "tools/collect_public_sce.py",
+      "bytes": 7809,
+      "sha256": "c98d45339b72163d622975448cb946a97fbfc283c17eb9f54e63c4d05b1cd5d6"
+    },
+    {
+      "path": "tools/sce_extract.py",
+      "bytes": 8104,
+      "sha256": "8ac5e3fba050cc8ce53a08867c786f84e9e91e85768e541d3d776071f994811b"
+    },
+    {
+      "path": "tools/test_sce_extract.py",
+      "bytes": 4443,
+      "sha256": "f1d65861695837d5182347d349135bc2c68702c2e27c7b12489771f22b4785f3"
+    },
+    {
+      "path": "tools/validate_acquisition.py",
+      "bytes": 3432,
+      "sha256": "890ca994a559cd48d59aa5d188781915535a83770022c2910d88d5e6c1e4e662"
+    }
+  ]
+}

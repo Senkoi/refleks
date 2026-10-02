@@ -1,0 +1,5286 @@
+[
+  {
+    "scenario_name": "VT Pasu Novice S5",
+    "leaderboard_id": 98059,
+    "family_candidate": "vt-pasu",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Popcorn Novice S5",
+    "leaderboard_id": 98285,
+    "family_candidate": "vt-popcorn",
+    "leakage_group_candidate": "popcorn-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT 1w4ts Novice S5",
+    "leaderboard_id": 103210,
+    "family_candidate": "wall-small",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT ww5t Novice S5",
+    "leaderboard_id": 98030,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Frogtagon Novice S5",
+    "leaderboard_id": 106186,
+    "family_candidate": "frogtagon",
+    "leakage_group_candidate": "frogtagon",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Clicking",
+          "Linear"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Floating Heads Novice S5",
+    "leaderboard_id": 98054,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Clicking",
+          "Linear"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT PGT Novice S5",
+    "leaderboard_id": 98060,
+    "family_candidate": "vt-pgt",
+    "leakage_group_candidate": "pgt-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Snake Track Novice S5",
+    "leaderboard_id": 101560,
+    "family_candidate": "snake-track",
+    "leakage_group_candidate": "snake-track",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Aether Novice S5",
+    "leaderboard_id": 101370,
+    "family_candidate": "aether",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Ground Novice S5",
+    "leaderboard_id": 101744,
+    "family_candidate": "vt-ground",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Raw Control Novice S5",
+    "leaderboard_id": 98047,
+    "family_candidate": "vt-raw-control",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Tracking",
+          "Control"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Controlsphere Novice S5",
+    "leaderboard_id": 103765,
+    "family_candidate": "vt-controlsphere",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Tracking",
+          "Control"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT DotTS Novice S5",
+    "leaderboard_id": 104868,
+    "family_candidate": "dotts",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT EddieTS Novice S5",
+    "leaderboard_id": 104835,
+    "family_candidate": "eddiets",
+    "leakage_group_candidate": "eddiets",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT DriftTS Novice S5",
+    "leaderboard_id": 104862,
+    "family_candidate": "driftts",
+    "leakage_group_candidate": "driftts",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT FlyTS Novice S5",
+    "leaderboard_id": 104830,
+    "family_candidate": "flyts",
+    "leakage_group_candidate": "flyts",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT ControlTS Novice S5",
+    "leaderboard_id": 105132,
+    "family_candidate": "controlts",
+    "leakage_group_candidate": "controlts",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Switching",
+          "Stability"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Penta Bounce Novice S5",
+    "leaderboard_id": 103262,
+    "family_candidate": "penta-bounce",
+    "leakage_group_candidate": "penta-bounce",
+    "memberships": [
+      {
+        "benchmark_id": 459,
+        "native_category_path": [
+          "Switching",
+          "Stability"
+        ],
+        "tier": "Novice"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Pasu Intermediate S5",
+    "leaderboard_id": 98330,
+    "family_candidate": "vt-pasu",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Popcorn Intermediate S5",
+    "leaderboard_id": 98333,
+    "family_candidate": "vt-popcorn",
+    "leakage_group_candidate": "popcorn-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT 1w3ts Intermediate S5",
+    "leaderboard_id": 103209,
+    "family_candidate": "wall-small",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT ww5t Intermediate S5",
+    "leaderboard_id": 98029,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Frogtagon Intermediate S5",
+    "leaderboard_id": 105828,
+    "family_candidate": "frogtagon",
+    "leakage_group_candidate": "frogtagon",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Clicking",
+          "Linear"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Floating Heads Intermediate S5",
+    "leaderboard_id": 98055,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Clicking",
+          "Linear"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT PGT Intermediate S5",
+    "leaderboard_id": 98331,
+    "family_candidate": "vt-pgt",
+    "leakage_group_candidate": "pgt-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Snake Track Intermediate S5",
+    "leaderboard_id": 98045,
+    "family_candidate": "snake-track",
+    "leakage_group_candidate": "snake-track",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Aether Intermediate S5",
+    "leaderboard_id": 101369,
+    "family_candidate": "aether",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Ground Intermediate S5",
+    "leaderboard_id": 101743,
+    "family_candidate": "vt-ground",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Raw Control Intermediate S5",
+    "leaderboard_id": 98048,
+    "family_candidate": "vt-raw-control",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Tracking",
+          "Control"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Controlsphere Intermediate S5",
+    "leaderboard_id": 103353,
+    "family_candidate": "vt-controlsphere",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Tracking",
+          "Control"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT DotTS Intermediate S5",
+    "leaderboard_id": 104865,
+    "family_candidate": "dotts",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT EddieTS Intermediate S5",
+    "leaderboard_id": 105176,
+    "family_candidate": "eddiets",
+    "leakage_group_candidate": "eddiets",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT DriftTS Intermediate S5",
+    "leaderboard_id": 104863,
+    "family_candidate": "driftts",
+    "leakage_group_candidate": "driftts",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT FlyTS Intermediate S5",
+    "leaderboard_id": 105142,
+    "family_candidate": "flyts",
+    "leakage_group_candidate": "flyts",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT ControlTS Intermediate S5",
+    "leaderboard_id": 104890,
+    "family_candidate": "controlts",
+    "leakage_group_candidate": "controlts",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Switching",
+          "Stability"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Penta Bounce Intermediate S5",
+    "leaderboard_id": 103261,
+    "family_candidate": "penta-bounce",
+    "leakage_group_candidate": "penta-bounce",
+    "memberships": [
+      {
+        "benchmark_id": 458,
+        "native_category_path": [
+          "Switching",
+          "Stability"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Pasu Advanced S5",
+    "leaderboard_id": 98023,
+    "family_candidate": "vt-pasu",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Popcorn Advanced S5",
+    "leaderboard_id": 98024,
+    "family_candidate": "vt-popcorn",
+    "leakage_group_candidate": "popcorn-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT 1w2ts Advanced S5",
+    "leaderboard_id": 98025,
+    "family_candidate": "wall-small",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT ww5t Advanced S5",
+    "leaderboard_id": 98026,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Frogtagon Advanced S5",
+    "leaderboard_id": 105776,
+    "family_candidate": "frogtagon",
+    "leakage_group_candidate": "frogtagon",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Clicking",
+          "Linear"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Clicking",
+          "Linear"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Floating Heads Advanced S5",
+    "leaderboard_id": 98012,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Clicking",
+          "Linear"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Clicking",
+          "Linear"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT PGT Advanced S5",
+    "leaderboard_id": 98255,
+    "family_candidate": "vt-pgt",
+    "leakage_group_candidate": "pgt-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Snake Track Advanced S5",
+    "leaderboard_id": 98297,
+    "family_candidate": "snake-track",
+    "leakage_group_candidate": "snake-track",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Aether Advanced S5",
+    "leaderboard_id": 100140,
+    "family_candidate": "aether",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Ground Advanced S5",
+    "leaderboard_id": 100768,
+    "family_candidate": "vt-ground",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Raw Control Advanced S5",
+    "leaderboard_id": 98253,
+    "family_candidate": "vt-raw-control",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Tracking",
+          "Control"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Tracking",
+          "Control"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Controlsphere Advanced S5",
+    "leaderboard_id": 103114,
+    "family_candidate": "vt-controlsphere",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Tracking",
+          "Control"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Tracking",
+          "Control"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT DotTS Advanced S5",
+    "leaderboard_id": 104961,
+    "family_candidate": "dotts",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT EddieTS Advanced S5",
+    "leaderboard_id": 104864,
+    "family_candidate": "eddiets",
+    "leakage_group_candidate": "eddiets",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT DriftTS Advanced S5",
+    "leaderboard_id": 104866,
+    "family_candidate": "driftts",
+    "leakage_group_candidate": "driftts",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT FlyTS Advanced S5",
+    "leaderboard_id": 105143,
+    "family_candidate": "flyts",
+    "leakage_group_candidate": "flyts",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT ControlTS Advanced S5",
+    "leaderboard_id": 104833,
+    "family_candidate": "controlts",
+    "leakage_group_candidate": "controlts",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Switching",
+          "Stability"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Switching",
+          "Stability"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Penta Bounce Advanced S5",
+    "leaderboard_id": 98619,
+    "family_candidate": "penta-bounce",
+    "leakage_group_candidate": "penta-bounce",
+    "memberships": [
+      {
+        "benchmark_id": 460,
+        "native_category_path": [
+          "Switching",
+          "Stability"
+        ],
+        "tier": "Advanced"
+      },
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Switching",
+          "Stability"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT domiClick Advanced S5",
+    "leaderboard_id": 200664,
+    "family_candidate": "domiclick",
+    "leakage_group_candidate": "domiclick",
+    "memberships": [
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Air Angelic Advanced S5",
+    "leaderboard_id": 200696,
+    "family_candidate": "air-angelic",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT voxTS Advanced S5",
+    "leaderboard_id": 174654,
+    "family_candidate": "vt-voxts",
+    "leakage_group_candidate": "voxts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT AvasiveTS Advanced S5",
+    "leaderboard_id": 173542,
+    "family_candidate": "avasivets",
+    "leakage_group_candidate": "avasivets",
+    "memberships": [
+      {
+        "benchmark_id": 2070,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Smoothsphere Viscose Easier",
+    "leaderboard_id": 185342,
+    "family_candidate": "smoothsphere",
+    "leakage_group_candidate": "smoothsphere",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Whisphere Viscose Easier",
+    "leaderboard_id": 185346,
+    "family_candidate": "whisphere",
+    "leakage_group_candidate": "whisphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SmoothBot Perfected Easier",
+    "leaderboard_id": 184652,
+    "family_candidate": "smoothbot-perfected",
+    "leakage_group_candidate": "smoothbot-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Leapstrafes Control wobin Easier",
+    "leaderboard_id": 185344,
+    "family_candidate": "leapstrafes",
+    "leakage_group_candidate": "leapstrafes-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Controlsphere SuperbAim Viscose Easier",
+    "leaderboard_id": 185345,
+    "family_candidate": "controlsphere-superbaim",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Controlsphere Viscose Easier",
+    "leaderboard_id": 184157,
+    "family_candidate": "vt-controlsphere",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Angelic 4 Voltaic Easy 70%",
+    "leaderboard_id": 14155,
+    "family_candidate": "air-angelic",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "cloverRawControl Viscose Easier 50cm",
+    "leaderboard_id": 185349,
+    "family_candidate": "cloverrawcontrol",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Flower Easier 50cm",
+    "leaderboard_id": 185354,
+    "family_candidate": "flower",
+    "leakage_group_candidate": "flower",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "PGTI Voltaic Easy Smoother",
+    "leaderboard_id": 184878,
+    "family_candidate": "pgti",
+    "leakage_group_candidate": "pgt-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air CELESTIAL No UFO Easier",
+    "leaderboard_id": 185640,
+    "family_candidate": "air-celestial",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "RawControlSphere Easier",
+    "leaderboard_id": 185356,
+    "family_candidate": "rawcontrolsphere",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Ground Plaza Sparky v3 Easy",
+    "leaderboard_id": 134502,
+    "family_candidate": "ground-plaza",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Control"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Spectral Easy 85%",
+    "leaderboard_id": 185693,
+    "family_candidate": "air-spectral",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Control"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Aether Bot 1 Easier",
+    "leaderboard_id": 186530,
+    "family_candidate": "aether",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Speed"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plink Palace Easy Less Blinks",
+    "leaderboard_id": 184534,
+    "family_candidate": "plink-palace",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Speed"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Pure Easier No UFO",
+    "leaderboard_id": 185405,
+    "family_candidate": "air-pure",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Reading"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Voltaic Invincible 4 Easier",
+    "leaderboard_id": 185406,
+    "family_candidate": "air-voltaic",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Reading"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "ww5t Voltaic Slightly Larger",
+    "leaderboard_id": 185378,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "voxTargetSwitch 2 Large",
+    "leaderboard_id": 84880,
+    "family_candidate": "voxtargetswitch-2",
+    "leakage_group_candidate": "voxts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "aimerz+ Static Switching 6 Bot Slightly Larger",
+    "leaderboard_id": 185407,
+    "family_candidate": "aimerz-static-switching",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w6ts reload v2 20% bigger",
+    "leaderboard_id": 21620,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "beanTS Larger",
+    "leaderboard_id": 129353,
+    "family_candidate": "beants",
+    "leakage_group_candidate": "beants",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "StaticSwitchingVox",
+    "leaderboard_id": 15659,
+    "family_candidate": "static-switching-vox",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks larger",
+    "leaderboard_id": 185518,
+    "family_candidate": "wall-micro",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "eth Pasu Micro Easier",
+    "leaderboard_id": 185394,
+    "family_candidate": "eth-pasu-micro",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "waldoTS Novice",
+    "leaderboard_id": 113019,
+    "family_candidate": "waldots",
+    "leakage_group_candidate": "waldots",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "kinTS Voltaic Easy 85%",
+    "leaderboard_id": 185408,
+    "family_candidate": "kints",
+    "leakage_group_candidate": "kints",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "domiSwitch Easier",
+    "leaderboard_id": 185428,
+    "family_candidate": "domiswitch",
+    "leakage_group_candidate": "domiswitch",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "B180T Voltaic Easy Slower",
+    "leaderboard_id": 185571,
+    "family_candidate": "b180t",
+    "leakage_group_candidate": "bounce180-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Pasu Voltaic Reload Easier",
+    "leaderboard_id": 185636,
+    "family_candidate": "pasu-voltaic-reload",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Bounceshot Viscose Easier",
+    "leaderboard_id": 185392,
+    "family_candidate": "bounceshot",
+    "leakage_group_candidate": "bounceshot",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "CatClick Easier",
+    "leaderboard_id": 184866,
+    "family_candidate": "catclick",
+    "leakage_group_candidate": "catclick",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w3ts Pasu Perfected Micro Goated Larger 80%",
+    "leaderboard_id": 128920,
+    "family_candidate": "pasu-perfect-micro",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Popcorn MV Easier",
+    "leaderboard_id": 185398,
+    "family_candidate": "popcorn",
+    "leakage_group_candidate": "popcorn-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "skyClick Goated Easier",
+    "leaderboard_id": 185490,
+    "family_candidate": "skyclick",
+    "leakage_group_candidate": "skyclick",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VoxTS Click Easier",
+    "leaderboard_id": 136076,
+    "family_candidate": "voxts-click",
+    "leakage_group_candidate": "voxts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Floating Heads Viscose Easier",
+    "leaderboard_id": 185409,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "psalmTS Viscose Click Easier",
+    "leaderboard_id": 185609,
+    "family_candidate": "psalmts-click",
+    "leakage_group_candidate": "psalmts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2335,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Easier"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Smoothsphere Viscose",
+    "leaderboard_id": 184106,
+    "family_candidate": "smoothsphere",
+    "leakage_group_candidate": "smoothsphere",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Whisphere Viscose",
+    "leaderboard_id": 184107,
+    "family_candidate": "whisphere",
+    "leakage_group_candidate": "whisphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SmoothBot Perfected",
+    "leaderboard_id": 184298,
+    "family_candidate": "smoothbot-perfected",
+    "leakage_group_candidate": "smoothbot-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Leapstrafes Control wobin",
+    "leaderboard_id": 184561,
+    "family_candidate": "leapstrafes",
+    "leakage_group_candidate": "leapstrafes-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Controlsphere SuperbAim Viscose",
+    "leaderboard_id": 184352,
+    "family_candidate": "controlsphere-superbaim",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Controlsphere Viscose",
+    "leaderboard_id": 184153,
+    "family_candidate": "vt-controlsphere",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Angelic 4 Voltaic Easy 90%",
+    "leaderboard_id": 13692,
+    "family_candidate": "air-angelic",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "cloverRawControl Viscose 50cm",
+    "leaderboard_id": 184567,
+    "family_candidate": "cloverrawcontrol",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Flower 50cm",
+    "leaderboard_id": 184580,
+    "family_candidate": "flower",
+    "leakage_group_candidate": "flower",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT PreciseOrb Intermediate 15% Slower",
+    "leaderboard_id": 41595,
+    "family_candidate": "preciseorb",
+    "leakage_group_candidate": "preciseorb",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air CELESTIAL No UFO Medium",
+    "leaderboard_id": 184763,
+    "family_candidate": "air-celestial",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "RawControlSphere",
+    "leaderboard_id": 184301,
+    "family_candidate": "rawcontrolsphere",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Ground Plaza Sparky V3",
+    "leaderboard_id": 517,
+    "family_candidate": "ground-plaza",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Control"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Spectral Easy",
+    "leaderboard_id": 143228,
+    "family_candidate": "air-spectral",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Control"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Aether Novice S5 Hard Bot 1 90%",
+    "leaderboard_id": 184784,
+    "family_candidate": "aether",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Speed"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plink Palace Easy",
+    "leaderboard_id": 184526,
+    "family_candidate": "plink-palace",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Speed"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Pure Medium",
+    "leaderboard_id": 184766,
+    "family_candidate": "air-pure",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Reading"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Voltaic Invincible 4 Medium",
+    "leaderboard_id": 184775,
+    "family_candidate": "air-voltaic",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Reading"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "ww4t Voltaic",
+    "leaderboard_id": 23921,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "voxTargetSwitch 2",
+    "leaderboard_id": 551,
+    "family_candidate": "voxtargetswitch-2",
+    "leakage_group_candidate": "voxts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "aimerz+ Static Switching 5 Bot Slightly Larger",
+    "leaderboard_id": 185211,
+    "family_candidate": "aimerz-static-switching",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w6ts reload v2",
+    "leaderboard_id": 666,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "beanTS",
+    "leaderboard_id": 2648,
+    "family_candidate": "beants",
+    "leakage_group_candidate": "beants",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "StaticSwitchingVox Small",
+    "leaderboard_id": 15662,
+    "family_candidate": "static-switching-vox",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks slightly larger",
+    "leaderboard_id": 184777,
+    "family_candidate": "wall-micro",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "eth Pasu Micro Medium",
+    "leaderboard_id": 184790,
+    "family_candidate": "eth-pasu-micro",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "waldoTS Intermediate",
+    "leaderboard_id": 111273,
+    "family_candidate": "waldots",
+    "leakage_group_candidate": "waldots",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "kinTS Voltaic Easy",
+    "leaderboard_id": 542,
+    "family_candidate": "kints",
+    "leakage_group_candidate": "kints",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "domiSwitch Easy",
+    "leaderboard_id": 83043,
+    "family_candidate": "domiswitch",
+    "leakage_group_candidate": "domiswitch",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "B180T Voltaic Easy",
+    "leaderboard_id": 543,
+    "family_candidate": "b180t",
+    "leakage_group_candidate": "bounce180-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Pasu Voltaic Reload Easy",
+    "leaderboard_id": 163323,
+    "family_candidate": "pasu-voltaic-reload",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Bounceshot Viscose Medium",
+    "leaderboard_id": 185237,
+    "family_candidate": "bounceshot",
+    "leakage_group_candidate": "bounceshot",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "CatClick Medium",
+    "leaderboard_id": 184780,
+    "family_candidate": "catclick",
+    "leakage_group_candidate": "catclick",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w3ts Pasu Perfected Micro Goated Larger",
+    "leaderboard_id": 125923,
+    "family_candidate": "pasu-perfect-micro",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Popcorn MV Medium",
+    "leaderboard_id": 184781,
+    "family_candidate": "popcorn",
+    "leakage_group_candidate": "popcorn-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "skyClick Goated Medium",
+    "leaderboard_id": 185491,
+    "family_candidate": "skyclick",
+    "leakage_group_candidate": "skyclick",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VoxTS Click Medium",
+    "leaderboard_id": 136098,
+    "family_candidate": "voxts-click",
+    "leakage_group_candidate": "voxts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Floating Heads Viscose Medium",
+    "leaderboard_id": 184827,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "psalmTS Viscose Click",
+    "leaderboard_id": 185603,
+    "family_candidate": "psalmts-click",
+    "leakage_group_candidate": "psalmts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2336,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Medium"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Smoothsphere Viscose Hard",
+    "leaderboard_id": 184518,
+    "family_candidate": "smoothsphere",
+    "leakage_group_candidate": "smoothsphere",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Whisphere Viscose Hard",
+    "leaderboard_id": 185238,
+    "family_candidate": "whisphere",
+    "leakage_group_candidate": "whisphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SmoothBot Perfected Hard",
+    "leaderboard_id": 184347,
+    "family_candidate": "smoothbot-perfected",
+    "leakage_group_candidate": "smoothbot-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Leapstrafes Control wobin Hard",
+    "leaderboard_id": 184845,
+    "family_candidate": "leapstrafes",
+    "leakage_group_candidate": "leapstrafes-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Controlsphere SuperbAim Viscose Hard",
+    "leaderboard_id": 184502,
+    "family_candidate": "controlsphere-superbaim",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Controlsphere Viscose Hard",
+    "leaderboard_id": 184152,
+    "family_candidate": "vt-controlsphere",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Angelic 4 Voltaic 90%",
+    "leaderboard_id": 2537,
+    "family_candidate": "air-angelic",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "cloverRawControl Viscose Hard 50cm",
+    "leaderboard_id": 184568,
+    "family_candidate": "cloverrawcontrol",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Flower Hard 50cm",
+    "leaderboard_id": 184591,
+    "family_candidate": "flower",
+    "leakage_group_candidate": "flower",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "PGTI Voltaic Slower - 80%",
+    "leaderboard_id": 509,
+    "family_candidate": "pgti",
+    "leakage_group_candidate": "pgt-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air CELESTIAL Harder",
+    "leaderboard_id": 185225,
+    "family_candidate": "air-celestial",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "RawControlSphere Hard",
+    "leaderboard_id": 184794,
+    "family_candidate": "rawcontrolsphere",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Ground Plaza Sparky V3 Viscose Hard",
+    "leaderboard_id": 184795,
+    "family_candidate": "ground-plaza",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Control"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Spectral",
+    "leaderboard_id": 142893,
+    "family_candidate": "air-spectral",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Control"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Aether Intermediate S5 Hard Bot 1",
+    "leaderboard_id": 140200,
+    "family_candidate": "aether",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Speed"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plink Palace",
+    "leaderboard_id": 184516,
+    "family_candidate": "plink-palace",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Speed"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Pure Hard",
+    "leaderboard_id": 185019,
+    "family_candidate": "air-pure",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Reading"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Voltaic Invincible 4 Slightly Slower",
+    "leaderboard_id": 185402,
+    "family_candidate": "air-voltaic",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Reading"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "ww3t Voltaic",
+    "leaderboard_id": 68,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "voxTargetSwitch 2 10% Smaller",
+    "leaderboard_id": 185192,
+    "family_candidate": "voxtargetswitch-2",
+    "leakage_group_candidate": "voxts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "aimerz+ Static Switching 5 Bot",
+    "leaderboard_id": 184753,
+    "family_candidate": "aimerz-static-switching",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w5ts reload",
+    "leaderboard_id": 2308,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "beanTS 200%",
+    "leaderboard_id": 58888,
+    "family_candidate": "beants",
+    "leakage_group_candidate": "beants",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "StaticSwitchingVox xSmall",
+    "leaderboard_id": 15766,
+    "family_candidate": "static-switching-vox",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks",
+    "leaderboard_id": 36,
+    "family_candidate": "wall-micro",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "eth Pasu Micro Hard",
+    "leaderboard_id": 185017,
+    "family_candidate": "eth-pasu-micro",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "waldoTS",
+    "leaderboard_id": 81042,
+    "family_candidate": "waldots",
+    "leakage_group_candidate": "waldots",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "kinTS Voltaic",
+    "leaderboard_id": 604,
+    "family_candidate": "kints",
+    "leakage_group_candidate": "kints",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "domiSwitch",
+    "leaderboard_id": 83035,
+    "family_candidate": "domiswitch",
+    "leakage_group_candidate": "domiswitch",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "B180T Voltaic",
+    "leaderboard_id": 947,
+    "family_candidate": "b180t",
+    "leakage_group_candidate": "bounce180-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Pasu Voltaic Reload",
+    "leaderboard_id": 10412,
+    "family_candidate": "pasu-voltaic-reload",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Bounceshot Viscose Hard",
+    "leaderboard_id": 185230,
+    "family_candidate": "bounceshot",
+    "leakage_group_candidate": "bounceshot",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "CatClick",
+    "leaderboard_id": 179408,
+    "family_candidate": "catclick",
+    "leakage_group_candidate": "catclick",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w3ts Pasu Perfected Micro Goated",
+    "leaderboard_id": 65396,
+    "family_candidate": "pasu-perfect-micro",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Popcorn MV Hard",
+    "leaderboard_id": 185400,
+    "family_candidate": "popcorn",
+    "leakage_group_candidate": "popcorn-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "skyClick Goated Hard",
+    "leaderboard_id": 185492,
+    "family_candidate": "skyclick",
+    "leakage_group_candidate": "skyclick",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VoxTS Click Medium 10% Smaller",
+    "leaderboard_id": 185015,
+    "family_candidate": "voxts-click",
+    "leakage_group_candidate": "voxts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Floating Heads Viscose Hard",
+    "leaderboard_id": 184829,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "psalmTS Viscose Click Hard",
+    "leaderboard_id": 185604,
+    "family_candidate": "psalmts-click",
+    "leakage_group_candidate": "psalmts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2337,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Hard"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Smoothsphere Viscose Expert",
+    "leaderboard_id": 184830,
+    "family_candidate": "smoothsphere",
+    "leakage_group_candidate": "smoothsphere",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Whisphere Viscose Expert",
+    "leaderboard_id": 185239,
+    "family_candidate": "whisphere",
+    "leakage_group_candidate": "whisphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SmoothBot Perfected Expert",
+    "leaderboard_id": 184832,
+    "family_candidate": "smoothbot-perfected",
+    "leakage_group_candidate": "smoothbot-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Arm"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Leapstrafes Control wobin Expert",
+    "leaderboard_id": 185014,
+    "family_candidate": "leapstrafes",
+    "leakage_group_candidate": "leapstrafes-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Controlsphere SuperbAim Viscose Expert",
+    "leaderboard_id": 184836,
+    "family_candidate": "controlsphere-superbaim",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Controlsphere Viscose Expert",
+    "leaderboard_id": 184831,
+    "family_candidate": "vt-controlsphere",
+    "leakage_group_candidate": "controlsphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Wrist"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Angelic 4 Voltaic Slightly Smaller",
+    "leaderboard_id": 184839,
+    "family_candidate": "air-angelic",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "cloverRawControl Viscose Expert 50cm",
+    "leaderboard_id": 184840,
+    "family_candidate": "cloverrawcontrol",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Flower Expert 50cm",
+    "leaderboard_id": 184842,
+    "family_candidate": "flower",
+    "leakage_group_candidate": "flower",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Fingertip"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "PGTI Voltaic",
+    "leaderboard_id": 99,
+    "family_candidate": "pgti",
+    "leakage_group_candidate": "pgt-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air CELESTIAL Expert",
+    "leaderboard_id": 185401,
+    "family_candidate": "air-celestial",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "RawControlSphere Expert",
+    "leaderboard_id": 184846,
+    "family_candidate": "rawcontrolsphere",
+    "leakage_group_candidate": "raw-control-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Control Tracking",
+          "Blending"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Ground Plaza Sparky V3 Thin",
+    "leaderboard_id": 1408,
+    "family_candidate": "ground-plaza",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Control"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Spectral Harder",
+    "leaderboard_id": 185018,
+    "family_candidate": "air-spectral",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Control"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Aether Advanced S5 bot 1",
+    "leaderboard_id": 106773,
+    "family_candidate": "aether",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Speed"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plink Palace Hard",
+    "leaderboard_id": 184869,
+    "family_candidate": "plink-palace",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Speed"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Pure",
+    "leaderboard_id": 13213,
+    "family_candidate": "air-pure",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Reading"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Voltaic Invincible 4",
+    "leaderboard_id": 1092,
+    "family_candidate": "air-voltaic",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Reactive Tracking",
+          "Reading"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "ww3t Voltaic 10% Smaller",
+    "leaderboard_id": 92573,
+    "family_candidate": "wide-wall",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "voxTargetSwitch 2 20% Smaller",
+    "leaderboard_id": 89093,
+    "family_candidate": "voxtargetswitch-2",
+    "leakage_group_candidate": "voxts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "aimerz+ Static Switching",
+    "leaderboard_id": 54520,
+    "family_candidate": "aimerz-static-switching",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Speed"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w4ts Voltaic",
+    "leaderboard_id": 319,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "beanTS 200% Slightly Smaller",
+    "leaderboard_id": 185022,
+    "family_candidate": "beants",
+    "leakage_group_candidate": "beants",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "StaticSwitchingVox xxSmall",
+    "leaderboard_id": 18203,
+    "family_candidate": "static-switching-vox",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Stability"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks 25% smaller",
+    "leaderboard_id": 32659,
+    "family_candidate": "wall-micro",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "eth Pasu Micro Expert",
+    "leaderboard_id": 185223,
+    "family_candidate": "eth-pasu-micro",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "waldoTS Elite",
+    "leaderboard_id": 111257,
+    "family_candidate": "waldots",
+    "leakage_group_candidate": "waldots",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Micro"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "kinTS Voltaic Elite",
+    "leaderboard_id": 100251,
+    "family_candidate": "kints",
+    "leakage_group_candidate": "kints",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "domiSwitch Harder",
+    "leaderboard_id": 185226,
+    "family_candidate": "domiswitch",
+    "leakage_group_candidate": "domiswitch",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "B180T Voltaic 15% Smaller",
+    "leaderboard_id": 16045,
+    "family_candidate": "b180t",
+    "leakage_group_candidate": "bounce180-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Flick Tech",
+          "Post-Flick"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Pasu Voltaic Reload 15% Smaller",
+    "leaderboard_id": 185233,
+    "family_candidate": "pasu-voltaic-reload",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Bounceshot Viscose Expert",
+    "leaderboard_id": 185236,
+    "family_candidate": "bounceshot",
+    "leakage_group_candidate": "bounceshot",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "CatClick Harder",
+    "leaderboard_id": 184865,
+    "family_candidate": "catclick",
+    "leakage_group_candidate": "catclick",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Click Timing",
+          "Reading"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w3ts Pasu Perfected Micro Goated 10% small",
+    "leaderboard_id": 172862,
+    "family_candidate": "pasu-perfect-micro",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Popcorn MV Advanced",
+    "leaderboard_id": 76966,
+    "family_candidate": "popcorn",
+    "leakage_group_candidate": "popcorn-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "skyClick Goated Expert",
+    "leaderboard_id": 185489,
+    "family_candidate": "skyclick",
+    "leakage_group_candidate": "skyclick",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Click Timing",
+          "Precision"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VoxTS Click Hard",
+    "leaderboard_id": 136746,
+    "family_candidate": "voxts-click",
+    "leakage_group_candidate": "voxts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VT Floating Heads Viscose Expert",
+    "leaderboard_id": 185221,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "psalmTS Viscose Click Expert",
+    "leaderboard_id": 185607,
+    "family_candidate": "psalmts-click",
+    "leakage_group_candidate": "psalmts-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 2338,
+        "native_category_path": [
+          "Click Timing",
+          "Stability"
+        ],
+        "tier": "Expert"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "EvoClick Revosect Entry",
+    "leaderboard_id": 142851,
+    "family_candidate": "evoclick",
+    "leakage_group_candidate": "evoclick",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect Entry",
+    "leaderboard_id": 142853,
+    "family_candidate": "strawberryclick",
+    "leakage_group_candidate": "strawberryclick",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect Entry",
+    "leaderboard_id": 142873,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect Entry",
+    "leaderboard_id": 142878,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Pasu Revosect Entry",
+    "leaderboard_id": 142881,
+    "family_candidate": "pasu-revosect",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SpringClick Revosect Entry",
+    "leaderboard_id": 142898,
+    "family_candidate": "springclick",
+    "leakage_group_candidate": "spring-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SnowClick Revosect Entry",
+    "leaderboard_id": 142900,
+    "family_candidate": "snowclick",
+    "leakage_group_candidate": "snowclick",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Floating Heads Revosect Entry",
+    "leaderboard_id": 142902,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "FloodTrack Revosect Entry",
+    "leaderboard_id": 142826,
+    "family_candidate": "floodtrack",
+    "leakage_group_candidate": "floodtrack",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VTP Revosect Entry",
+    "leaderboard_id": 142831,
+    "family_candidate": "vtp",
+    "leakage_group_candidate": "vtp",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Tornadosphere Revosect Entry",
+    "leaderboard_id": 142822,
+    "family_candidate": "tornadosphere",
+    "leakage_group_candidate": "tornadosphere",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Leapstrafes Revosect Entry",
+    "leaderboard_id": 142829,
+    "family_candidate": "leapstrafes",
+    "leakage_group_candidate": "leapstrafes-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plaza Pure Revosect Entry",
+    "leaderboard_id": 142843,
+    "family_candidate": "plaza-pure",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plaza Smooth Revosect Entry",
+    "leaderboard_id": 142847,
+    "family_candidate": "plaza-smooth",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Pure Revosect Entry",
+    "leaderboard_id": 142837,
+    "family_candidate": "air-pure",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Smooth Revosect Entry",
+    "leaderboard_id": 142839,
+    "family_candidate": "air-smooth",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "AngleSwitch Revosect Entry",
+    "leaderboard_id": 143238,
+    "family_candidate": "angleswitch",
+    "leakage_group_candidate": "angleswitch",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "DotSwitch Revosect Entry",
+    "leaderboard_id": 143241,
+    "family_candidate": "dotswitch",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "NovaSwitch Revosect Entry",
+    "leaderboard_id": 143231,
+    "family_candidate": "novaswitch",
+    "leakage_group_candidate": "novaswitch",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "WaveSwitch Revosect Entry",
+    "leaderboard_id": 142903,
+    "family_candidate": "waveswitch",
+    "leakage_group_candidate": "waveswitch",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SpringTS Revosect Entry",
+    "leaderboard_id": 143242,
+    "family_candidate": "spring-ts",
+    "leakage_group_candidate": "spring-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "WhisphereTS Revosect Entry",
+    "leaderboard_id": 142906,
+    "family_candidate": "whisphere",
+    "leakage_group_candidate": "whisphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "PasuTS Revosect Entry",
+    "leaderboard_id": 143244,
+    "family_candidate": "pasu-ts",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SmoothTS Revosect Entry",
+    "leaderboard_id": 142911,
+    "family_candidate": "smooth-ts",
+    "leakage_group_candidate": "smooth-ts",
+    "memberships": [
+      {
+        "benchmark_id": 823,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Entry"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "EvoClick Revosect Int",
+    "leaderboard_id": 142850,
+    "family_candidate": "evoclick",
+    "leakage_group_candidate": "evoclick",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect Int",
+    "leaderboard_id": 142852,
+    "family_candidate": "strawberryclick",
+    "leakage_group_candidate": "strawberryclick",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect Int",
+    "leaderboard_id": 142874,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect Int",
+    "leaderboard_id": 143201,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Pasu Revosect Int",
+    "leaderboard_id": 143200,
+    "family_candidate": "pasu-revosect",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SpringClick Revosect Int",
+    "leaderboard_id": 143204,
+    "family_candidate": "springclick",
+    "leakage_group_candidate": "spring-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SnowClick Revosect Int",
+    "leaderboard_id": 142899,
+    "family_candidate": "snowclick",
+    "leakage_group_candidate": "snowclick",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Floating Heads Revosect Int",
+    "leaderboard_id": 142901,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "FloodTrack Revosect Int",
+    "leaderboard_id": 142824,
+    "family_candidate": "floodtrack",
+    "leakage_group_candidate": "floodtrack",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VTP Revosect Int",
+    "leaderboard_id": 142830,
+    "family_candidate": "vtp",
+    "leakage_group_candidate": "vtp",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Tornadosphere Revosect Int",
+    "leaderboard_id": 142821,
+    "family_candidate": "tornadosphere",
+    "leakage_group_candidate": "tornadosphere",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Leapstrafes Revosect Int",
+    "leaderboard_id": 142828,
+    "family_candidate": "leapstrafes",
+    "leakage_group_candidate": "leapstrafes-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plaza Pure Revosect Int",
+    "leaderboard_id": 142844,
+    "family_candidate": "plaza-pure",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plaza Smooth Revosect Int",
+    "leaderboard_id": 142848,
+    "family_candidate": "plaza-smooth",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Pure Revosect Int",
+    "leaderboard_id": 142834,
+    "family_candidate": "air-pure",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Smooth Revosect Int",
+    "leaderboard_id": 142840,
+    "family_candidate": "air-smooth",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "AngleSwitch Revosect Int",
+    "leaderboard_id": 143207,
+    "family_candidate": "angleswitch",
+    "leakage_group_candidate": "angleswitch",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "DotSwitch Revosect Int",
+    "leaderboard_id": 143208,
+    "family_candidate": "dotswitch",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "NovaSwitch Revosect Int",
+    "leaderboard_id": 143209,
+    "family_candidate": "novaswitch",
+    "leakage_group_candidate": "novaswitch",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "WaveSwitch Revosect Int",
+    "leaderboard_id": 143210,
+    "family_candidate": "waveswitch",
+    "leakage_group_candidate": "waveswitch",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SpringTS Revosect Int",
+    "leaderboard_id": 142904,
+    "family_candidate": "spring-ts",
+    "leakage_group_candidate": "spring-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "WhisphereTS Revosect Int",
+    "leaderboard_id": 142905,
+    "family_candidate": "whisphere",
+    "leakage_group_candidate": "whisphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "PasuTS Revosect Int",
+    "leaderboard_id": 142908,
+    "family_candidate": "pasu-ts",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SmoothTS Revosect Int",
+    "leaderboard_id": 142909,
+    "family_candidate": "smooth-ts",
+    "leakage_group_candidate": "smooth-ts",
+    "memberships": [
+      {
+        "benchmark_id": 822,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Intermediate"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "EvoClick Revosect",
+    "leaderboard_id": 141058,
+    "family_candidate": "evoclick",
+    "leakage_group_candidate": "evoclick",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect",
+    "leaderboard_id": 140996,
+    "family_candidate": "strawberryclick",
+    "leakage_group_candidate": "strawberryclick",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect",
+    "leaderboard_id": 139429,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect",
+    "leaderboard_id": 139428,
+    "family_candidate": "wall-reload",
+    "leakage_group_candidate": "wall-clicking-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Static"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Pasu Revosect",
+    "leaderboard_id": 140941,
+    "family_candidate": "pasu-revosect",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SpringClick Revosect",
+    "leaderboard_id": 141144,
+    "family_candidate": "springclick",
+    "leakage_group_candidate": "spring-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SnowClick Revosect",
+    "leaderboard_id": 142723,
+    "family_candidate": "snowclick",
+    "leakage_group_candidate": "snowclick",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Floating Heads Revosect",
+    "leaderboard_id": 142724,
+    "family_candidate": "floating-heads",
+    "leakage_group_candidate": "floating-heads-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Clicking",
+          "Dynamic"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "FloodTrack Revosect",
+    "leaderboard_id": 141140,
+    "family_candidate": "floodtrack",
+    "leakage_group_candidate": "floodtrack",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "VTP Revosect",
+    "leaderboard_id": 141259,
+    "family_candidate": "vtp",
+    "leakage_group_candidate": "vtp",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Tornadosphere Revosect",
+    "leaderboard_id": 139438,
+    "family_candidate": "tornadosphere",
+    "leakage_group_candidate": "tornadosphere",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Leapstrafes Revosect",
+    "leaderboard_id": 142725,
+    "family_candidate": "leapstrafes",
+    "leakage_group_candidate": "leapstrafes-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Tracking",
+          "Precise"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plaza Pure Revosect",
+    "leaderboard_id": 143331,
+    "family_candidate": "plaza-pure",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Plaza Smooth Revosect",
+    "leaderboard_id": 143415,
+    "family_candidate": "plaza-smooth",
+    "leakage_group_candidate": "ground-plaza-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Pure Revosect",
+    "leaderboard_id": 142823,
+    "family_candidate": "air-pure",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "Air Smooth Revosect",
+    "leaderboard_id": 142841,
+    "family_candidate": "air-smooth",
+    "leakage_group_candidate": "air-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Tracking",
+          "Reactive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "AngleSwitch Revosect",
+    "leaderboard_id": 141047,
+    "family_candidate": "angleswitch",
+    "leakage_group_candidate": "angleswitch",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "DotSwitch Revosect",
+    "leaderboard_id": 141048,
+    "family_candidate": "dotswitch",
+    "leakage_group_candidate": "static-switching-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "NovaSwitch Revosect",
+    "leaderboard_id": 140936,
+    "family_candidate": "novaswitch",
+    "leakage_group_candidate": "novaswitch",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "WaveSwitch Revosect",
+    "leaderboard_id": 141138,
+    "family_candidate": "waveswitch",
+    "leakage_group_candidate": "waveswitch",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Switching",
+          "Speed"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SpringTS Revosect",
+    "leaderboard_id": 141258,
+    "family_candidate": "spring-ts",
+    "leakage_group_candidate": "spring-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "WhisphereTS Revosect",
+    "leaderboard_id": 141052,
+    "family_candidate": "whisphere",
+    "leakage_group_candidate": "whisphere-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "PasuTS Revosect",
+    "leaderboard_id": 140945,
+    "family_candidate": "pasu-ts",
+    "leakage_group_candidate": "pasu-lineage",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  },
+  {
+    "scenario_name": "SmoothTS Revosect",
+    "leaderboard_id": 141143,
+    "family_candidate": "smooth-ts",
+    "leakage_group_candidate": "smooth-ts",
+    "memberships": [
+      {
+        "benchmark_id": 821,
+        "native_category_path": [
+          "Switching",
+          "Evasive"
+        ],
+        "tier": "Advanced"
+      }
+    ],
+    "current_sce_sha256": null,
+    "calibration_eligible": false
+  }
+]

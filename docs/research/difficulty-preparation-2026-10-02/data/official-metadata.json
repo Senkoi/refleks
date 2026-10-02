@@ -1,0 +1,1393 @@
+[
+  {
+    "scenario_name": "Ground Plaza Sparky V3",
+    "leaderboard_id": 517,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Ground+Plaza+Sparky+V3&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:09.614114+00:00",
+    "response_sha256": "707ff0bce083412bcc9ba1acb745606d4654077d1a578c1e72e80685362742ba",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      "razaplaza",
+      "patys",
+      "sarin"
+    ],
+    "reported_entries": 106230,
+    "reported_plays": 1651307,
+    "description_sha256": "1f8a4a2ab38cf1e5c07f88840df94f87031262dfcf9d5d223ab8ff0cf27c85e5",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "kinTS Voltaic Easy",
+    "leaderboard_id": 542,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=kinTS+Voltaic+Easy&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:32.008543+00:00",
+    "response_sha256": "96cf0ff062905a4af8b2cdb33dd7b333484eee559de7e2f0601ab13b0fbb5c0d",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      "kindred",
+      "patys",
+      "El",
+      "Bad",
+      "sini",
+      "Tammas"
+    ],
+    "reported_entries": 85658,
+    "reported_plays": 887308,
+    "description_sha256": "e85c13a29cb6c99208a7d9797e8fb2402a3ffa4df3a013cdc93b5507b35449b2",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "B180T Voltaic Easy",
+    "leaderboard_id": 543,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=B180T+Voltaic+Easy&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:32.068329+00:00",
+    "response_sha256": "510993f06fcba758fd0ad80849cbcfee9b8bb766c861b354537322ce8acf1e92",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      "Whisper"
+    ],
+    "reported_entries": 111829,
+    "reported_plays": 1669975,
+    "description_sha256": "b40d6c51267d153aa5e1b0680db2f3490563678f5dfaacf564766c7ab1c4b71b",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "voxTargetSwitch 2",
+    "leaderboard_id": 551,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=voxTargetSwitch+2&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:20.067174+00:00",
+    "response_sha256": "4e2d467a4b7af3531a73f3d08a15a05fe4de3a3e2e517171ebc88d0a0b3a9973",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 161065,
+    "reported_plays": 1998963,
+    "description_sha256": "df50b10b30fa9547a1b315e57a8b4ee53c64d6f87da1891279eee59cb2ecca5e",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "1w6ts reload v2",
+    "leaderboard_id": 666,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=1w6ts+reload+v2&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:20.135005+00:00",
+    "response_sha256": "511e84066ead47ac95baa387792ee73ee21d940bc23355fbc82e67ef34193779",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      "ku",
+      "gli",
+      "kovaak",
+      "sini"
+    ],
+    "reported_entries": 108405,
+    "reported_plays": 1829312,
+    "description_sha256": "b22f4cfd92590a71284d7553f39437619b847fc726ac127af07aa3ffcdab1c62",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "beanTS",
+    "leaderboard_id": 2648,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=beanTS&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:25.248370+00:00",
+    "response_sha256": "f757ad8c317cb2ea788c91e3ae08ed1be4d1790b8e782ff8eda581eede8d79c4",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": null,
+    "authors_raw": [
+      "ethanoch"
+    ],
+    "reported_entries": 174391,
+    "reported_plays": 2484439,
+    "description_sha256": "486c8b74675b77e2a6936f5d6eb6f6069ee4204cf62ce9e2965823fd55c27780",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Air Angelic 4 Voltaic Easy 90%",
+    "leaderboard_id": 13692,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Air+Angelic+4+Voltaic+Easy+90%25&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:04.779956+00:00",
+    "response_sha256": "7a37f7fdfbe86b08aea49c7cf2ca8bc84cc8dc3a0809f3e365e93f4bb9a41c67",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      "ryan",
+      "patys"
+    ],
+    "reported_entries": 41020,
+    "reported_plays": 516655,
+    "description_sha256": "f82156b19e9b84db2d9f4d22e342e9296956a020cd83a7016d1c5dac047404ae",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "StaticSwitchingVox Small",
+    "leaderboard_id": 15662,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=StaticSwitchingVox+Small&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:25.296825+00:00",
+    "response_sha256": "52ba7fc733ff0e306acff08aaaca72b66ab25ee43b146b8deb101bfe457a4d99",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      "me",
+      ":)"
+    ],
+    "reported_entries": 46988,
+    "reported_plays": 400091,
+    "description_sha256": "ba7f64ed4d933e4274e936d8726a74c30961c1a143a343821a883d39650add68",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "ww4t Voltaic",
+    "leaderboard_id": 23921,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=ww4t+Voltaic&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:19.933918+00:00",
+    "response_sha256": "85ea46e1f1b0b4607d0fc4f4be24163e9280bda21130856e3fbc6f466920f059",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      "Ku",
+      "Tammas"
+    ],
+    "reported_entries": 60422,
+    "reported_plays": 904262,
+    "description_sha256": "7d665e50742cfe0da0709d4d833568071bb78a5d6436384de718003b10250dab",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT PreciseOrb Intermediate 15% Slower",
+    "leaderboard_id": 41595,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+PreciseOrb+Intermediate+15%25+Slower&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:04.826931+00:00",
+    "response_sha256": "f67a9f4863eae5228b862ad39250cad644979fe37f59d2bc83b528518e72d6a0",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      "Whisper",
+      "Raspberry/Vodkards"
+    ],
+    "reported_entries": 35084,
+    "reported_plays": 415662,
+    "description_sha256": "9a58c7701f20e129cbe16ee8e765de712daa5746baba1cb26a172cf1332ef39d",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "domiSwitch Easy",
+    "leaderboard_id": 83043,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=domiSwitch+Easy&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:32.018112+00:00",
+    "response_sha256": "8a108983c8669a861f7bf5bdf5b57266622435602a1335bb1bd44edf51badbca",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 86441,
+    "reported_plays": 817214,
+    "description_sha256": "59e061c12964c2b108208d97eea15cca3f904fdf732f4a3f0b6c08cd91cfb8e3",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT ww5t Intermediate S5",
+    "leaderboard_id": 98029,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+ww5t+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:34.661104+00:00",
+    "response_sha256": "51cae2e28c81e8d876e78d9b10994a840038a3e6bfe38602555dcb86dc6e8242",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 148760,
+    "reported_plays": 3438661,
+    "description_sha256": "52c220a4f7fa97f7b359e4418f31f8c04659c01df402a299ae4f4fb02e65a346",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Snake Track Intermediate S5",
+    "leaderboard_id": 98045,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Snake+Track+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:41.335330+00:00",
+    "response_sha256": "539f79d3cb98844f8bb7615e8240fd76ccda9219babdf2d4ceb2385dc29efbfc",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 147167,
+    "reported_plays": 3121578,
+    "description_sha256": "9dc777991fa00e6fbbbb99c9d536582d18160a4aee36e98c67d4e0c25048b8d8",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Raw Control Intermediate S5",
+    "leaderboard_id": 98048,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Raw+Control+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:46.057040+00:00",
+    "response_sha256": "2e423a12fb645ff623f77c4b9e1409e975860d2f705b5707feda7d7d03c4ac73",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 126232,
+    "reported_plays": 2847726,
+    "description_sha256": "5fc3adf6aad3db974096eab68ec392db938b14dd59522cd0315363ec83e6bfd8",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Floating Heads Intermediate S5",
+    "leaderboard_id": 98055,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Floating+Heads+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:41.222952+00:00",
+    "response_sha256": "fc200a2c0dd8784412df495aafff25a2d9575c2fb252f6104705ee497547aac4",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 132104,
+    "reported_plays": 1722054,
+    "description_sha256": "740580ab1191d3af23d610248e8f7648416c9c6d71baf9ff3c5a8758c418f066",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Pasu Intermediate S5",
+    "leaderboard_id": 98330,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Pasu+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:34.659250+00:00",
+    "response_sha256": "f12c9d7985de2a2bd0714a6ff526847b70d5c5342b4d325328f528c7d25417a7",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 173241,
+    "reported_plays": 4855763,
+    "description_sha256": "d0ead180951571ae4d6627a7ae8082ee08ed3e01e54a6852c2cafe2d543a8fcc",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT PGT Intermediate S5",
+    "leaderboard_id": 98331,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+PGT+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:41.237511+00:00",
+    "response_sha256": "bd3be033378650d1d9861143ac0104b86b32d4922d772e61034b19e257157467",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 140127,
+    "reported_plays": 2623781,
+    "description_sha256": "f20d447547592d385db82ab73c0e2d8d489613c9520f26b4afa63c2e567f7b68",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Popcorn Intermediate S5",
+    "leaderboard_id": 98333,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Popcorn+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:34.659964+00:00",
+    "response_sha256": "5017181a4a13e6bebadaba8fe0f4cdf9746fc74ee921ea187af86ddc5222a434",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 136233,
+    "reported_plays": 2431137,
+    "description_sha256": "99cddaba6ea672763c6e714be129b308a9cfbbd929e963f8068fde1131af537a",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Aether Intermediate S5",
+    "leaderboard_id": 101369,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Aether+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:45.950780+00:00",
+    "response_sha256": "91ef9735b9bfa71a2bf9a520fdee1db80f1777f3803f1475d14cd1599e73522f",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 118685,
+    "reported_plays": 2006521,
+    "description_sha256": "51ef896d685816c85255203af6a8db5739c5e069ebe13455b23c6b1cb431c44d",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Ground Intermediate S5",
+    "leaderboard_id": 101743,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Ground+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:46.054885+00:00",
+    "response_sha256": "3e59cfa53a50ad363ee448bf971898c382349377337e0876e626d253a49a7cdf",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 126213,
+    "reported_plays": 2788895,
+    "description_sha256": "ea78894ae54294f28729e62d39292e8374d95dee0b5568303254616502ff2e34",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT 1w3ts Intermediate S5",
+    "leaderboard_id": 103209,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+1w3ts+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:34.660567+00:00",
+    "response_sha256": "00d8b3cc431d17f87a59885785e1f30b74fe760e0c7d230d22cde05f97ecfeda",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 160626,
+    "reported_plays": 4912082,
+    "description_sha256": "7ab6704a374d003f3bccf35981afac04b0096638017efa23c28dfdfa51ccfd04",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Penta Bounce Intermediate S5",
+    "leaderboard_id": 103261,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Penta+Bounce+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:55.969938+00:00",
+    "response_sha256": "0f9a91c715a7eae0dadc2793d791337e491062b8760269919b4d01f886451d72",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 102483,
+    "reported_plays": 1319059,
+    "description_sha256": "52a6c0d0ca97d6a6f96b0be7811108688b31f0c10e3191b9bacbaa4e64e9d0d3",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Controlsphere Intermediate S5",
+    "leaderboard_id": 103353,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Controlsphere+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:46.057641+00:00",
+    "response_sha256": "6318052924db9c0f640368754cc2dcba8f9970b7371ee13d07d2bf515f8a381a",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 120847,
+    "reported_plays": 2197219,
+    "description_sha256": "188a1448c528c695f98b2df618447122fb288b33ee9d7888b672487e86c1e6bc",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT DriftTS Intermediate S5",
+    "leaderboard_id": 104863,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+DriftTS+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:51.124049+00:00",
+    "response_sha256": "3c65ae8fe775975b7dd7ff3e7baf4c0bfba0bcc031f8e47fca41cc65c004184b",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 102415,
+    "reported_plays": 1230358,
+    "description_sha256": "3e1c60fd0e89932252b23d842e554cf9202f8d93d4c68253bf8f3d3012ad146e",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT DotTS Intermediate S5",
+    "leaderboard_id": 104865,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+DotTS+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:50.934920+00:00",
+    "response_sha256": "1f56d9b86453d4b5f387a745bed4ea82c194d18d297660e6e84f96b4b56b8977",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 124396,
+    "reported_plays": 2957141,
+    "description_sha256": "65e12649a043ddb3b30bb1252ccec2a7b542eba6c954c5972bed20e198253944",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT ControlTS Intermediate S5",
+    "leaderboard_id": 104890,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+ControlTS+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:55.727283+00:00",
+    "response_sha256": "85e7ee8efac38215e88dca49ae92ebedf24da20fb441eb616838f7e653a58eef",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 105687,
+    "reported_plays": 1574652,
+    "description_sha256": "9560fdaa761ae89ef5e986733361ca8891777dabba2e5d738a5e06133f7bb074",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT FlyTS Intermediate S5",
+    "leaderboard_id": 105142,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+FlyTS+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:51.158098+00:00",
+    "response_sha256": "5a614bc8f50e0e1db191d81f3186f3f53701d8f33b274245e70ef0c02899798a",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 119360,
+    "reported_plays": 1417650,
+    "description_sha256": "51c0a832185304204710f19476f068295e716ab90393d95ba8dba915c347bb34",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT EddieTS Intermediate S5",
+    "leaderboard_id": 105176,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+EddieTS+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:51.094598+00:00",
+    "response_sha256": "dd4a3fffeaee7ddb02197ebefe35f5ddcba42d7499f4788edd645a4c283a8925",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 111912,
+    "reported_plays": 1904992,
+    "description_sha256": "de20e9678359dda4821ac17d4e3cc7f9953a0454080134832e618f87d5786dd2",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Frogtagon Intermediate S5",
+    "leaderboard_id": 105828,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Frogtagon+Intermediate+S5&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:41.173740+00:00",
+    "response_sha256": "ac4193c17616bb204c49a18f00a7d75d1630737fb627ed0aa682461264d1e6b1",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 126388,
+    "reported_plays": 1616131,
+    "description_sha256": "8b3f70db64265d0c5024bc28595974197508efce19c7ac40ef8334b7aaf9ddb6",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "waldoTS Intermediate",
+    "leaderboard_id": 111273,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=waldoTS+Intermediate&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:31.831473+00:00",
+    "response_sha256": "fae0d5c45fdd93c5c84ceae5b9f4f8cf1d068ba1feeb248ee4a8def2db03c372",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 88908,
+    "reported_plays": 948126,
+    "description_sha256": "bb64bc446e8e470eda0b03145ac15ca48b638a5199cd08585fc711dba27149f6",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "1w3ts Pasu Perfected Micro Goated Larger",
+    "leaderboard_id": 125923,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=1w3ts+Pasu+Perfected+Micro+Goated+Larger&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:38.824899+00:00",
+    "response_sha256": "6ab6c3fa3383f114088637790a6eb6f8ad75cbe0f08a1d7c660f6c4686e4af1b",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 101839,
+    "reported_plays": 1063583,
+    "description_sha256": "7b28a7741dc5bf08b785c434ebb1cc2f4e499b27ff30a63673b3784ae66bd50e",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VoxTS Click Medium",
+    "leaderboard_id": 136098,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VoxTS+Click+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:43.870523+00:00",
+    "response_sha256": "8f762a0c12914223ce322a1be0ba158cf17f91514d20193fd9711fb9133ab92f",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 58524,
+    "reported_plays": 506451,
+    "description_sha256": "3bab9797891eb1a89a0961054840fd9cf6673945868cda960a11254d8a2ee901",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Tornadosphere Revosect Int",
+    "leaderboard_id": 142821,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Tornadosphere+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:00.753531+00:00",
+    "response_sha256": "9c624e1b296350444298648c3ad93ac6cd078158b047a4939528a006fa031dbd",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1935,
+    "reported_plays": 8767,
+    "description_sha256": "ec279512588cc8d05e81b3bf240acdbe494d2811c19df58f38823162cb4f6bfe",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "FloodTrack Revosect Int",
+    "leaderboard_id": 142824,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=FloodTrack+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:00.650260+00:00",
+    "response_sha256": "cec016239f0f9f58ef588ee3a8357a201751ffa5dd5ef7b010bb39e4de0be365",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 2135,
+    "reported_plays": 10108,
+    "description_sha256": "66ca5d9a16437ad21ce392c9f7da2f4e6585a74504d01f6909503439edcce693",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Leapstrafes Revosect Int",
+    "leaderboard_id": 142828,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Leapstrafes+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:05.863738+00:00",
+    "response_sha256": "feaf389f3355a5b4eb7464df37e914a70f5083d91ca699bc44678c1ecbdd08d9",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1841,
+    "reported_plays": 7584,
+    "description_sha256": "6b795c17c3076e5c410a5b894b0892708503f36809096d0088cd6df2648072b5",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VTP Revosect Int",
+    "leaderboard_id": 142830,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VTP+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:00.730737+00:00",
+    "response_sha256": "c831a813bf3ea69b8c670efba8508a71ebc570359ff40761ce638ddd4824d946",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 2979,
+    "reported_plays": 13719,
+    "description_sha256": "df4c3297d3b3f46231f39e76612db660e6bb4c531929bb40bf47085a0aed038c",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Air Pure Revosect Int",
+    "leaderboard_id": 142834,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Air+Pure+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:06.357416+00:00",
+    "response_sha256": "1071daadfdab3b21a189d4e9e0413a2f8808e24a7c714326a72b2a11cef4f5c1",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 3613,
+    "reported_plays": 16181,
+    "description_sha256": "96a77a01e77b9514a874384baa2eed32fe4c356cc081eac3047f231a5124413b",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Air Smooth Revosect Int",
+    "leaderboard_id": 142840,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Air+Smooth+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:09.753952+00:00",
+    "response_sha256": "b73bb48e4242db389d704d0b7bacaa0c63a7ac2472caaa8ee599db4b4df5f93a",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 3282,
+    "reported_plays": 13836,
+    "description_sha256": "2e0d1284bd103692d4ea3bb31b2f95f94967daf9e992e6c332266557208e6dff",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Plaza Pure Revosect Int",
+    "leaderboard_id": 142844,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Plaza+Pure+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:05.896057+00:00",
+    "response_sha256": "fb990c155c66f40147ee96f458561b4c2dc1e96a5fa62dda70a1e1b416f6da00",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 7817,
+    "reported_plays": 50483,
+    "description_sha256": "790a92a3cf0f1713708b4a67a8d869725e157751175291e99902ad91acb3d8b9",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Plaza Smooth Revosect Int",
+    "leaderboard_id": 142848,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Plaza+Smooth+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:05.945190+00:00",
+    "response_sha256": "23cac558623a0bf4353408a5efc172922c05d11ce0050d066bb814abdef43a4b",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1809,
+    "reported_plays": 5826,
+    "description_sha256": "b90986bab5396ff42136b333ecf0e24cafb3d16a7cc54f3d78b9d1c4287b37de",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "EvoClick Revosect Int",
+    "leaderboard_id": 142850,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=EvoClick+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:50.678472+00:00",
+    "response_sha256": "f1787e4cfa289de7789598ae83f65878b4eee5dd4e3d05d6aee3430d2eedf185",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 3346,
+    "reported_plays": 18096,
+    "description_sha256": "c8a80fef609f0ac214ddba23802f1c8e132a3b254e80dabf0801b5d83057d926",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect Int",
+    "leaderboard_id": 142852,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=StrawberryClick+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:50.851738+00:00",
+    "response_sha256": "706b3020c1e9437f98a36562e3d33ab2366ef0285626de5553dec57a341928df",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 2979,
+    "reported_plays": 11910,
+    "description_sha256": "f8002bbede8ef5f6241e66189ea938c9a5e99eaa55283ac3d49aed0c36843e6b",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect Int",
+    "leaderboard_id": 142874,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=1w5ts+vbr+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:50.858103+00:00",
+    "response_sha256": "fde4d71203f8502c1663f5541b07cb331666d95beaf7f0a836073586bf29a19b",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 3191,
+    "reported_plays": 13600,
+    "description_sha256": "3383a6632ea6ac730fcc4f0ff75d071764e2864f209f9a834ac543db824c5a86",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "SnowClick Revosect Int",
+    "leaderboard_id": 142899,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=SnowClick+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:54.820058+00:00",
+    "response_sha256": "839cf7652d39c9d4464ca0143b6d187f85091e4f858e71eff4e598d471501717",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 2624,
+    "reported_plays": 9867,
+    "description_sha256": "47105f7453cf6da1462edbdc0c87b93f47285b3bd48ce1bbedbdbb7ea955698d",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Floating Heads Revosect Int",
+    "leaderboard_id": 142901,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Floating+Heads+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:00.438060+00:00",
+    "response_sha256": "cb5799968ed8233574792eecd3e2fc68e4e7d081edd42ab88179dbfc9a7eabed",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1718,
+    "reported_plays": 5469,
+    "description_sha256": "fced703a4fec17d60ec3338e17271a2aa8917be49ba761fe961d0a9a5edcb4a0",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "SpringTS Revosect Int",
+    "leaderboard_id": 142904,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=SpringTS+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:14.044187+00:00",
+    "response_sha256": "2b50d2cac96dc9e67d8617cb596726bf0591b0db356942679ffd29102b5180c9",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1286,
+    "reported_plays": 5789,
+    "description_sha256": "5c10f1502e0f37f4f1a905f3bf5c2011d8d9319e66937243e2e9d138cc522513",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "WhisphereTS Revosect Int",
+    "leaderboard_id": 142905,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=WhisphereTS+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:14.071912+00:00",
+    "response_sha256": "a424b74025fc21f9ba164e161bcc1e0b027bb09bc09d80a043a863ae8bf5b5fd",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1284,
+    "reported_plays": 4273,
+    "description_sha256": "00f52fea9760d7e423e9181cc2a441926e78fb5f37584283b8abffff45119668",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "PasuTS Revosect Int",
+    "leaderboard_id": 142908,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=PasuTS+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:14.083348+00:00",
+    "response_sha256": "ef0c6358f3101d065c8d95d88ec61a9c17ecfb84bb65d8a78b4a3e67508f137f",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1252,
+    "reported_plays": 4371,
+    "description_sha256": "68c97a4801ca67cfca1ed2da27aa9596185fddc37a99e24cbc17820a22e913a1",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "SmoothTS Revosect Int",
+    "leaderboard_id": 142909,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=SmoothTS+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:18.137801+00:00",
+    "response_sha256": "f115f7615b4b89d8995d81fe9508c45d96e0106f36c6189f6309ae47eb3e318f",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1625,
+    "reported_plays": 6509,
+    "description_sha256": "52a0244030bb699da0bf0193f3fb7f235e22ab69005635e5b07148ef5603dd9e",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Pasu Revosect Int",
+    "leaderboard_id": 143200,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Pasu+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:54.734853+00:00",
+    "response_sha256": "054b2c8ae4c0cf0d3c243fed6ca4cdddb061b5abdc459d9c74e7ac1559a159ca",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 2164,
+    "reported_plays": 11259,
+    "description_sha256": "b5300b5db58efdae5e7e9dc6ec13b1dcbf8ada4644f737bfdaea825f32cd25a9",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect Int",
+    "leaderboard_id": 143201,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=1w4t+Pressure+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:54.714463+00:00",
+    "response_sha256": "92fc1f864fd5dd292318acaa7dc4a83fd9b9fe285cb21227112b0f480bf426dc",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 2747,
+    "reported_plays": 10797,
+    "description_sha256": "b7699ca7d6fd0ea1770c1d72c82a5813c64886b552a2be6beae2b71cececdaf3",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "SpringClick Revosect Int",
+    "leaderboard_id": 143204,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=SpringClick+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:54.740967+00:00",
+    "response_sha256": "496723116f0d297b935827ddeeb275d95027910b23cb378f0324691a8a06d547",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1748,
+    "reported_plays": 7335,
+    "description_sha256": "5b8b42f4fa27ce7400b5925ae2b59495d656478e18cb4f9693d6b1fd90c21d5c",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "AngleSwitch Revosect Int",
+    "leaderboard_id": 143207,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=AngleSwitch+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:09.809032+00:00",
+    "response_sha256": "84f554f363f601a246af252d3ebf681e888024496c0ae7b11f6b0bde0f66f09a",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1853,
+    "reported_plays": 5888,
+    "description_sha256": "10e9826bddfc5441f8204aa0ce8debbca2f079029c19f80aa325f3510159aac1",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "DotSwitch Revosect Int",
+    "leaderboard_id": 143208,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=DotSwitch+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:09.867359+00:00",
+    "response_sha256": "689cc0adb4a7b1dbbfae0ae1273c1bc32d9f1d01c82304a41f71c48316f6f1bb",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1727,
+    "reported_plays": 8597,
+    "description_sha256": "a9e9c1732cdfd90c4b608b5c5ea58a6f5f0776a55077c355dc8db5e98ebb0c83",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "NovaSwitch Revosect Int",
+    "leaderboard_id": 143209,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=NovaSwitch+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:09.894435+00:00",
+    "response_sha256": "41f34460d33f637bd3567892f078105f65374a7a3b73c7edc969ac7876d87cf1",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1515,
+    "reported_plays": 5873,
+    "description_sha256": "676e67a31f46cd298e8b172d5de31a3f0a4c6b6cd307cc74fd17d6b732b6c943",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "WaveSwitch Revosect Int",
+    "leaderboard_id": 143210,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=WaveSwitch+Revosect+Int&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:58:14.037434+00:00",
+    "response_sha256": "b3e9cb2e5b72ecdbd11522e7bf8afdb30e418bc42b0e6711b96a59ce93340f55",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 1385,
+    "reported_plays": 6155,
+    "description_sha256": "a4acdf49235428bf92d070cc9b166e24bbd5f78dc43a72001a308627d2ff6717",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Air Spectral Easy",
+    "leaderboard_id": 143228,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Air+Spectral+Easy&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:09.643692+00:00",
+    "response_sha256": "f51684199b62e09613c34d4a5addcf26ef057c5af57e6ba508c2a092a279e27a",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 33817,
+    "reported_plays": 338518,
+    "description_sha256": "03be732629095c538b009cc9740a8257fba079b0b05c518b8f11d0e46f816801",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Pasu Voltaic Reload Easy",
+    "leaderboard_id": 163323,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Pasu+Voltaic+Reload+Easy&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:38.725115+00:00",
+    "response_sha256": "40e94f1201b3139ef1707a18b4fbc2bf4284539aef67e2ad7487f07b0538b7e1",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 52975,
+    "reported_plays": 505813,
+    "description_sha256": "827837ae07ae7fd12550d3fe8749298f05286d59ef83fdc623b75bcf83004651",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Smoothsphere Viscose",
+    "leaderboard_id": 184106,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Smoothsphere+Viscose&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:56.020129+00:00",
+    "response_sha256": "59c1250c0b97aad850e7d50236b41c8db83f8f9b0958b60302ce298c59ac907d",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 53652,
+    "reported_plays": 1221691,
+    "description_sha256": "ea7a7d45e336cd0d48ada94ced8b8058e5184ceedc2222947bbf7dd735e5ee66",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Whisphere Viscose",
+    "leaderboard_id": 184107,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Whisphere+Viscose&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:56.065904+00:00",
+    "response_sha256": "0ce1de7349e80134dae8f76f9a860bff78b1eee07a422c132ee5fed8e8923702",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 43673,
+    "reported_plays": 775570,
+    "description_sha256": "24089b83aa08a52187ea0dcf9a615d58210073c0ac750dad768745bd4c46628d",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Controlsphere Viscose",
+    "leaderboard_id": 184153,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Controlsphere+Viscose&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:00.019120+00:00",
+    "response_sha256": "017314b02bc314c9e6b8254adc30756191130248597e8daf4421c9ff082162b3",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 39980,
+    "reported_plays": 509743,
+    "description_sha256": "188a1448c528c695f98b2df618447122fb288b33ee9d7888b672487e86c1e6bc",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "SmoothBot Perfected",
+    "leaderboard_id": 184298,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=SmoothBot+Perfected&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:59.954917+00:00",
+    "response_sha256": "add56bf5730829658be516abeee0c3918ab8e25b04760726410b58aa4f8ad658",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 46155,
+    "reported_plays": 644685,
+    "description_sha256": "b7215c89c689466ec5ac4c4d5fb49f4b9c4cc3909709af5f6b6c1aa488a2675f",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "RawControlSphere",
+    "leaderboard_id": 184301,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=RawControlSphere&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:09.536976+00:00",
+    "response_sha256": "86f892ad5f82854f702c23857856ca26fccc006376acf57bb4933a9c670f7472",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 36879,
+    "reported_plays": 402888,
+    "description_sha256": "1c1ae3f4c68d3704885ab59d0ca7c779bbfe0f995bacdd502a33352b61348b90",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Controlsphere SuperbAim Viscose",
+    "leaderboard_id": 184352,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Controlsphere+SuperbAim+Viscose&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:59.975272+00:00",
+    "response_sha256": "3bbb961b6320f2fb37ff393114bcaf379c4d9712ab297cb230c3193ba23f84c5",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 42068,
+    "reported_plays": 516829,
+    "description_sha256": "54d626e08c1c802b305dad30b7e54a82f102390cc92c7d4db112048935236e9c",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Plink Palace Easy",
+    "leaderboard_id": 184526,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Plink+Palace+Easy&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:14.078026+00:00",
+    "response_sha256": "f4de9094a84bb6fe9b971e731cf759803439b278c07af17bf0094b37af2d564b",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 32831,
+    "reported_plays": 345722,
+    "description_sha256": "9c5046375bae461dc500d1bd954dc8ab3c493908f02b3c881eadfbbb32aa8de8",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Leapstrafes Control wobin",
+    "leaderboard_id": 184561,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Leapstrafes+Control+wobin&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:56:59.966877+00:00",
+    "response_sha256": "46c4dcdaf21aba2cbcfc5607e68e18436eca9bdf43108154d8f5dc33d476a994",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 44739,
+    "reported_plays": 533551,
+    "description_sha256": "bb0b2a8b42bc95b5c0def217a1bfb5438775468757f9c72be2d7df0dd65ada12",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "cloverRawControl Viscose 50cm",
+    "leaderboard_id": 184567,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=cloverRawControl+Viscose+50cm&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:04.786612+00:00",
+    "response_sha256": "0cf584d30bc6698b30dfdc61da23d284c6f72bec3525cd998ef9bc3226f5b971",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 40318,
+    "reported_plays": 482564,
+    "description_sha256": "f4fc4023df6917df0334ebeb2cad953ebd651ebdad2e95a025849e202a73941b",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Flower 50cm",
+    "leaderboard_id": 184580,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Flower+50cm&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:04.791955+00:00",
+    "response_sha256": "8440b1452d48a2a9f447f0f0cb557c111a3795558fcefd69e007f2ae43a37cbc",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 36849,
+    "reported_plays": 339400,
+    "description_sha256": "e3343441ca939704af75a6c6bb7c84a42773ef2c3e5abcfc1070704286f23d08",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Air CELESTIAL No UFO Medium",
+    "leaderboard_id": 184763,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Air+CELESTIAL+No+UFO+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:09.532315+00:00",
+    "response_sha256": "23841ca0dd21447dcb28782cbb9553eb4f084c052eff70c3c9388a4c24884baf",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 33991,
+    "reported_plays": 270949,
+    "description_sha256": "31afbd109487fee12ea6825dd2d3f764d7466baf51b95169f0156597834c37da",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Air Pure Medium",
+    "leaderboard_id": 184766,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Air+Pure+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:14.107847+00:00",
+    "response_sha256": "10a8f29380d0f6fbd19d90798e344db2559e422ef01c55281ce7c9561ef6397c",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 30862,
+    "reported_plays": 231643,
+    "description_sha256": "c36951c22cff6d7cb4fc0f7f2b5d01777274bcb5c75878f3b59467a7becea894",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Air Voltaic Invincible 4 Medium",
+    "leaderboard_id": 184775,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Air+Voltaic+Invincible+4+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:14.129706+00:00",
+    "response_sha256": "041ae209c28477b53dad8eb9eace92c336619ae899d726c18de0266db56d49ce",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 31221,
+    "reported_plays": 275047,
+    "description_sha256": "575062f66905c9c49de25fc8548b11f795a48312d2db85f9e715d54284e55d84",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks slightly larger",
+    "leaderboard_id": 184777,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=1w2ts+reload+smallflicks+slightly+larger&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:25.593777+00:00",
+    "response_sha256": "7e21389719d3ac598307d48ef009d1b6fcc101c8e2143a7a717db623cb9d329d",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 58070,
+    "reported_plays": 559149,
+    "description_sha256": "f95e911be7574d2c3197451b73ccdb35c334b85ca2a6a68cd7ec0ccd99159fb9",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "CatClick Medium",
+    "leaderboard_id": 184780,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=CatClick+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:38.789885+00:00",
+    "response_sha256": "9b57ae7022bcc88817c6f5e4db4250df033cd98b2ed72b6729627c148d2b5056",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 46927,
+    "reported_plays": 329467,
+    "description_sha256": "9161b95bd541e0cf52a8e6dfced85fd1ca765120e74eff997b9045b9a206f74c",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "Popcorn MV Medium",
+    "leaderboard_id": 184781,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=Popcorn+MV+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:43.831993+00:00",
+    "response_sha256": "03c24031c42887945e0b784857a3be5ed313abbcbbc99347c563796e21ff7a73",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 49768,
+    "reported_plays": 410279,
+    "description_sha256": "160baef68c839ee3290a88ae2ff40b347a8d50c208dca5778e22fb97ec04168a",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Aether Novice S5 Hard Bot 1 90%",
+    "leaderboard_id": 184784,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Aether+Novice+S5+Hard+Bot+1+90%25&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:13.996202+00:00",
+    "response_sha256": "63b271a62856fa2e31bb4e34209f595e34a48094b67adb05481af75144fe7bd4",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Tracking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 33172,
+    "reported_plays": 307421,
+    "description_sha256": "165e65901cc3680d725fb19c02e1c7c93e63da6263af2671be628137dfe0c243",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "eth Pasu Micro Medium",
+    "leaderboard_id": 184790,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=eth+Pasu+Micro+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:25.617110+00:00",
+    "response_sha256": "58e5261e34fb1d2a8190b0e68e5f5afaab2e1dd0d8507b68bbd7fc34b1f6b478",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 54461,
+    "reported_plays": 454531,
+    "description_sha256": "7b28a7741dc5bf08b785c434ebb1cc2f4e499b27ff30a63673b3784ae66bd50e",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Floating Heads Viscose Medium",
+    "leaderboard_id": 184827,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Floating+Heads+Viscose+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:43.922625+00:00",
+    "response_sha256": "6765f9ffb1a1bb9f93c3a95317df6941ca3b327f72920489c6663943f1c30104",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 39632,
+    "reported_plays": 325185,
+    "description_sha256": "740580ab1191d3af23d610248e8f7648416c9c6d71baf9ff3c5a8758c418f066",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "aimerz+ Static Switching 5 Bot Slightly Larger",
+    "leaderboard_id": 185211,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=aimerz%2B+Static+Switching+5+Bot+Slightly+Larger&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:20.084048+00:00",
+    "response_sha256": "5636944dcdafc17e84a2cb52fc0d26baea3bb4448d177edbc0649285c4159d93",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Target Switching",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 36481,
+    "reported_plays": 393365,
+    "description_sha256": "7860b442ebd58b8d485679162a90a23e359280f3012085268e1698c32c2fbfb4",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "VT Bounceshot Viscose Medium",
+    "leaderboard_id": 185237,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=VT+Bounceshot+Viscose+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:38.761938+00:00",
+    "response_sha256": "52eda2e533195625710a0787f2d654685fba8b987bab8efb4d13e2bc5a30e0f1",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 47589,
+    "reported_plays": 354934,
+    "description_sha256": "e37189073d67b62f32967ff840840e2013461d2d07c1f4fd4b420f65c4b9f462",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "skyClick Goated Medium",
+    "leaderboard_id": 185491,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=skyClick+Goated+Medium&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:43.860051+00:00",
+    "response_sha256": "f06f76c73b815dfd1245967aa3236ea2d6782b18907273b737c4d5b74916fa1b",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 54526,
+    "reported_plays": 488161,
+    "description_sha256": "1c3ecf7e6ce64f6c27e0ed965fd8ec43ae3e90ed7355a6274df4ce9b741f8d48",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  },
+  {
+    "scenario_name": "psalmTS Viscose Click",
+    "leaderboard_id": 185603,
+    "source_url": "https://kovaaks.com/webapp-backend/scenario/popular?scenarioNameSearch=psalmTS+Viscose+Click&page=0&max=25",
+    "retrieved_at": "2026-10-02T01:57:50.601553+00:00",
+    "response_sha256": "2592eb6333aa9aed437d402365a0bf8d27299f32c72444fef3bbca7836ff8822",
+    "status": "exact_id_and_name_matched",
+    "aim_type_raw": "Clicking",
+    "authors_raw": [
+      ""
+    ],
+    "reported_entries": 50994,
+    "reported_plays": 378651,
+    "description_sha256": "7aefa1d4f62b507bb9ddd76c21c66b94658ad7d7525dffe9648cf6f7f07703b6",
+    "physical_file_verified": false,
+    "file_content_acquired": false
+  }
+]

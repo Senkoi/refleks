@@ -1,0 +1,887 @@
+{
+  "summary": {
+    "archive_sha256": "56fe10278fd0529e47678e80ffc7670aab1b0c0f1ed69d29f3ce5d127853e138",
+    "base_commit": "abc8532520be1ebfecc554c79da7d00c02449240",
+    "scenario_count": 58,
+    "benchmark_anchor_rows": 32,
+    "anchored_scenarios": 30,
+    "tag_counts": {
+      "micro_adjustment": 10,
+      "precision": 8,
+      "reload_constraint": 22,
+      "short_transfer": 4,
+      "accuracy_constraint": 23,
+      "time_pressure": 9,
+      "tracking": 6,
+      "projectile": 3,
+      "pacing": 3,
+      "phased_targets": 6,
+      "reflex_window": 4,
+      "wide_transfer": 6
+    },
+    "size_only_pairs": 8,
+    "controlled_scenarios": 10,
+    "conditional_geometry_scenarios": 12,
+    "calibrated_total_difficulty_models": 0,
+    "benchmark_evidence": "captured definitions with retained retrieval timestamps; not live refreshed",
+    "runtime_is_global_prerequisite": false
+  },
+  "anchors": [
+    {
+      "scenario_name": "1w2ts reload smallflicks 25% smaller",
+      "file_sha256": "7faf1826a9adf0efb937d42cdd43a301cd800e2b3a1756e85bdfbbd55756b8b7",
+      "game_version": "2.0.4.0",
+      "leaderboard_id": 32659,
+      "benchmark_id": 2338,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Expert",
+      "native_category_path": [
+        "Flick Tech",
+        "Micro"
+      ],
+      "rank_cutoffs": {
+        "Interloper": 146,
+        "Attuned": 152,
+        "Heroic": 158,
+        "Mythic": 163,
+        "Ascension": 168,
+        "Eclipse": 173
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2338&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:43.565307+00:00",
+      "threshold_snapshot_sha256": "c68eb2d2bb3c14eab637e3752ae791904feb3345efcabddd39934e39fdab0a08",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w2ts reload smallflicks larger",
+      "file_sha256": "fd6690a07e49a896568692c3fffd3c0c6c9441a766d0092f1f00d7f93cad2960",
+      "game_version": "3.8.7",
+      "leaderboard_id": 185518,
+      "benchmark_id": 2335,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Easier",
+      "native_category_path": [
+        "Flick Tech",
+        "Micro"
+      ],
+      "rank_cutoffs": {
+        "Lemming": 76,
+        "Hare": 85,
+        "Ermine": 93,
+        "Puffin": 100,
+        "Penguin": 106,
+        "Fox": 112,
+        "Mammoth": 118,
+        "Orca": 124,
+        "Seal": 130
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2335&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:43.570819+00:00",
+      "threshold_snapshot_sha256": "444ec805a62eb01e0a66aae7e0da47b30cb61058b6f652b3aaa8d0e393e90246",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w2ts reload smallflicks slightly larger",
+      "file_sha256": "382dbe29dac2d41662bcadf2521012d3fed38513cf0eccb162a3a15a9f0b1da0",
+      "game_version": "3.8.7",
+      "leaderboard_id": 184777,
+      "benchmark_id": 2336,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Medium",
+      "native_category_path": [
+        "Flick Tech",
+        "Micro"
+      ],
+      "rank_cutoffs": {
+        "Cinnabar": 99,
+        "Vermillion": 109,
+        "Saffron": 119,
+        "Celadon": 127,
+        "Viridian": 135,
+        "Cerulean": 142,
+        "Lavender": 150,
+        "Indigo": 161,
+        "Fuchsia": 169
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2336&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:06:56.097598+00:00",
+      "threshold_snapshot_sha256": "28f194d829d2be3882c51e5ab4d3029bd9eca344ffff5551b2881bbba07e2d95",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w2ts reload smallflicks",
+      "file_sha256": "b767dd4c1a46e347b897035c427dccd59644511b9e4626dd4a90789ce2513199",
+      "game_version": "2.0.1.1",
+      "leaderboard_id": 36,
+      "benchmark_id": 2337,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Hard",
+      "native_category_path": [
+        "Flick Tech",
+        "Micro"
+      ],
+      "rank_cutoffs": {
+        "Wool": 145,
+        "Rayon": 151,
+        "Linen": 157,
+        "Velvet": 163,
+        "Chiffon": 168,
+        "Tricot": 173,
+        "Satin": 179,
+        "Silk": 184
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2337&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:43.628930+00:00",
+      "threshold_snapshot_sha256": "aa6044fe8b7b2744c6dee281869d6dbc190d3e10ab6537132fefa7ce6faf3113",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w4t Pressure Revosect Entry",
+      "file_sha256": "cb5d9ee8a2326320cc9491b464e25b72137e79a7a0691d2bfb82b4f9c7107925",
+      "game_version": "3.7.10",
+      "leaderboard_id": 142878,
+      "benchmark_id": 823,
+      "benchmark_name": "Revosect S5",
+      "tier": "Entry",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Bronze": 1020,
+        "Silver": 1100,
+        "Gold": 1180,
+        "Platinum": 1260
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=823&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.440118+00:00",
+      "threshold_snapshot_sha256": "4d318fcc2e6ae120ecbdf9fb932110e4546327f9c8fe5e0d77e631af3890738c",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w4t Pressure Revosect Int",
+      "file_sha256": "319f16ee3dd5ee4a756932f2306133c38d2e995965a09fcc215450a94447656c",
+      "game_version": "3.7.10",
+      "leaderboard_id": 143201,
+      "benchmark_id": 822,
+      "benchmark_name": "Revosect S5",
+      "tier": "Intermediate",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Ace": 1230,
+        "Legend": 1330,
+        "Sentinel": 1430,
+        "Valour": 1530,
+        "Mythic": 1630
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=822&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.544831+00:00",
+      "threshold_snapshot_sha256": "fee60a0da5a90e2ae6acf0deaacc284afde1ea8b16324c28355284a88777918d",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w4t Pressure Revosect",
+      "file_sha256": "3d8448c603d869b15fb6b569ff5791d59b009b6740ce66bdcc7d94c0712984cf",
+      "game_version": "3.7.10",
+      "leaderboard_id": 139428,
+      "benchmark_id": 821,
+      "benchmark_name": "Revosect S5",
+      "tier": "Advanced",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Immortal": 1600,
+        "Ascended": 1690,
+        "Ethereal": 1780,
+        "Divine": 1870,
+        "Eternal": 1960
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=821&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.366331+00:00",
+      "threshold_snapshot_sha256": "4aeb41c70aedd5083d9c1fec10fd0c898e68dc2ba22ec7bc02eec67a977e88cf",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w4ts Voltaic",
+      "file_sha256": "ec77fdc48e49f5ed56b649fa9feaf4707a5fd3fd84b797300ec2dcb391a5c6fd",
+      "game_version": "2.0.2.0",
+      "leaderboard_id": 319,
+      "benchmark_id": 2338,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Expert",
+      "native_category_path": [
+        "Flick Tech",
+        "Stability"
+      ],
+      "rank_cutoffs": {
+        "Interloper": 138,
+        "Attuned": 144,
+        "Heroic": 150,
+        "Mythic": 156,
+        "Ascension": 161,
+        "Eclipse": 167
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2338&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:43.565307+00:00",
+      "threshold_snapshot_sha256": "c68eb2d2bb3c14eab637e3752ae791904feb3345efcabddd39934e39fdab0a08",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w5ts reload",
+      "file_sha256": "b9699f7661001919ee53b1f4debaba3d3801b1c6016036e0ecd178050270ad45",
+      "game_version": "2.0.2.0",
+      "leaderboard_id": 2308,
+      "benchmark_id": 2337,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Hard",
+      "native_category_path": [
+        "Flick Tech",
+        "Stability"
+      ],
+      "rank_cutoffs": {
+        "Wool": 117,
+        "Rayon": 123,
+        "Linen": 130,
+        "Velvet": 137,
+        "Chiffon": 144,
+        "Tricot": 149,
+        "Satin": 156,
+        "Silk": 162
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2337&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:43.628930+00:00",
+      "threshold_snapshot_sha256": "aa6044fe8b7b2744c6dee281869d6dbc190d3e10ab6537132fefa7ce6faf3113",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w5ts vbr Revosect Entry",
+      "file_sha256": "cd6d3994b18ecd952441145cae5d823d90b6355c921e3d1ddddeb820cc216075",
+      "game_version": "3.7.10",
+      "leaderboard_id": 142873,
+      "benchmark_id": 823,
+      "benchmark_name": "Revosect S5",
+      "tier": "Entry",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Bronze": 860,
+        "Silver": 930,
+        "Gold": 1000,
+        "Platinum": 1070
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=823&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.440118+00:00",
+      "threshold_snapshot_sha256": "4d318fcc2e6ae120ecbdf9fb932110e4546327f9c8fe5e0d77e631af3890738c",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w5ts vbr Revosect Int",
+      "file_sha256": "279afaef03fdace9e70c320d590c41998ce6671f9ca7c0c98aa9211323cd9968",
+      "game_version": "3.7.10",
+      "leaderboard_id": 142874,
+      "benchmark_id": 822,
+      "benchmark_name": "Revosect S5",
+      "tier": "Intermediate",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Ace": 1040,
+        "Legend": 1140,
+        "Sentinel": 1240,
+        "Valour": 1340,
+        "Mythic": 1440
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=822&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.544831+00:00",
+      "threshold_snapshot_sha256": "fee60a0da5a90e2ae6acf0deaacc284afde1ea8b16324c28355284a88777918d",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w5ts vbr Revosect",
+      "file_sha256": "7a67ff51f91f5aa33562d1c194d8ac26d4ff5df137dede441f53cf9e076f5aa5",
+      "game_version": "3.7.10",
+      "leaderboard_id": 139429,
+      "benchmark_id": 821,
+      "benchmark_name": "Revosect S5",
+      "tier": "Advanced",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Immortal": 1260,
+        "Ascended": 1350,
+        "Ethereal": 1440,
+        "Divine": 1530,
+        "Eternal": 1620
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=821&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.366331+00:00",
+      "threshold_snapshot_sha256": "4aeb41c70aedd5083d9c1fec10fd0c898e68dc2ba22ec7bc02eec67a977e88cf",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w6ts reload v2 20% bigger",
+      "file_sha256": "3fd97c7dd9ef2b0553a971b06c98dc4c00ae2073be313c41df80eaa72b1512db",
+      "game_version": "v2.8.6",
+      "leaderboard_id": 21620,
+      "benchmark_id": 2335,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Easier",
+      "native_category_path": [
+        "Flick Tech",
+        "Stability"
+      ],
+      "rank_cutoffs": {
+        "Lemming": 64,
+        "Hare": 71,
+        "Ermine": 78,
+        "Puffin": 85,
+        "Penguin": 91,
+        "Fox": 97,
+        "Mammoth": 103,
+        "Orca": 109,
+        "Seal": 115
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2335&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:43.570819+00:00",
+      "threshold_snapshot_sha256": "444ec805a62eb01e0a66aae7e0da47b30cb61058b6f652b3aaa8d0e393e90246",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "1w6ts reload v2",
+      "file_sha256": "56f34e43b66ace886acab8094bba8d5f18c86f10ebc6344ac4c759269c5c1df7",
+      "game_version": "2.0.2.0",
+      "leaderboard_id": 666,
+      "benchmark_id": 2336,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Medium",
+      "native_category_path": [
+        "Flick Tech",
+        "Stability"
+      ],
+      "rank_cutoffs": {
+        "Cinnabar": 70,
+        "Vermillion": 82,
+        "Saffron": 94,
+        "Celadon": 105,
+        "Viridian": 116,
+        "Cerulean": 123,
+        "Lavender": 130,
+        "Indigo": 138,
+        "Fuchsia": 146
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2336&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:06:56.097598+00:00",
+      "threshold_snapshot_sha256": "28f194d829d2be3882c51e5ab4d3029bd9eca344ffff5551b2881bbba07e2d95",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "EvoClick Revosect Entry",
+      "file_sha256": "06178d3e74a18c56e5263f28f2c276179eb9a937e2dc708ed2734cfbf0dabc51",
+      "game_version": "3.7.10",
+      "leaderboard_id": 142851,
+      "benchmark_id": 823,
+      "benchmark_name": "Revosect S5",
+      "tier": "Entry",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Bronze": 520,
+        "Silver": 600,
+        "Gold": 680,
+        "Platinum": 760
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=823&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.440118+00:00",
+      "threshold_snapshot_sha256": "4d318fcc2e6ae120ecbdf9fb932110e4546327f9c8fe5e0d77e631af3890738c",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "EvoClick Revosect Int",
+      "file_sha256": "967810aeb0e8f7f0a25b6ece8e7a4389de9c98d221bec6262d05ed3c6a6ad900",
+      "game_version": "3.7.10",
+      "leaderboard_id": 142850,
+      "benchmark_id": 822,
+      "benchmark_name": "Revosect S5",
+      "tier": "Intermediate",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Ace": 730,
+        "Legend": 830,
+        "Sentinel": 930,
+        "Valour": 1030,
+        "Mythic": 1130
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=822&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.544831+00:00",
+      "threshold_snapshot_sha256": "fee60a0da5a90e2ae6acf0deaacc284afde1ea8b16324c28355284a88777918d",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "EvoClick Revosect",
+      "file_sha256": "0e085d5d39eb1f16c527f8f63cdcd48cc47614ecdcc80ae72a44276626bbfb01",
+      "game_version": "3.7.10",
+      "leaderboard_id": 141058,
+      "benchmark_id": 821,
+      "benchmark_name": "Revosect S5",
+      "tier": "Advanced",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Immortal": 1050,
+        "Ascended": 1125,
+        "Ethereal": 1200,
+        "Divine": 1275,
+        "Eternal": 1350
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=821&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.366331+00:00",
+      "threshold_snapshot_sha256": "4aeb41c70aedd5083d9c1fec10fd0c898e68dc2ba22ec7bc02eec67a977e88cf",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "StrawberryClick Revosect Entry",
+      "file_sha256": "88585986eaaf1d7dc152cbd51e3899b829759091193bc506521f5610742e8ef4",
+      "game_version": "3.7.10",
+      "leaderboard_id": 142853,
+      "benchmark_id": 823,
+      "benchmark_name": "Revosect S5",
+      "tier": "Entry",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Bronze": 730,
+        "Silver": 780,
+        "Gold": 830,
+        "Platinum": 880
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=823&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.440118+00:00",
+      "threshold_snapshot_sha256": "4d318fcc2e6ae120ecbdf9fb932110e4546327f9c8fe5e0d77e631af3890738c",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "StrawberryClick Revosect Int",
+      "file_sha256": "e0c3a2118ea8160d78c9abecba942adee705ff5d5766c20d2c1db7449fde9a63",
+      "game_version": "3.7.10",
+      "leaderboard_id": 142852,
+      "benchmark_id": 822,
+      "benchmark_name": "Revosect S5",
+      "tier": "Intermediate",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Ace": 850,
+        "Legend": 925,
+        "Sentinel": 1000,
+        "Valour": 1075,
+        "Mythic": 1150
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=822&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.544831+00:00",
+      "threshold_snapshot_sha256": "fee60a0da5a90e2ae6acf0deaacc284afde1ea8b16324c28355284a88777918d",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "StrawberryClick Revosect",
+      "file_sha256": "2a53adf606234256af78eeda356953afbe4ec7a2319c2d44ccbcc213adf26842",
+      "game_version": "3.7.10",
+      "leaderboard_id": 140996,
+      "benchmark_id": 821,
+      "benchmark_name": "Revosect S5",
+      "tier": "Advanced",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Immortal": 1040,
+        "Ascended": 1130,
+        "Ethereal": 1220,
+        "Divine": 1310,
+        "Eternal": 1400
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=821&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:49.366331+00:00",
+      "threshold_snapshot_sha256": "4aeb41c70aedd5083d9c1fec10fd0c898e68dc2ba22ec7bc02eec67a977e88cf",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "VT 1w2ts Advanced S5",
+      "file_sha256": "81ff240468eacdc1db278f6abbe9873559c2a613172e66f4d6b6553414984ae0",
+      "game_version": "3.7.0",
+      "leaderboard_id": 98025,
+      "benchmark_id": 460,
+      "benchmark_name": "Voltaic S5",
+      "tier": "Advanced",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Grandmaster": 1320,
+        "Nova": 1420,
+        "Astra": 1520,
+        "Celestial": 1620
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=460&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:35.878188+00:00",
+      "threshold_snapshot_sha256": "e25ed429cfdb8b3beafea19ec44de93c784007a75d69eff73e8471c6441191c6",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "VT 1w2ts Advanced S5",
+      "file_sha256": "81ff240468eacdc1db278f6abbe9873559c2a613172e66f4d6b6553414984ae0",
+      "game_version": "3.7.0",
+      "leaderboard_id": 98025,
+      "benchmark_id": 2070,
+      "benchmark_name": "Voltaic S5.5",
+      "tier": "Advanced",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Grandmaster": 1310,
+        "Nova": 1420,
+        "Astra": 1500,
+        "Celestial": 1600
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2070&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:35.997465+00:00",
+      "threshold_snapshot_sha256": "3dd56934151776e4bcb8892f4b11a3a47dba66e1fd71cd214532771f0493c578",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "VT 1w3ts Intermediate S5",
+      "file_sha256": "320527e0ca1b3aef9867012270bafe80e0c1f2314aaf74b897311fe6f7b6b6a5",
+      "game_version": "3.7.0",
+      "leaderboard_id": 103209,
+      "benchmark_id": 458,
+      "benchmark_name": "Voltaic S5",
+      "tier": "Intermediate",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Platinum": 1120,
+        "Diamond": 1220,
+        "Jade": 1300,
+        "Master": 1380
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=458&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:06:56.227601+00:00",
+      "threshold_snapshot_sha256": "aabf1118ca9e3d6ff11af5691afe55f6407bc1e4c162996e5bc19e07a843909f",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "VT 1w4ts Novice S5",
+      "file_sha256": "29bd16da1573da1327287f017529c5d47653f6030dd97e89ee17b5a879cb53fd",
+      "game_version": "3.7.0",
+      "leaderboard_id": 103210,
+      "benchmark_id": 459,
+      "benchmark_name": "Voltaic S5",
+      "tier": "Novice",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Iron": 820,
+        "Bronze": 915,
+        "Silver": 1010,
+        "Gold": 1110
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=459&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:35.905893+00:00",
+      "threshold_snapshot_sha256": "4d5d63892d33efd8ad14bc2bf505ac369adfd343be572be66c911b2c3b4b7779",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "VT ww5t Advanced S5",
+      "file_sha256": "26555d744a7dbafa2afff819b9d019c682b3e6f489bca44cf0ac43b320635132",
+      "game_version": "3.7.0",
+      "leaderboard_id": 98026,
+      "benchmark_id": 460,
+      "benchmark_name": "Voltaic S5",
+      "tier": "Advanced",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Grandmaster": 1510,
+        "Nova": 1610,
+        "Astra": 1720,
+        "Celestial": 1860
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=460&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:35.878188+00:00",
+      "threshold_snapshot_sha256": "e25ed429cfdb8b3beafea19ec44de93c784007a75d69eff73e8471c6441191c6",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "VT ww5t Advanced S5",
+      "file_sha256": "26555d744a7dbafa2afff819b9d019c682b3e6f489bca44cf0ac43b320635132",
+      "game_version": "3.7.0",
+      "leaderboard_id": 98026,
+      "benchmark_id": 2070,
+      "benchmark_name": "Voltaic S5.5",
+      "tier": "Advanced",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Grandmaster": 1480,
+        "Nova": 1590,
+        "Astra": 1690,
+        "Celestial": 1780
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2070&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:35.997465+00:00",
+      "threshold_snapshot_sha256": "3dd56934151776e4bcb8892f4b11a3a47dba66e1fd71cd214532771f0493c578",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "VT ww5t Intermediate S5",
+      "file_sha256": "587957dc0931c2bf33a1ef6c40d0647248a9c5642cd239524e429083ce11b818",
+      "game_version": "3.7.0",
+      "leaderboard_id": 98029,
+      "benchmark_id": 458,
+      "benchmark_name": "Voltaic S5",
+      "tier": "Intermediate",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Platinum": 1310,
+        "Diamond": 1400,
+        "Jade": 1490,
+        "Master": 1560
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=458&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:06:56.227601+00:00",
+      "threshold_snapshot_sha256": "aabf1118ca9e3d6ff11af5691afe55f6407bc1e4c162996e5bc19e07a843909f",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "VT ww5t Novice S5",
+      "file_sha256": "8a935775ee34b8ef2b335a71dcbb23ac33dc0c19838a734bf613a90398af6399",
+      "game_version": "3.7.0",
+      "leaderboard_id": 98030,
+      "benchmark_id": 459,
+      "benchmark_name": "Voltaic S5",
+      "tier": "Novice",
+      "native_category_path": [
+        "Clicking",
+        "Static"
+      ],
+      "rank_cutoffs": {
+        "Iron": 990,
+        "Bronze": 1090,
+        "Silver": 1190,
+        "Gold": 1290
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=459&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:35.905893+00:00",
+      "threshold_snapshot_sha256": "4d5d63892d33efd8ad14bc2bf505ac369adfd343be572be66c911b2c3b4b7779",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "ww3t Voltaic 10% Smaller",
+      "file_sha256": "2e9e1937f63d7afdf55a7600b2cee4c0fd1dc668f7253d6c45a1c5f83b160bd8",
+      "game_version": "3.8.5",
+      "leaderboard_id": 92573,
+      "benchmark_id": 2338,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Expert",
+      "native_category_path": [
+        "Flick Tech",
+        "Speed"
+      ],
+      "rank_cutoffs": {
+        "Interloper": 152,
+        "Attuned": 158,
+        "Heroic": 163,
+        "Mythic": 168,
+        "Ascension": 173,
+        "Eclipse": 178
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2338&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:43.565307+00:00",
+      "threshold_snapshot_sha256": "c68eb2d2bb3c14eab637e3752ae791904feb3345efcabddd39934e39fdab0a08",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "ww3t Voltaic",
+      "file_sha256": "5f37baf2d587bf201960a36db388dc791b6dbf5d645e24eb88ca4be8b26ecf80",
+      "game_version": "v2.6.1",
+      "leaderboard_id": 68,
+      "benchmark_id": 2337,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Hard",
+      "native_category_path": [
+        "Flick Tech",
+        "Speed"
+      ],
+      "rank_cutoffs": {
+        "Wool": 131,
+        "Rayon": 138,
+        "Linen": 144,
+        "Velvet": 150,
+        "Chiffon": 157,
+        "Tricot": 163,
+        "Satin": 170,
+        "Silk": 175
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2337&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:43.628930+00:00",
+      "threshold_snapshot_sha256": "aa6044fe8b7b2744c6dee281869d6dbc190d3e10ab6537132fefa7ce6faf3113",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "ww4t Voltaic",
+      "file_sha256": "b1eea74d6c44e9ef7ea4ab4bfb7d58ce3a4fece7219ec9f1538bd165e28571ee",
+      "game_version": "v2.8.7",
+      "leaderboard_id": 23921,
+      "benchmark_id": 2336,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Medium",
+      "native_category_path": [
+        "Flick Tech",
+        "Speed"
+      ],
+      "rank_cutoffs": {
+        "Cinnabar": 90,
+        "Vermillion": 102,
+        "Saffron": 112,
+        "Celadon": 118,
+        "Viridian": 126,
+        "Cerulean": 133,
+        "Lavender": 141,
+        "Indigo": 152,
+        "Fuchsia": 160
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2336&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:06:56.097598+00:00",
+      "threshold_snapshot_sha256": "28f194d829d2be3882c51e5ab4d3029bd9eca344ffff5551b2881bbba07e2d95",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    },
+    {
+      "scenario_name": "ww5t Voltaic Slightly Larger",
+      "file_sha256": "df2476e93da31c0ade845ec0c6d34f227af5742b1b47d07ae0f5f5a209535e7e",
+      "game_version": "3.8.7",
+      "leaderboard_id": 185378,
+      "benchmark_id": 2335,
+      "benchmark_name": "Viscose Benchmarks S2",
+      "tier": "Easier",
+      "native_category_path": [
+        "Flick Tech",
+        "Speed"
+      ],
+      "rank_cutoffs": {
+        "Lemming": 70,
+        "Hare": 80,
+        "Ermine": 92,
+        "Puffin": 97,
+        "Penguin": 101,
+        "Fox": 108,
+        "Mammoth": 113,
+        "Orca": 119,
+        "Seal": 125
+      },
+      "source_url_template": "https://kovaaks.com/webapp-backend/benchmarks/player-progress-rank-benchmark?benchmarkId=2335&steamId={PUBLIC_STEAM_ID}",
+      "retrieved_at": "2026-10-01T23:07:43.570819+00:00",
+      "threshold_snapshot_sha256": "444ec805a62eb01e0a66aae7e0da47b30cb61058b6f652b3aaa8d0e393e90246",
+      "binding_status": "exact_internal_name_candidate_version_not_verified",
+      "cross_benchmark_rank_equivalence_verified": false,
+      "interpretation": "native performance thresholds; not a numeric scene difficulty label"
+    }
+  ]
+}

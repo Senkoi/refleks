@@ -45,7 +45,7 @@ func main() {
 	}
 
 	err := wails.Run(&options.App{
-		Title:  "RefleK's",
+		Title:  "RefleK's Adaptive — Alpha",
 		Width:  1500,
 		Height: 900,
 		AssetServer: &assetserver.Options{

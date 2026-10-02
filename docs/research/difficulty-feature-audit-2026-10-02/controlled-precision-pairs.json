@@ -1,0 +1,3527 @@
+{
+  "summary": {
+    "archive_sha256": "56fe10278fd0529e47678e80ffc7670aab1b0c0f1ed69d29f3ce5d127853e138",
+    "base_commit": "abc8532520be1ebfecc554c79da7d00c02449240",
+    "scenario_count": 58,
+    "benchmark_anchor_rows": 32,
+    "anchored_scenarios": 30,
+    "tag_counts": {
+      "micro_adjustment": 10,
+      "precision": 8,
+      "reload_constraint": 22,
+      "short_transfer": 4,
+      "accuracy_constraint": 23,
+      "time_pressure": 9,
+      "tracking": 6,
+      "projectile": 3,
+      "pacing": 3,
+      "phased_targets": 6,
+      "reflex_window": 4,
+      "wide_transfer": 6
+    },
+    "size_only_pairs": 8,
+    "controlled_scenarios": 10,
+    "conditional_geometry_scenarios": 12,
+    "calibrated_total_difficulty_models": 0,
+    "benchmark_evidence": "captured definitions with retained retrieval timestamps; not live refreshed",
+    "runtime_is_global_prerequisite": false
+  },
+  "pairs": [
+    {
+      "a": "1w2ts reload smallflicks larger",
+      "b": "1w2ts reload smallflicks slightly larger",
+      "identicalMapPayload": true,
+      "sizeChanges": [
+        {
+          "path": [
+            "Character Profile",
+            "target",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "37.0"
+          ],
+          "after": [
+            "33.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "18.5"
+          ],
+          "after": [
+            "16.5"
+          ]
+        }
+      ],
+      "excludedEditorialChanges": [
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "AimSubTypeTag"
+          ],
+          "before": [
+            "Dynamic"
+          ],
+          "after": [
+            ""
+          ]
+        },
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "Name"
+          ],
+          "before": [
+            "1w2ts reload smallflicks larger"
+          ],
+          "after": [
+            "1w2ts reload smallflicks slightly larger"
+          ]
+        }
+      ],
+      "otherChangedFieldCount": 0,
+      "otherChangedFieldExamples": [],
+      "sizeOnlyConfigurationPair": true,
+      "mainHitboxPrecisionDemandUnderFixedRuntime": "b_smaller",
+      "empiricalDifficultyOrderVerified": false,
+      "interpretation": "size-only config candidate; runtime still unverified",
+      "radius_ratios_b_over_a": [
+        {
+          "profile": "target",
+          "ratio": 0.8918918918918919,
+          "relative_log_inverse_radius_b_minus_a": 0.1650592462704962,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        }
+      ],
+      "usable_for": "within_family_precision_feature_order_under_fixed_geometry_semantics"
+    },
+    {
+      "a": "1w5ts vbr Revosect Entry",
+      "b": "1w5ts vbr Revosect",
+      "identicalMapPayload": true,
+      "sizeChanges": [
+        {
+          "path": [
+            "Character Profile",
+            "vbr Close",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "48.0"
+          ],
+          "after": [
+            "20.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "vbr Close",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "24.0"
+          ],
+          "after": [
+            "10.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "vbr Far",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "84.0"
+          ],
+          "after": [
+            "60.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "vbr Far",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "42.0"
+          ],
+          "after": [
+            "30.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "vbr Furthest",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "98.0"
+          ],
+          "after": [
+            "66.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "vbr Furthest",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "49.0"
+          ],
+          "after": [
+            "33.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "vbr Mid",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "68.0"
+          ],
+          "after": [
+            "40.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "vbr Mid",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "34.0"
+          ],
+          "after": [
+            "20.0"
+          ]
+        }
+      ],
+      "excludedEditorialChanges": [
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "DifficultyTag"
+          ],
+          "before": [
+            "1"
+          ],
+          "after": [
+            "5"
+          ]
+        },
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "Name"
+          ],
+          "before": [
+            "1w5ts vbr Revosect Entry"
+          ],
+          "after": [
+            "1w5ts vbr Revosect"
+          ]
+        }
+      ],
+      "otherChangedFieldCount": 0,
+      "otherChangedFieldExamples": [],
+      "sizeOnlyConfigurationPair": true,
+      "mainHitboxPrecisionDemandUnderFixedRuntime": "b_smaller",
+      "empiricalDifficultyOrderVerified": false,
+      "interpretation": "size-only config candidate; runtime still unverified",
+      "radius_ratios_b_over_a": [
+        {
+          "profile": "vbr Close",
+          "ratio": 0.4166666666666667,
+          "relative_log_inverse_radius_b_minus_a": 1.2630344058337937,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "vbr Far",
+          "ratio": 0.7142857142857143,
+          "relative_log_inverse_radius_b_minus_a": 0.48542682717024166,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "vbr Furthest",
+          "ratio": 0.673469387755102,
+          "relative_log_inverse_radius_b_minus_a": 0.5703157247567547,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "vbr Mid",
+          "ratio": 0.5882352941176471,
+          "relative_log_inverse_radius_b_minus_a": 0.765534746362977,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        }
+      ],
+      "usable_for": "within_family_precision_feature_order_under_fixed_geometry_semantics"
+    },
+    {
+      "a": "EvoClick Revosect Entry",
+      "b": "EvoClick Revosect Int",
+      "identicalMapPayload": true,
+      "sizeChanges": [
+        {
+          "path": [
+            "Character Profile",
+            "Evolve",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "132.0"
+          ],
+          "after": [
+            "84.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "Evolve",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "66.0"
+          ],
+          "after": [
+            "42.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "Evolver",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "132.0"
+          ],
+          "after": [
+            "84.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "Evolver",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "66.0"
+          ],
+          "after": [
+            "42.0"
+          ]
+        }
+      ],
+      "excludedEditorialChanges": [
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "DifficultyTag"
+          ],
+          "before": [
+            "1"
+          ],
+          "after": [
+            "3"
+          ]
+        },
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "Name"
+          ],
+          "before": [
+            "EvoClick Revosect Entry"
+          ],
+          "after": [
+            "EvoClick Revosect Int"
+          ]
+        }
+      ],
+      "otherChangedFieldCount": 0,
+      "otherChangedFieldExamples": [],
+      "sizeOnlyConfigurationPair": true,
+      "mainHitboxPrecisionDemandUnderFixedRuntime": "b_smaller",
+      "empiricalDifficultyOrderVerified": false,
+      "interpretation": "size-only config candidate; runtime still unverified",
+      "radius_ratios_b_over_a": [
+        {
+          "profile": "Evolve",
+          "ratio": 0.6363636363636364,
+          "relative_log_inverse_radius_b_minus_a": 0.6520766965796931,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "Evolver",
+          "ratio": 0.6363636363636364,
+          "relative_log_inverse_radius_b_minus_a": 0.6520766965796931,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        }
+      ],
+      "usable_for": "within_family_precision_feature_order_under_fixed_geometry_semantics"
+    },
+    {
+      "a": "EvoClick Revosect Entry",
+      "b": "EvoClick Revosect",
+      "identicalMapPayload": true,
+      "sizeChanges": [
+        {
+          "path": [
+            "Character Profile",
+            "Evolve",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "132.0"
+          ],
+          "after": [
+            "66.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "Evolve",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "66.0"
+          ],
+          "after": [
+            "33.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "Evolver",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "132.0"
+          ],
+          "after": [
+            "66.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "Evolver",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "66.0"
+          ],
+          "after": [
+            "33.0"
+          ]
+        }
+      ],
+      "excludedEditorialChanges": [
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "DifficultyTag"
+          ],
+          "before": [
+            "1"
+          ],
+          "after": [
+            "5"
+          ]
+        },
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "Name"
+          ],
+          "before": [
+            "EvoClick Revosect Entry"
+          ],
+          "after": [
+            "EvoClick Revosect"
+          ]
+        }
+      ],
+      "otherChangedFieldCount": 0,
+      "otherChangedFieldExamples": [],
+      "sizeOnlyConfigurationPair": true,
+      "mainHitboxPrecisionDemandUnderFixedRuntime": "b_smaller",
+      "empiricalDifficultyOrderVerified": false,
+      "interpretation": "size-only config candidate; runtime still unverified",
+      "radius_ratios_b_over_a": [
+        {
+          "profile": "Evolve",
+          "ratio": 0.5,
+          "relative_log_inverse_radius_b_minus_a": 1.0,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "Evolver",
+          "ratio": 0.5,
+          "relative_log_inverse_radius_b_minus_a": 1.0,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        }
+      ],
+      "usable_for": "within_family_precision_feature_order_under_fixed_geometry_semantics"
+    },
+    {
+      "a": "EvoClick Revosect Int",
+      "b": "EvoClick Revosect",
+      "identicalMapPayload": true,
+      "sizeChanges": [
+        {
+          "path": [
+            "Character Profile",
+            "Evolve",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "84.0"
+          ],
+          "after": [
+            "66.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "Evolve",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "42.0"
+          ],
+          "after": [
+            "33.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "Evolver",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "84.0"
+          ],
+          "after": [
+            "66.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "Evolver",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "42.0"
+          ],
+          "after": [
+            "33.0"
+          ]
+        }
+      ],
+      "excludedEditorialChanges": [
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "DifficultyTag"
+          ],
+          "before": [
+            "3"
+          ],
+          "after": [
+            "5"
+          ]
+        },
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "Name"
+          ],
+          "before": [
+            "EvoClick Revosect Int"
+          ],
+          "after": [
+            "EvoClick Revosect"
+          ]
+        }
+      ],
+      "otherChangedFieldCount": 0,
+      "otherChangedFieldExamples": [],
+      "sizeOnlyConfigurationPair": true,
+      "mainHitboxPrecisionDemandUnderFixedRuntime": "b_smaller",
+      "empiricalDifficultyOrderVerified": false,
+      "interpretation": "size-only config candidate; runtime still unverified",
+      "radius_ratios_b_over_a": [
+        {
+          "profile": "Evolve",
+          "ratio": 0.7857142857142857,
+          "relative_log_inverse_radius_b_minus_a": 0.3479233034203068,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "Evolver",
+          "ratio": 0.7857142857142857,
+          "relative_log_inverse_radius_b_minus_a": 0.3479233034203068,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        }
+      ],
+      "usable_for": "within_family_precision_feature_order_under_fixed_geometry_semantics"
+    },
+    {
+      "a": "StrawberryClick Revosect Entry",
+      "b": "StrawberryClick Revosect Int",
+      "identicalMapPayload": true,
+      "sizeChanges": [
+        {
+          "path": [
+            "Character Profile",
+            "target 1",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "55.0"
+          ],
+          "after": [
+            "45.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 1",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "27.5"
+          ],
+          "after": [
+            "22.5"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 2",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "55.0"
+          ],
+          "after": [
+            "45.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 2",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "27.5"
+          ],
+          "after": [
+            "22.5"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 3",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "55.0"
+          ],
+          "after": [
+            "45.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 3",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "27.5"
+          ],
+          "after": [
+            "22.5"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "32.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "16.0"
+          ]
+        }
+      ],
+      "excludedEditorialChanges": [
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "DifficultyTag"
+          ],
+          "before": [
+            "1"
+          ],
+          "after": [
+            "3"
+          ]
+        },
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "Name"
+          ],
+          "before": [
+            "StrawberryClick Revosect Entry"
+          ],
+          "after": [
+            "StrawberryClick Revosect Int"
+          ]
+        }
+      ],
+      "otherChangedFieldCount": 0,
+      "otherChangedFieldExamples": [],
+      "sizeOnlyConfigurationPair": true,
+      "mainHitboxPrecisionDemandUnderFixedRuntime": "b_smaller",
+      "empiricalDifficultyOrderVerified": false,
+      "interpretation": "size-only config candidate; runtime still unverified",
+      "radius_ratios_b_over_a": [
+        {
+          "profile": "target 1",
+          "ratio": 0.8181818181818182,
+          "relative_log_inverse_radius_b_minus_a": 0.289506617194985,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target 2",
+          "ratio": 0.8181818181818182,
+          "relative_log_inverse_radius_b_minus_a": 0.289506617194985,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target 3",
+          "ratio": 0.8181818181818182,
+          "relative_log_inverse_radius_b_minus_a": 0.289506617194985,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 a",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 b",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 c",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 d",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 a",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 b",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 c",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 d",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 a",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 b",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 c",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 d",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 a",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 b",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 c",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 d",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 a",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 b",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 c",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 d",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 a",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 b",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 c",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 d",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        }
+      ],
+      "usable_for": "within_family_precision_feature_order_under_fixed_geometry_semantics"
+    },
+    {
+      "a": "StrawberryClick Revosect Entry",
+      "b": "StrawberryClick Revosect",
+      "identicalMapPayload": true,
+      "sizeChanges": [
+        {
+          "path": [
+            "Character Profile",
+            "target 1",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "55.0"
+          ],
+          "after": [
+            "40.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 1",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "27.5"
+          ],
+          "after": [
+            "20.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 2",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "55.0"
+          ],
+          "after": [
+            "40.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 2",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "27.5"
+          ],
+          "after": [
+            "20.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 3",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "55.0"
+          ],
+          "after": [
+            "40.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 3",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "27.5"
+          ],
+          "after": [
+            "20.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "44.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        }
+      ],
+      "excludedEditorialChanges": [
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "DifficultyTag"
+          ],
+          "before": [
+            "1"
+          ],
+          "after": [
+            "5"
+          ]
+        },
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "Name"
+          ],
+          "before": [
+            "StrawberryClick Revosect Entry"
+          ],
+          "after": [
+            "StrawberryClick Revosect"
+          ]
+        }
+      ],
+      "otherChangedFieldCount": 0,
+      "otherChangedFieldExamples": [],
+      "sizeOnlyConfigurationPair": true,
+      "mainHitboxPrecisionDemandUnderFixedRuntime": "b_smaller",
+      "empiricalDifficultyOrderVerified": false,
+      "interpretation": "size-only config candidate; runtime still unverified",
+      "radius_ratios_b_over_a": [
+        {
+          "profile": "target 1",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target 2",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target 3",
+          "ratio": 0.7272727272727273,
+          "relative_log_inverse_radius_b_minus_a": 0.45943161863729726,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 a",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 b",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 c",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 d",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 a",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 b",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 c",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 d",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 a",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 b",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 c",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 d",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 a",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 b",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 c",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 d",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 a",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 b",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 c",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 d",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 a",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 b",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 c",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 d",
+          "ratio": 0.5968772727272728,
+          "relative_log_inverse_radius_b_minus_a": 0.7444937734968524,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        }
+      ],
+      "usable_for": "within_family_precision_feature_order_under_fixed_geometry_semantics"
+    },
+    {
+      "a": "StrawberryClick Revosect Int",
+      "b": "StrawberryClick Revosect",
+      "identicalMapPayload": true,
+      "sizeChanges": [
+        {
+          "path": [
+            "Character Profile",
+            "target 1",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "45.0"
+          ],
+          "after": [
+            "40.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 1",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.5"
+          ],
+          "after": [
+            "20.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 2",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "45.0"
+          ],
+          "after": [
+            "40.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 2",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.5"
+          ],
+          "after": [
+            "20.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 3",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "45.0"
+          ],
+          "after": [
+            "40.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target 3",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "22.5"
+          ],
+          "after": [
+            "20.0"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 1 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 2 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 3 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 4 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 5 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 a",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 a",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 b",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 b",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 c",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 c",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 d",
+            0,
+            "MainBBHeight"
+          ],
+          "before": [
+            "32.0"
+          ],
+          "after": [
+            "26.2626"
+          ]
+        },
+        {
+          "path": [
+            "Character Profile",
+            "target seed 6 d",
+            0,
+            "MainBBRadius"
+          ],
+          "before": [
+            "16.0"
+          ],
+          "after": [
+            "13.1313"
+          ]
+        }
+      ],
+      "excludedEditorialChanges": [
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "DifficultyTag"
+          ],
+          "before": [
+            "3"
+          ],
+          "after": [
+            "5"
+          ]
+        },
+        {
+          "path": [
+            "Root",
+            "ROOT",
+            0,
+            "Name"
+          ],
+          "before": [
+            "StrawberryClick Revosect Int"
+          ],
+          "after": [
+            "StrawberryClick Revosect"
+          ]
+        }
+      ],
+      "otherChangedFieldCount": 0,
+      "otherChangedFieldExamples": [],
+      "sizeOnlyConfigurationPair": true,
+      "mainHitboxPrecisionDemandUnderFixedRuntime": "b_smaller",
+      "empiricalDifficultyOrderVerified": false,
+      "interpretation": "size-only config candidate; runtime still unverified",
+      "radius_ratios_b_over_a": [
+        {
+          "profile": "target 1",
+          "ratio": 0.8888888888888888,
+          "relative_log_inverse_radius_b_minus_a": 0.16992500144231237,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target 2",
+          "ratio": 0.8888888888888888,
+          "relative_log_inverse_radius_b_minus_a": 0.16992500144231237,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target 3",
+          "ratio": 0.8888888888888888,
+          "relative_log_inverse_radius_b_minus_a": 0.16992500144231237,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 a",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 b",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 c",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 1 d",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 a",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 b",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 c",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 2 d",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 a",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 b",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 c",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 3 d",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 a",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 b",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 c",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 4 d",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 a",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 b",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 c",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 5 d",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 a",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 b",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 c",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        },
+        {
+          "profile": "target seed 6 d",
+          "ratio": 0.82070625,
+          "relative_log_inverse_radius_b_minus_a": 0.285062154859555,
+          "unit": "dimensionless configuration contrast; not difficulty points"
+        }
+      ],
+      "usable_for": "within_family_precision_feature_order_under_fixed_geometry_semantics"
+    }
+  ]
+}

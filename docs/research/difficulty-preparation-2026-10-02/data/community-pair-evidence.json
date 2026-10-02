@@ -1,0 +1,1021 @@
+{
+  "source_url": "https://github.com/kvn1338/KovaaksCompare/blob/0fce2e25cfe8d24edc365d9488998cba61660d0d/example_reports/viscose-s2-medium-to-volatic-s5-intermediate-paired.csv",
+  "source_commit": "0fce2e25cfe8d24edc365d9488998cba61660d0d",
+  "source_sha256": "72f0c9899c1fa76e756049291c6b3e53198eec932801bebf4620799a03106eb4",
+  "pairs": [
+    {
+      "source_name": "VT Snake Track Intermediate S5",
+      "target_name": "Smoothsphere Viscose",
+      "source_leaderboard_id": 98045,
+      "target_leaderboard_id": 184106,
+      "reported_overlap_players": 11526,
+      "reported_correlation": 0.7514536144588597,
+      "source_native_category": [
+        "Tracking",
+        "Precise"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Arm"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Raw Control Intermediate S5",
+      "target_name": "Whisphere Viscose",
+      "source_leaderboard_id": 98048,
+      "target_leaderboard_id": 184107,
+      "reported_overlap_players": 10245,
+      "reported_correlation": 0.7736644798448999,
+      "source_native_category": [
+        "Tracking",
+        "Control"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Arm"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT PGT Intermediate S5",
+      "target_name": "SmoothBot Perfected",
+      "source_leaderboard_id": 98331,
+      "target_leaderboard_id": 184298,
+      "reported_overlap_players": 10393,
+      "reported_correlation": 0.7394753425895937,
+      "source_native_category": [
+        "Tracking",
+        "Precise"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Arm"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT PGT Intermediate S5",
+      "target_name": "Leapstrafes Control wobin",
+      "source_leaderboard_id": 98331,
+      "target_leaderboard_id": 184561,
+      "reported_overlap_players": 10087,
+      "reported_correlation": 0.7119912323370033,
+      "source_native_category": [
+        "Tracking",
+        "Precise"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Wrist"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Controlsphere Intermediate S5",
+      "target_name": "Controlsphere SuperbAim Viscose",
+      "source_leaderboard_id": 103353,
+      "target_leaderboard_id": 184352,
+      "reported_overlap_players": 9791,
+      "reported_correlation": 0.7652085844427345,
+      "source_native_category": [
+        "Tracking",
+        "Control"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Wrist"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Controlsphere Intermediate S5",
+      "target_name": "VT Controlsphere Viscose",
+      "source_leaderboard_id": 103353,
+      "target_leaderboard_id": 184153,
+      "reported_overlap_players": 9712,
+      "reported_correlation": 0.7762861165155099,
+      "source_native_category": [
+        "Tracking",
+        "Control"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Wrist"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Controlsphere Intermediate S5",
+      "target_name": "Air Angelic 4 Voltaic Easy 90%",
+      "source_leaderboard_id": 103353,
+      "target_leaderboard_id": 13692,
+      "reported_overlap_players": 9753,
+      "reported_correlation": 0.7276749920351805,
+      "source_native_category": [
+        "Tracking",
+        "Control"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Fingertip"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Raw Control Intermediate S5",
+      "target_name": "cloverRawControl Viscose 50cm",
+      "source_leaderboard_id": 98048,
+      "target_leaderboard_id": 184567,
+      "reported_overlap_players": 9522,
+      "reported_correlation": 0.7431054106498761,
+      "source_native_category": [
+        "Tracking",
+        "Control"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Fingertip"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Raw Control Intermediate S5",
+      "target_name": "Flower 50cm",
+      "source_leaderboard_id": 98048,
+      "target_leaderboard_id": 184580,
+      "reported_overlap_players": 9095,
+      "reported_correlation": 0.7194197951577235,
+      "source_native_category": [
+        "Tracking",
+        "Control"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Fingertip"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT PGT Intermediate S5",
+      "target_name": "VT PreciseOrb Intermediate 15% Slower",
+      "source_leaderboard_id": 98331,
+      "target_leaderboard_id": 41595,
+      "reported_overlap_players": 8904,
+      "reported_correlation": 0.7559463933947298,
+      "source_native_category": [
+        "Tracking",
+        "Precise"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Blending"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Aether Intermediate S5",
+      "target_name": "Air CELESTIAL No UFO Medium",
+      "source_leaderboard_id": 101369,
+      "target_leaderboard_id": 184763,
+      "reported_overlap_players": 8768,
+      "reported_correlation": 0.6410078132963921,
+      "source_native_category": [
+        "Tracking",
+        "Reactive"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Blending"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Raw Control Intermediate S5",
+      "target_name": "RawControlSphere",
+      "source_leaderboard_id": 98048,
+      "target_leaderboard_id": 184301,
+      "reported_overlap_players": 9115,
+      "reported_correlation": 0.7650105592860915,
+      "source_native_category": [
+        "Tracking",
+        "Control"
+      ],
+      "target_native_category": [
+        "Control Tracking",
+        "Blending"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Ground Intermediate S5",
+      "target_name": "Ground Plaza Sparky V3",
+      "source_leaderboard_id": 101743,
+      "target_leaderboard_id": 517,
+      "reported_overlap_players": 22627,
+      "reported_correlation": 0.7331032881652759,
+      "source_native_category": [
+        "Tracking",
+        "Reactive"
+      ],
+      "target_native_category": [
+        "Reactive Tracking",
+        "Control"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Aether Intermediate S5",
+      "target_name": "Air Spectral Easy",
+      "source_leaderboard_id": 101369,
+      "target_leaderboard_id": 143228,
+      "reported_overlap_players": 8663,
+      "reported_correlation": 0.6919253470438551,
+      "source_native_category": [
+        "Tracking",
+        "Reactive"
+      ],
+      "target_native_category": [
+        "Reactive Tracking",
+        "Control"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Aether Intermediate S5",
+      "target_name": "VT Aether Novice S5 Hard Bot 1 90%",
+      "source_leaderboard_id": 101369,
+      "target_leaderboard_id": 184784,
+      "reported_overlap_players": 8396,
+      "reported_correlation": 0.7678540500320332,
+      "source_native_category": [
+        "Tracking",
+        "Reactive"
+      ],
+      "target_native_category": [
+        "Reactive Tracking",
+        "Speed"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Ground Intermediate S5",
+      "target_name": "Plink Palace Easy",
+      "source_leaderboard_id": 101743,
+      "target_leaderboard_id": 184526,
+      "reported_overlap_players": 8423,
+      "reported_correlation": 0.7532118370577113,
+      "source_native_category": [
+        "Tracking",
+        "Reactive"
+      ],
+      "target_native_category": [
+        "Reactive Tracking",
+        "Speed"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Aether Intermediate S5",
+      "target_name": "Air Pure Medium",
+      "source_leaderboard_id": 101369,
+      "target_leaderboard_id": 184766,
+      "reported_overlap_players": 7959,
+      "reported_correlation": 0.6865103430255058,
+      "source_native_category": [
+        "Tracking",
+        "Reactive"
+      ],
+      "target_native_category": [
+        "Reactive Tracking",
+        "Reading"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Aether Intermediate S5",
+      "target_name": "Air Voltaic Invincible 4 Medium",
+      "source_leaderboard_id": 101369,
+      "target_leaderboard_id": 184775,
+      "reported_overlap_players": 8005,
+      "reported_correlation": 0.725379458547232,
+      "source_native_category": [
+        "Tracking",
+        "Reactive"
+      ],
+      "target_native_category": [
+        "Reactive Tracking",
+        "Reading"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Tracking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT DotTS Intermediate S5",
+      "target_name": "ww4t Voltaic",
+      "source_leaderboard_id": 104865,
+      "target_leaderboard_id": 23921,
+      "reported_overlap_players": 9282,
+      "reported_correlation": 0.731605703769931,
+      "source_native_category": [
+        "Switching",
+        "Speed"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Speed"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "platform task types differ; file-based mechanical review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": true
+    },
+    {
+      "source_name": "VT EddieTS Intermediate S5",
+      "target_name": "voxTargetSwitch 2",
+      "source_leaderboard_id": 105176,
+      "target_leaderboard_id": 551,
+      "reported_overlap_players": 21516,
+      "reported_correlation": 0.7659742968653854,
+      "source_native_category": [
+        "Switching",
+        "Speed"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Speed"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Target Switching",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT DotTS Intermediate S5",
+      "target_name": "aimerz+ Static Switching 5 Bot Slightly Larger",
+      "source_leaderboard_id": 104865,
+      "target_leaderboard_id": 185211,
+      "reported_overlap_players": 8660,
+      "reported_correlation": 0.7666068132753613,
+      "source_native_category": [
+        "Switching",
+        "Speed"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Speed"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Target Switching",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT ControlTS Intermediate S5",
+      "target_name": "1w6ts reload v2",
+      "source_leaderboard_id": 104890,
+      "target_leaderboard_id": 666,
+      "reported_overlap_players": 13128,
+      "reported_correlation": 0.6678629516760577,
+      "source_native_category": [
+        "Switching",
+        "Stability"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Stability"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "platform task types differ; file-based mechanical review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": true
+    },
+    {
+      "source_name": "VT ControlTS Intermediate S5",
+      "target_name": "beanTS",
+      "source_leaderboard_id": 104890,
+      "target_leaderboard_id": 2648,
+      "reported_overlap_players": 22245,
+      "reported_correlation": 0.7186447196735907,
+      "source_native_category": [
+        "Switching",
+        "Stability"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Stability"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": null,
+      "platform_aim_type_conflict": null
+    },
+    {
+      "source_name": "VT DotTS Intermediate S5",
+      "target_name": "StaticSwitchingVox Small",
+      "source_leaderboard_id": 104865,
+      "target_leaderboard_id": 15662,
+      "reported_overlap_players": 11160,
+      "reported_correlation": 0.7662687926924323,
+      "source_native_category": [
+        "Switching",
+        "Speed"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Stability"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Target Switching",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT ControlTS Intermediate S5",
+      "target_name": "1w2ts reload smallflicks slightly larger",
+      "source_leaderboard_id": 104890,
+      "target_leaderboard_id": 184777,
+      "reported_overlap_players": 8039,
+      "reported_correlation": 0.6846079533230284,
+      "source_native_category": [
+        "Switching",
+        "Stability"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Micro"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "platform task types differ; file-based mechanical review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": true
+    },
+    {
+      "source_name": "VT ControlTS Intermediate S5",
+      "target_name": "eth Pasu Micro Medium",
+      "source_leaderboard_id": 104890,
+      "target_leaderboard_id": 184790,
+      "reported_overlap_players": 7765,
+      "reported_correlation": 0.693959516212261,
+      "source_native_category": [
+        "Switching",
+        "Stability"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Micro"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "platform task types differ; file-based mechanical review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": true
+    },
+    {
+      "source_name": "VT DriftTS Intermediate S5",
+      "target_name": "waldoTS Intermediate",
+      "source_leaderboard_id": 104863,
+      "target_leaderboard_id": 111273,
+      "reported_overlap_players": 20604,
+      "reported_correlation": 0.7289141572212636,
+      "source_native_category": [
+        "Switching",
+        "Evasive"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Micro"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "platform task types differ; file-based mechanical review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": true
+    },
+    {
+      "source_name": "VT FlyTS Intermediate S5",
+      "target_name": "kinTS Voltaic Easy",
+      "source_leaderboard_id": 105142,
+      "target_leaderboard_id": 542,
+      "reported_overlap_players": 14368,
+      "reported_correlation": 0.6915004766219658,
+      "source_native_category": [
+        "Switching",
+        "Evasive"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Post-Flick"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Target Switching",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT DriftTS Intermediate S5",
+      "target_name": "domiSwitch Easy",
+      "source_leaderboard_id": 104863,
+      "target_leaderboard_id": 83043,
+      "reported_overlap_players": 18377,
+      "reported_correlation": 0.7615012326987353,
+      "source_native_category": [
+        "Switching",
+        "Evasive"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Post-Flick"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "platform task types differ; file-based mechanical review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": true
+    },
+    {
+      "source_name": "VT Penta Bounce Intermediate S5",
+      "target_name": "B180T Voltaic Easy",
+      "source_leaderboard_id": 103261,
+      "target_leaderboard_id": 543,
+      "reported_overlap_players": 16411,
+      "reported_correlation": 0.6513721958187179,
+      "source_native_category": [
+        "Switching",
+        "Stability"
+      ],
+      "target_native_category": [
+        "Flick Tech",
+        "Post-Flick"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Target Switching",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Pasu Intermediate S5",
+      "target_name": "Pasu Voltaic Reload Easy",
+      "source_leaderboard_id": 98330,
+      "target_leaderboard_id": 163323,
+      "reported_overlap_players": 9221,
+      "reported_correlation": 0.7906082703798588,
+      "source_native_category": [
+        "Clicking",
+        "Dynamic"
+      ],
+      "target_native_category": [
+        "Click Timing",
+        "Reading"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Clicking",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Frogtagon Intermediate S5",
+      "target_name": "VT Bounceshot Viscose Medium",
+      "source_leaderboard_id": 105828,
+      "target_leaderboard_id": 185237,
+      "reported_overlap_players": 7647,
+      "reported_correlation": 0.7597306928226695,
+      "source_native_category": [
+        "Clicking",
+        "Linear"
+      ],
+      "target_native_category": [
+        "Click Timing",
+        "Reading"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Clicking",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Frogtagon Intermediate S5",
+      "target_name": "CatClick Medium",
+      "source_leaderboard_id": 105828,
+      "target_leaderboard_id": 184780,
+      "reported_overlap_players": 7523,
+      "reported_correlation": 0.741319400470471,
+      "source_native_category": [
+        "Clicking",
+        "Linear"
+      ],
+      "target_native_category": [
+        "Click Timing",
+        "Reading"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Clicking",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT 1w3ts Intermediate S5",
+      "target_name": "1w3ts Pasu Perfected Micro Goated Larger",
+      "source_leaderboard_id": 103209,
+      "target_leaderboard_id": 125923,
+      "reported_overlap_players": 19982,
+      "reported_correlation": 0.7751084863781625,
+      "source_native_category": [
+        "Clicking",
+        "Static"
+      ],
+      "target_native_category": [
+        "Click Timing",
+        "Precision"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "weapon/task mismatch risk",
+      "source_aim_type_raw": "Clicking",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Popcorn Intermediate S5",
+      "target_name": "Popcorn MV Medium",
+      "source_leaderboard_id": 98333,
+      "target_leaderboard_id": 184781,
+      "reported_overlap_players": 7478,
+      "reported_correlation": 0.7401846479803361,
+      "source_native_category": [
+        "Clicking",
+        "Dynamic"
+      ],
+      "target_native_category": [
+        "Click Timing",
+        "Precision"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "platform task types differ; file-based mechanical review required",
+      "source_aim_type_raw": "Clicking",
+      "target_aim_type_raw": "Tracking",
+      "platform_aim_type_conflict": true
+    },
+    {
+      "source_name": "VT Popcorn Intermediate S5",
+      "target_name": "skyClick Goated Medium",
+      "source_leaderboard_id": 98333,
+      "target_leaderboard_id": 185491,
+      "reported_overlap_players": 7920,
+      "reported_correlation": 0.7294653145887513,
+      "source_native_category": [
+        "Clicking",
+        "Dynamic"
+      ],
+      "target_native_category": [
+        "Click Timing",
+        "Precision"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Clicking",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT ww5t Intermediate S5",
+      "target_name": "VoxTS Click Medium",
+      "source_leaderboard_id": 98029,
+      "target_leaderboard_id": 136098,
+      "reported_overlap_players": 8130,
+      "reported_correlation": 0.772548352793406,
+      "source_native_category": [
+        "Clicking",
+        "Static"
+      ],
+      "target_native_category": [
+        "Click Timing",
+        "Stability"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Clicking",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT Floating Heads Intermediate S5",
+      "target_name": "VT Floating Heads Viscose Medium",
+      "source_leaderboard_id": 98055,
+      "target_leaderboard_id": 184827,
+      "reported_overlap_players": 7700,
+      "reported_correlation": 0.7990603467878288,
+      "source_native_category": [
+        "Clicking",
+        "Linear"
+      ],
+      "target_native_category": [
+        "Click Timing",
+        "Stability"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "same-category and lineage review required",
+      "source_aim_type_raw": "Clicking",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": false
+    },
+    {
+      "source_name": "VT EddieTS Intermediate S5",
+      "target_name": "psalmTS Viscose Click",
+      "source_leaderboard_id": 105176,
+      "target_leaderboard_id": 185603,
+      "reported_overlap_players": 7115,
+      "reported_correlation": 0.7494666314267733,
+      "source_native_category": [
+        "Switching",
+        "Speed"
+      ],
+      "target_native_category": [
+        "Click Timing",
+        "Stability"
+      ],
+      "evidence_status": "external_report_not_independently_recomputed",
+      "source_data_collection_time": null,
+      "raw_paired_scores_available": false,
+      "report_confidence_adopted": false,
+      "mechanical_equivalence_verified": false,
+      "calibration_eligible": false,
+      "review_flag": "platform task types differ; file-based mechanical review required",
+      "source_aim_type_raw": "Target Switching",
+      "target_aim_type_raw": "Clicking",
+      "platform_aim_type_conflict": true
+    }
+  ]
+}

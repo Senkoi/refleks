@@ -1,0 +1,422 @@
+[
+  {
+    "scenario_name": "1w2ts reload smallflicks",
+    "leaderboard_id_candidate": 36,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w2ts+reload+smallflicks&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:29.506424+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "a80b4855abbdcaedf3eed23b57fded82ddcdeb0ebb664c4158aeb006dc39f1e0",
+    "exact_title_ids": [
+      "2112170820"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks 25% smaller",
+    "leaderboard_id_candidate": 32659,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w2ts+reload+smallflicks+25%25+smaller&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:33.623731+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "68cf813004bfab62b049b4ee389ef6773f7648673842587f88b05ca43dac550b",
+    "exact_title_ids": [
+      "2817883403"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks larger",
+    "leaderboard_id_candidate": 185518,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w2ts+reload+smallflicks+larger&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:25.406712+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "824c8e288a7fbd9ecd1ca4a40899e511f85cbb16ee6536edad28052ed02f5068",
+    "exact_title_ids": [
+      "3714970877"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w2ts reload smallflicks slightly larger",
+    "leaderboard_id_candidate": 184777,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w2ts+reload+smallflicks+slightly+larger&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:25.672862+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "acf4da1bb71c148981ede5c92727ac187a438f05112557e854c9ae9a10824c04",
+    "exact_title_ids": [
+      "3712890272"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect",
+    "leaderboard_id_candidate": 139428,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w4t+Pressure+Revosect&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:46.141953+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "d2af159fa6da70f703381ac461e7f9cbe82ab52dd277684bf0665873fde68056",
+    "exact_title_ids": [
+      "3583589503"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect Entry",
+    "leaderboard_id_candidate": 142878,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w4t+Pressure+Revosect+Entry&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:38.888568+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "cb1147810d9248d139b3aaffdf27886dfc9b9fe0dd37ea9e4aaf075bc22da766",
+    "exact_title_ids": [
+      "3583590148"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w4t Pressure Revosect Int",
+    "leaderboard_id_candidate": 143201,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w4t+Pressure+Revosect+Int&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:42.325283+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "da77a6131b044e43523a6d12437010009c174cd6aa25fe29d623fc76960eaab6",
+    "exact_title_ids": [
+      "3583589496"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w4ts Voltaic",
+    "leaderboard_id_candidate": 319,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w4ts+Voltaic&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:33.573567+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "246f9e079c5eb17c1391d0d875bff27222e7c040fa854516821649aa305ec03c",
+    "exact_title_ids": [
+      "2506842131"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w5ts reload",
+    "leaderboard_id_candidate": 2308,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w5ts+reload&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:29.406740+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "27257e10bf3a8d4f0138cbf4d1b11b4696253bc4eb5af283d06d3127190020be",
+    "exact_title_ids": [
+      "2284936303"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect",
+    "leaderboard_id_candidate": 139429,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w5ts+vbr+Revosect&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:46.080690+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "23076f308b56152002d4992f36c5acd4a6d4e02a0eef3ff031c47b9c4629ce58",
+    "exact_title_ids": [
+      "3583589676"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect Entry",
+    "leaderboard_id_candidate": 142873,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w5ts+vbr+Revosect+Entry&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:38.875200+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "a04a85aedd3417579633d1b6ae87a41fbfbdbf4f32536d15c70a5db1f2d1ea07",
+    "exact_title_ids": [
+      "3583589501"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w5ts vbr Revosect Int",
+    "leaderboard_id_candidate": 142874,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w5ts+vbr+Revosect+Int&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:42.307517+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "843fb607213022b0fa442900bfc1eeb115edf0a1f0d7dfb8cf7f20e6f1331a50",
+    "exact_title_ids": [
+      "3583589499"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w6ts reload v2",
+    "leaderboard_id_candidate": 666,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w6ts+reload+v2&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:25.453279+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "fd29398f911c70ef045dfc25c1b50d5cc1d024934e4a63bfe0a7faee99aa86d1",
+    "exact_title_ids": [
+      "2189392592"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "1w6ts reload v2 20% bigger",
+    "leaderboard_id_candidate": 21620,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=1w6ts+reload+v2+20%25+bigger&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:21.151545+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "95e9718964d394aff6b5daeb8ff63152060e6f353c0296e5f0c84109c768e8f8",
+    "exact_title_ids": [
+      "2736441034"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "EvoClick Revosect",
+    "leaderboard_id_candidate": 141058,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=EvoClick+Revosect&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:42.346938+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "b87ed56cb6a3107b209f0351c964cd9a027298bd53e796cbc712dc01ba348024",
+    "exact_title_ids": [
+      "3583589652"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "EvoClick Revosect Entry",
+    "leaderboard_id_candidate": 142851,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=EvoClick+Revosect+Entry&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:33.635828+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "2a8b41ff87765008569d6719917110f3e6cecabd107d69e3223bfefb10da5c58",
+    "exact_title_ids": [
+      "3583589863"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "EvoClick Revosect Int",
+    "leaderboard_id_candidate": 142850,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=EvoClick+Revosect+Int&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:38.907200+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "31bc2b6795f83af8b36906d838b650ffdce462e6e8ecbc5cee49181fd4b44072",
+    "exact_title_ids": [
+      "3583589651"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect",
+    "leaderboard_id_candidate": 140996,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=StrawberryClick+Revosect&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:42.380067+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "6115a21c38f4f477c93bf3bfc5ce5c38a17ac3ff59f8bf9a6c7f841d5ed3006b",
+    "exact_title_ids": [
+      "3583589504"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect Entry",
+    "leaderboard_id_candidate": 142853,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=StrawberryClick+Revosect+Entry&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:33.671015+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "ba2e168cc7d4dd0ec86be1046711426a848ee6b459423d82e84401e81d39bf68",
+    "exact_title_ids": [
+      "3583589497"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "StrawberryClick Revosect Int",
+    "leaderboard_id_candidate": 142852,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=StrawberryClick+Revosect+Int&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:38.927351+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "d0c9628881c97bd06258d4b70d8b178afcb210df8dd44ec47360c7962d57d9f6",
+    "exact_title_ids": [
+      "3583589508"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "VT 1w2ts Advanced S5",
+    "leaderboard_id_candidate": 98025,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=VT+1w2ts+Advanced+S5&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:21.044364+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "ebb16b9a92b8c72cb3c9531451e8c5884ab6b368f532215132712bf573cf80dd",
+    "exact_title_ids": [
+      "3333089252"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "VT 1w3ts Intermediate S5",
+    "leaderboard_id_candidate": 103209,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=VT+1w3ts+Intermediate+S5&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:16.112184+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "86d2996e958b070214912e4926d3676f2d9db4a10c9b42d20f6ffbfae88fc7b6",
+    "exact_title_ids": [
+      "3365695379"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "VT 1w4ts Novice S5",
+    "leaderboard_id_candidate": 103210,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=VT+1w4ts+Novice+S5&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:16.110752+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "3e9451e023659cb2b3d322d1ce39b0ccd877ff3f1ff34c42247226b9910dcbbb",
+    "exact_title_ids": [
+      "3365697357"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "VT ww5t Advanced S5",
+    "leaderboard_id_candidate": 98026,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=VT+ww5t+Advanced+S5&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:21.094537+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "773c6c688d4b562e58e3fa6ba5a3e5635fe64133c57c03d8f4c5ab59bcddd619",
+    "exact_title_ids": [
+      "3333090928"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "VT ww5t Intermediate S5",
+    "leaderboard_id_candidate": 98029,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=VT+ww5t+Intermediate+S5&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:16.112801+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "4c1c36c176fc39aec4a1bdf0288c225d383eee9c95c92a1dbee79cc67fffdb4d",
+    "exact_title_ids": [
+      "3333089918"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "VT ww5t Novice S5",
+    "leaderboard_id_candidate": 98030,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=VT+ww5t+Novice+S5&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:16.111654+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "f35b336acd28d49a60c88eda18d09346c6fb06390c4bc69815b0e6c489f88a74",
+    "exact_title_ids": [
+      "3333089221"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "ww3t Voltaic",
+    "leaderboard_id_candidate": 68,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=ww3t+Voltaic&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:29.341709+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "f99452624e26ccd04f4cf1c768cb1509c4b93e22edd1168f97070cdb3595270b",
+    "exact_title_ids": [
+      "2506842030"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "ww3t Voltaic 10% Smaller",
+    "leaderboard_id_candidate": 92573,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=ww3t+Voltaic+10%25+Smaller&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:29.629919+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "44169156148efa29b37420c06cbae94f4e16c51a6272077992734d479eff1eb2",
+    "exact_title_ids": [
+      "3664773605"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "ww4t Voltaic",
+    "leaderboard_id_candidate": 23921,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=ww4t+Voltaic&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:25.425999+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "2cfec0f53eda68494aa1820de88223a3814c8f50e70e9af01309a8e1499c9e0c",
+    "exact_title_ids": [
+      "2771591180"
+    ],
+    "status": "unique_exact_title_candidate"
+  },
+  {
+    "scenario_name": "ww5t Voltaic Slightly Larger",
+    "leaderboard_id_candidate": 185378,
+    "source_url": "https://steamcommunity.com/workshop/browse/?appid=824270&searchtext=ww5t+Voltaic+Slightly+Larger&browsesort=textsearch&section=readytouseitems",
+    "retrieved_at": "2026-10-02T02:37:21.133996+00:00",
+    "file_content_acquired": false,
+    "current_benchmark_file_verified": false,
+    "calibration_eligible": false,
+    "response_sha256": "24d39de1309681119653ccc74a07042ae38c49a348d97ee687d0e6c4fc23376d",
+    "exact_title_ids": [
+      "3714542064"
+    ],
+    "status": "unique_exact_title_candidate"
+  }
+]
