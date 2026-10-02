@@ -3,6 +3,7 @@ package detect
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"refleks/internal/constants"
@@ -68,7 +69,7 @@ func TestSteamLibraryRoots(t *testing.T) {
 	if err := os.MkdirAll(filepath.Join(steamDir, "steamapps"), 0o755); err != nil {
 		t.Fatal(err)
 	}
-	vdf := "\"libraryfolders\"\n{\n\t\"0\"\n\t{\n\t\t\"path\"\t\t\"" + steamDir + "\"\n\t}\n\t\"1\"\n\t{\n\t\t\"path\"\t\t\"" + extra + "\"\n\t}\n}\n"
+	vdf := "\"libraryfolders\"\n{\n\t\"0\"\n\t{\n\t\t\"path\"\t\t\"" + strings.ReplaceAll(steamDir, `\`, `\\`) + "\"\n\t}\n\t\"1\"\n\t{\n\t\t\"path\"\t\t\"" + strings.ReplaceAll(extra, `\`, `\\`) + "\"\n\t}\n}\n"
 	if err := os.WriteFile(filepath.Join(steamDir, "steamapps", "libraryfolders.vdf"), []byte(vdf), 0o600); err != nil {
 		t.Fatal(err)
 	}
@@ -129,7 +130,7 @@ func TestKovaaksInstallDirInSteam(t *testing.T) {
 		if err := os.MkdirAll(filepath.Join(steamDir, "steamapps"), 0o755); err != nil {
 			t.Fatal(err)
 		}
-		vdf := "\"libraryfolders\"\n{\n\t\"0\"\n\t{\n\t\t\"path\"\t\t\"" + steamDir + "\"\n\t}\n\t\"1\"\n\t{\n\t\t\"path\"\t\t\"" + extra + "\"\n\t}\n}\n"
+		vdf := "\"libraryfolders\"\n{\n\t\"0\"\n\t{\n\t\t\"path\"\t\t\"" + strings.ReplaceAll(steamDir, `\`, `\\`) + "\"\n\t}\n\t\"1\"\n\t{\n\t\t\"path\"\t\t\"" + strings.ReplaceAll(extra, `\`, `\\`) + "\"\n\t}\n}\n"
 		if err := os.WriteFile(filepath.Join(steamDir, "steamapps", "libraryfolders.vdf"), []byte(vdf), 0o600); err != nil {
 			t.Fatal(err)
 		}
