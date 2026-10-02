@@ -247,15 +247,15 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 	} else {
 		p.PlanningPolicy = "curriculum"
 		var t *Curriculum
-		t, err = selectCurriculum(s.state.Curricula, p, runs, now)
+		t, err = selectCurriculum(s.state.Curricula, s.state.Catalog, p, runs, now)
 		if err == nil {
 			explored := false
 			for _, h := range s.state.History {
-				if h.CurriculumID == t.ID && h.Status == "completed" && h.Recorded > 0 {
+				if completedCurriculum(h, *t) {
 					explored = true
 				}
 			}
-			if old := s.state.Plan; old != nil && old.CurriculumID == t.ID && old.Status == "completed" && old.Recorded > 0 {
+			if old := s.state.Plan; old != nil && completedCurriculum(*old, *t) {
 				explored = true
 			}
 			plan, err = GenerateCurriculum(*t, s.state.Catalog, runs, planningPreferences, now, rng, explored)
@@ -483,6 +483,17 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			}
 			if sum.Duration <= 0 || math.IsNaN(sum.Duration) || math.IsInf(sum.Duration, 0) || sum.Score < 0 || math.IsNaN(sum.Score) || math.IsInf(sum.Score, 0) {
 				continue
+			}
+			if p.Preferences.ExecutionMode == "playlist" && p.Index+1 < len(p.Blocks) {
+				current, next := p.Blocks[p.Index], p.Blocks[p.Index+1]
+				// Same-name adjacent rows provide no name-change signal. Use the
+				// exported repetition boundary; different-name rows still wait for
+				// a completed run in the next scenario, allowing extra practice.
+				if current.Runs >= max(1, current.PlayCount) && strings.EqualFold(current.Scenario.Name, next.Scenario.Name) && strings.EqualFold(sum.Scenario, next.Scenario.Name) {
+					s.advance("list_complete", start)
+					p.BlockElapsed = math.Min(p.Elapsed, math.Max(0, now.Sub(start).Seconds()))
+					p.Status = "running"
+				}
 			}
 			if p.Preferences.ExecutionMode == "playlist" && !strings.EqualFold(p.Blocks[p.Index].Scenario.Name, sum.Scenario) {
 				// A finished run in a later playlist row is stronger evidence than

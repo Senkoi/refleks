@@ -124,6 +124,10 @@ func TestOnlyRecordedCompletedCurriculumUnlocksExploration(t *testing.T) {
 	}
 	s.state.Plan.Status = "completed"
 	s.state.Plan.Recorded = 60
+	for i := range template.Rows {
+		b := &s.state.Plan.Blocks[i]
+		b.Runs, b.Recorded, b.Outcome = b.PlayCount, float64(b.PlayCount*60), "list_complete"
+	}
 	plan, err = s.Generate(p, nil)
 	if err != nil || len(plan.Blocks) != len(template.Rows)+1 {
 		t.Fatal("recorded baseline not used", err)

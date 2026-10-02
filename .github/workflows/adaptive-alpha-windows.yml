@@ -2,7 +2,7 @@ name: Adaptive Alpha Windows
 
 on:
   push:
-    branches: [adaptive-alpha, research/scenario-difficulty-preparation]
+    branches: [main, adaptive-alpha, research/scenario-difficulty-preparation]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -30,8 +30,8 @@ jobs:
         run: |
           npm ci
           npm run build
-      - name: Adaptive training tests
-        run: go test ./internal/training
+      - name: Full Go regression tests
+        run: go test ./...
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

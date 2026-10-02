@@ -241,7 +241,7 @@ func validatePreferences(p Preferences) error {
 	if p.Focus != "auto" && !validSkill(p.Focus) {
 		return fmt.Errorf("无效的训练重点")
 	}
-	if p.Difficulty != "any" && p.Difficulty != "novice" && p.Difficulty != "intermediate" && p.Difficulty != "advanced" {
+	if p.Difficulty != "any" && p.Difficulty != "entry" && p.Difficulty != "novice" && p.Difficulty != "adept" && p.Difficulty != "intermediate" && p.Difficulty != "advanced" && p.Difficulty != "elite" {
 		return fmt.Errorf("无效的难度")
 	}
 	if math.IsNaN(p.Variety) || p.Variety < 0 || p.Variety > 0.5 {

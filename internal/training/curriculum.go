@@ -111,7 +111,9 @@ func (s *Service) mergeCurricula(items []Scenario) {
 	}
 }
 
-func selectCurriculum(ts []Curriculum, p Preferences, runs []models.RunRecord, now time.Time) (*Curriculum, error) {
+func selectCurriculum(ts []Curriculum, catalog []Scenario, p Preferences, runs []models.RunRecord, now time.Time) (*Curriculum, error) {
+	// Explicit template selection takes precedence over automatic theme/tier
+	// filters. GenerateCurriculum still validates its contents and full budget.
 	if p.CurriculumID != "" {
 		for i := range ts {
 			if ts[i].ID == p.CurriculumID {
@@ -121,6 +123,7 @@ func selectCurriculum(ts []Curriculum, p Preferences, runs []models.RunRecord, n
 		return nil, fmt.Errorf("所选 VDIM 模板不存在")
 	}
 	eligible := []Curriculum{}
+	matched := false
 	for _, t := range ts {
 		if p.Focus != "auto" && t.Theme != p.Focus && !(p.Focus == "switching" && strings.HasPrefix(t.Theme, "switching_")) {
 			continue
@@ -128,9 +131,18 @@ func selectCurriculum(ts []Curriculum, p Preferences, runs []models.RunRecord, n
 		if p.Difficulty != "any" && t.Tier != "" && t.Tier != p.Difficulty {
 			continue
 		}
+		matched = true
+		// Reuse generation's timing and validation rather than picking an
+		// oversized/unavailable template and failing while another one fits.
+		if _, err := GenerateCurriculum(t, catalog, runs, p, now, rand.New(rand.NewSource(0)), false); err != nil {
+			continue
+		}
 		eligible = append(eligible, t)
 	}
 	if len(eligible) == 0 {
+		if matched {
+			return nil, fmt.Errorf("符合重点与档位的 VDIM 模板均无法在当前预算内完整运行，或含不可用场景；请增加预算或显式选择模板查看原因")
+		}
 		return nil, fmt.Errorf("尚无符合条件的真实 VDIM 模板；请从游戏保存的 VDIM JSON/PLO 导入，分享码不能代替场景顺序和次数")
 	}
 	obs := observed(runs)
@@ -161,6 +173,26 @@ func selectCurriculum(ts []Curriculum, p Preferences, runs []models.RunRecord, n
 		return eligible[i].Name < eligible[j].Name
 	})
 	return &eligible[0], nil
+}
+
+// Completed means every original row was actually recorded. Manual finish,
+// skipped rows and time caps do not establish a full foundation session.
+// Compare rows/counts too, so an edited template requires its own baseline.
+func completedCurriculum(p Plan, t Curriculum) bool {
+	if p.CurriculumID != t.ID || p.Status != "completed" || len(p.Blocks) < len(t.Rows) || len(t.Rows) == 0 {
+		return false
+	}
+	for i, row := range t.Rows {
+		b := p.Blocks[i]
+		role := row.Role
+		if role == "" {
+			role = "practice"
+		}
+		if !strings.EqualFold(b.Scenario.Name, row.Name) || b.Role != role || b.PlayCount != row.Count || b.Runs < row.Count || b.Recorded <= 0 || b.Outcome != "list_complete" {
+			return false
+		}
+	}
+	return true
 }
 
 func goalCompatible(anchor, candidate Scenario) bool {
@@ -250,9 +282,8 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 				if baseNames[strings.ToLower(c.Name)] || !goalCompatible(base.Scenario, c) {
 					continue
 				}
-				if p.Difficulty != "any" && c.Difficulty != "unknown" && c.Difficulty != p.Difficulty {
-					continue
-				}
+				// VDIM tier describes the template's audience, not the candidate's
+				// mechanism difficulty. Personal feedback remains authoritative.
 				if c.PersonalDifficulty == "hard" || c.Preference == "disliked" {
 					continue
 				}
