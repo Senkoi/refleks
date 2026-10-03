@@ -139,7 +139,7 @@ func TestBenchmarkScenesAreAlignedExplorationVariants(t *testing.T) {
 	tooHard.Name = "unmatched"
 	tooHard.Benchmarks = []BenchmarkMembership{{Name: "Voltaic S5.5 / Advanced", System: "Voltaic S5.5", NativeDifficulty: "Advanced", Thresholds: []float64{1000}}}
 	p := defaults()
-	p.Minutes = 10
+	p.Minutes = 15
 	p.Variety = .5
 	plan, err := GenerateCurriculum(Curriculum{ID: "t", Rows: []CurriculumRow{{Name: "base", Count: 1}}}, []Scenario{base, tooHard, matched}, nil, p, epoch, rand.New(rand.NewSource(1)), true)
 	if err != nil {

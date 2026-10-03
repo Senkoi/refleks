@@ -15,6 +15,8 @@ type observation struct {
 	score, duration float64
 	at              time.Time
 	signature       string
+	accuracy        float64
+	accuracyKnown   bool
 }
 
 func signature(s models.RunStatsSummary) string {
@@ -46,7 +48,16 @@ func observed(runs []models.RunRecord) map[string][]observation {
 		}
 		sig := signature(s)
 		key := strings.ToLower(s.Scenario)
-		out[key] = append(out[key], observation{s.Score, s.Duration, t, sig})
+		a := s.Accuracy
+		if a > 1 {
+			a /= 100
+		}
+		known := a > 0 && a <= 1 && !math.IsNaN(a) && !math.IsInf(a, 0)
+		if s.HitCount >= 0 && s.MissCount >= 0 && int64(s.HitCount)+int64(s.MissCount) > 0 {
+			a = float64(s.HitCount) / (float64(s.HitCount) + float64(s.MissCount))
+			known = true
+		}
+		out[key] = append(out[key], observation{score: s.Score, duration: s.Duration, at: t, signature: sig, accuracy: a, accuracyKnown: known})
 	}
 	for key := range out {
 		sort.Slice(out[key], func(i, j int) bool { return out[key][i].at.After(out[key][j].at) })

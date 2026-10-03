@@ -275,6 +275,34 @@ func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []
 }
 
 func inferredTier(theme string, levels []PlayerLevel) string {
+	tier := ""
+	for _, t := range inferredGroupTiers(theme, levels) {
+		if tier == "" || tierIndex(t) < tierIndex(tier) {
+			tier = t
+		}
+	}
+	if tier == "" {
+		return "novice"
+	}
+	return tier
+}
+
+// Whole-category achievement remains conservative. A mixed-goal curriculum
+// uses the median of established groups instead of letting one weak group
+// lower every training goal. Unknown groups never manufacture a promotion.
+func trainingTier(theme string, levels []PlayerLevel) string {
+	tiers := []string{}
+	for _, tier := range inferredGroupTiers(theme, levels) {
+		tiers = append(tiers, tier)
+	}
+	if len(tiers) == 0 {
+		return "novice"
+	}
+	sort.Slice(tiers, func(i, j int) bool { return tierIndex(tiers[i]) < tierIndex(tiers[j]) })
+	return tiers[len(tiers)/2]
+}
+
+func inferredGroupTiers(theme string, levels []PlayerLevel) map[string]string {
 	// A completed top rank on an easier roster is a lower bound, not proof
 	// that the player lost an established higher rank. Unsaturated recent
 	// evidence does take priority over an undated higher PB.
@@ -307,14 +335,5 @@ func inferredTier(theme string, levels []PlayerLevel) string {
 			best[k] = v
 		}
 	}
-	tier := ""
-	for _, t := range best {
-		if tier == "" || tierIndex(t) < tierIndex(tier) {
-			tier = t
-		}
-	}
-	if tier == "" {
-		return "novice"
-	}
-	return tier
+	return best
 }

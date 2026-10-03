@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"refleks/internal/models"
 	"strings"
 	"time"
@@ -67,6 +68,7 @@ func (s *Service) InitializeTraining() error {
 }
 
 func automaticTrainingPreferences(p Preferences) Preferences {
+	p.Variety = min(p.Variety, .1)
 	p.PlanningPolicy = "curriculum"
 	p.ExecutionMode = "playlist"
 	p.AutoAdvance = false
@@ -79,7 +81,7 @@ func automaticTrainingPreferences(p Preferences) Preferences {
 
 // A session is an ordered, whole-row window of the original routine. Continue
 // only after recorded completion, never after a manual finish or skipped row.
-func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, history []Plan) (Curriculum, int, int, error) {
+func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, history []Plan, templates ...Curriculum) (Curriculum, int, int, error) {
 	if len(t.Rows) == 0 {
 		return t, 0, 0, fmt.Errorf("VDIM 模板没有场景")
 	}
@@ -109,8 +111,12 @@ func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord,
 	end, used := start, 0
 	totalUsable := p.Minutes * 60 * 9 / 10
 	usable := totalUsable
-	if curriculumBaseline(t, history) && p.Variety > 0 {
-		usable -= int(float64(totalUsable) * p.Variety)
+	if curriculumBaseline(t, history) {
+		// Reserve actual eligible whole trials, not an empty fixed percentage.
+		extras, _ := selectProgression(progressionCandidates(t, catalog, runs, p, now, templates), totalUsable, totalUsable, p, rand.New(rand.NewSource(0)))
+		for _, c := range extras {
+			usable -= c.seconds
+		}
 	}
 	rows := []CurriculumRow{}
 	for end < len(t.Rows) {

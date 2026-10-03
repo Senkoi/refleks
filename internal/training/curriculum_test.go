@@ -83,7 +83,7 @@ func TestCurriculumExplorationKeepsGoalAllowsExtraDimensions(t *testing.T) {
 	unknown := demandScene("unknown mechanics")
 	template := Curriculum{ID: "t", Name: "VDIM", Rows: []CurriculumRow{{Name: a.Name, Count: 2}}}
 	p := defaults()
-	p.Minutes = 10
+	p.Minutes = 15
 	p.Variety = .5
 	for seed := int64(0); seed < 100; seed++ {
 		plan, err := GenerateCurriculum(template, []Scenario{a, wrong, other, unknown, good}, nil, p, epoch, rand.New(rand.NewSource(seed)), true)

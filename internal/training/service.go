@@ -107,12 +107,16 @@ func (s *Service) Snapshot(runs []models.RunRecord) State {
 	defer s.mu.Unlock()
 	now := time.Now()
 	references := automaticReferences(s.state.Catalog, s.state.Preferences)
-	obs := observed(runs)
+	obs := levelObservations(runs, now)
 	for i := range s.state.Catalog {
 		c := &s.state.Catalog[i]
 		c.Evaluation = assessCatalog(*c, obs[strings.ToLower(c.Name)], now, references)
 	}
 	s.state.PlayerLevels = PlayerLevels(s.state.Catalog, runs, now)
+	s.state.TemplateTiers = map[string]string{}
+	for _, theme := range vdimThemes {
+		s.state.TemplateTiers[theme] = trainingTier(theme, s.state.PlayerLevels)
+	}
 	s.state.Skills = SkillProfile(s.state.Catalog, runs, automaticReferences(s.state.Catalog, s.state.Preferences), time.Now())
 	s.state.SearchConfigured = os.Getenv("REFLEKS_BRAVE_API_KEY") != ""
 	b, _ := json.Marshal(s.state)
@@ -355,11 +359,11 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 		t, err = selectCurriculumWithHistory(s.state.Curricula, s.state.Catalog, p, runs, now, history)
 		if err == nil {
 			explored := curriculumBaseline(*t, history)
-			window, start, end, windowErr := curriculumWindow(*t, s.state.Catalog, runs, p, now, history)
+			window, start, end, windowErr := curriculumWindow(*t, s.state.Catalog, runs, p, now, history, s.state.Curricula...)
 			if windowErr != nil {
 				return nil, windowErr
 			}
-			plan, err = GenerateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored)
+			plan, err = GenerateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored, s.state.Curricula...)
 			if err == nil {
 				plan.CurriculumStart = start
 				plan.CurriculumEnd = end
