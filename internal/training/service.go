@@ -57,6 +57,10 @@ func New(dir string) (*Service, error) {
 		for i := range s.state.Catalog {
 			item := &s.state.Catalog[i]
 			item.Benchmarks = mergeMemberships(nil, memberships(*item))
+			for j := range item.Benchmarks {
+				item.Benchmarks[j] = normalizeMembership(item.Benchmarks[j])
+			}
+			calculateFileEvidence(item.LocalAssessment)
 			*item = enrichMechanics(*item)
 			if item.DifficultySource == "playlist" && item.Classification != "manual" {
 				item.Difficulty, item.DifficultySource = "unknown", "unknown"
@@ -66,10 +70,15 @@ func New(dir string) (*Service, error) {
 			s.state.Preferences.ExecutionMode = "playlist"
 		}
 	}
+	s.state.Initializing = false
+	if s.state.Error == "应用重新启动，训练已暂停；请确认后继续。" {
+		s.state.Error = ""
+		s.state.Notice = "应用重新启动，训练已暂停；可继续或结束本次。"
+	}
 	if p := s.state.Plan; p != nil && (p.Status == "running" || p.Status == "ready" || p.Status == "waiting") {
 		p.Status = "paused"
 		p.LastTick = 0
-		s.state.Error = "应用重新启动，训练已暂停；请确认后继续。"
+		s.state.Notice = "应用重新启动，训练已暂停；可继续或结束本次。"
 	}
 	return s, nil
 }
@@ -96,7 +105,19 @@ func (s *Service) save() error {
 func (s *Service) Snapshot(runs []models.RunRecord) State {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	s.state.Skills = SkillProfile(s.state.Catalog, runs, latestBenchmarkPreferences(s.state.Catalog, s.state.Preferences), time.Now())
+	now := time.Now()
+	references := automaticReferences(s.state.Catalog, s.state.Preferences)
+	obs := levelObservations(runs, now)
+	for i := range s.state.Catalog {
+		c := &s.state.Catalog[i]
+		c.Evaluation = assessCatalog(*c, obs[strings.ToLower(c.Name)], now, references)
+	}
+	s.state.PlayerLevels = PlayerLevels(s.state.Catalog, runs, now)
+	s.state.TemplateTiers = map[string]string{}
+	for _, theme := range vdimThemes {
+		s.state.TemplateTiers[theme] = trainingTier(theme, s.state.PlayerLevels)
+	}
+	s.state.Skills = SkillProfile(s.state.Catalog, runs, automaticReferences(s.state.Catalog, s.state.Preferences), time.Now())
 	s.state.SearchConfigured = os.Getenv("REFLEKS_BRAVE_API_KEY") != ""
 	b, _ := json.Marshal(s.state)
 	var copy State
@@ -231,15 +252,99 @@ func (s *Service) UpdateScenario(item Scenario) error {
 	return fmt.Errorf("关卡不存在")
 }
 
+func legacyFixedSets(p Plan) bool {
+	if p.PlannerVersion >= currentPlannerVersion {
+		return false
+	}
+	for _, b := range p.Blocks {
+		if b.SourcePlayCount == 0 && (b.PlayCount >= 5 || b.PlayCount == 0 && b.Budget == 300 && b.Scenario.Seconds <= 90) {
+			return true
+		}
+	}
+	return false
+}
+
+// BeginStartup hides persisted drafts until benchmark caches and history are ready.
+func (s *Service) BeginStartup() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.state.Initializing = true
+}
+
+// PrepareStartup rebuilds inactive lists with current history and policy before
+// exposing them. Current-policy sessions remain immutable; legacy fixed
+// sets are archived once at restart.
+func (s *Service) PrepareStartup(runs []models.RunRecord) (bool, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.state.Initializing = true
+	migrated := false
+	if old := s.state.Plan; old != nil && old.Status == "paused" && legacyFixedSets(*old) {
+		// Replace the legacy fixed five-minute startup policy.
+		// Preserve every recorded score/progress as ended history; pending
+		// rows cannot masquerade as a completed curriculum baseline.
+		archived := *old
+		archived.Blocks = append([]Block(nil), old.Blocks...)
+		archived.Status, archived.EndedAt = "completed", time.Now().UnixMilli()
+		for i := range archived.Blocks {
+			if archived.Blocks[i].Outcome == "pending" || archived.Blocks[i].Outcome == "" {
+				archived.Blocks[i].Outcome = "skipped"
+			}
+		}
+		s.state.Plan = &archived
+		migrated = true
+	}
+	if old := s.state.Plan; old != nil && (old.Status == "running" || old.Status == "ready" || old.Status == "paused" || old.Status == "waiting") {
+		s.state.Initializing = false
+		return false, nil
+	}
+	p := automaticTrainingPreferences(s.state.Preferences)
+	if err := validatePreferences(p); err != nil {
+		p = defaults()
+	}
+	if _, err := s.generateLocked(p, runs); err != nil {
+		s.state.Error = "启动训练列表生成失败：" + err.Error()
+		s.state.Initializing = false
+		return false, err
+	}
+	s.state.Notice = "已根据已有 benchmark 成绩与训练历史生成本次列表。"
+	if migrated {
+		s.state.Notice = "旧版固定五分钟的暂停列表已归档，记录已保留；本次按最新档位与短组策略重新生成。"
+	}
+	return true, s.save()
+}
+
+// FinishStartup releases the UI only after the owned playlist installation.
+func (s *Service) FinishStartup(err error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.state.Initializing = false
+	if err != nil {
+		s.state.Error = err.Error()
+	}
+}
+
+func (s *Service) StartupFailed(err error) { s.FinishStartup(err) }
+
 func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
+	if s.state.Initializing {
+		return nil, fmt.Errorf("正在读取 benchmark 成绩与训练历史，请稍候")
+	}
+	return s.generateLocked(p, runs)
+}
+
+func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan, error) {
 	if old := s.state.Plan; old != nil && (old.Status == "running" || old.Status == "ready" || old.Status == "paused" || old.Status == "waiting") {
 		return nil, fmt.Errorf("请先结束当前计划，再生成新计划")
 	}
 	now := time.Now()
 	rng := rand.New(rand.NewSource(now.UnixNano()))
-	planningPreferences := latestBenchmarkPreferences(s.state.Catalog, p)
+	if p.PlanningPolicy != "legacy" {
+		p = automaticTrainingPreferences(p)
+	}
+	planningPreferences := automaticReferences(s.state.Catalog, p)
 	var plan *Plan
 	var err error
 	if p.PlanningPolicy == "legacy" {
@@ -247,18 +352,26 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 	} else {
 		p.PlanningPolicy = "curriculum"
 		var t *Curriculum
-		t, err = selectCurriculum(s.state.Curricula, s.state.Catalog, p, runs, now)
+		history := append([]Plan(nil), s.state.History...)
+		if old := s.state.Plan; old != nil {
+			history = append(history, *old)
+		}
+		t, err = selectCurriculumWithHistory(s.state.Curricula, s.state.Catalog, p, runs, now, history)
 		if err == nil {
-			explored := false
-			for _, h := range s.state.History {
-				if completedCurriculum(h, *t) {
-					explored = true
+			explored := curriculumBaseline(*t, history)
+			window, start, end, windowErr := curriculumWindow(*t, s.state.Catalog, runs, p, now, history, s.state.Curricula...)
+			if windowErr != nil {
+				return nil, windowErr
+			}
+			plan, err = GenerateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored, s.state.Curricula...)
+			if err == nil {
+				plan.CurriculumStart = start
+				plan.CurriculumEnd = end
+				plan.CurriculumTotal = len(t.Rows)
+				if start != 0 || end != len(t.Rows) {
+					plan.Warnings = append(plan.Warnings, fmt.Sprintf("按原顺序运行 VDIM 第 %d–%d / %d 行；本次使用自适应短组，完成后下一次接续后续段落。", start+1, end, len(t.Rows)))
 				}
 			}
-			if old := s.state.Plan; old != nil && completedCurriculum(*old, *t) {
-				explored = true
-			}
-			plan, err = GenerateCurriculum(*t, s.state.Catalog, runs, planningPreferences, now, rng, explored)
 		}
 	}
 	if err != nil {
@@ -273,6 +386,7 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 	s.state.Preferences = p
 	s.state.Plan = plan
 	s.state.Error = ""
+	s.state.Notice = ""
 	if err = s.save(); err != nil {
 		return nil, err
 	}

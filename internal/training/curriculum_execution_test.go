@@ -53,7 +53,7 @@ func TestAdjacentSameScenarioRowsTrackCountsAndRestart(t *testing.T) {
 	}
 }
 
-func TestAutomaticTemplateSelectionFitsBudgetAndExplicitSelectionWins(t *testing.T) {
+func TestAutomaticTemplateSelectionFitsBudgetAndIgnoresStaleManualTier(t *testing.T) {
 	s, err := New(t.TempDir())
 	if err != nil {
 		t.Fatal(err)
@@ -68,6 +68,8 @@ func TestAutomaticTemplateSelectionFitsBudgetAndExplicitSelectionWins(t *testing
 	}
 	prefs := defaults()
 	prefs.Minutes = 5
+	// A single long run exceeds the budget even after adaptive repetition.
+	s.state.Catalog[0].Seconds = 600
 	// The long template has less recent exposure and would previously win.
 	runs := []models.RunRecord{record("short-history", "Smooth Short", 60, 1, time.Now().Add(-time.Hour))}
 	p, err := s.Generate(prefs, runs)
@@ -78,14 +80,13 @@ func TestAutomaticTemplateSelectionFitsBudgetAndExplicitSelectionWins(t *testing
 	if _, err = s.Generate(prefs, nil); err == nil {
 		t.Fatal("oversized template accepted")
 	}
-	prefs.CurriculumID = s.state.Curricula[1].ID
-	p, err = s.Generate(prefs, nil)
-	if err != nil || p.CurriculumID != prefs.CurriculumID {
-		t.Fatal("explicit template did not override automatic filters", err)
-	}
+	prefs.Focus = "auto"
 	prefs.CurriculumID = s.state.Curricula[0].ID
-	if _, err = s.Generate(prefs, nil); err == nil {
-		t.Fatal("explicit template bypassed full budget validation")
+	prefs.Difficulty = "elite"
+	prefs.Benchmark = "obsolete manual selection"
+	p, err = s.Generate(prefs, nil)
+	if err != nil || p.CurriculumID != s.state.Curricula[1].ID || p.Preferences.Difficulty != "any" {
+		t.Fatal("stale manual selection overrode automatic inference", err)
 	}
 	for _, tier := range []string{"entry", "novice", "adept", "intermediate", "advanced", "elite"} {
 		prefs.Difficulty = tier

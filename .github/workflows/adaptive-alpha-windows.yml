@@ -29,6 +29,7 @@ jobs:
         working-directory: frontend
         run: |
           npm ci
+          npm run test:catalog
           npm run build
       - name: Full Go regression tests
         run: go test ./...

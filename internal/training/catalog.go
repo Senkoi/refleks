@@ -53,6 +53,15 @@ func technique(name, skill string) string {
 	return skill
 }
 
+// Progress payloads prepend a display baseline. Migrate saved training
+// memberships from the old importer without changing the benchmark UI schema.
+func normalizeMembership(m BenchmarkMembership) BenchmarkMembership {
+	if m.BenchmarkID > 0 && len(m.Ranks) > 0 && len(m.Thresholds) == len(m.Ranks)+1 && m.Thresholds[0] < m.Thresholds[1] {
+		m.Thresholds = append([]float64(nil), m.Thresholds[1:]...)
+	}
+	return m
+}
+
 func memberships(s Scenario) []BenchmarkMembership {
 	if len(s.Benchmarks) > 0 {
 		return s.Benchmarks
@@ -105,6 +114,12 @@ func mergeMemberships(a, b []BenchmarkMembership) []BenchmarkMembership {
 			if out[i].Name == item.Name && (out[i].BenchmarkID == item.BenchmarkID || out[i].BenchmarkID == 0 || item.BenchmarkID == 0) {
 				if item.BenchmarkID != 0 {
 					out[i] = item
+				}
+				if item.BenchmarkScore != nil {
+					out[i].BenchmarkScore = item.BenchmarkScore
+				}
+				if len(item.Ranks) > 0 {
+					out[i].Ranks = item.Ranks
 				}
 				if len(item.Thresholds) > 0 {
 					out[i].Thresholds = item.Thresholds

@@ -6,9 +6,12 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sync"
 	"time"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
+	"refleks/internal/constants"
+	"refleks/internal/models"
 	appsettings "refleks/internal/settings"
 	"refleks/internal/training"
 )
@@ -16,15 +19,72 @@ import (
 func (a *App) startTraining() {
 	dir, err := appsettings.EnsureConfigDir()
 	if err == nil {
-		a.trainingSvc, err = training.New(dir)
+		var svc *training.Service
+		svc, err = training.New(dir)
+		if err == nil {
+			svc.BeginStartup()
+			a.trainingSvc = svc
+		}
 	}
 	if err != nil {
 		a.trainingErr = err
 		return
 	}
+	if err = a.trainingSvc.InitializeTraining(); err != nil {
+		a.trainingErr = err
+		return
+	}
+	// Keep the existing UI events and mirror subsequent score refreshes into
+	// training evidence; never rewrite the already generated playlist here.
+	a.benchmarkSvc.SetOnProgressUpdated(func(id int, p models.BenchmarkProgress) {
+		runtime.EventsEmit(a.ctx, fmt.Sprintf("%s%d", constants.EventBenchmarkProgressPrefix, id), p)
+		runtime.EventsEmit(a.ctx, constants.EventBenchmarkProgressUpdated, map[string]interface{}{"id": id, "progress": p})
+		if catalog, e := a.GetBenchmarks(); e == nil {
+			if _, e = a.trainingSvc.Add(training.BenchmarkScenarios(catalog, map[int]models.BenchmarkProgress{id: p}, time.Now())); e != nil {
+				runtime.LogWarningf(a.ctx, "training benchmark cache update failed: %v", e)
+			}
+		}
+	})
+	a.pollTrainingLocal(time.Now())
 	ctx, cancel := context.WithCancel(a.ctx)
 	a.trainingCancel = cancel
 	go func() {
+		if catalog, e := a.GetBenchmarks(); e == nil {
+			a.sampleInitialBenchmarkScores(ctx, catalog)
+			progress := map[int]models.BenchmarkProgress{}
+			for _, b := range catalog {
+				for _, d := range b.Difficulties {
+					if p, ok := a.benchmarkSvc.GetCachedBenchmarkProgress(d.KovaaksBenchmarkID); ok {
+						progress[d.KovaaksBenchmarkID] = p
+					}
+				}
+			}
+			_, _ = a.trainingSvc.Add(training.BenchmarkScenarios(catalog, progress, time.Now()))
+		}
+		// Catch-up imports existing CSVs asynchronously. Do not infer Novice
+		// merely because those historical runs have not arrived yet.
+		if !a.runsRuntimeSvc.WaitInitialHistory(ctx) {
+			return
+		}
+		history, historyErr := a.runsRuntimeSvc.TrainingRuns()
+		if historyErr != nil {
+			a.trainingSvc.StartupFailed(fmt.Errorf("读取训练历史失败：%w", historyErr))
+		} else {
+			regenerated, prepareErr := a.trainingSvc.PrepareStartup(history)
+			if prepareErr != nil {
+				a.trainingSvc.StartupFailed(fmt.Errorf("启动训练列表生成失败：%w", prepareErr))
+			} else if regenerated {
+				// Update only the owned fixed slot; active sessions and foreign
+				// playlist files keep the existing ownership protection.
+				base := a.settingsSvc.Get().KovaaksInstallDir
+				if base != "" {
+					if _, installErr := a.InstallTrainingPlaylist(); installErr != nil {
+						a.trainingSvc.StartupFailed(fmt.Errorf("启动列表已生成，但安装失败：%w", installErr))
+					}
+				}
+				a.trainingSvc.FinishStartup(nil)
+			}
+		}
 		localTicker := time.NewTicker(15 * time.Second)
 		defer localTicker.Stop()
 		for {
@@ -60,6 +120,35 @@ func (a *App) startTraining() {
 	}()
 }
 
+// Startup samples the relevant live rosters in addition to existing caches.
+// Offline/rate-limited endpoints cannot hold initialization indefinitely; the
+// existing deduplicated requests may finish as ordinary background refreshes.
+func (a *App) sampleInitialBenchmarkScores(ctx context.Context, catalog []models.Benchmark) {
+	ids := training.InitialLevelReferenceIDs(catalog)
+	var pending sync.WaitGroup
+	for _, id := range ids {
+		pending.Add(1)
+		go func(id int) { defer pending.Done(); _, _, _ = a.benchmarkSvc.GetBenchmarkProgress(id, false) }(id)
+	}
+	done := make(chan struct{})
+	go func() { pending.Wait(); close(done) }()
+	timer := time.NewTimer(15 * time.Second)
+	defer timer.Stop()
+	select {
+	case <-done:
+	case <-timer.C:
+	case <-ctx.Done():
+	}
+}
+
+func (a *App) trainingHistory() []models.RunRecord {
+	rows, err := a.runsRuntimeSvc.TrainingRuns()
+	if err != nil {
+		return a.GetRecentRuns(0)
+	}
+	return rows
+}
+
 func (a *App) trainingReady() error {
 	if a.trainingErr != nil {
 		return a.trainingErr
@@ -74,7 +163,7 @@ func (a *App) GetTrainingState() (string, error) {
 	if err := a.trainingReady(); err != nil {
 		return "", err
 	}
-	b, err := json.Marshal(a.trainingSvc.Snapshot(a.GetRecentRuns(0)))
+	b, err := json.Marshal(a.trainingSvc.Snapshot(a.trainingHistory()))
 	return string(b), err
 }
 
@@ -87,7 +176,7 @@ func (a *App) GenerateTrainingPlan(request string) (string, error) {
 		return "", err
 	}
 	a.pollTrainingLocal(time.Now())
-	plan, err := a.trainingSvc.Generate(p, a.GetRecentRuns(0))
+	plan, err := a.trainingSvc.Generate(p, a.trainingHistory())
 	if err != nil {
 		return "", err
 	}
@@ -99,7 +188,7 @@ func (a *App) TrainingAction(action string) error {
 	if err := a.trainingReady(); err != nil {
 		return err
 	}
-	name, err := a.trainingSvc.Action(action, time.Now(), a.GetRecentRuns(0))
+	name, err := a.trainingSvc.Action(action, time.Now(), a.trainingHistory())
 	if err != nil {
 		return err
 	}
@@ -205,7 +294,7 @@ func (a *App) ExportTrainingPlaylist() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "导出训练列表（次数按模块时长生成）", DefaultFilename: "Refleks-Adaptive.json", Filters: []runtime.FileFilter{{DisplayName: "KovaaK's playlist", Pattern: "*.json"}}})
+	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "导出训练列表（次数与计划一致）", DefaultFilename: "Refleks-Adaptive.json", Filters: []runtime.FileFilter{{DisplayName: "KovaaK's playlist", Pattern: "*.json"}}})
 	if err != nil || path == "" {
 		return "", err
 	}
@@ -238,4 +327,14 @@ func (a *App) pollTrainingLocal(now time.Time) {
 		playlists = filepath.Join(base, "FPSAimTrainer", "Saved", "SaveGames", "Playlists")
 	}
 	a.trainingSvc.PollLocal(training.LocalRoots(base, settings.SteamInstallDir), playlists, now)
+}
+
+// RefreshTrainingLocal reports real scan results; the poller retains its quiet
+// period instead of pretending a partial Steam write is a finished download.
+func (a *App) RefreshTrainingLocal() error {
+	if err := a.trainingReady(); err != nil {
+		return err
+	}
+	a.pollTrainingLocal(time.Now())
+	return nil
 }

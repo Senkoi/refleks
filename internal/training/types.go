@@ -9,6 +9,7 @@ type Source struct {
 
 // A scenario can be scored in several benchmark systems with different cutoffs.
 type BenchmarkMembership struct {
+	BenchmarkScore   *float64  `json:"benchmarkScore,omitempty"`
 	Name             string    `json:"name"`
 	BenchmarkID      int       `json:"benchmarkId,omitempty"`
 	System           string    `json:"system,omitempty"`
@@ -16,9 +17,11 @@ type BenchmarkMembership struct {
 	Category         string    `json:"category,omitempty"`
 	Group            string    `json:"group,omitempty"`
 	Thresholds       []float64 `json:"thresholds,omitempty"`
+	Ranks            []string  `json:"ranks,omitempty"`
 }
 
 type Scenario struct {
+	Evaluation         *CatalogAssessment    `json:"evaluation,omitempty"`
 	Name               string                `json:"name"`
 	Skill              string                `json:"skill"`
 	Family             string                `json:"family"`
@@ -99,6 +102,7 @@ type Block struct {
 	Scenario           Scenario           `json:"scenario"`
 	Role               string             `json:"role"`
 	Budget             int                `json:"budget"`
+	SourcePlayCount    int                `json:"sourcePlayCount,omitempty"`
 	PlayCount          int                `json:"playCount"`
 	Target             float64            `json:"target"`
 	Reason             string             `json:"reason"`
@@ -119,51 +123,70 @@ type TimingEstimate struct {
 }
 
 type DifficultyEvidence struct {
-	Benchmarks []BenchmarkMembership `json:"benchmarks,omitempty"`
-	Level      string                `json:"level"`
-	Source     string                `json:"source"`
-	Fit        string                `json:"fit"`
-	Samples    int                   `json:"samples"`
+	Trend         string                `json:"trend,omitempty"`
+	TrendSessions int                   `json:"trendSessions,omitempty"`
+	RecentScore   float64               `json:"recentScore,omitempty"`
+	WindowDays    int                   `json:"windowDays,omitempty"`
+	Benchmarks    []BenchmarkMembership `json:"benchmarks,omitempty"`
+	Level         string                `json:"level"`
+	Source        string                `json:"source"`
+	Fit           string                `json:"fit"`
+	Samples       int                   `json:"samples"`
 }
 
+const currentPlannerVersion = 5
+
 type Plan struct {
-	CurriculumID   string      `json:"curriculumId,omitempty"`
-	CurriculumName string      `json:"curriculumName,omitempty"`
-	Theme          string      `json:"theme,omitempty"`
-	EndedAt        int64       `json:"endedAt,omitempty"`
-	ID             string      `json:"id"`
-	Created        string      `json:"created"`
-	Preferences    Preferences `json:"preferences"`
-	Blocks         []Block     `json:"blocks"`
-	Warnings       []string    `json:"warnings"`
-	Status         string      `json:"status"`
-	Index          int         `json:"index"`
-	Elapsed        float64     `json:"elapsed"`
-	Recorded       float64     `json:"recorded"`
-	BlockElapsed   float64     `json:"blockElapsed"`
-	LastTick       int64       `json:"lastTick"`
-	AcceptAfter    int64       `json:"acceptAfter"`
-	Seen           []string    `json:"seen"`
-	RemindedBlock  int         `json:"remindedBlock,omitempty"`
-	RemindedEnd    bool        `json:"remindedEnd,omitempty"`
-	Reminder       string      `json:"reminder,omitempty"`
+	Progression     *ProgressionBudget `json:"progression,omitempty"`
+	TierReason      string             `json:"tierReason,omitempty"`
+	PlayerTier      string             `json:"playerTier,omitempty"`
+	TemplateTier    string             `json:"templateTier,omitempty"`
+	PlannerVersion  int                `json:"plannerVersion,omitempty"`
+	CurriculumID    string             `json:"curriculumId,omitempty"`
+	CurriculumHash  string             `json:"curriculumHash,omitempty"`
+	CurriculumName  string             `json:"curriculumName,omitempty"`
+	CurriculumStart int                `json:"curriculumStart,omitempty"`
+	CurriculumEnd   int                `json:"curriculumEnd,omitempty"`
+	CurriculumTotal int                `json:"curriculumTotal,omitempty"`
+	Theme           string             `json:"theme,omitempty"`
+	EndedAt         int64              `json:"endedAt,omitempty"`
+	ID              string             `json:"id"`
+	Created         string             `json:"created"`
+	Preferences     Preferences        `json:"preferences"`
+	Blocks          []Block            `json:"blocks"`
+	Warnings        []string           `json:"warnings"`
+	Status          string             `json:"status"`
+	Index           int                `json:"index"`
+	Elapsed         float64            `json:"elapsed"`
+	Recorded        float64            `json:"recorded"`
+	BlockElapsed    float64            `json:"blockElapsed"`
+	LastTick        int64              `json:"lastTick"`
+	AcceptAfter     int64              `json:"acceptAfter"`
+	Seen            []string           `json:"seen"`
+	RemindedBlock   int                `json:"remindedBlock,omitempty"`
+	RemindedEnd     bool               `json:"remindedEnd,omitempty"`
+	Reminder        string             `json:"reminder,omitempty"`
 }
 
 type State struct {
-	Curricula        []Curriculum  `json:"curricula,omitempty"`
-	Version          int           `json:"version"`
-	Catalog          []Scenario    `json:"catalog"`
-	Discovery        Discovery     `json:"discovery"`
-	Preferences      Preferences   `json:"preferences"`
-	Plan             *Plan         `json:"plan"`
-	History          []Plan        `json:"history"`
-	Skills           []SkillStatus `json:"skills"`
-	SearchConfigured bool          `json:"searchConfigured"`
-	Error            string        `json:"error"`
+	TemplateTiers    map[string]string `json:"templateTiers,omitempty"`
+	Initializing     bool              `json:"initializing,omitempty"`
+	Notice           string            `json:"notice,omitempty"`
+	PlayerLevels     []PlayerLevel     `json:"playerLevels"`
+	Curricula        []Curriculum      `json:"curricula,omitempty"`
+	Version          int               `json:"version"`
+	Catalog          []Scenario        `json:"catalog"`
+	Discovery        Discovery         `json:"discovery"`
+	Preferences      Preferences       `json:"preferences"`
+	Plan             *Plan             `json:"plan"`
+	History          []Plan            `json:"history"`
+	Skills           []SkillStatus     `json:"skills"`
+	SearchConfigured bool              `json:"searchConfigured"`
+	Error            string            `json:"error"`
 }
 
 func defaults() Preferences {
-	return Preferences{Minutes: 30, PlanningPolicy: "curriculum", ExecutionMode: "playlist", Focus: "auto", Difficulty: "any", Variety: 0.25, ThresholdRatio: 0.9, AutoDiscover: true}
+	return Preferences{Minutes: 30, PlanningPolicy: "curriculum", ExecutionMode: "playlist", Focus: "auto", Difficulty: "any", Variety: 0.1, ThresholdRatio: 0.9, AutoDiscover: true}
 }
 
 var skills = []string{"static", "dynamic", "smooth", "reactive", "switching"}
