@@ -150,7 +150,7 @@ func TestBoundAnchorDoesNotRelabelUnboundHistory(t *testing.T) {
 	}
 }
 
-func TestPersonalTrialUsesFixedMeasurementAndBudget(t *testing.T) {
+func TestPersonalTrialUsesHistoryWithoutMandatoryPretest(t *testing.T) {
 	now := epoch
 	a := personalScene(t, "anchor", 10, "", now)
 	b := personalScene(t, "near", 9, "", now)
@@ -159,8 +159,8 @@ func TestPersonalTrialUsesFixedMeasurementAndBudget(t *testing.T) {
 	catalog := []Scenario{a, b, c}
 	p := defaults()
 	bundle := preparePersonalization(template, catalog, anchorRuns(a.Name, now), nil, nil, now, p, true, 60, rand.New(rand.NewSource(1)))
-	if bundle.study == nil || bundle.study.TrainingScenario != "near" || len(bundle.before) != 1 || bundle.before[0].PlayCount != 3 || bundle.after[0].PlayCount != 2 || bundle.seconds() != 300 {
-		t.Fatal("fixed protocol/nearest trial missing", bundle)
+	if bundle.study == nil || bundle.study.TrainingScenario != "near" || len(bundle.before) != 0 || bundle.after[0].PlayCount != 2 || bundle.seconds() != 120 || bundle.study.ProtocolID != dailyTrialProtocol || bundle.study.Baseline.ProtocolID != "history_summary_v2" {
+		t.Fatal("nearest daily trial or history reference missing", bundle)
 	}
 	for _, tc := range []struct {
 		minutes  int
@@ -203,10 +203,18 @@ func TestTrialCaptureRetestPersistenceAndFoundationProgress(t *testing.T) {
 	s.state.Curricula = []Curriculum{template}
 	s.state.CurriculumProgress = map[string]RoutineProgress{progressKey(template): {Cycle: 1, EverCompleted: true, Rows: []RowProgress{{Target: 2, Completed: 2}}}}
 	runs := anchorRuns(a.Name, now)
-	plan, err := s.Generate(defaults(), runs)
-	if err != nil || len(plan.Blocks) != 3 || plan.Blocks[0].Role != "assessment" || plan.Blocks[2].Role != "explore" {
-		t.Fatal("personalization not connected to service", err, plan)
+	stLegacy := TrainingStudy{ID: "legacy-study", PlanID: "legacy-plan", Theme: "static", AnchorScenario: a.Name, TrainingScenario: b.Name,
+		AnchorHash: a.LocalAssessment.FileSHA256, TrainingHash: b.LocalAssessment.FileSHA256, Status: "planned", CreatedAt: now.UnixMilli()}
+	plan, err := GenerateCurriculum(template, []Scenario{a, b}, runs, defaults(), now, rand.New(rand.NewSource(1)), false)
+	if err != nil {
+		t.Fatal(err)
 	}
+	plan.ID, plan.PlannerVersion, plan.CurriculumCycle, plan.CurriculumTotal = "legacy-plan", 7, 2, 1
+	rowIndex := 0
+	plan.Blocks[0].CurriculumRow = &rowIndex
+	trial := Block{Scenario: b, Role: "explore", PlayCount: 2, Budget: 120, Outcome: "pending", Measurement: &MeasurementSpec{StudyID: stLegacy.ID, Phase: "trial"}}
+	plan.Blocks = append([]Block{measurementBlock(stLegacy, a, "baseline", nil, now)}, append(plan.Blocks, trial)...)
+	s.state.Plan, s.state.TrainingStudies = plan, []TrainingStudy{stLegacy}
 	if _, err = s.Action("start", now, runs); err != nil {
 		t.Fatal(err)
 	}
@@ -230,10 +238,10 @@ func TestTrialCaptureRetestPersistenceAndFoundationProgress(t *testing.T) {
 	}
 	due := end.Add(25 * time.Hour)
 	s.updateStudiesLocked(due)
-	bundle := preparePersonalization(template, []Scenario{a, b}, runs, s.state.RunContexts, s.state.TrainingStudies, due, defaults(), true, 60, rand.New(rand.NewSource(1)))
-	if len(bundle.before) != 1 || bundle.before[0].Measurement.Phase != "retest" || bundle.study != nil {
-		t.Fatal("delayed retest not prioritized", bundle)
+	if s.state.TrainingStudies[0].Status != "due" {
+		t.Fatal("legacy window changed")
 	}
+	bundle := personalizationBundle{before: []Block{measurementBlock(s.state.TrainingStudies[0], a, "retest", nil, due)}}
 	s.state.Plan = &Plan{ID: "retest-plan", Status: "running", Preferences: defaults(), Blocks: bundle.before, AcceptAfter: due.UnixMilli(), LastTick: due.UnixMilli()}
 	for i, score := range []float64{9999, 102, 104} {
 		at := due.Add(time.Duration(i+1) * time.Minute)
@@ -331,8 +339,11 @@ func TestReviewCategoryNeverOverridesRecentContinuation(t *testing.T) {
 	r.LastPracticed = epoch.Add(-25 * time.Hour).UnixMilli()
 	progress[progressKey(ts[0])] = r
 	chosen, err = selectCurriculumWithHistory(ts, []Scenario{a, b}, p, nil, epoch, nil, progress)
-	if err != nil || chosen.ID != "b" {
-		t.Fatal("due category not selected after continuation expires", chosen, err)
+	baseline := p
+	baseline.ReviewTheme = ""
+	expected, expectedErr := selectCurriculumWithHistory(ts, []Scenario{a, b}, baseline, nil, epoch, nil, progress)
+	if err != nil || expectedErr != nil || chosen.ID != expected.ID {
+		t.Fatal("review changed weighted category selection", chosen, expected, err)
 	}
 }
 

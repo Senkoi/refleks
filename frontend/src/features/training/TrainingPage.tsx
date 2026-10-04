@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Check, Clock3, Compass, Download, Play, RefreshCw, Search, SlidersHorizontal, Target, Upload } from "lucide-react";
 import { openURL } from "@/shared/lib/api";
-import { call, readState, readLiveState, mergeLiveState, type Preferences, type Scenario, type State } from "./api";
+import { call, readState, readLiveState, mergeLiveState, planTimeAllocation, type Preferences, type Scenario, type State } from "./api";
 import { catalogPage, filterCatalog, fileLabels, evidenceLabels, type FileFilter, type DifficultyFilter } from "./catalog";
 import "./training.css";
 import PersonalEvidence from "./PersonalEvidence";
@@ -90,6 +90,7 @@ export default function TrainingPage() {
     void perform("保存试练反馈", () => call("RecordTrainingTrialFeedback", id, value), "反馈已保存，将用于后续计划。");
   }, [perform]);
   const plan = state?.initializing ? null : state?.plan;
+  const allocation = useMemo(() => planTimeAllocation(plan?.blocks ?? []), [plan?.blocks]);
   const active = !!plan && ["running", "ready", "paused", "waiting"].includes(plan.status);
 
   const catalog = useMemo(()=>filterCatalog(state?.catalog ?? [], filter, fileFilter, difficultyFilter),[state?.catalog,filter,fileFilter,difficultyFilter]);
@@ -116,7 +117,7 @@ export default function TrainingPage() {
     {notice && <div role="status" className="training-alert">{notice}</div>}
     {busy && <div role="status" className="training-alert"><RefreshCw size={14} className="animate-spin" /> {busy}…{busy === "发现内容" && " 正在读取多个公开来源，可能需要约 2 分钟。"}</div>}
 
-    {tab === "evidence" && <PersonalEvidence anchors={state?.personalAnchors ?? []} studies={state?.trainingStudies ?? []} busy={!!busy} onFeedback={recordFeedback} />}
+    {tab === "evidence" && <PersonalEvidence anchors={state?.personalAnchors ?? []} studies={state?.trainingStudies ?? []} evaluations={state?.anchorEvaluations ?? []} busy={!!busy} onFeedback={recordFeedback} />}
     {tab === "plan" && <>
       <div className="training-columns">
         <section className="training-card training-config">
@@ -159,7 +160,7 @@ export default function TrainingPage() {
               {plan.theme && <p className="training-muted">本次 VDIM 专项：{themes[plan.theme] ?? plan.theme}{plan.playerTier && ` · 模板选择参考 ${plan.playerTier}`}{plan.templateTier && ` · 模板档位 ${plan.templateTier}`} · 24 小时内优先续接；否则按水平与近期训练量选择；列表依然由完成记录校正进度。</p>}
               {plan.selectionReason && <p className="training-muted">选择原因：{plan.selectionReason}</p>}
               {plan.tierReason && <p className="training-muted">{plan.tierReason}</p>}
-              <p className="training-muted">本次安排：主线 {clock(plan.blocks.filter(b => b.role !== "challenge" && b.role !== "explore" && b.role !== "assessment").reduce((s,b) => s+b.budget,0))} · 前测/复测 {clock(plan.blocks.filter(b => b.role === "assessment").reduce((s,b) => s+b.budget,0))} · 进阶挑战 {clock(plan.blocks.filter(b => b.role === "challenge").reduce((s,b) => s+b.budget,0))} · 探索试练 {clock(plan.blocks.filter(b => b.role === "explore").reduce((s,b) => s+b.budget,0))}</p>
+              <p className="training-muted">本次安排：主线 {clock(allocation.main)} · 评估补充 {clock(allocation.assessment)} · 进阶挑战 {clock(allocation.challenge)} · 探索试练 {clock(allocation.explore)}</p>
               <div className="training-metrics"><div><strong>{clock(Math.max(0, plan.preferences.minutes * 60 - plan.elapsed))}</strong><span>剩余时间</span></div><div><strong>{clock(plan.recorded)}</strong><span>已记录练习</span></div><div><strong>{plan.blocks.filter(b => b.outcome !== "pending").length} / {plan.blocks.length}</strong><span>训练模块</span></div></div>
               <div className="training-progress"><span style={{ width: `${Math.min(100, plan.elapsed / (plan.preferences.minutes * 60) * 100)}%` }} /></div>
               <div className="training-actions">
@@ -201,7 +202,7 @@ export default function TrainingPage() {
                 <div className="training-reference-links">{b.scenario.sources?.map((s,i) => /^https:\/\//i.test(s.url) && <button className="training-link" key={i} onClick={() => external(s.url)}>{s.title}</button>)}</div>
               </details>
               <div className="training-block-footer">
-                <span>{b.target > 0 ? `目标 ≥ ${b.target.toFixed(1)}` : b.role === "assessment" ? "一局熟悉 · 两局测量" : b.role === "benchmark" ? "固定完成一次" : "不设分数门槛"}</span>
+                <span>{b.assessment ? `一局熟悉 · 三局测量；主线 ${b.assessment.mainPlayCount} 局，补充 ${b.assessment.extraRuns} 局` : b.target > 0 ? `目标 ≥ ${b.target.toFixed(1)}` : b.role === "assessment" ? "旧协议：一局熟悉 · 两局测量" : b.role === "benchmark" ? "固定完成一次" : "不设分数门槛"}</span>
                 <span>{b.runs} 局 · {clock(b.recorded)} · {outcomes[b.outcome]}</span>
                 <button className="training-link" onClick={() => setEditing({ ...b.scenario })}>评价关卡</button>
               </div>

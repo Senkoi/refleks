@@ -14,6 +14,7 @@ export type Preferences = {
   variety: number; thresholdRatio: number; autoAdvance: boolean; autoDiscover: boolean;
 };
 export type Block = {
+	assessment?: { id: string; protocolId: string; mainPlayCount: number; extraRuns: number };
   personalization?: { source: string; anchor: PersonalAnchor; relation?: { direction: string; uniform: boolean; maxDelta: number; profiles: { profile: string; radiusRatio: number; precisionDelta: number }[] }; prediction?: { status: string; expectedScore?: number; samples: number; days: number; validationMAE?: number; baselineMAE?: number } };
   measurement?: { studyId: string; phase: string };
   timing?: { seconds: number; source: string; samples: number; recentSeconds: number; weeklySeconds: number };
@@ -28,7 +29,23 @@ export type Plan = {
   status: string; index: number; elapsed: number; recorded: number; blockElapsed: number;
   reminder?: string;
 };
+
+export function planTimeAllocation(blocks: Block[]) {
+ const time = { main: 0, assessment: 0, challenge: 0, explore: 0 };
+ for (const b of blocks) {
+  if (b.role === "assessment") time.assessment += b.budget;
+  else if (b.role === "challenge") time.challenge += b.budget;
+  else if (b.role === "explore") time.explore += b.budget;
+  else {
+   const extra = Math.min(b.budget, (b.assessment?.extraRuns ?? 0) * (b.timing?.seconds ?? b.budget / Math.max(1,b.playCount)));
+   time.main += b.budget - extra;
+   time.assessment += extra;
+  }
+ }
+ return time;
+}
 export type State = {
+	anchorEvaluations?: AnchorEvaluation[];
   personalAnchors?: PersonalAnchor[];
   trainingStudies?: TrainingStudy[];
   revision?: number;
@@ -48,8 +65,15 @@ export type PersonalAnchor = {
  scenario: string; theme: string; status: string; evidence: string; medianScore: number; scoreMAD: number;
  accuracy?: number; hitsPerSecond?: number; samples: number; sessions: number; days: number; lastPlayed: number;
 };
-type MeasurementResult = { score: number; samples: number; at: number; accuracy?: number; hitsPerSecond?: number };
+type MeasurementResult = { score: number; samples: number; at: number; accuracy?: number; hitsPerSecond?: number; scores?: number[]; protocolId?: string };
+export type AnchorEvaluation = {
+ id: string; planId: string; theme: string; scenario: string; protocolId: string; status: string; reason: string;
+ createdAt: number; startedAt?: number; extraRuns: number; extraSeconds: number; result?: MeasurementResult; previous?: MeasurementResult;
+ change?: number; intervalHours?: number; intervalKind?: string; comparableDays: number;
+ exposure: { recordedSeconds: number; sameSceneSeconds: number; sameThemeSeconds: number; trialSeconds: number; trialScenarios?: string[] };
+};
 export type TrainingStudy = {
+	protocolId?: string;
  transferContaminated?: boolean;
  id: string; theme: string; anchorScenario: string; trainingScenario: string; transferScenario?: string;
  status: string; feedback?: string; createdAt: number; dueAt?: number; expiresAt?: number;

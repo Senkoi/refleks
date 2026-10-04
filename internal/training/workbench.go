@@ -34,6 +34,17 @@ func (s *Service) WorkbenchJSON(runs []models.RunRecord) (string, error) {
 	view.History = nil
 	view.CurriculumProgress = nil
 	view.RunContexts = nil
+	view.AnchorEvaluations = append([]AnchorEvaluation(nil), view.AnchorEvaluations...)
+	for i := range view.AnchorEvaluations {
+		view.AnchorEvaluations[i].Result = workbenchMeasurement(view.AnchorEvaluations[i].Result)
+		view.AnchorEvaluations[i].Previous = workbenchMeasurement(view.AnchorEvaluations[i].Previous)
+	}
+	view.TrainingStudies = append([]TrainingStudy(nil), view.TrainingStudies...)
+	for i := range view.TrainingStudies {
+		st := &view.TrainingStudies[i]
+		st.Baseline, st.Trial, st.Retest = workbenchMeasurement(st.Baseline), workbenchMeasurement(st.Trial), workbenchMeasurement(st.Retest)
+		st.TransferBaseline, st.TransferRetest = workbenchMeasurement(st.TransferBaseline), workbenchMeasurement(st.TransferRetest)
+	}
 	view.Catalog = append([]Scenario(nil), view.Catalog...)
 	for i := range view.Catalog {
 		view.Catalog[i] = workbenchScenario(view.Catalog[i])
@@ -53,6 +64,15 @@ func (s *Service) WorkbenchJSON(runs []models.RunRecord) (string, error) {
 	}
 	b, err := json.Marshal(view)
 	return string(b), err
+}
+
+func workbenchMeasurement(r *MeasurementResult) *MeasurementResult {
+	if r == nil {
+		return nil
+	}
+	view := *r
+	view.RunIDs, view.ContextKey = nil, ""
+	return &view
 }
 
 func workbenchScenario(s Scenario) Scenario {

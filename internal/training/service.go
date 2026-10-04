@@ -32,6 +32,7 @@ type Service struct {
 	localAttempts   map[string]time.Time
 	localParsed     map[string]localParsedSCE
 	localDirty      bool
+	sessionGap      time.Duration
 }
 
 // TakeReminder returns each cue once to the desktop notification layer.
@@ -251,7 +252,7 @@ func (s *Service) UpdateScenario(item Scenario) error {
 }
 
 func legacyFixedSets(p Plan) bool {
-	if p.PlannerVersion >= currentPlannerVersion {
+	if p.PlannerVersion >= 6 {
 		return false
 	}
 	for _, b := range p.Blocks {
@@ -297,6 +298,10 @@ func (s *Service) PrepareStartup(runs []models.RunRecord) (bool, error) {
 		return false, nil
 	}
 	p := automaticTrainingPreferences(s.state.Preferences)
+	if old := s.state.Plan; old != nil && old.PlannerVersion >= 7 && old.Status == "draft" {
+		s.state.Initializing = false
+		return false, nil
+	}
 	if err := validatePreferences(p); err != nil {
 		p = defaults()
 	}
@@ -338,14 +343,15 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 		return nil, fmt.Errorf("请先结束当前计划，再生成新计划")
 	}
 	now := time.Now()
+	s.syncSessionContextsLocked(runs, now)
 	s.updateStudiesLocked(now)
+	s.updateAnchorEvaluationsLocked(runs, now)
 	s.auditTransferExposureLocked(runs, now)
 	rng := rand.New(rand.NewSource(now.UnixNano()))
 	if p.PlanningPolicy != "legacy" {
 		p = automaticTrainingPreferences(p)
 	}
 	planningPreferences := automaticReferences(s.state.Catalog, p)
-	p.ReviewTheme = reviewTheme(s.state.TrainingStudies, now)
 	var plan *Plan
 	var err error
 	if p.PlanningPolicy == "legacy" {
@@ -383,6 +389,24 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 			plan, err = GenerateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored && bundle.seconds() == 0, s.state.Curricula...)
 			if err == nil {
 				plan.Blocks = append(append(bundle.before, plan.Blocks...), bundle.after...)
+				if !s.scheduleAnchorEvaluationLocked(plan, runs, now) {
+					requests := s.assessmentRequests(plan, runs, now)
+					if len(requests) > 0 && requests[0].seconds > 0 {
+						// Reserve only a real eligible assessment. Keep the original
+						// order and leave the shortened tail for ordinary continuation.
+						w, a, z, e := curriculumWindowWithReserve(*t, s.state.Catalog, runs, p, now, history, progress, bundle.seconds()+requests[0].seconds, false, s.state.Curricula...)
+						if e == nil {
+							candidate, e := GenerateCurriculum(w, s.state.Catalog, runs, planningPreferences, now, rng, false, s.state.Curricula...)
+							if e == nil {
+								candidate.ID = plan.ID
+								candidate.Blocks = append(append(bundle.before, candidate.Blocks...), bundle.after...)
+								if s.scheduleAnchorEvaluationLocked(candidate, runs, now) {
+									plan, start, end = candidate, a, z
+								}
+							}
+						}
+					}
+				}
 				if bundle.study != nil {
 					bundle.study.PlanID = plan.ID
 					s.state.TrainingStudies = append(s.state.TrainingStudies, *bundle.study)
@@ -408,9 +432,6 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 					plan.SelectionReason = "24 小时内优先续接：跳过已完成行，部分完成的行只安排剩余次数。"
 				} else {
 					plan.SelectionReason = ThemePriorities(s.state.Catalog, runs, now)[t.Theme].Evidence
-					if p.ReviewTheme == t.Theme {
-						plan.SelectionReason = "隔日复测已到期；优先测量后继续该分类主线。" + plan.SelectionReason
-					}
 				}
 				plan.CurriculumStart = start
 				plan.CurriculumEnd = end
@@ -429,6 +450,12 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 			st := &s.state.TrainingStudies[i]
 			if st.PlanID == old.ID && st.Status == "planned" {
 				st.Status = "not_started"
+			}
+		}
+		for i := range s.state.AnchorEvaluations {
+			e := &s.state.AnchorEvaluations[i]
+			if e.PlanID == old.ID && e.Status == "planned" {
+				e.Status = "not_started"
 			}
 		}
 	}
@@ -618,6 +645,10 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			s.capturePractice(b, r, now)
 			b.Best = math.Max(b.Best, v.Score)
 		}
+		if p.Recorded != previousRecorded {
+			s.syncSessionContextsLocked(runs, now)
+			s.updateAnchorEvaluationsLocked(runs, now)
+		}
 		if err := s.checkpoint(now, p.Recorded != previousRecorded); err != nil {
 			s.state.Error = "保存训练进度失败：" + err.Error()
 		}
@@ -655,6 +686,10 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 				continue
 			}
 			if sum.TimeRemaining > 1 || sum.Duration <= 0 || math.IsNaN(sum.Duration) || math.IsInf(sum.Duration, 0) || sum.Score < 0 || math.IsNaN(sum.Score) || math.IsInf(sum.Score, 0) {
+				b := &p.Blocks[p.Index]
+				if p.PlannerVersion >= 8 && strings.EqualFold(sum.Scenario, b.Scenario.Name) && b.Runs < 4 {
+					b.ObservationInterrupted = true
+				}
 				continue
 			}
 			if p.Preferences.ExecutionMode == "playlist" && p.Index+1 < len(p.Blocks) {
@@ -765,6 +800,10 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 	if p.Status == "completed" {
 		launch = ""
 	}
+	if p.Recorded != previousRecorded || p.Status != previousStatus || p.Index != previousIndex {
+		s.syncSessionContextsLocked(runs, now)
+		s.updateAnchorEvaluationsLocked(runs, now)
+	}
 	if err := s.checkpoint(now, p.Recorded != previousRecorded || p.Status != previousStatus || p.Index != previousIndex); err != nil {
 		s.state.Error = "保存训练进度失败：" + err.Error()
 	}
@@ -809,7 +848,9 @@ func (s *Service) evaluateLocked(runs []models.RunRecord, now time.Time) {
 	if key == s.evaluationKey && now.Sub(s.evaluatedAt) < 5*time.Minute {
 		return
 	}
+	s.syncSessionContextsLocked(runs, now)
 	s.updateStudiesLocked(now)
+	s.updateAnchorEvaluationsLocked(runs, now)
 	anchors := personalAnchors(s.state.Catalog, runs, s.state.RunContexts, now)
 	s.auditTransferExposureLocked(runs, now)
 	s.state.PersonalAnchors = nil

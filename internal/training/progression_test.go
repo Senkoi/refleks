@@ -66,7 +66,11 @@ func progressionFixture() (Scenario, Scenario, []models.RunRecord) {
 	next := levelScenario("next roster", "static", "Voltaic S5", "Intermediate", []string{"Platinum", "Diamond"}, []float64{100, 200})
 	next.Mechanics = base.Mechanics
 	next.Benchmarks[0].Category, next.Benchmarks[0].Group = "Clicking", "Small"
-	return base, next, sessionRuns(base.Name, []float64{36, 36, 36})
+	runs := sessionRuns(base.Name, []float64{36, 36, 36})
+	for i := range runs {
+		runs[i].Stats.Summary.DatePlayed = epoch.Add(-time.Duration(3-i) * 24 * time.Hour).Format(time.RFC3339)
+	}
+	return base, next, runs
 }
 
 func TestNearThresholdTrialsDoNotGrantRankOrCrossGoals(t *testing.T) {
@@ -115,7 +119,11 @@ func TestImprovingHardSceneIsTrainableAndPersistentDeclineRollsBack(t *testing.T
 		scores []float64
 		want   bool
 	}{{[]float64{50, 50, 50, 65, 65, 65}, true}, {[]float64{100, 100, 100, 60, 60, 60}, false}, {[]float64{10, 10, 10, 20, 20, 20}, false}} {
-		plan, err := GenerateCurriculum(Curriculum{Theme: "static", Rows: []CurriculumRow{{Name: base.Name, Count: 1}}}, []Scenario{base, c}, sessionRuns(c.Name, tc.scores), p, epoch, rand.New(rand.NewSource(0)), true)
+		runs := sessionRuns(c.Name, tc.scores)
+		for i := range runs {
+			runs[i].Stats.Summary.DatePlayed = epoch.Add(-time.Duration(len(runs)-i) * 24 * time.Hour).Format(time.RFC3339)
+		}
+		plan, err := GenerateCurriculum(Curriculum{Theme: "static", Rows: []CurriculumRow{{Name: base.Name, Count: 1}}}, []Scenario{base, c}, runs, p, epoch, rand.New(rand.NewSource(0)), true)
 		if err != nil {
 			t.Fatal(err)
 		}

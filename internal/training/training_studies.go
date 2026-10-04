@@ -11,25 +11,31 @@ import (
 	"refleks/internal/models"
 )
 
-// Every fixed measurement has one familiarization run followed by two scored
-// runs. Baseline and retest use the same protocol; none is a PB measurement.
+// Legacy fixed tests use one familiarization run and two scored runs.
+// Daily v2 probes are separate from the 1+3 anchor observation protocol.
 type MeasurementSpec struct {
-	StudyID string `json:"studyId"`
-	Phase   string `json:"phase"`
+	StudyID    string `json:"studyId"`
+	Phase      string `json:"phase"`
+	ProtocolID string `json:"protocolId,omitempty"`
 }
 
 type MeasurementResult struct {
-	Score         float64  `json:"score"`
-	Accuracy      *float64 `json:"accuracy,omitempty"`
-	HitsPerSecond *float64 `json:"hitsPerSecond,omitempty"`
-	Signature     string   `json:"signature"`
-	Settings      string   `json:"settings"`
-	FileSHA256    string   `json:"fileSHA256"`
-	At            int64    `json:"at"`
-	Samples       int      `json:"samples"`
+	ProtocolID    string    `json:"protocolId,omitempty"`
+	ContextKey    string    `json:"contextKey,omitempty"`
+	RunIDs        []string  `json:"runIds,omitempty"`
+	Scores        []float64 `json:"scores,omitempty"`
+	Score         float64   `json:"score"`
+	Accuracy      *float64  `json:"accuracy,omitempty"`
+	HitsPerSecond *float64  `json:"hitsPerSecond,omitempty"`
+	Signature     string    `json:"signature"`
+	Settings      string    `json:"settings"`
+	FileSHA256    string    `json:"fileSHA256"`
+	At            int64     `json:"at"`
+	Samples       int       `json:"samples"`
 }
 
 type TrainingStudy struct {
+	ProtocolID           string             `json:"protocolId,omitempty"`
 	TransferContaminated bool               `json:"transferContaminated,omitempty"`
 	ID                   string             `json:"id"`
 	PlanID               string             `json:"planId"`
@@ -74,7 +80,7 @@ func measured(samples []PracticeSample, warmup, count int, hash string) *Measure
 	seen := map[string]bool{}
 	var previous int64
 	for _, p := range samples[:warmup+count] {
-		if seen[p.RunID] || p.Signature != data[0].Signature || p.FileSHA256 != hash || hash == "" {
+		if p.Invalid || seen[p.RunID] || p.Signature != data[0].Signature || p.FileSHA256 != hash || hash == "" {
 			return nil
 		}
 		if p.At <= previous {
@@ -92,7 +98,11 @@ func measured(samples []PracticeSample, warmup, count int, hash string) *Measure
 			speed = append(speed, *p.HitsPerSecond)
 		}
 	}
-	r := &MeasurementResult{Score: median(scores), Signature: data[0].Signature, Settings: data[0].Settings, FileSHA256: hash, At: data[len(data)-1].At, Samples: count}
+	r := &MeasurementResult{Score: median(append([]float64(nil), scores...)), Signature: data[0].Signature, Settings: data[0].Settings, FileSHA256: hash, At: data[len(data)-1].At, Samples: count}
+	for _, p := range samples[:warmup+count] {
+		r.RunIDs = append(r.RunIDs, p.RunID)
+	}
+	r.Scores = scores
 	if len(accuracy) == count {
 		v := median(accuracy)
 		r.Accuracy = &v
@@ -118,6 +128,12 @@ func responsePrediction(studies []TrainingStudy, anchor PersonalAnchor, relation
 	nonPositive := false
 	lo, hi := math.Inf(1), math.Inf(-1)
 	for _, st := range studies {
+		// Daily history summaries and legacy fixed tests are different protocols.
+		// New probes deliberately fall back to direct history until comparable
+		// protocol/context pairs exist; never certify them using old tests.
+		if st.ProtocolID != "" {
+			continue
+		}
 		if seen[st.ID] || st.Relation.FamilyFingerprint != relation.FamilyFingerprint || !st.Relation.Uniform || st.Baseline == nil || st.Trial == nil ||
 			st.Baseline.Settings != st.Trial.Settings ||
 			st.Baseline.Signature != anchor.Signature || st.AnchorScenario != anchor.Scenario || st.AnchorHash != anchor.FileSHA256 || st.AnchorHash != st.Baseline.FileSHA256 || st.TrainingHash != st.Trial.FileSHA256 {
@@ -215,24 +231,13 @@ func (b personalizationBundle) seconds() int {
 func measurementBlock(st TrainingStudy, scene Scenario, phase string, obs map[string][]observation, now time.Time) Block {
 	timing := estimateTiming(scene, obs[strings.ToLower(scene.Name)], now)
 	return Block{Scenario: scene, Role: "assessment", Timing: timing, PlayCount: 3, Budget: 3 * timing.Seconds, Outcome: "pending",
-		Measurement: &MeasurementSpec{st.ID, phase}, AnchorScenario: st.AnchorScenario,
+		Measurement: &MeasurementSpec{StudyID: st.ID, Phase: phase}, AnchorScenario: st.AnchorScenario,
 		Reason: "固定前测/复测：第一局熟悉，后两局取中位成绩；版本、设置或时长变化时不合并比较。",
 		Cue:    "按平常方式完成三局；第一局不计入测量，结果只影响后续计划。"}
 }
 
 func studyOpen(st TrainingStudy) bool {
 	return st.Status == "planned" || st.Status == "waiting" || st.Status == "due" || st.Status == "transfer_due"
-}
-
-func reviewTheme(studies []TrainingStudy, now time.Time) string {
-	theme := ""
-	var earliest int64
-	for _, st := range studies {
-		if (st.Status == "due" || st.Status == "transfer_due") && st.DueAt <= now.UnixMilli() && st.ExpiresAt >= now.UnixMilli() && (earliest == 0 || st.DueAt < earliest) {
-			theme, earliest = st.Theme, st.DueAt
-		}
-	}
-	return theme
 }
 
 func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunRecord, contexts map[string]RunContext, studies []TrainingStudy, now time.Time, p Preferences, explored bool, firstSeconds int, rng *rand.Rand) personalizationBundle {
@@ -243,40 +248,10 @@ func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunR
 		byName[strings.ToLower(s.Name)] = enrichMechanics(s)
 	}
 	available := p.Minutes*60*9/10 - firstSeconds
-	// Pending delayed tests have priority over new trials within the chosen
-	// category, and never change the category of a 24-hour continuation.
-	for _, st := range studies {
-		if st.Theme != t.Theme || st.DueAt == 0 || st.DueAt > now.UnixMilli() || st.ExpiresAt < now.UnixMilli() || !studyOpen(st) {
-			continue
-		}
-		for _, item := range []struct {
-			name, hash, phase string
-			done, baseline    *MeasurementResult
-		}{
-			{st.AnchorScenario, st.AnchorHash, "retest", st.Retest, st.Baseline},
-			{st.TransferScenario, st.TransferHash, "transfer_retest", st.TransferRetest, st.TransferBaseline},
-		} {
-			if item.done != nil || item.baseline == nil {
-				continue
-			}
-			scene, ok := byName[strings.ToLower(item.name)]
-			if !ok || !scene.Enabled || scene.LocalAssessment == nil || scene.LocalAssessment.Status != "file_parsed_model_unfitted" || scene.LocalAssessment.FileSHA256 != item.hash {
-				continue
-			}
-			block := measurementBlock(st, scene, item.phase, obs, now)
-			if block.Budget <= available-bundle.seconds() {
-				bundle.before = append(bundle.before, block)
-			}
-		}
-		return bundle // At most one study per plan; postpone if a whole test cannot fit.
-	}
+	// The selected category and its continuation are immutable. Legacy tests
+	// retain their results/windows but cannot force a category or block a probe.
 	if !explored || p.Variety <= 0 || available <= 0 {
 		return bundle
-	}
-	for _, st := range studies {
-		if st.Theme == t.Theme && studyOpen(st) && st.Status != "planned" {
-			return bundle
-		}
 	}
 	anchors := personalAnchors(catalog, runs, contexts, now)
 	baseNames := map[string]bool{}
@@ -344,7 +319,7 @@ func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunR
 					continue
 				}
 			}
-			prediction := responsePrediction(studies, personal, relation)
+			prediction := &ResponsePrediction{Status: "insufficient"} // No mixing legacy tests with daily observations.
 			if prediction.Status == "local_backtest" {
 				weight *= max(.25, min(1.25, prediction.ExpectedScore/personal.MedianScore))
 			}
@@ -366,28 +341,14 @@ func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunR
 		st := TrainingStudy{ID: fmt.Sprintf("study-%d-%x", now.UnixMilli(), rng.Uint32()), Theme: t.Theme, AnchorScenario: c.anchor.Name,
 			TrainingScenario: c.scene.Name, AnchorHash: c.anchor.LocalAssessment.FileSHA256, TrainingHash: c.scene.LocalAssessment.FileSHA256,
 			Relation: *c.relation, Status: "planned", CreatedAt: now.UnixMilli()}
-		before := measurementBlock(st, c.anchor, "baseline", obs, now)
-		if before.Budget+trialSeconds > available {
+		if trialSeconds > available {
 			continue
 		}
-		bundle.before = []Block{before}
-		// A familiar, same-goal scene outside this plan can measure transfer.
-		// It remains a separate metric, never a cross-scene score comparison.
-		for _, transfer := range catalog {
-			if baseNames[strings.ToLower(transfer.Name)] || transfer.Name == c.scene.Name || !goalCompatible(c.anchor, enrichMechanics(transfer)) ||
-				!transfer.Enabled || transfer.Preference == "disliked" || transfer.LocalAssessment == nil ||
-				transfer.LocalAssessment.Status != "file_parsed_model_unfitted" || transfer.LocalAssessment.FamilyFingerprint == c.relation.FamilyFingerprint ||
-				anchors[strings.ToLower(transfer.Name)].Status != "stable" {
-				continue
-			}
-			test := measurementBlock(st, transfer, "transfer_baseline", obs, now)
-			if before.Budget+test.Budget+trialSeconds > available || before.Budget+test.Budget > p.Minutes*60*9/10/4 {
-				continue
-			}
-			st.TransferScenario, st.TransferHash = transfer.Name, transfer.LocalAssessment.FileSHA256
-			bundle.before = append(bundle.before, test)
-			break
-		}
+		st.ProtocolID = dailyTrialProtocol
+		// A descriptive history reference, never a frozen experimental pretest.
+		st.Baseline = &MeasurementResult{Score: c.personal.MedianScore, Signature: c.personal.Signature,
+			FileSHA256: c.personal.FileSHA256, At: c.personal.LastPlayed, Samples: c.personal.Samples,
+			ProtocolID: "history_summary_v2"}
 		source := "same_family_probe"
 		if anchors[strings.ToLower(c.scene.Name)].Status == "stable" {
 			source = "direct_history"
@@ -397,7 +358,7 @@ func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunR
 		}
 		decision := &SceneDecision{Source: source, Anchor: c.personal, Relation: c.relation, Prediction: c.prediction}
 		bundle.after = []Block{{Scenario: c.scene, Role: "explore", PlayCount: 2, Budget: trialSeconds, Timing: timing, Personalization: decision,
-			Measurement: &MeasurementSpec{st.ID, "trial"}, AnchorScenario: c.anchor.Name, Outcome: "pending",
+			Measurement: &MeasurementSpec{StudyID: st.ID, Phase: "trial", ProtocolID: dailyTrialProtocol}, AnchorScenario: c.anchor.Name, Outcome: "pending",
 			Reason: "匹配本地同族配置与布局；仅目标尺寸改变。先完成两局试练，结果用于下一次选择，不换算总体难度。",
 			Cue:    "同族精度试练：保持平常节奏；两局完成后停止追加，观察速度与命中率的组合。"}}
 		bundle.study = &st
@@ -413,6 +374,10 @@ func (s *Service) updateStudiesLocked(now time.Time) {
 	}
 	for i := range s.state.TrainingStudies {
 		st := &s.state.TrainingStudies[i]
+		if st.ProtocolID == dailyTrialProtocol {
+			s.updateDailyTrialLocked(st, index, now)
+			continue
+		}
 		if studyOpen(*st) {
 			for name, hash := range map[string]string{st.AnchorScenario: st.AnchorHash, st.TrainingScenario: st.TrainingHash, st.TransferScenario: st.TransferHash} {
 				if name == "" {
@@ -542,7 +507,7 @@ func (s *Service) auditTransferExposureLocked(runs []models.RunRecord, now time.
 			until = st.TransferRetest.At
 		}
 		for _, r := range runs {
-			if !strings.EqualFold(r.Stats.Summary.Scenario, st.TransferScenario) || !validPractice(r, now) {
+			if !strings.EqualFold(r.Stats.Summary.Scenario, st.TransferScenario) || !validExposure(r, now) {
 				continue
 			}
 			at, _ := time.Parse(time.RFC3339, r.Stats.Summary.DatePlayed)

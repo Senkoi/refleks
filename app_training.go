@@ -327,6 +327,7 @@ func (a *App) InstallTrainingPlaylist() (string, error) {
 
 func (a *App) pollTrainingLocal(now time.Time) {
 	settings := a.settingsSvc.Get()
+	a.trainingSvc.SetSessionGap(time.Duration(settings.SessionGapMinutes) * time.Minute)
 	base := settings.KovaaksInstallDir
 	playlists := ""
 	if base != "" {

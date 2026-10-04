@@ -11,15 +11,28 @@ import (
 )
 
 type RunContext struct {
-	StudyID    string `json:"studyId,omitempty"`
-	Phase      string `json:"phase,omitempty"`
-	Scenario   string `json:"scenario"`
-	FileSHA256 string `json:"fileSHA256"`
-	Signature  string `json:"signature"`
-	At         int64  `json:"at"`
+	ContextVersion    int     `json:"contextVersion,omitempty"`
+	SessionID         string  `json:"sessionId,omitempty"`
+	PlanID            string  `json:"planId,omitempty"`
+	ProtocolID        string  `json:"protocolId,omitempty"`
+	BlockPosition     int     `json:"blockPosition,omitempty"`
+	BlockRun          int     `json:"blockRun,omitempty"`
+	Ordinal           int     `json:"ordinal,omitempty"`
+	SceneOrdinal      int     `json:"sceneOrdinal,omitempty"`
+	PriorSeconds      float64 `json:"priorSeconds,omitempty"`
+	PriorThemeSeconds float64 `json:"priorThemeSeconds,omitempty"`
+	PriorSceneSeconds float64 `json:"priorSceneSeconds,omitempty"`
+	ScoreValid        bool    `json:"scoreValid,omitempty"`
+	StudyID           string  `json:"studyId,omitempty"`
+	Phase             string  `json:"phase,omitempty"`
+	Scenario          string  `json:"scenario"`
+	FileSHA256        string  `json:"fileSHA256"`
+	Signature         string  `json:"signature"`
+	At                int64   `json:"at"`
 }
 
 type PracticeSample struct {
+	Invalid       bool     `json:"invalid,omitempty"`
 	StartedAt     int64    `json:"startedAt"`
 	RunID         string   `json:"runId"`
 	At            int64    `json:"at"`
@@ -104,6 +117,7 @@ func practiceSample(r models.RunRecord) PracticeSample {
 }
 
 func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[string]RunContext, now time.Time) map[string]PersonalAnchor {
+	positions := sessionPositions(catalog, runs, 20*time.Minute, now)
 	rows := map[string][]PracticeSample{}
 	seen := map[string]bool{}
 	for _, r := range runs {
@@ -154,7 +168,7 @@ func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[s
 		a := PersonalAnchor{Scenario: s.Name, Theme: scenarioTheme(s), Status: "provisional", Evidence: "history_unbound", Signature: data[0].Signature, LastPlayed: data[0].At}
 		days := map[string]bool{}
 		sessionScores, sessionAccuracy, sessionSpeed := [][]float64{}, [][]float64{}, [][]float64{}
-		var last int64
+		lastSession := ""
 		bound := 0
 		for _, p := range data {
 			if p.Signature != a.Signature {
@@ -163,7 +177,14 @@ func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[s
 			if p.FileSHA256 != "" && s.LocalAssessment != nil && p.FileSHA256 != s.LocalAssessment.FileSHA256 {
 				continue
 			}
-			if last == 0 || last-p.At >= int64(30*time.Minute/time.Millisecond) {
+			session := positions[p.RunID].SessionID
+			if c := contexts[p.RunID]; c.ContextVersion >= 2 && c.SessionID != "" {
+				session = c.SessionID
+			}
+			if session == "" {
+				session = p.RunID
+			}
+			if lastSession == "" || lastSession != session {
 				if len(sessionScores) == 6 {
 					break
 				}
@@ -171,7 +192,7 @@ func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[s
 				sessionAccuracy = append(sessionAccuracy, nil)
 				sessionSpeed = append(sessionSpeed, nil)
 			}
-			last = p.At
+			lastSession = session
 			i := len(sessionScores) - 1
 			if len(sessionScores[i]) >= 12 {
 				continue
@@ -235,10 +256,8 @@ func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[s
 }
 
 func (s *Service) capturePractice(b *Block, r models.RunRecord, now time.Time) {
-	if !validPractice(r, now) {
-		return
-	}
 	p := practiceSample(r)
+	p.Invalid = !validPractice(r, now)
 	// Never bind old history to today's file. Require an unchanged, parsed local
 	// file at generation and ingestion, observed before this run started.
 	if a := b.Scenario.LocalAssessment; a != nil && a.Status == "file_parsed_model_unfitted" {
@@ -257,14 +276,24 @@ func (s *Service) capturePractice(b *Block, r models.RunRecord, now time.Time) {
 	if s.state.RunContexts == nil {
 		s.state.RunContexts = map[string]RunContext{}
 	}
-	if p.FileSHA256 != "" {
-		c := RunContext{Scenario: b.Scenario.Name, FileSHA256: p.FileSHA256, Signature: p.Signature, At: p.At}
+	{
+		c := s.state.RunContexts[p.RunID]
+		c.Scenario, c.FileSHA256, c.Signature, c.At = b.Scenario.Name, p.FileSHA256, p.Signature, p.At
+		c.ContextVersion, c.ScoreValid = 2, !p.Invalid
+		if plan := s.state.Plan; plan != nil {
+			c.PlanID, c.BlockPosition, c.BlockRun = plan.ID, plan.Index, b.Runs
+		}
 		if b.Measurement != nil {
 			c.StudyID, c.Phase = b.Measurement.StudyID, b.Measurement.Phase
+			c.ProtocolID = b.Measurement.ProtocolID
+		} else if b.Assessment != nil {
+			c.ProtocolID = b.Assessment.ProtocolID
+		} else if s.state.Plan != nil && s.state.Plan.PlannerVersion >= 8 {
+			c.ProtocolID = anchorObservationProtocol
 		}
 		s.state.RunContexts[p.RunID] = c
 	}
-	if b.Measurement != nil || b.Personalization != nil && b.Personalization.Relation != nil {
+	if b.Measurement != nil || b.Assessment != nil || s.state.Plan != nil && s.state.Plan.PlannerVersion >= 8 || b.Personalization != nil && b.Personalization.Relation != nil {
 		for _, old := range b.Observations {
 			if old.RunID == p.RunID {
 				return

@@ -26,3 +26,21 @@ test('a stale clock response cannot overwrite a newly generated plan', () => {
   assert.equal(mergeLiveState(state, { plan: { id: 'old-session', blocks: [] } }), state);
   assert.equal(mergeLiveState(state, { plan: null }), state);
 });
+
+
+test('shared fixed observation displays original main time once and only added runs as assessment', () => {
+  const { planTimeAllocation } = sandbox.exports;
+  const blocks = [{ role: 'practice', budget: 240, playCount: 4, timing: { seconds: 60 }, assessment: { mainPlayCount: 2, extraRuns: 2 } }, { role: 'explore', budget: 120 }];
+  const time = planTimeAllocation(blocks);
+  assert.equal(time.main, 120);
+  assert.equal(time.assessment, 120);
+  assert.equal(time.explore, 120);
+  assert.equal(Object.values(time).reduce((a,b)=>a+b,0), 360);
+});
+
+test('legacy separate tests and passive main observations retain their actual time budgets', () => {
+  const time = sandbox.exports.planTimeAllocation([{role:'assessment',budget:180}, {role:'practice',budget:240,playCount:4,assessment:{extraRuns:0}}, {role:'challenge',budget:60}]);
+  assert.equal(time.assessment,180);
+  assert.equal(time.main,240);
+  assert.equal(time.challenge,60);
+});

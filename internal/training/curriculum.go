@@ -192,9 +192,6 @@ func selectCurriculumWithHistory(ts []Curriculum, catalog []Scenario, p Preferen
 	preferred := vdimThemes[day]
 	sort.SliceStable(eligible, func(i, j int) bool {
 		a, b := eligible[i], eligible[j]
-		if p.ReviewTheme != "" && (a.Theme == p.ReviewTheme) != (b.Theme == p.ReviewTheme) {
-			return a.Theme == p.ReviewTheme
-		}
 		if priorities[a.Theme].Priority != priorities[b.Theme].Priority {
 			return priorities[a.Theme].Priority > priorities[b.Theme].Priority
 		}
@@ -250,11 +247,12 @@ func completedCurriculum(p Plan, t Curriculum) bool {
 		if role == "" {
 			role = "practice"
 		}
-		sourceMatches := b.PlayCount == row.Count
+		count := mainPlayCount(b)
+		sourceMatches := count == row.Count
 		if b.SourcePlayCount > 0 {
-			sourceMatches = b.SourcePlayCount == originalRowCount(row) && b.PlayCount > 0 && b.PlayCount <= b.SourcePlayCount
+			sourceMatches = b.SourcePlayCount == originalRowCount(row) && count > 0 && count <= b.SourcePlayCount
 		}
-		if !strings.EqualFold(b.Scenario.Name, row.Name) || b.Role != role || !sourceMatches || b.Runs < b.PlayCount || b.Recorded <= 0 || b.Outcome != "list_complete" {
+		if !strings.EqualFold(b.Scenario.Name, row.Name) || b.Role != role || !sourceMatches || b.Runs < count || b.Recorded <= 0 || b.Outcome != "list_complete" {
 			return false
 		}
 	}

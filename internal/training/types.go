@@ -96,29 +96,31 @@ type SkillStatus struct {
 }
 
 type Block struct {
-	Personalization    *SceneDecision     `json:"personalization,omitempty"`
-	Measurement        *MeasurementSpec   `json:"measurement,omitempty"`
-	Observations       []PracticeSample   `json:"observations,omitempty"`
-	CurriculumRow      *int               `json:"curriculumRow,omitempty"`
-	CompletedBefore    int                `json:"completedBefore,omitempty"`
-	LastCompletedAt    int64              `json:"lastCompletedAt,omitempty"`
-	AnchorScenario     string             `json:"anchorScenario,omitempty"`
-	Timing             TimingEstimate     `json:"timing"`
-	DifficultyEvidence DifficultyEvidence `json:"difficultyEvidence"`
-	Signature          string             `json:"signature,omitempty"`
-	Scenario           Scenario           `json:"scenario"`
-	Role               string             `json:"role"`
-	Budget             int                `json:"budget"`
-	SourcePlayCount    int                `json:"sourcePlayCount,omitempty"`
-	PlayCount          int                `json:"playCount"`
-	Target             float64            `json:"target"`
-	Reason             string             `json:"reason"`
-	Cue                string             `json:"cue"`
-	Recorded           float64            `json:"recorded"`
-	Benchmark          string             `json:"benchmark,omitempty"`
-	Runs               int                `json:"runs"`
-	Best               float64            `json:"best"`
-	Outcome            string             `json:"outcome"`
+	ObservationInterrupted bool               `json:"observationInterrupted,omitempty"`
+	Assessment             *AssessmentSpec    `json:"assessment,omitempty"`
+	Personalization        *SceneDecision     `json:"personalization,omitempty"`
+	Measurement            *MeasurementSpec   `json:"measurement,omitempty"`
+	Observations           []PracticeSample   `json:"observations,omitempty"`
+	CurriculumRow          *int               `json:"curriculumRow,omitempty"`
+	CompletedBefore        int                `json:"completedBefore,omitempty"`
+	LastCompletedAt        int64              `json:"lastCompletedAt,omitempty"`
+	AnchorScenario         string             `json:"anchorScenario,omitempty"`
+	Timing                 TimingEstimate     `json:"timing"`
+	DifficultyEvidence     DifficultyEvidence `json:"difficultyEvidence"`
+	Signature              string             `json:"signature,omitempty"`
+	Scenario               Scenario           `json:"scenario"`
+	Role                   string             `json:"role"`
+	Budget                 int                `json:"budget"`
+	SourcePlayCount        int                `json:"sourcePlayCount,omitempty"`
+	PlayCount              int                `json:"playCount"`
+	Target                 float64            `json:"target"`
+	Reason                 string             `json:"reason"`
+	Cue                    string             `json:"cue"`
+	Recorded               float64            `json:"recorded"`
+	Benchmark              string             `json:"benchmark,omitempty"`
+	Runs                   int                `json:"runs"`
+	Best                   float64            `json:"best"`
+	Outcome                string             `json:"outcome"`
 }
 
 type TimingEstimate struct {
@@ -141,7 +143,7 @@ type DifficultyEvidence struct {
 	Samples       int                   `json:"samples"`
 }
 
-const currentPlannerVersion = 7
+const currentPlannerVersion = 8
 
 type Plan struct {
 	CurriculumCycle int                `json:"curriculumCycle,omitempty"`
@@ -178,6 +180,7 @@ type Plan struct {
 }
 
 type State struct {
+	AnchorEvaluations  []AnchorEvaluation         `json:"anchorEvaluations,omitempty"`
 	PersonalAnchors    []PersonalAnchor           `json:"personalAnchors,omitempty"`
 	TrainingStudies    []TrainingStudy            `json:"trainingStudies,omitempty"`
 	RunContexts        map[string]RunContext      `json:"runContexts,omitempty"`

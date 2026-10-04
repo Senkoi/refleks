@@ -109,6 +109,9 @@ func nativeForTier(tier string) string {
 // A local near-threshold result can justify a training trial without granting
 // an official category rank. Undated PBs never establish stable readiness.
 func readyForNextTier(m BenchmarkMembership, rows []observation, tier string, now time.Time) bool {
+	if practiceDayCount(rows, now) < 3 {
+		return false
+	}
 	score, n, _ := levelScoreWindow(rows, now)
 	if n < 3 {
 		return false
@@ -271,7 +274,7 @@ func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRe
 					ref = m
 				}
 			}
-			trainable := fit.Fit == "challenging" && fit.Trend == "improving"
+			trainable := fit.Fit == "challenging" && fit.Trend == "improving" && practiceDayCount(fitObs[strings.ToLower(c.Name)], now) >= 3
 			aboveFloor := fit.Fit != "challenging"
 			for _, m := range fit.Benchmarks {
 				if len(m.Thresholds) > 0 && fit.RecentScore >= m.Thresholds[0]*.4 {

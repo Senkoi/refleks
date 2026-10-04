@@ -63,8 +63,9 @@ func applyRoutinePlan(t Curriculum, r RoutineProgress, p Plan) RoutineProgress {
 		if role == "" {
 			role = "practice"
 		}
-		target := b.CompletedBefore + b.PlayCount
-		if !strings.EqualFold(row.Name, b.Scenario.Name) || role != b.Role || b.PlayCount <= 0 || target > originalRowCount(row) || b.SourcePlayCount == 0 && target != originalRowCount(row) || b.SourcePlayCount > 0 && b.SourcePlayCount != originalRowCount(row) {
+		count := mainPlayCount(b)
+		target := b.CompletedBefore + count
+		if !strings.EqualFold(row.Name, b.Scenario.Name) || role != b.Role || count <= 0 || target > originalRowCount(row) || b.SourcePlayCount == 0 && target != originalRowCount(row) || b.SourcePlayCount > 0 && b.SourcePlayCount != originalRowCount(row) {
 			continue
 		}
 		// Generation defines the short-set target; skipping never completes it.
@@ -72,7 +73,7 @@ func applyRoutinePlan(t Curriculum, r RoutineProgress, p Plan) RoutineProgress {
 			r.Rows[i].Target = target
 		}
 		if b.Recorded > 0 && b.Runs > 0 && !(b.CurriculumRow == nil && (b.Outcome == "skipped" || b.Outcome == "missed")) {
-			r.Rows[i].Completed = max(r.Rows[i].Completed, min(r.Rows[i].Target, b.CompletedBefore+min(b.Runs, b.PlayCount)))
+			r.Rows[i].Completed = max(r.Rows[i].Completed, min(r.Rows[i].Target, b.CompletedBefore+min(b.Runs, count)))
 			at := b.LastCompletedAt
 			if at == 0 {
 				at = p.EndedAt
