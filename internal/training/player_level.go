@@ -9,22 +9,25 @@ import (
 )
 
 type PlayerLevel struct {
-	AtCeiling        bool   `json:"atCeiling,omitempty"`
-	Source           string `json:"source,omitempty"`
-	WindowDays       int    `json:"windowDays,omitempty"`
-	LastPlayed       string `json:"lastPlayed,omitempty"`
-	Theme            string `json:"theme"`
-	Category         string `json:"category,omitempty"`
-	Group            string `json:"group,omitempty"`
-	System           string `json:"system,omitempty"`
-	NativeDifficulty string `json:"nativeDifficulty,omitempty"`
-	Rank             string `json:"rank,omitempty"`
-	Tier             string `json:"tier"`
-	Status           string `json:"status"`
-	Scenarios        int    `json:"scenarios"`
-	Required         int    `json:"required"`
-	Samples          int    `json:"samples"`
-	Evidence         string `json:"evidence"`
+	TrainingAtCeiling bool    `json:"trainingAtCeiling,omitempty"`
+	TrainingTier      string  `json:"trainingTier,omitempty"`
+	Ability           float64 `json:"ability"`
+	AtCeiling         bool    `json:"atCeiling,omitempty"`
+	Source            string  `json:"source,omitempty"`
+	WindowDays        int     `json:"windowDays,omitempty"`
+	LastPlayed        string  `json:"lastPlayed,omitempty"`
+	Theme             string  `json:"theme"`
+	Category          string  `json:"category,omitempty"`
+	Group             string  `json:"group,omitempty"`
+	System            string  `json:"system,omitempty"`
+	NativeDifficulty  string  `json:"nativeDifficulty,omitempty"`
+	Rank              string  `json:"rank,omitempty"`
+	Tier              string  `json:"tier"`
+	Status            string  `json:"status"`
+	Scenarios         int     `json:"scenarios"`
+	Required          int     `json:"required"`
+	Samples           int     `json:"samples"`
+	Evidence          string  `json:"evidence"`
 }
 
 // VDIM S5 author's distribution: Bronze Complete -> Novice, Gold Complete
@@ -177,6 +180,8 @@ func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []
 		lowest                         int
 		ranks                          []string
 		historyScenes, benchmarkScenes int
+		trainingCeiling                bool
+		values                         []float64
 		seen                           map[string]bool
 	}
 	groups := map[string]*bucket{}
@@ -185,7 +190,7 @@ func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []
 			key := scenarioTheme(s) + "|" + m.System + "|" + m.NativeDifficulty + "|" + m.Category + "|" + m.Group
 			b := groups[key]
 			if b == nil {
-				b = &bucket{level: PlayerLevel{Theme: scenarioTheme(s), Category: m.Category, Group: m.Group, System: m.System, NativeDifficulty: m.NativeDifficulty, Tier: "novice", Status: "insufficient"}, lowest: len(m.Ranks), ranks: m.Ranks, seen: map[string]bool{}}
+				b = &bucket{level: PlayerLevel{Theme: scenarioTheme(s), Category: m.Category, Group: m.Group, System: m.System, NativeDifficulty: m.NativeDifficulty, Tier: "novice", Status: "insufficient"}, lowest: len(m.Ranks), trainingCeiling: true, ranks: m.Ranks, seen: map[string]bool{}}
 				groups[key] = b
 			}
 			name := strings.ToLower(s.Name)
@@ -219,6 +224,9 @@ func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []
 			} else {
 				continue
 			}
+			if v, ok := scoreValue(m, score); ok {
+				b.values = append(b.values, v)
+			}
 			b.level.Scenarios++
 			b.level.Samples += n
 			rank := -1
@@ -226,6 +234,9 @@ func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []
 				if t > 0 && score >= t {
 					rank = i
 				}
+			}
+			if rank < len(m.Ranks)-1 {
+				b.trainingCeiling = false
 			}
 			if rank < b.lowest {
 				b.lowest = rank
@@ -241,6 +252,11 @@ func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []
 	for _, k := range keys {
 		b := groups[k]
 		l := b.level
+		if len(b.values) > 0 {
+			l.Ability = median(b.values)
+			l.TrainingTier = valueTier(l.Ability)
+			l.TrainingAtCeiling = b.trainingCeiling
+		}
 		l.Source = "history"
 		l.Evidence = "优先 7 天可比成绩，不足三局依次扩到 14/30/45 天；窗口内不按年龄降档，需覆盖该原生分类全部场景。"
 		if b.benchmarkScenes > 0 {
@@ -249,6 +265,10 @@ func PlayerLevels(catalog []Scenario, runs []models.RunRecord, now time.Time) []
 				l.Source = "mixed"
 			}
 			l.Evidence += "缺少足够本地历史的场景采用 benchmark 已有成绩；接口未提供达成日期，作为暂定参考，不伪造近期样本。"
+		}
+		if l.Scenarios > 0 && l.Scenarios < l.Required {
+			l.Status = "partial"
+			l.Evidence += "分类尚未完整定级，已有场景仍用于估计训练水平。"
 		}
 		if l.Scenarios == l.Required && l.Required >= 1 {
 			l.Status = "inferred"
@@ -292,8 +312,13 @@ func inferredTier(theme string, levels []PlayerLevel) string {
 // lower every training goal. Unknown groups never manufacture a promotion.
 func trainingTier(theme string, levels []PlayerLevel) string {
 	tiers := []string{}
-	for _, tier := range inferredGroupTiers(theme, levels) {
-		tiers = append(tiers, tier)
+	for _, level := range trainingGroupLevels(theme, levels) {
+		tiers = append(tiers, level.TrainingTier)
+	}
+	if len(tiers) == 0 {
+		for _, tier := range inferredGroupTiers(theme, levels) {
+			tiers = append(tiers, tier)
+		}
 	}
 	if len(tiers) == 0 {
 		return "novice"

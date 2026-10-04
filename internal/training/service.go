@@ -19,6 +19,10 @@ import (
 
 type Service struct {
 	mu              sync.Mutex
+	dataRevision    uint64
+	evaluationKey   string
+	evaluatedAt     time.Time
+	checkpointAt    time.Time
 	path            string
 	state           State
 	discovering     bool
@@ -84,6 +88,13 @@ func New(dir string) (*Service, error) {
 }
 
 func (s *Service) save() error {
+	s.dataRevision++
+	s.evaluationKey = ""
+	return s.persist()
+}
+
+func (s *Service) persist() error {
+	s.syncProgressLocked()
 	data, err := json.MarshalIndent(s.state, "", "  ")
 	if err != nil {
 		return err
@@ -105,20 +116,7 @@ func (s *Service) save() error {
 func (s *Service) Snapshot(runs []models.RunRecord) State {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	now := time.Now()
-	references := automaticReferences(s.state.Catalog, s.state.Preferences)
-	obs := levelObservations(runs, now)
-	for i := range s.state.Catalog {
-		c := &s.state.Catalog[i]
-		c.Evaluation = assessCatalog(*c, obs[strings.ToLower(c.Name)], now, references)
-	}
-	s.state.PlayerLevels = PlayerLevels(s.state.Catalog, runs, now)
-	s.state.TemplateTiers = map[string]string{}
-	for _, theme := range vdimThemes {
-		s.state.TemplateTiers[theme] = trainingTier(theme, s.state.PlayerLevels)
-	}
-	s.state.Skills = SkillProfile(s.state.Catalog, runs, automaticReferences(s.state.Catalog, s.state.Preferences), time.Now())
-	s.state.SearchConfigured = os.Getenv("REFLEKS_BRAVE_API_KEY") != ""
+	s.evaluateLocked(runs, time.Now())
 	b, _ := json.Marshal(s.state)
 	var copy State
 	_ = json.Unmarshal(b, &copy)
@@ -356,15 +354,26 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 		if old := s.state.Plan; old != nil {
 			history = append(history, *old)
 		}
-		t, err = selectCurriculumWithHistory(s.state.Curricula, s.state.Catalog, p, runs, now, history)
+		s.syncProgressLocked()
+		t, err = selectCurriculumWithHistory(s.state.Curricula, s.state.Catalog, p, runs, now, history, s.state.CurriculumProgress)
 		if err == nil {
-			explored := curriculumBaseline(*t, history)
-			window, start, end, windowErr := curriculumWindow(*t, s.state.Catalog, runs, p, now, history, s.state.Curricula...)
+			progress := progressFor(*t, history, s.state.CurriculumProgress)
+			explored := progress.EverCompleted || curriculumBaseline(*t, history)
+			window, start, end, windowErr := curriculumWindowWithProgress(*t, s.state.Catalog, runs, p, now, history, progress, s.state.Curricula...)
 			if windowErr != nil {
 				return nil, windowErr
 			}
 			plan, err = GenerateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored, s.state.Curricula...)
 			if err == nil {
+				plan.CurriculumCycle = progress.Cycle
+				if progress.complete() {
+					plan.CurriculumCycle++
+				}
+				if resumeDue(progress, now) {
+					plan.SelectionReason = "24 小时内优先续接：跳过已完成行，部分完成的行只安排剩余次数。"
+				} else {
+					plan.SelectionReason = ThemePriorities(s.state.Catalog, runs, now)[t.Theme].Evidence
+				}
 				plan.CurriculumStart = start
 				plan.CurriculumEnd = end
 				plan.CurriculumTotal = len(t.Rows)
@@ -533,6 +542,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 	// File ingestion may lag the cap by more than one polling interval. Accept
 	// only runs that actually ended before the cap, for a bounded grace period.
 	if p != nil && p.Status == "completed" && p.EndedAt > 0 && now.UnixMilli() <= p.EndedAt+120000 && p.Index < len(p.Blocks) {
+		previousRecorded := p.Recorded
 		seen := map[string]bool{}
 		for _, k := range p.Seen {
 			seen[k] = true
@@ -547,7 +557,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			p.Seen = append(p.Seen, runKey(r))
 			v := r.Stats.Summary
 			end, err := time.Parse(time.RFC3339, v.DatePlayed)
-			if err != nil || v.Duration <= 0 || math.IsNaN(v.Duration) || math.IsInf(v.Duration, 0) || v.Score < 0 || math.IsNaN(v.Score) || math.IsInf(v.Score, 0) {
+			if err != nil || v.TimeRemaining > 1 || v.Duration <= 0 || math.IsNaN(v.Duration) || math.IsInf(v.Duration, 0) || v.Score < 0 || math.IsNaN(v.Score) || math.IsInf(v.Score, 0) {
 				continue
 			}
 			start := end.Add(-time.Duration(v.Duration * float64(time.Second)))
@@ -558,9 +568,10 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			b.Recorded += v.Duration
 			p.Recorded += v.Duration
 			b.Runs++
+			b.LastCompletedAt = end.UnixMilli()
 			b.Best = math.Max(b.Best, v.Score)
 		}
-		if err := s.save(); err != nil {
+		if err := s.checkpoint(now, p.Recorded != previousRecorded); err != nil {
 			s.state.Error = "保存训练进度失败：" + err.Error()
 		}
 		return ""
@@ -568,6 +579,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 	if p == nil || (p.Status != "running" && p.Status != "ready" && p.Status != "waiting") {
 		return ""
 	}
+	previousRecorded, previousStatus, previousIndex := p.Recorded, p.Status, p.Index
 	s.clock(now)
 	launch := ""
 	if p.Status == "running" || p.Status == "waiting" {
@@ -595,7 +607,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			if start.UnixMilli() < p.AcceptAfter-2000 || end.After(now.Add(2*time.Second)) {
 				continue
 			}
-			if sum.Duration <= 0 || math.IsNaN(sum.Duration) || math.IsInf(sum.Duration, 0) || sum.Score < 0 || math.IsNaN(sum.Score) || math.IsInf(sum.Score, 0) {
+			if sum.TimeRemaining > 1 || sum.Duration <= 0 || math.IsNaN(sum.Duration) || math.IsInf(sum.Duration, 0) || sum.Score < 0 || math.IsNaN(sum.Score) || math.IsInf(sum.Score, 0) {
 				continue
 			}
 			if p.Preferences.ExecutionMode == "playlist" && p.Index+1 < len(p.Blocks) {
@@ -641,6 +653,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			b.Recorded += sum.Duration
 			p.Recorded += sum.Duration
 			b.Runs++
+			b.LastCompletedAt = end.UnixMilli()
 			b.Best = math.Max(b.Best, sum.Score)
 			if b.Target > 0 && b.Signature != "" && signature(sum) != b.Signature {
 				b.Target = 0
@@ -700,7 +713,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 	if p.Status == "completed" {
 		launch = ""
 	}
-	if err := s.save(); err != nil {
+	if err := s.checkpoint(now, p.Recorded != previousRecorded || p.Status != previousStatus || p.Index != previousIndex); err != nil {
 		s.state.Error = "保存训练进度失败：" + err.Error()
 	}
 	return launch
@@ -737,4 +750,27 @@ func (s *Service) exportLocked() ([]byte, error) {
 		rows = append(rows, map[string]any{"scenarioName": b.Scenario.Name, "playCount": count})
 	}
 	return json.MarshalIndent(map[string]any{"playlistName": "Refleks Adaptive " + p.ID, "scenarioList": rows, "isFavorite": false}, "", "  ")
+}
+
+func (s *Service) evaluateLocked(runs []models.RunRecord, now time.Time) {
+	key := evaluationFingerprint(runs, s.dataRevision)
+	if key == s.evaluationKey && now.Sub(s.evaluatedAt) < 5*time.Minute {
+		return
+	}
+	references := automaticReferences(s.state.Catalog, s.state.Preferences)
+	obs := levelObservations(runs, now)
+	for i := range s.state.Catalog {
+		c := &s.state.Catalog[i]
+		c.Evaluation = assessCatalog(*c, obs[strings.ToLower(c.Name)], now, references)
+	}
+	s.state.PlayerLevels = PlayerLevels(s.state.Catalog, runs, now)
+	s.state.ThemePriorities = themePrioritiesWithLevels(s.state.Catalog, runs, now, s.state.PlayerLevels)
+	s.state.TemplateTiers = map[string]string{}
+	for _, theme := range vdimThemes {
+		s.state.TemplateTiers[theme] = trainingTier(theme, s.state.PlayerLevels)
+	}
+	s.state.Skills = SkillProfile(s.state.Catalog, runs, automaticReferences(s.state.Catalog, s.state.Preferences), time.Now())
+	s.state.SearchConfigured = os.Getenv("REFLEKS_BRAVE_API_KEY") != ""
+
+	s.evaluationKey, s.evaluatedAt = key, now
 }

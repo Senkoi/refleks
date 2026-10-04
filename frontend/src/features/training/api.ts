@@ -20,15 +20,18 @@ export type Block = {
   cue: string; recorded: number; runs: number; best: number; outcome: string;
 };
 export type Plan = {
+  selectionReason?: string;
 	tierReason?: string;
   playerTier?: string; templateTier?: string; curriculumId?: string; curriculumName?: string; curriculumStart?: number; curriculumEnd?: number; curriculumTotal?: number; id: string; created: string; theme?: string; preferences: Preferences; blocks: Block[]; warnings: string[];
   status: string; index: number; elapsed: number; recorded: number; blockElapsed: number;
   reminder?: string;
 };
 export type State = {
+  revision?: number;
+  themePriorities?: Record<string,{ priority: number; minutes: number; level?: number; evidence: string }>;
   templateTiers?: Record<string, string>;
   initializing?: boolean; notice?: string;
-  playerLevels?: { source?: string; windowDays?: number; lastPlayed?: string; theme: string; category?: string; group?: string; system: string; nativeDifficulty: string; rank?: string; tier: string; status: string; scenarios: number; required: number; samples: number; evidence: string }[];
+  playerLevels?: { trainingTier?: string; ability?: number; source?: string; windowDays?: number; lastPlayed?: string; theme: string; category?: string; group?: string; system: string; nativeDifficulty: string; rank?: string; tier: string; status: string; scenarios: number; required: number; samples: number; evidence: string }[];
   curricula?: { id: string; name: string; theme: string; tier?: string; rows: { scenarioName: string; playCount: number }[] }[];
   version: number; catalog: Scenario[]; preferences: Preferences; plan: Plan | null;
   history: Plan[]; searchConfigured: boolean; error: string;
@@ -49,4 +52,15 @@ export async function readState(): Promise<State> {
   s.catalog ??= []; s.skills ??= []; s.history ??= [];
   s.discovery.candidates ??= []; s.discovery.warnings ??= [];
   return s;
+}
+
+export type LiveState = {
+ revision: number; initializing: boolean; notice: string; error: string;
+ plan: (Pick<Plan,"id"|"status"|"index"|"elapsed"|"recorded"|"blockElapsed"|"reminder"> & { blocks: Pick<Block,"recorded"|"runs"|"best"|"outcome"|"target"|"reason">[] }) | null;
+};
+export async function readLiveState(): Promise<LiveState> { return JSON.parse(await call<string>("GetTrainingLiveState")) as LiveState; }
+export function mergeLiveState(state: State, live: LiveState): State {
+ if ((state.plan?.id ?? null)!==(live.plan?.id ?? null)) return state;
+ return { ...state, initializing: live.initializing, notice: live.notice, error: live.error,
+  plan: state.plan && live.plan ? { ...state.plan, ...live.plan, blocks: state.plan.blocks.map((b,i)=>({ ...b, ...live.plan!.blocks[i] })) } : null };
 }

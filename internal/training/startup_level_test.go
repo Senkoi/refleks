@@ -164,7 +164,7 @@ func TestMalformedRankMetadataCannotSilentlyReduceCategoryCoverage(t *testing.T)
 	b := a
 	b.Name = "B"
 	b.Benchmarks = []BenchmarkMembership{{Name: a.Benchmarks[0].Name, System: "Voltaic S5", NativeDifficulty: "Novice", Ranks: []string{"Gold"}, Thresholds: []float64{10, 40}}}
-	if PlayerLevels([]Scenario{a, b}, levelRuns("A", []float64{45, 45, 45}, epoch), epoch)[0].Status != "insufficient" {
+	if PlayerLevels([]Scenario{a, b}, levelRuns("A", []float64{45, 45, 45}, epoch), epoch)[0].Status != "partial" {
 		t.Fatal("invalid scene silently disappeared from coverage requirement")
 	}
 }

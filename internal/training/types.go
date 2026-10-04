@@ -95,6 +95,9 @@ type SkillStatus struct {
 }
 
 type Block struct {
+	CurriculumRow      *int               `json:"curriculumRow,omitempty"`
+	CompletedBefore    int                `json:"completedBefore,omitempty"`
+	LastCompletedAt    int64              `json:"lastCompletedAt,omitempty"`
 	AnchorScenario     string             `json:"anchorScenario,omitempty"`
 	Timing             TimingEstimate     `json:"timing"`
 	DifficultyEvidence DifficultyEvidence `json:"difficultyEvidence"`
@@ -134,9 +137,11 @@ type DifficultyEvidence struct {
 	Samples       int                   `json:"samples"`
 }
 
-const currentPlannerVersion = 5
+const currentPlannerVersion = 6
 
 type Plan struct {
+	CurriculumCycle int                `json:"curriculumCycle,omitempty"`
+	SelectionReason string             `json:"selectionReason,omitempty"`
 	Progression     *ProgressionBudget `json:"progression,omitempty"`
 	TierReason      string             `json:"tierReason,omitempty"`
 	PlayerTier      string             `json:"playerTier,omitempty"`
@@ -169,20 +174,23 @@ type Plan struct {
 }
 
 type State struct {
-	TemplateTiers    map[string]string `json:"templateTiers,omitempty"`
-	Initializing     bool              `json:"initializing,omitempty"`
-	Notice           string            `json:"notice,omitempty"`
-	PlayerLevels     []PlayerLevel     `json:"playerLevels"`
-	Curricula        []Curriculum      `json:"curricula,omitempty"`
-	Version          int               `json:"version"`
-	Catalog          []Scenario        `json:"catalog"`
-	Discovery        Discovery         `json:"discovery"`
-	Preferences      Preferences       `json:"preferences"`
-	Plan             *Plan             `json:"plan"`
-	History          []Plan            `json:"history"`
-	Skills           []SkillStatus     `json:"skills"`
-	SearchConfigured bool              `json:"searchConfigured"`
-	Error            string            `json:"error"`
+	Revision           uint64                     `json:"revision"`
+	ThemePriorities    map[string]ThemePriority   `json:"themePriorities,omitempty"`
+	CurriculumProgress map[string]RoutineProgress `json:"curriculumProgress,omitempty"`
+	TemplateTiers      map[string]string          `json:"templateTiers,omitempty"`
+	Initializing       bool                       `json:"initializing,omitempty"`
+	Notice             string                     `json:"notice,omitempty"`
+	PlayerLevels       []PlayerLevel              `json:"playerLevels"`
+	Curricula          []Curriculum               `json:"curricula,omitempty"`
+	Version            int                        `json:"version"`
+	Catalog            []Scenario                 `json:"catalog"`
+	Discovery          Discovery                  `json:"discovery"`
+	Preferences        Preferences                `json:"preferences"`
+	Plan               *Plan                      `json:"plan"`
+	History            []Plan                     `json:"history"`
+	Skills             []SkillStatus              `json:"skills"`
+	SearchConfigured   bool                       `json:"searchConfigured"`
+	Error              string                     `json:"error"`
 }
 
 func defaults() Preferences {

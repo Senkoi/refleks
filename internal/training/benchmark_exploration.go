@@ -20,8 +20,8 @@ func explorationReference(s Scenario, levels []PlayerLevel, p Preferences) (Benc
 					goalLevels = append(goalLevels, l)
 				}
 			}
-			tier := inferredTier(theme, goalLevels)
-			if len(inferredGroupTiers(theme, goalLevels)) == 0 {
+			tier := trainingTier(theme, goalLevels)
+			if len(trainingGroupTiers(theme, goalLevels)) == 0 {
 				tier = trainingTier(theme, levels)
 			}
 			native := "Novice"

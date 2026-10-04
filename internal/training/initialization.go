@@ -79,29 +79,29 @@ func automaticTrainingPreferences(p Preferences) Preferences {
 	return p
 }
 
-// A session is an ordered, whole-row window of the original routine. Continue
-// only after recorded completion, never after a manual finish or skipped row.
+// Build an ordered window of unfinished rows. Completed runs, not finishing
+// or generating a plan, advance the durable routine cursor.
 func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, history []Plan, templates ...Curriculum) (Curriculum, int, int, error) {
 	if len(t.Rows) == 0 {
 		return t, 0, 0, fmt.Errorf("VDIM 模板没有场景")
 	}
+	return curriculumWindowWithProgress(t, catalog, runs, p, now, history, routineProgress(t, history), templates...)
+}
+
+func curriculumWindowWithProgress(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, history []Plan, progress RoutineProgress, templates ...Curriculum) (Curriculum, int, int, error) {
+	if len(t.Rows) == 0 {
+		return t, 0, 0, fmt.Errorf("VDIM 模板没有场景")
+	}
+	if len(progress.Rows) != len(t.Rows) {
+		progress = routineProgress(t, history)
+	}
+	if progress.complete() {
+		progress.Rows = make([]RowProgress, len(t.Rows))
+		progress.Cycle++
+	}
 	start := 0
-	for i := len(history) - 1; i >= 0; i-- {
-		h := history[i]
-		if h.CurriculumID != t.ID || h.CurriculumTotal != len(t.Rows) || h.CurriculumHash != "" && h.CurriculumHash != t.ContentSHA256 {
-			continue
-		}
-		if h.CurriculumStart < 0 || h.CurriculumEnd > len(t.Rows) || h.CurriculumEnd <= h.CurriculumStart {
-			continue
-		}
-		slice := t
-		slice.Rows = t.Rows[h.CurriculumStart:h.CurriculumEnd]
-		if completedCurriculum(h, slice) {
-			start = h.CurriculumEnd % len(t.Rows)
-		} else {
-			start = h.CurriculumStart
-		}
-		break
+	for start < len(t.Rows) && progress.Rows[start].Target > 0 && progress.Rows[start].Completed >= progress.Rows[start].Target {
+		start++
 	}
 	obs := observed(runs)
 	index := map[string]Scenario{}
@@ -111,7 +111,7 @@ func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord,
 	end, used := start, 0
 	totalUsable := p.Minutes * 60 * 9 / 10
 	usable := totalUsable
-	if curriculumBaseline(t, history) {
+	if progress.EverCompleted || curriculumBaseline(t, history) {
 		// Reserve actual eligible whole trials, not an empty fixed percentage.
 		extras, _ := selectProgression(progressionCandidates(t, catalog, runs, p, now, templates), totalUsable, totalUsable, p, rand.New(rand.NewSource(0)))
 		for _, c := range extras {
@@ -120,7 +120,14 @@ func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord,
 	}
 	rows := []CurriculumRow{}
 	for end < len(t.Rows) {
+		if progress.Rows[end].Target > 0 && progress.Rows[end].Completed >= progress.Rows[end].Target {
+			end++
+			continue
+		}
 		row := t.Rows[end]
+		i := end
+		row.RowIndex = &i
+		row.CompletedBefore = progress.Rows[end].Completed
 		c, ok := index[strings.ToLower(row.Name)]
 		if !ok {
 			return t, 0, 0, fmt.Errorf("模板场景 %s 不在关卡库", row.Name)
@@ -128,6 +135,9 @@ func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord,
 		timing := estimateTiming(c, obs[strings.ToLower(c.Name)], now)
 		row.SourceCount = row.Count
 		row.Count = curriculumRepetitions(row, timing)
+		if progress.Rows[end].Target > 0 {
+			row.Count = progress.Rows[end].Target - progress.Rows[end].Completed
+		}
 		// A required long single run takes precedence over the exploration reserve.
 		if end == start && timing.Seconds > usable && timing.Seconds <= totalUsable {
 			usable = totalUsable
@@ -141,7 +151,7 @@ func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord,
 		rows = append(rows, row)
 		end++
 	}
-	if end == start {
+	if len(rows) == 0 {
 		return t, 0, 0, fmt.Errorf("当前 VDIM 段落至少需 %d 分钟，请增加可用时间", (estimateTiming(index[strings.ToLower(t.Rows[start].Name)], obs[strings.ToLower(t.Rows[start].Name)], now).Seconds*10+539)/540)
 	}
 	window := t
@@ -150,6 +160,9 @@ func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord,
 }
 
 func curriculumBaseline(t Curriculum, history []Plan) bool {
+	if routineProgress(t, history).EverCompleted {
+		return true
+	}
 	covered := make([]bool, len(t.Rows))
 	for _, h := range history {
 		if completedCurriculum(h, t) {

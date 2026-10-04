@@ -104,7 +104,7 @@ func (a *App) startTraining() {
 			case <-ctx.Done():
 				return
 			case now := <-ticker.C:
-				if name := a.trainingSvc.Tick(now, a.GetRecentRuns(0)); name != "" {
+				if name := a.trainingSvc.Tick(now, a.trainingExecutionHistory(now)); name != "" {
 					if err := a.LaunchKovaaksScenario(name, "challenge"); err != nil {
 						a.trainingSvc.LaunchFailed(err)
 					}
@@ -163,8 +163,7 @@ func (a *App) GetTrainingState() (string, error) {
 	if err := a.trainingReady(); err != nil {
 		return "", err
 	}
-	b, err := json.Marshal(a.trainingSvc.Snapshot(a.trainingHistory()))
-	return string(b), err
+	return a.trainingSvc.WorkbenchJSON(a.trainingHistory())
 }
 
 func (a *App) GenerateTrainingPlan(request string) (string, error) {
@@ -337,4 +336,25 @@ func (a *App) RefreshTrainingLocal() error {
 	}
 	a.pollTrainingLocal(time.Now())
 	return nil
+}
+
+// Poll only changing execution fields; catalog and ability use a separate refresh.
+func (a *App) GetTrainingLiveState() (string, error) {
+	if err := a.trainingReady(); err != nil {
+		return "", err
+	}
+	return a.trainingSvc.LiveJSON()
+}
+
+// Tick needs recent summaries only, not replay/mouse traces or all 45 days.
+func (a *App) trainingExecutionHistory(now time.Time) []models.RunRecord {
+	rows := a.trainingHistory()
+	out := make([]models.RunRecord, 0)
+	for _, r := range rows {
+		at, err := time.Parse(time.RFC3339, r.Stats.Summary.DatePlayed)
+		if err == nil && !at.Before(now.Add(-3*time.Hour)) {
+			out = append(out, r)
+		}
+	}
+	return out
 }

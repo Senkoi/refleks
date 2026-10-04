@@ -92,7 +92,7 @@ func TestPlayerTierNeedsCategoryCoverageAndChangesWithRecentScores(t *testing.T)
 	catalog := []Scenario{levelScenario("A", "static", "Voltaic S5", "Novice", []string{"Iron", "Bronze", "Silver", "Gold"}, []float64{10, 20, 30, 40}), levelScenario("B", "static", "Voltaic S5", "Novice", []string{"Iron", "Bronze", "Silver", "Gold"}, []float64{10, 20, 30, 40})}
 	runs := levelRuns("A", []float64{50, 50, 50}, epoch)
 	l := PlayerLevels(catalog, runs, epoch)
-	if len(l) != 1 || l[0].Status != "insufficient" || inferredTier("static", l) != "novice" {
+	if len(l) != 1 || l[0].Status != "partial" || l[0].Rank != "" || inferredTier("static", l) != "novice" {
 		t.Fatal("one scene promoted category", l)
 	}
 	runs = append(runs, levelRuns("B", []float64{50, 50, 50}, epoch)...)

@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Check, Clock3, Compass, Download, Play, RefreshCw, Search, SlidersHorizontal, Target, Upload } from "lucide-react";
 import { openURL } from "@/shared/lib/api";
-import { call, readState, type Preferences, type Scenario, type State } from "./api";
+import { call, readState, readLiveState, mergeLiveState, type Preferences, type Scenario, type State } from "./api";
 import { catalogPage, filterCatalog, fileLabels, evidenceLabels, type FileFilter, type DifficultyFilter } from "./catalog";
 import "./training.css";
 
@@ -15,6 +15,19 @@ const outcomes: Record<string,string> = { pending: "待完成", list_complete: "
 const initial: Preferences = { planningPolicy: "curriculum", minutes: 30, executionMode: "playlist", focus: "auto", difficulty: "any", benchmark: "", variety: .1, thresholdRatio: .9, autoAdvance: false, autoDiscover: true };
 function clock(seconds: number) { const s = Math.max(0, Math.floor(seconds)); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; }
 function external(url: string) { if (/^https:\/\//i.test(url)) openURL(url); }
+
+
+const FileDetails = memo(function FileDetails({ scenario: s }: { scenario: Scenario }) {
+ const [measurementsOpen,setMeasurementsOpen]=useState(false);
+ const [comparisonsOpen,setComparisonsOpen]=useState(false);
+ return <>
+  {!!s.localAssessment?.measurements?.length && <details onToggle={e=>setMeasurementsOpen(e.currentTarget.open)}><summary>{s.localAssessment.measurements.length} 项文件数值</summary>{measurementsOpen && s.localAssessment.measurements.map((m,i)=><p key={i}>{m.profile || "场景"} · {m.field} = {m.value}</p>)}</details>}
+  {!!s.localAssessment?.precisionComparisons?.length && <details onToggle={e=>setComparisonsOpen(e.currentTarget.open)}><summary>同家族精度配置对照</summary>{comparisonsOpen && s.localAssessment.precisionComparisons.map((m,i)=><p key={i}>相对 {m.reference} / {m.profile}：半径 {m.radiusRatio.toFixed(3)} 倍，精度需求差 {m.precisionDelta.toFixed(3)}。仅在布局等配置相同的条件下成立。</p>)}</details>}
+ </>;
+});
+const CatalogRow = memo(function CatalogRow({scenario:s,localText,onEdit}: {scenario:Scenario;localText:string;onEdit:(s:Scenario)=>void}) {
+ return <tr><td><strong>{s.name}</strong><small>{s.sources?.[0]?.title}</small></td><td>{labels[s.skill]}</td><td>{s.benchmarks?.length ? s.benchmarks.map(m => <small key={`${m.name}/${m.benchmarkId}`}>{m.system || m.name} / {m.nativeDifficulty || "原生难度组未提供"}</small>) : <small>尚无 benchmark 难度锚点</small>}<small>{fileLabels[s.evaluation?.fileStatus ?? "missing"]}</small><small>{evidenceLabels[s.evaluation?.difficultyStatus ?? "unfitted"]}</small>{s.evaluation?.samples && s.evaluation.samples >= 3 ? <small>{fitLabels[s.evaluation.fit] ?? "个人适配未知"} · {s.evaluation.samples} 局可比记录</small> : null}<small>{localText}</small><FileDetails scenario={s}/><small>等级标签：{s.difficulty} · {difficultySources[s.difficultySource ?? "unknown"]}</small></td><td>{({ inferred: "名称推断", manual: "手动确认", benchmark: "参考分类", sce_description: "SCE 作者说明" } as Record<string,string>)[s.classification]}</td><td>{s.enabled ? "是" : "否"}</td><td><button onClick={() => onEdit({ ...s })}>编辑</button></td></tr>;
+});
 
 export default function TrainingPage() {
   const [state, setState] = useState<State | null>(null);
@@ -33,9 +46,15 @@ export default function TrainingPage() {
   const [editing, setEditing] = useState<Scenario | null>(null);
   const hydrated = useRef(false);
   const mounted = useRef(true);
+  const stateRef = useRef<State | null>(null);
+  const lastFullAt = useRef(0);
+  const lastLive = useRef("");
+  const fullRequest = useRef(0);
   const refresh = useCallback(async () => {
+    const request=++fullRequest.current;
     const s = await readState();
-    if (!mounted.current) return;
+    if (!mounted.current || request!==fullRequest.current) return;
+    stateRef.current=s; lastFullAt.current=Date.now();
     setState(s);
     setLoadError("");
     if (!s.initializing && !hydrated.current) { setPrefs({ ...s.preferences, variety: Math.min(s.preferences.variety, .1), planningPolicy: "curriculum", executionMode: "playlist", autoAdvance: false, curriculumId: "", difficulty: "any", benchmark: "", benchmarks: [] }); hydrated.current = true; }
@@ -43,9 +62,22 @@ export default function TrainingPage() {
   useEffect(() => {
     mounted.current = true;
     let timer: ReturnType<typeof setTimeout>;
-    const poll = async () => { try { await refresh(); } catch (e) { if (mounted.current) setLoadError(String(e)); } finally { if (mounted.current) timer = setTimeout(poll, 2000); } };
+    let cancelled=false;
+    const poll = async () => { try {
+      if (!stateRef.current) await refresh();
+      else {
+        const live=await readLiveState();
+        if (cancelled || !mounted.current) return;
+        if (live.revision!==stateRef.current.revision || (live.plan?.id ?? null)!==(stateRef.current.plan?.id ?? null) || Date.now()-lastFullAt.current>=30000 || live.initializing!==stateRef.current.initializing) await refresh();
+        else {
+          const key=JSON.stringify(live);
+          if (key!==lastLive.current) { lastLive.current=key; const next=mergeLiveState(stateRef.current,live);stateRef.current=next;if(mounted.current)setState(next); }
+        }
+      }
+      if (!cancelled && mounted.current) setLoadError("");
+    } catch (e) { if (!cancelled && mounted.current) setLoadError(String(e)); } finally { if (!cancelled && mounted.current) timer = setTimeout(poll, 2000); } };
     void poll();
-    return () => { mounted.current = false; clearTimeout(timer); };
+    return () => { cancelled=true; mounted.current = false; fullRequest.current++; clearTimeout(timer); };
   }, [refresh]);
   async function perform(name: string, fn: () => Promise<unknown>, message = "") {
     if (busy) return; setBusy(name); setError(""); setNotice("");
@@ -56,11 +88,12 @@ export default function TrainingPage() {
   const plan = state?.initializing ? null : state?.plan;
   const active = !!plan && ["running", "ready", "paused", "waiting"].includes(plan.status);
 
-  const catalog = filterCatalog(state?.catalog ?? [], filter, fileFilter, difficultyFilter);
+  const catalog = useMemo(()=>filterCatalog(state?.catalog ?? [], filter, fileFilter, difficultyFilter),[state?.catalog,filter,fileFilter,difficultyFilter]);
   const visible = catalogPage(catalog, page);
-  const enabled = state?.catalog.filter(s => s.enabled).length ?? 0;
+  const enabled = useMemo(()=>state?.catalog.filter(s => s.enabled).length ?? 0,[state?.catalog]);
+  const byName=useMemo(()=>new Map((state?.catalog ?? []).map(s=>[s.name.toLowerCase(),s])),[state?.catalog]);
   const current = plan?.blocks[plan.index];
-  const localStatus = (name: string) => { const status = state?.catalog.find(s => s.name.toLowerCase() === name.toLowerCase())?.localAssessment?.status; if (status === "file_parsed_model_unfitted") return "本地 SCE 已解析；文件数值已提取。可用的同家族精度对照列在关卡库，总难度尚未标定。"; if (status === "ambiguous_local_versions") return "本地存在同名不同版本 SCE；机制与难度暂不采用。"; if (status === "local_file_unavailable") return "本地文件已不可用，旧评估已失效。"; if (status === "invalid_local_file") return "本地 SCE 尚不能解析，保持待评估。"; return "等待游戏保存稳定的本地 SCE；首次可直接训练，不额外下载场景。"; };
+  const localStatus = (name: string) => { const status = byName.get(name.toLowerCase())?.localAssessment?.status; if (status === "file_parsed_model_unfitted") return "本地 SCE 已解析；文件数值已提取。可用的同家族精度对照列在关卡库，总难度尚未标定。"; if (status === "ambiguous_local_versions") return "本地存在同名不同版本 SCE；机制与难度暂不采用。"; if (status === "local_file_unavailable") return "本地文件已不可用，旧评估已失效。"; if (status === "invalid_local_file") return "本地 SCE 尚不能解析，保持待评估。"; return "等待游戏保存稳定的本地 SCE；首次可直接训练，不额外下载场景。"; };
   const pset = <K extends keyof Preferences>(key: K, value: Preferences[K]) => setPrefs(p => ({ ...p, [key]: value }));
 
   return <div className="training-page">
@@ -87,7 +120,7 @@ export default function TrainingPage() {
             <label>可用时间 <span>包含切换与休息</span><div className="training-number"><input aria-label="可用时间" type="number" min={5} max={120} value={prefs.minutes} onChange={e => pset("minutes", Number(e.target.value))} /><span>分钟</span></div></label>
             <div className="training-muted">VDIM 已自动初始化 · {state?.curricula?.length ?? 0} 套模板。按分类成绩与近期训练覆盖选择本次内容。</div>
             <label>训练重点<select value={prefs.focus} onChange={e => pset("focus", e.target.value)}>{Object.entries(labels).filter(([k]) => k !== "unknown").map(([k,v]) => <option key={k} value={k}>{v}</option>)}</select></label>
-            <div className="training-muted">玩家档位按分类自动推断；历史不足时暂用 Novice 起步。Benchmark 按对应分类、原生难度和最新可用版本自动对齐，合适的场景作为探索变体加入后续列表。</div>
+            <div className="training-muted">训练水平优先复用 benchmark 已有成绩，近期有效成绩用于修正；未完整定级也保留已测子类的证据。Benchmark 按对应分类、原生难度和最新可用版本自动对齐，合适的场景作为探索变体加入后续列表。</div>
             <label>探索比例 <strong>{Math.round(prefs.variety * 100)}%</strong><input aria-label="探索比例" type="range" min={0} max={.1} step={.01} value={prefs.variety} onChange={e => pset("variety", Number(e.target.value))} /><small>探索最多占练习预算 10%；进阶挑战由近期稳定成绩与改善趋势自动安排，最多 30%。首次保留基础模板，完成后再加入挑战与探索。</small></label>
             <label className="training-checkbox"><input type="checkbox" checked={prefs.autoDiscover} onChange={e => pset("autoDiscover", e.target.checked)} /> 应用运行时每周自动发现内容</label>
             <button className="training-primary" disabled={!state || !!busy || active || !!state?.initializing} onClick={() => perform("生成计划", async () => { await call("GenerateTrainingPlan", JSON.stringify({ ...prefs, curriculumId: "", difficulty: "any", benchmark: "", benchmarks: [], planningPolicy: "curriculum", executionMode: "playlist", autoAdvance: false })); const path = await call<string>("InstallTrainingPlaylist"); setNotice(`列表已安装：${path}。自动生成只使用一个固定槽位。重启 KovaaK’s 后，在 Local Playlists 中选择 Refleks Adaptive Current 列表。`); })}><Target size={16} />生成并安装本次列表 <ArrowRight size={16} /></button>
@@ -100,14 +133,14 @@ export default function TrainingPage() {
             <p className="training-muted">优先最近 7 天的可比成绩，不足 3 局时依次扩至 14 / 30 / 45 天；窗口内不按年龄降档。分类需完整覆盖，未提供日期的 benchmark 成绩作为暂定参考。</p>
             <div className="training-skill-grid">{Object.entries(themes).map(([theme,label]) => {
               const levels = state?.playerLevels?.filter(l => l.theme === theme) ?? [];
-              const known = levels.filter(l => l.status === "inferred" || l.status === "estimated");
+              const known = levels.filter(l => l.status === "inferred" || l.status === "estimated" || l.status === "partial");
               return <div key={theme}>
                 <strong>{label}</strong>
                 {known.length ? <>
-                  {state?.templateTiers?.[theme] && <p>训练参考：{state.templateTiers[theme]}<br />按有证据子分类的中位档位选择模板</p>}
+                  {state?.templateTiers?.[theme] && <p>训练参考：{state.templateTiers[theme]}<br />按已有场景的训练水平估计选择模板</p>}
                   <details><summary>{known.length} 组分类成绩依据</summary>{known.map(l => <p key={`${l.system}/${l.nativeDifficulty}/${l.category}/${l.group}`}>
-                    {l.system} / {l.nativeDifficulty} · {l.group || l.category}：{l.rank || "未达到门槛"}<br />
-                    {l.status === "estimated" ? "含无日期成绩 · 暂定参考" : `${l.samples} 局 · ${l.windowDays ?? 45} 天窗口`}{l.system.toLowerCase().startsWith("voltaic") && ` · VDIM ${l.tier}`}
+                    {l.system} / {l.nativeDifficulty} · {l.group || l.category}：{l.rank === "unranked" ? "低于该组首门槛" : l.rank || "尚未完整定级"}<br />
+                    {l.status === "estimated" ? "含无日期成绩 · 暂定参考" : `${l.samples} 局 · ${l.windowDays ?? 45} 天窗口`}{l.trainingTier && ` · 训练参考 ${l.trainingTier}`}{` · 覆盖 ${l.scenarios}/${l.required} 张`}
                   </p>)}</details>
                 </> : <p>待推断 · 暂用 Novice<br />已有 {Math.max(0,...levels.map(l => l.scenarios))} 张参考场景达到样本要求</p>}
               </div>;
@@ -118,7 +151,8 @@ export default function TrainingPage() {
             <div className="training-section-title"><h2><Clock3 size={18} /> {plan ? statuses[plan.status] : "准备好，再开始"}</h2>{plan && <span className="training-badge">{plan.preferences.minutes} 分钟预算</span>}</div>
             {plan ? <>
               {plan.curriculumName && <p className="training-muted">原模板：{plan.curriculumName} · 第 {(plan.curriculumStart ?? 0) + 1}–{plan.curriculumEnd ?? plan.blocks.length} / {plan.curriculumTotal ?? plan.blocks.length} 行 · 保留本段顺序与目标，次数按时长和近期训练量调整；完成本段后，下次继续后续段落。</p>}
-              {plan.theme && <p className="training-muted">本次 VDIM 专项：{themes[plan.theme] ?? plan.theme}{plan.playerTier && ` · 模板选择参考 ${plan.playerTier}`}{plan.templateTier && ` · 模板档位 ${plan.templateTier}`} · 按近七天记录自动轮换；列表依然由完成记录校正进度。</p>}
+              {plan.theme && <p className="training-muted">本次 VDIM 专项：{themes[plan.theme] ?? plan.theme}{plan.playerTier && ` · 模板选择参考 ${plan.playerTier}`}{plan.templateTier && ` · 模板档位 ${plan.templateTier}`} · 24 小时内优先续接；否则按水平与近期训练量选择；列表依然由完成记录校正进度。</p>}
+              {plan.selectionReason && <p className="training-muted">选择原因：{plan.selectionReason}</p>}
               {plan.tierReason && <p className="training-muted">{plan.tierReason}</p>}
               <p className="training-muted">本次安排：基础 {clock(plan.blocks.filter(b => b.role !== "challenge" && b.role !== "explore").reduce((s,b) => s+b.budget,0))} · 进阶挑战 {clock(plan.blocks.filter(b => b.role === "challenge").reduce((s,b) => s+b.budget,0))} · 探索 {clock(plan.blocks.filter(b => b.role === "explore").reduce((s,b) => s+b.budget,0))}</p>
               <div className="training-metrics"><div><strong>{clock(Math.max(0, plan.preferences.minutes * 60 - plan.elapsed))}</strong><span>剩余时间</span></div><div><strong>{clock(plan.recorded)}</strong><span>已记录练习</span></div><div><strong>{plan.blocks.filter(b => b.outcome !== "pending").length} / {plan.blocks.length}</strong><span>训练模块</span></div></div>
@@ -183,7 +217,7 @@ export default function TrainingPage() {
       <section className="training-card"><h2>训练方法依据</h2><p>按 VDIM 的六类专项轮换，并采用 MattyOW 的目标成绩与相关关卡编排思路，加入单模块和总时长上限。这是应用的改造方案，阈值百分比不是他的统一处方。</p><div className="training-actions"><button onClick={() => external("https://www.youtube.com/watch?v=ZEH4CfytNyo")}>VDIM 作者介绍</button><button onClick={() => external("https://rawinput.net/resources/threshold")}>Score Threshold</button><button onClick={() => external("https://rawinput.net/resources/speedmatching")}>Speed Matching</button><button onClick={() => external("https://rawinput.net/resources/purreactivity")}>Reactive Tracking</button></div><p className="training-muted">当前版本不提供新的 AI 轨迹诊断；可继续在 History 查看原有轨迹与录像。具体动作判断需要目标数据和时间同步。</p></section>
     </>}
 
-    {tab === "catalog" && <section className="training-card"><div className="training-section-title"><h2>关卡库 <span className="training-muted">{catalog.length} / {state?.catalog.length ?? 0}</span></h2><input aria-label="搜索关卡" placeholder="搜索名称、分类或来源" value={filter} onChange={e => setFilter(e.target.value)} /></div><div className="training-actions"><button disabled={!!busy} onClick={() => perform("扫描本地场景", () => call("RefreshTrainingLocal"), "本地扫描已执行；新下载文件稳定后会在约 15 秒内自动评估。")}>扫描已下载场景</button><span className="training-muted">已解析 {(state?.catalog ?? []).filter(s => s.localAssessment?.status === "file_parsed_model_unfitted").length} 张 SCE</span></div><div className="training-catalog-filters"><label>本地文件<select aria-label="筛选本地文件" value={fileFilter} onChange={e => setFileFilter(e.target.value as FileFilter)}><option value="all">全部文件状态</option><option value="verified">已下载 · 配置验证通过</option><option value="parsed">已解析（含待验证）</option><option value="issues">待验证 / 异常</option><option value="missing">本地文件不可用</option></select></label><label>难度依据<select aria-label="筛选难度依据" value={difficultyFilter} onChange={e => setDifficultyFilter(e.target.value as DifficultyFilter)}><option value="all">全部评估状态</option><option value="evidence">有难度评估依据</option><option value="precision">同家族精度对照</option><option value="benchmark">原生 benchmark 参考</option><option value="calibrated">总难度已标定</option><option value="unfitted">尚无难度评估依据</option></select></label><button onClick={() => { setFileFilter("verified"); setDifficultyFilter("evidence"); }}>已下载且有难度依据</button><button onClick={() => { setFileFilter("all"); setDifficultyFilter("all"); setFilter(""); }}>清除筛选</button></div><p className="training-muted">配置验证检查本地文件、有效时长与配置引用，不代表游戏实测通过。精度对照与原生 benchmark 是难度参考；总难度模型尚未标定，名称推断和手动标签不计入评估依据。</p><p className="training-muted">Benchmark 保留原生版本、难度组、类别和阈值；原生难度组作为参考，不直接等同于场景机制难度。可修正训练能力、难度与家族。名称不同不保证训练内容不同。新图是否仍可下载，需要在 KovaaK’s 中确认。</p><div className="training-table-wrap"><table><thead><tr><th>关卡 / 来源</th><th>能力</th><th>难度参考 / 文件评估</th><th>标签依据</th><th>启用</th><th /></tr></thead><tbody>{visible.rows.map(s => <tr key={s.name}><td><strong>{s.name}</strong><small>{s.sources?.[0]?.title}</small></td><td>{labels[s.skill]}</td><td>{s.benchmarks?.length ? s.benchmarks.map(m => <small key={`${m.name}/${m.benchmarkId}`}>{m.system || m.name} / {m.nativeDifficulty || "原生难度组未提供"}</small>) : <small>尚无 benchmark 难度锚点</small>}<small>{fileLabels[s.evaluation?.fileStatus ?? "missing"]}</small><small>{evidenceLabels[s.evaluation?.difficultyStatus ?? "unfitted"]}</small>{s.evaluation?.samples && s.evaluation.samples >= 3 ? <small>{fitLabels[s.evaluation.fit] ?? "个人适配未知"} · {s.evaluation.samples} 局可比记录</small> : null}<small>{localStatus(s.name)}</small>{!!s.localAssessment?.measurements?.length && <details><summary>{s.localAssessment.measurements.length} 项文件数值</summary>{s.localAssessment.measurements.map((m,i) => <p key={i}>{m.profile || "场景"} · {m.field} = {m.value}</p>)}</details>}{!!s.localAssessment?.precisionComparisons?.length && <details><summary>同家族精度配置对照</summary>{s.localAssessment.precisionComparisons.map((m,i) => <p key={i}>相对 {m.reference} / {m.profile}：半径 {m.radiusRatio.toFixed(3)} 倍，精度需求差 {m.precisionDelta.toFixed(3)}。仅在布局等配置相同的条件下成立。</p>)}</details>}<small>等级标签：{s.difficulty} · {difficultySources[s.difficultySource ?? "unknown"]}</small></td><td>{({ inferred: "名称推断", manual: "手动确认", benchmark: "参考分类", sce_description: "SCE 作者说明" } as Record<string,string>)[s.classification]}</td><td>{s.enabled ? "是" : "否"}</td><td><button onClick={() => setEditing({ ...s })}>编辑</button></td></tr>)}</tbody></table></div>{catalog.length > 0 && <div className="training-actions"><button disabled={visible.page === 0} onClick={() => setPage(visible.page - 1)}>上一页</button><span>第 {visible.page + 1} / {visible.pages} 页 · 共 {catalog.length} 项</span><button disabled={visible.page + 1 >= visible.pages} onClick={() => setPage(visible.page + 1)}>下一页</button></div>}{!catalog.length && <div className="training-empty">暂无符合筛选条件的关卡。可清除筛选或扫描已下载场景；总难度尚未标定时，该筛选结果为空。</div>}</section>}
+    {tab === "catalog" && <section className="training-card"><div className="training-section-title"><h2>关卡库 <span className="training-muted">{catalog.length} / {state?.catalog.length ?? 0}</span></h2><input aria-label="搜索关卡" placeholder="搜索名称、分类或来源" value={filter} onChange={e => setFilter(e.target.value)} /></div><div className="training-actions"><button disabled={!!busy} onClick={() => perform("扫描本地场景", () => call("RefreshTrainingLocal"), "本地扫描已执行；新下载文件稳定后会在约 15 秒内自动评估。")}>扫描已下载场景</button><span className="training-muted">已解析 {(state?.catalog ?? []).filter(s => s.localAssessment?.status === "file_parsed_model_unfitted").length} 张 SCE</span></div><div className="training-catalog-filters"><label>本地文件<select aria-label="筛选本地文件" value={fileFilter} onChange={e => setFileFilter(e.target.value as FileFilter)}><option value="all">全部文件状态</option><option value="verified">已下载 · 配置验证通过</option><option value="parsed">已解析（含待验证）</option><option value="issues">待验证 / 异常</option><option value="missing">本地文件不可用</option></select></label><label>难度依据<select aria-label="筛选难度依据" value={difficultyFilter} onChange={e => setDifficultyFilter(e.target.value as DifficultyFilter)}><option value="all">全部评估状态</option><option value="evidence">有难度评估依据</option><option value="precision">同家族精度对照</option><option value="benchmark">原生 benchmark 参考</option><option value="calibrated">总难度已标定</option><option value="unfitted">尚无难度评估依据</option></select></label><button onClick={() => { setFileFilter("verified"); setDifficultyFilter("evidence"); }}>已下载且有难度依据</button><button onClick={() => { setFileFilter("all"); setDifficultyFilter("all"); setFilter(""); }}>清除筛选</button></div><p className="training-muted">配置验证检查本地文件、有效时长与配置引用，不代表游戏实测通过。精度对照与原生 benchmark 是难度参考；总难度模型尚未标定，名称推断和手动标签不计入评估依据。</p><p className="training-muted">Benchmark 保留原生版本、难度组、类别和阈值；原生难度组作为参考，不直接等同于场景机制难度。可修正训练能力、难度与家族。名称不同不保证训练内容不同。新图是否仍可下载，需要在 KovaaK’s 中确认。</p><div className="training-table-wrap"><table><thead><tr><th>关卡 / 来源</th><th>能力</th><th>难度参考 / 文件评估</th><th>标签依据</th><th>启用</th><th /></tr></thead><tbody>{visible.rows.map(s => <CatalogRow key={s.name} scenario={s} localText={localStatus(s.name)} onEdit={setEditing}/>)}</tbody></table></div>{catalog.length > 0 && <div className="training-actions"><button disabled={visible.page === 0} onClick={() => setPage(visible.page - 1)}>上一页</button><span>第 {visible.page + 1} / {visible.pages} 页 · 共 {catalog.length} 项</span><button disabled={visible.page + 1 >= visible.pages} onClick={() => setPage(visible.page + 1)}>下一页</button></div>}{!catalog.length && <div className="training-empty">暂无符合筛选条件的关卡。可清除筛选或扫描已下载场景；总难度尚未标定时，该筛选结果为空。</div>}</section>}
 
     {editing && <div className="training-modal-backdrop" onClick={() => setEditing(null)}><section role="dialog" aria-modal="true" aria-labelledby="edit-scenario-title" className="training-card training-modal" onClick={e => e.stopPropagation()}><h2 id="edit-scenario-title">编辑关卡</h2><p>{editing.name}</p><label>训练能力<select value={editing.skill} onChange={e => setEditing({ ...editing, skill: e.target.value })}>{Object.entries(labels).filter(([k]) => k !== "auto").map(([k,v]) => <option key={k} value={k}>{v}</option>)}</select></label><label>难度<select value={editing.difficulty} onChange={e => setEditing({ ...editing, difficulty: e.target.value })}>{["unknown","novice","intermediate","advanced"].map(d => <option key={d}>{d}</option>)}</select></label><label>关卡家族<input value={editing.family} onChange={e => setEditing({ ...editing, family: e.target.value })} /></label><label>已确认的原版关卡<input value={editing.variantOf ?? ""} onChange={e => setEditing({ ...editing, variantOf: e.target.value })} placeholder="留空表示尚未确认变体关系" /></label><label>相关 benchmark（每行一套）<textarea value={(editing.relatedBenchmarks ?? []).join("\n")} onChange={e => setEditing({ ...editing, relatedBenchmarks: e.target.value.split("\n").map(x => x.trim()).filter(Boolean) })} placeholder="这里表示相关能力，不表示直接变体" /></label><small>测量关卡所属体系由 benchmark 同步；相关能力和直接变体由你确认后标注。</small><label>预估单局秒数<input type="number" min={10} max={3600} value={editing.seconds} onChange={e => setEditing({ ...editing, seconds: Number(e.target.value) })} /></label><label>使用感受<select value={editing.preference ?? "neutral"} onChange={e => setEditing({ ...editing, preference: e.target.value })}><option value="liked">喜欢</option><option value="neutral">一般</option><option value="disliked">不喜欢</option></select></label><label>体感难度<select value={editing.personalDifficulty ?? ""} onChange={e => setEditing({ ...editing, personalDifficulty: e.target.value })}><option value="">未评价</option><option value="easy">偏易</option><option value="suitable">合适</option><option value="hard">偏难</option></select></label><label className="training-checkbox"><input type="checkbox" checked={editing.enabled} onChange={e => setEditing({ ...editing, enabled: e.target.checked })} />允许用于计划</label><div className="training-actions"><button onClick={() => setEditing(null)}>取消</button><button className="training-primary" disabled={!!busy} onClick={() => perform("保存分类", async () => { await call("UpdateTrainingScenario", JSON.stringify(editing)); setEditing(null); })}>保存</button></div></section></div>}
   </div>;

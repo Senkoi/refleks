@@ -198,7 +198,7 @@ func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRe
 	for _, s := range catalog {
 		addDemandTime(s, estimateTiming(s, obs[strings.ToLower(s.Name)], now).WeeklySeconds, exposure)
 	}
-	groupTiers := inferredGroupTiers(t.Theme, levels)
+	groupTiers := trainingGroupTiers(t.Theme, levels)
 	for _, row := range t.Rows {
 		if row.Role == "warmup" || row.Role == "benchmark" {
 			continue

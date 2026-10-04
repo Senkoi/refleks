@@ -15,10 +15,12 @@ import (
 )
 
 type CurriculumRow struct {
-	Name        string `json:"scenarioName"`
-	Count       int    `json:"playCount"`
-	SourceCount int    `json:"sourcePlayCount,omitempty"`
-	Role        string `json:"role,omitempty"`
+	RowIndex        *int   `json:"rowIndex,omitempty"`
+	CompletedBefore int    `json:"completedBefore,omitempty"`
+	Name            string `json:"scenarioName"`
+	Count           int    `json:"playCount"`
+	SourceCount     int    `json:"sourcePlayCount,omitempty"`
+	Role            string `json:"role,omitempty"`
 }
 
 type Curriculum struct {
@@ -118,7 +120,7 @@ func selectCurriculum(ts []Curriculum, catalog []Scenario, p Preferences, runs [
 	return selectCurriculumWithHistory(ts, catalog, p, runs, now, nil)
 }
 
-func selectCurriculumWithHistory(ts []Curriculum, catalog []Scenario, p Preferences, runs []models.RunRecord, now time.Time, history []Plan) (*Curriculum, error) {
+func selectCurriculumWithHistory(ts []Curriculum, catalog []Scenario, p Preferences, runs []models.RunRecord, now time.Time, history []Plan, savedProgress ...map[string]RoutineProgress) (*Curriculum, error) {
 	// Explicit template selection takes precedence over automatic theme/tier
 	// filters. GenerateCurriculum still validates its contents and full budget.
 	if p.CurriculumID != "" {
@@ -129,8 +131,38 @@ func selectCurriculumWithHistory(ts []Curriculum, catalog []Scenario, p Preferen
 		}
 		return nil, fmt.Errorf("所选 VDIM 模板不存在")
 	}
+	var progress map[string]RoutineProgress
+	if len(savedProgress) > 0 {
+		progress = savedProgress[0]
+	}
+	// A recent unfinished routine takes precedence over automatic category choice.
+	var resume *Curriculum
+	var latest int64
+	for i := range ts {
+		t := ts[i]
+		if p.Focus != "auto" && t.Theme != p.Focus && !(p.Focus == "switching" && strings.HasPrefix(t.Theme, "switching_")) {
+			continue
+		}
+		r := progressFor(t, history, progress)
+		if resumeDue(r, now) && r.LastPracticed > latest {
+			if w, _, _, e := curriculumWindowWithProgress(t, catalog, runs, p, now, history, r, ts...); e == nil {
+				if _, e = GenerateCurriculum(w, catalog, runs, p, now, rand.New(rand.NewSource(0)), false); e == nil {
+					copy := t
+					resume = &copy
+					latest = r.LastPracticed
+				}
+			}
+		}
+	}
+	if resume != nil {
+		return resume, nil
+	}
+
+	// Rank inexpensive category/tier evidence first, then validate candidates
+	// lazily. Do not run full plan assessment for every one of the 36 templates.
+	levels := PlayerLevels(catalog, runs, now)
+	priorities := themePrioritiesWithLevels(catalog, runs, now, levels)
 	eligible := []Curriculum{}
-	matched := false
 	for _, t := range ts {
 		if p.Focus != "auto" && t.Theme != p.Focus && !(p.Focus == "switching" && strings.HasPrefix(t.Theme, "switching_")) {
 			continue
@@ -138,64 +170,20 @@ func selectCurriculumWithHistory(ts []Curriculum, catalog []Scenario, p Preferen
 		if p.Difficulty != "any" && t.Tier != "" && t.Tier != p.Difficulty {
 			continue
 		}
-		matched = true
-		// Reuse generation's timing and validation rather than picking an
-		// oversized/unavailable template and failing while another one fits.
-		window, _, _, windowErr := curriculumWindow(t, catalog, runs, p, now, history, ts...)
-		if windowErr != nil {
-			continue
-		}
-		if _, err := GenerateCurriculum(window, catalog, runs, p, now, rand.New(rand.NewSource(0)), false); err != nil {
-			continue
-		}
 		eligible = append(eligible, t)
 	}
 	if len(eligible) == 0 {
-		if matched {
-			return nil, fmt.Errorf("符合重点与档位的 VDIM 模板均无法在当前预算内完整运行，或含不可用场景；请增加可用时间或检查禁用的场景")
-		}
 		return nil, fmt.Errorf("尚无符合条件的真实 VDIM 模板；自动初始化未完成，请检查初始化错误")
 	}
-	levels := PlayerLevels(catalog, runs, now)
-	bestDistance := map[string]int{}
 	distance := func(t Curriculum) int {
 		d := tierIndex(t.Tier) - tierIndex(trainingTier(t.Theme, levels))
 		if d < 0 {
 			return -d * 2
 		}
 		if d > 0 {
-			return d*2 + 1 // Prefer the lower neighbour only on an equal distance.
+			return d*2 + 1
 		}
 		return 0
-	}
-	for _, t := range eligible {
-		d := distance(t)
-		old, ok := bestDistance[t.Theme]
-		if !ok || d < old {
-			bestDistance[t.Theme] = d
-		}
-	}
-	fitted := []Curriculum{}
-	for _, t := range eligible {
-		if distance(t) == bestDistance[t.Theme] {
-			fitted = append(fitted, t)
-		}
-	}
-	eligible = fitted
-	obs := observed(runs)
-	score := func(t Curriculum) float64 {
-		v := 0.0
-		for _, scene := range catalog {
-			if scenarioTheme(scene) != t.Theme {
-				continue
-			}
-			for _, r := range obs[strings.ToLower(scene.Name)] {
-				if !r.at.After(now) && !r.at.Before(now.AddDate(0, 0, -7)) {
-					v += r.duration
-				}
-			}
-		}
-		return v
 	}
 	day := (int(now.Weekday()) + 6) % 7
 	if day >= len(vdimThemes) {
@@ -203,19 +191,35 @@ func selectCurriculumWithHistory(ts []Curriculum, catalog []Scenario, p Preferen
 	}
 	preferred := vdimThemes[day]
 	sort.SliceStable(eligible, func(i, j int) bool {
-		a, b := score(eligible[i]), score(eligible[j])
-		if a != b {
-			return a < b
+		a, b := eligible[i], eligible[j]
+		if priorities[a.Theme].Priority != priorities[b.Theme].Priority {
+			return priorities[a.Theme].Priority > priorities[b.Theme].Priority
 		}
-		if (eligible[i].Theme == preferred) != (eligible[j].Theme == preferred) {
-			return eligible[i].Theme == preferred
+		if (a.Theme == preferred) != (b.Theme == preferred) {
+			return a.Theme == preferred
 		}
-		if (eligible[i].OfficialCode != "") != (eligible[j].OfficialCode != "") {
-			return eligible[i].OfficialCode != ""
+		if a.Theme != b.Theme {
+			return a.Theme < b.Theme
 		}
-		return eligible[i].Name < eligible[j].Name
+		if distance(a) != distance(b) {
+			return distance(a) < distance(b)
+		}
+		if (a.OfficialCode != "") != (b.OfficialCode != "") {
+			return a.OfficialCode != ""
+		}
+		return a.Name < b.Name
 	})
-	return &eligible[0], nil
+	for i, t := range eligible {
+		w, _, _, err := curriculumWindowWithProgress(t, catalog, runs, p, now, history, progressFor(t, history, progress), ts...)
+		if err != nil {
+			continue
+		}
+		if _, err = GenerateCurriculum(w, catalog, runs, p, now, rand.New(rand.NewSource(0)), false); err == nil {
+			return &eligible[i], nil
+		}
+	}
+	return nil, fmt.Errorf("符合重点与档位的 VDIM 模板均无法在当前预算内完整运行，或含不可用场景；请增加可用时间或检查禁用的场景")
+
 }
 
 // Completed means every original row was actually recorded. Manual finish,
@@ -283,10 +287,10 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 	levels := PlayerLevels(catalog, runs, now)
 	fitObs := levelObservations(runs, now)
 	plan := &Plan{PlayerTier: trainingTier(t.Theme, levels), TemplateTier: t.Tier, PlannerVersion: currentPlannerVersion, ID: fmt.Sprintf("%d-%x", now.UnixMilli(), rng.Uint32()), Created: now.Format(time.RFC3339), Preferences: p, Status: "draft", CurriculumID: t.ID, CurriculumName: t.Name, CurriculumHash: t.ContentSHA256, Theme: t.Theme, Blocks: []Block{}, Warnings: []string{}, Seen: []string{}}
-	groups := inferredGroupTiers(t.Theme, levels)
-	plan.TierReason = fmt.Sprintf("依据 %d 个已有完整分类证据的子分类，取中位档位 %s；探索场景按自身细分类别匹配。", len(groups), plan.PlayerTier)
+	groups := trainingGroupTiers(t.Theme, levels)
+	plan.TierReason = fmt.Sprintf("依据 %d 个已有成绩证据的子分类，取中位档位 %s；探索场景按自身细分类别匹配。", len(groups), plan.PlayerTier)
 	if len(groups) == 0 {
-		plan.TierReason = "尚无完整的 Voltaic 分类成绩证据，暂用 Novice；不是已确认玩家等级。"
+		plan.TierReason = "尚无有效的 Voltaic 场景成绩证据，暂用 Novice；不是已确认玩家等级。"
 	}
 	if t.Tier != "" && t.Tier != plan.PlayerTier {
 		plan.Warnings = append(plan.Warnings, fmt.Sprintf("参考档位 %s 的模板当前不可用或无法满足预算，选择最近可运行档位 %s。", plan.PlayerTier, t.Tier))
@@ -306,7 +310,7 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 		if role == "" {
 			role = "practice"
 		}
-		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: assessDifficultyFor(s, fitObs[strings.ToLower(s.Name)], now, p), Role: role, SourcePlayCount: originalRowCount(row), PlayCount: row.Count, Budget: timing.Seconds * row.Count, Outcome: "pending", Reason: "保留 VDIM 场景顺序和训练目标；按单局时长、近期重复量与预算分配短组。", Cue: "按原训练目标完成；下载后评估只影响下一次生成。"}
+		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: assessDifficultyFor(s, fitObs[strings.ToLower(s.Name)], now, p), Role: role, CurriculumRow: row.RowIndex, CompletedBefore: row.CompletedBefore, SourcePlayCount: originalRowCount(row), PlayCount: row.Count, Budget: timing.Seconds * row.Count, Outcome: "pending", Reason: "保留 VDIM 场景顺序和训练目标；按单局时长、近期重复量与预算分配短组。", Cue: "按原训练目标完成；下载后评估只影响下一次生成。"}
 		if role == "benchmark" {
 			b.Target = 0
 		}
