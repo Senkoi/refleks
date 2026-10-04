@@ -64,6 +64,7 @@ export type State = {
 export type PersonalAnchor = {
  scenario: string; theme: string; status: string; evidence: string; medianScore: number; scoreMAD: number;
  accuracy?: number; hitsPerSecond?: number; samples: number; sessions: number; days: number; lastPlayed: number;
+ points?: { at: number; score: number; samples: number }[];
 };
 type MeasurementResult = { score: number; samples: number; at: number; accuracy?: number; hitsPerSecond?: number; scores?: number[]; protocolId?: string };
 export type AnchorEvaluation = {

@@ -5,6 +5,16 @@
 .training-catalog-filters label { display:grid; gap:6px; min-width:180px; }
 
 .training-main { min-width:0; }
+.training-anchor-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr)); gap:16px; }
+.training-anchor-card { min-width:0; border:1px solid var(--border); border-radius:9px; padding:16px; }
+.training-anchor-card h3 { font-size:14px; overflow-wrap:anywhere; }
+.training-anchor-stats { display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 14px; font-size:11px; color:var(--surface-muted-foreground); }
+.training-anchor-stats strong { font-size:22px; font-weight:600; color:var(--canvas-foreground); }
+.training-anchor-stats strong small { font-weight:400; font-size:11px; }
+.training-anchor-trend { margin:14px 0 10px; min-width:0; }
+.training-anchor-trend figcaption { text-align:center; font-size:11px; color:var(--surface-muted-foreground); }
+.training-anchor-meta { display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; font-size:11px; color:var(--surface-muted-foreground); }
+.training-anchor-tooltip { display:grid; gap:4px; padding:10px 12px; border:1px solid var(--border); border-radius:7px; background:var(--surface); color:var(--canvas-foreground); font-size:11px; box-shadow:0 4px 16px #0002; }
 .training-page button.training-help { padding:2px; width:22px; height:22px; border:0; border-radius:50%; background:none; color:var(--surface-muted-foreground); vertical-align:middle; flex-shrink:0; }
 .training-page button.training-help:hover { color:var(--primary); background:var(--surface-hover); }
 .training-help-content { z-index:150; width:min(380px,calc(100vw - 32px)); max-height:min(420px,70vh); overflow:auto; padding:14px 16px; font-size:12px; line-height:1.6; overflow-wrap:anywhere; }

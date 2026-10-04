@@ -94,12 +94,18 @@ func TestPersonalAnchorBalancesSessionsAndPreservesVersionUncertainty(t *testing
 	if a.MedianScore != 110 || a.Days != 3 || a.Evidence != "history_unbound" || a.FileSHA256 != "" {
 		t.Fatal("retries or current file rewrote baseline", a)
 	}
+	if len(a.Points) != 3 || a.Points[0].Score != 100 || a.Points[1].Score != 110 || a.Points[2].Score != 200 || a.Points[2].Samples != 12 || a.Points[0].At >= a.Points[1].At || a.Points[1].At >= a.Points[2].At {
+		t.Fatal("chart did not preserve balanced, chronological anchor evidence", a.Points)
+	}
 	r := record("new revision", "anchor", 60, 50, now.Add(time.Second))
 	r.Stats.Summary.Hash = "v2"
 	runs = append(runs, r)
 	a = personalAnchors([]Scenario{scene}, runs, nil, now.Add(2*time.Second))["anchor"]
 	if a.Samples != 1 || a.Status != "provisional" {
 		t.Fatal("different revisions mixed", a)
+	}
+	if len(a.Points) != 1 || a.Points[0].Score != 50 {
+		t.Fatal("chart connected different revisions", a.Points)
 	}
 	runs = anchorRuns("anchor", now)
 	runs[0].Stats.Summary.TimeRemaining = 20
@@ -147,6 +153,11 @@ func TestBoundAnchorDoesNotRelabelUnboundHistory(t *testing.T) {
 	a = personalAnchors([]Scenario{scene}, runs, contexts, epoch)["anchor"]
 	if a.FileSHA256 == "" || a.Evidence != "local_execution_context" || a.MedianScore != 100 || a.Samples != 3 || a.Days != 2 {
 		t.Fatal("bound anchor mixed unbound observations", a)
+	}
+	for _, point := range a.Points {
+		if point.Score != 100 {
+			t.Fatal("chart relabeled old unbound scores as current-file evidence", a.Points)
+		}
 	}
 }
 

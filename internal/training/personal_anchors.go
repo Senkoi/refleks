@@ -44,21 +44,28 @@ type PracticeSample struct {
 	FileSHA256    string   `json:"fileSHA256,omitempty"`
 }
 
+type AnchorPoint struct {
+	At      int64   `json:"at"`
+	Score   float64 `json:"score"`
+	Samples int     `json:"samples"`
+}
+
 type PersonalAnchor struct {
-	Scenario      string   `json:"scenario"`
-	Theme         string   `json:"theme"`
-	Status        string   `json:"status"`
-	Evidence      string   `json:"evidence"`
-	Signature     string   `json:"signature"`
-	FileSHA256    string   `json:"fileSHA256,omitempty"`
-	MedianScore   float64  `json:"medianScore"`
-	ScoreMAD      float64  `json:"scoreMAD"`
-	Accuracy      *float64 `json:"accuracy,omitempty"`
-	HitsPerSecond *float64 `json:"hitsPerSecond,omitempty"`
-	Samples       int      `json:"samples"`
-	Sessions      int      `json:"sessions"`
-	Days          int      `json:"days"`
-	LastPlayed    int64    `json:"lastPlayed"`
+	Scenario      string        `json:"scenario"`
+	Theme         string        `json:"theme"`
+	Status        string        `json:"status"`
+	Evidence      string        `json:"evidence"`
+	Signature     string        `json:"signature"`
+	FileSHA256    string        `json:"fileSHA256,omitempty"`
+	MedianScore   float64       `json:"medianScore"`
+	ScoreMAD      float64       `json:"scoreMAD"`
+	Accuracy      *float64      `json:"accuracy,omitempty"`
+	HitsPerSecond *float64      `json:"hitsPerSecond,omitempty"`
+	Samples       int           `json:"samples"`
+	Sessions      int           `json:"sessions"`
+	Days          int           `json:"days"`
+	LastPlayed    int64         `json:"lastPlayed"`
+	Points        []AnchorPoint `json:"points,omitempty"`
 }
 
 type SceneDecision struct {
@@ -168,6 +175,7 @@ func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[s
 		a := PersonalAnchor{Scenario: s.Name, Theme: scenarioTheme(s), Status: "provisional", Evidence: "history_unbound", Signature: data[0].Signature, LastPlayed: data[0].At}
 		days := map[string]bool{}
 		sessionScores, sessionAccuracy, sessionSpeed := [][]float64{}, [][]float64{}, [][]float64{}
+		sessionTimes := []int64{}
 		lastSession := ""
 		bound := 0
 		for _, p := range data {
@@ -191,6 +199,7 @@ func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[s
 				sessionScores = append(sessionScores, nil)
 				sessionAccuracy = append(sessionAccuracy, nil)
 				sessionSpeed = append(sessionSpeed, nil)
+				sessionTimes = append(sessionTimes, p.At)
 			}
 			lastSession = session
 			i := len(sessionScores) - 1
@@ -212,7 +221,9 @@ func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[s
 		}
 		scores, accuracy, speed := []float64{}, []float64{}, []float64{}
 		for i := range sessionScores {
-			scores = append(scores, median(sessionScores[i]))
+			score := median(sessionScores[i])
+			scores = append(scores, score)
+			a.Points = append(a.Points, AnchorPoint{At: sessionTimes[i], Score: score, Samples: len(sessionScores[i])})
 			if len(sessionAccuracy[i]) > 0 {
 				accuracy = append(accuracy, median(sessionAccuracy[i]))
 			}
@@ -220,6 +231,7 @@ func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[s
 				speed = append(speed, median(sessionSpeed[i]))
 			}
 		}
+		sort.Slice(a.Points, func(i, j int) bool { return a.Points[i].At < a.Points[j].At })
 		a.Sessions, a.Days = len(scores), len(days)
 		a.MedianScore = median(scores)
 		deviations := []float64{}

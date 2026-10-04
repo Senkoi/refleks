@@ -1,5 +1,6 @@
 import { memo } from "react";
 import TrainingHelp from "./TrainingHelp";
+import AnchorTrend from "./AnchorTrend";
 import type { AnchorEvaluation, PersonalAnchor, TrainingStudy } from "./api";
 
 const anchorStatuses: Record<string,string> = { stable: "跨日稳定", provisional: "暂定", variable: "波动较大", stale: "需要更新" };
@@ -17,11 +18,12 @@ export default memo(function PersonalEvidence({ anchors, studies, evaluations, b
  return <>
   <section className="training-card"><h2>个人场景锚点 <TrainingHelp label="个人场景锚点"><p>每张练过的图分别建立近期表现基准。采用近 45 天、最近 6 个训练块，每块最多 12 局；先取块内中位数，再取各块中位数，不使用 PB。</p><p>只合并同图、同版本和相同设置的有效完整对局。至少 3 局、跨 2 天、成绩为正且波动比例不超过 15% 时标记跨日稳定；超过 14 天未练则需要更新。</p><p>新成绩会更新基准；更换版本、灵敏度、FOV 或单局时长会重新分组。波动是描述性统计。稳定锚点用于同族试练，候选关系还需通过本地机制与布局配置对照。未绑定本地版本的历史会单独标注。</p></TrainingHelp></h2>
    {!known.length ? <p className="training-muted">暂无锚点 · 完成有效对局后自动建立</p> :
-   <div className="training-table-wrap"><table><thead><tr><th>场景</th><th>状态</th><th>中位成绩 / 波动</th><th>速度 / 精度</th><th>依据</th></tr></thead><tbody>{known.map(a=><tr key={a.scenario}>
-    <td>{a.scenario}</td><td>{anchorStatuses[a.status] ?? a.status}</td><td>{a.medianScore.toFixed(1)} / {a.scoreMAD.toFixed(1)}</td>
-    <td>{a.hitsPerSecond != null && <small>{a.hitsPerSecond.toFixed(2)} 命中/秒</small>}{a.accuracy != null && <small>{(a.accuracy*100).toFixed(1)}% 命中率</small>}</td>
-    <td><small>{a.samples} 局 · {a.sessions} 块 · {a.days} 天</small><small>{a.evidence === "local_execution_context" ? "已绑定本地版本" : "历史未绑定版本"}</small></td>
-   </tr>)}</tbody></table></div>}
+   <div className="training-anchor-grid">{known.map(a=><article className="training-anchor-card" key={a.scenario}>
+    <div className="training-section-title"><h3>{a.scenario}</h3><span className="training-badge">{anchorStatuses[a.status] ?? a.status}</span></div>
+    <div className="training-anchor-stats"><strong>{a.medianScore.toFixed(1)} <small>当前基准</small></strong><span>波动 {a.scoreMAD.toFixed(1)}</span>{a.hitsPerSecond != null && <span>{a.hitsPerSecond.toFixed(2)} 命中/秒</span>}{a.accuracy != null && <span>{(a.accuracy*100).toFixed(1)}% 命中率</span>}</div>
+    <AnchorTrend anchor={a} />
+    <div className="training-anchor-meta"><span>{a.samples} 局 · {a.sessions} 块 · {a.days} 天</span><span>{a.evidence === "local_execution_context" ? "已绑定本地版本" : "历史未绑定版本"}</span></div>
+   </article>)}</div>}
   </section>
   <section className="training-card"><h2>日常试练与低频观察 <TrainingHelp label="试练与观察"><p>两局试练使用个人历史参照，不自动增加前后测。固定观察优先复用主线，需要补充时采用一局熟悉、三局测量。</p><p>每次计划最多一个锚图；新增观察同分类七天最多一次、所有分类合计最多两次，新增时间不超过三分钟及总预算的 10%。预算不足时等待。</p><p>自然练到同图时记录实际间隔，没有三天补测期限。这些局数与频率是待验证的默认值；跨日变化与 PB 增长不能证明某个变体带来了收益。</p></TrainingHelp></h2><div className="training-metrics"><div><strong>2 局</strong><span>日常试练</span></div><div><strong>1 + 3 局</strong><span>熟悉 + 固定测量</span></div><div><strong>≤ 2 次/周</strong><span>新增固定观察</span></div></div></section>
   {[...evaluations].sort((a,b)=>b.createdAt-a.createdAt).slice(0,12).map(e=><section className="training-card" key={e.id}>
