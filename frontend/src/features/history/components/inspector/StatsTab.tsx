@@ -1,3 +1,4 @@
+import { ScenarioHistoryLink } from "@/shared/components/ScenarioHistoryLink";
 import { Button } from "@/shared/components";
 import { useI18n } from "@/shared/lib";
 import type { StatKey } from "@/shared/types";
@@ -105,7 +106,7 @@ export function StatsTab({
     <>
       <div className="min-w-0">
         <div className="font-medium text-foreground">
-          {primaryRun.scenarioName}
+          <ScenarioHistoryLink name={primaryRun.scenarioName} known />
         </div>
         <div className="mt-0.5 text-xs text-surface-muted-foreground">
           {formatRunTimestamp(primaryRun.playedAt)} ·{" "}
@@ -188,7 +189,7 @@ function CompareStatsView({
               {t("history.inspector.pinned")}
             </div>
             <div className="mt-0.5 font-medium text-foreground truncate">
-              {primaryRun.scenarioName}
+              <ScenarioHistoryLink name={primaryRun.scenarioName} known />
             </div>
             <div className="text-[0.6875rem] text-surface-muted-foreground">
               {formatRunTimestamp(primaryRun.playedAt)}
@@ -209,7 +210,7 @@ function CompareStatsView({
               {t("history.inspector.compare")}
             </div>
             <div className="mt-0.5 font-medium text-foreground truncate">
-              {compareRun.scenarioName}
+              <ScenarioHistoryLink name={compareRun.scenarioName} known />
             </div>
             <div className="text-[0.6875rem] text-surface-muted-foreground">
               {formatRunTimestamp(compareRun.playedAt)}

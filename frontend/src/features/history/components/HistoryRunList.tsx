@@ -1,3 +1,4 @@
+import { ScenarioHistoryLink } from "@/shared/components/ScenarioHistoryLink";
 import {
   Button,
   Input,
@@ -220,20 +221,18 @@ export function HistoryRunList({
                         : "scale-[0.985] bg-surface-muted opacity-0 group-hover:scale-100 group-hover:opacity-100",
                   )}
                 />
-                <button
-                  type="button"
-                  onClick={() => onSelectRun(run.id)}
-                  className="relative z-10 min-w-0 flex-1 px-3 py-2 text-left"
-                >
+                <div className="relative z-10 min-w-0 flex-1 px-3 py-2 text-left">
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 truncate font-medium text-foreground">
-                      {run.scenarioName}
+                      <ScenarioHistoryLink name={run.scenarioName} known />
                     </div>
-                    <span className="shrink-0 font-semibold text-foreground">
+                    <button type="button" onClick={() => onSelectRun(run.id)} aria-label={`${run.scenarioName} · 查看本局详情`} className="shrink-0 font-semibold text-foreground">
                       {formatScore(run.score)}
-                    </span>
+                    </button>
                   </div>
-                  <div
+                  <button
+                    type="button"
+                    onClick={() => onSelectRun(run.id)}
                     className={cn(
                       "mt-1 flex items-center gap-2 text-xs text-surface-muted-foreground transition-colors duration-200",
                       (isPrimary || isCompared) && "text-foreground/70",
@@ -250,8 +249,8 @@ export function HistoryRunList({
                         </span>
                       </>
                     )}
-                  </div>
-                </button>
+                  </button>
+                </div>
 
                 <Button
                   variant={isCompared ? "secondary" : "ghost"}

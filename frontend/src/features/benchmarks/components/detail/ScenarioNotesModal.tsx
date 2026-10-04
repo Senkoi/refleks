@@ -1,3 +1,4 @@
+import { ScenarioHistoryLink } from "@/shared/components/ScenarioHistoryLink";
 import { Button, Modal } from "@/shared/components";
 import { useI18n } from "@/shared/lib/i18n";
 import { Copy, Save } from "lucide-react";
@@ -54,7 +55,7 @@ export function ScenarioNotesModal({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={scenarioName}
+      title={<ScenarioHistoryLink name={scenarioName} />}
       width="35rem"
       height="auto"
     >

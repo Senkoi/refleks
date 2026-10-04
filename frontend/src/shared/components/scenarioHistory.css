@@ -1,0 +1,20 @@
+button.scenario-history-link, .training-page button.scenario-history-link { display:inline-flex; align-items:baseline; justify-content:flex-start; gap:5px; max-width:100%; padding:0; border:0; border-radius:3px; background:none; color:inherit; font:inherit; text-align:left; cursor:pointer; vertical-align:baseline; }
+button.scenario-history-link span { min-width:0; overflow-wrap:anywhere; }
+button.scenario-history-link svg { align-self:center; flex-shrink:0; color:var(--surface-muted-foreground); }
+button.scenario-history-link:hover, .training-page button.scenario-history-link:hover { background:none; color:var(--primary); }
+button.scenario-history-link:hover span { text-decoration:underline; text-underline-offset:3px; }
+button.scenario-history-link:focus-visible { outline:2px solid var(--primary); outline-offset:3px; }
+.scenario-history-modal { z-index:180; }
+.scenario-history-overlay { z-index:170; }
+.scenario-history-body { min-width:0; max-height:78vh; overflow:auto; font-size:13px; line-height:1.6; }
+.scenario-history-toolbar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; margin-top:4px; }
+.scenario-history-toolbar > span, .scenario-history-muted, .scenario-history-chart figcaption { color:var(--surface-muted-foreground); font-size:11px; }
+.scenario-history-toolbar label { display:grid; gap:4px; max-width:100%; font-size:11px; }
+.scenario-history-toolbar select { max-width:min(540px,100%); padding:6px 8px; border:1px solid var(--border); border-radius:6px; color:var(--canvas-foreground); background:var(--canvas); }
+.scenario-history-muted { margin:10px 0; overflow-wrap:anywhere; }
+.scenario-history-chart { margin:12px 0 0; min-width:0; }
+.scenario-history-chart figcaption { text-align:center; }
+.scenario-history-tooltip { display:grid; gap:4px; padding:10px 12px; border:1px solid var(--border); border-radius:7px; background:var(--surface); color:var(--canvas-foreground); font-size:11px; box-shadow:0 4px 16px #0002; }
+.scenario-history-supplement { border-top:1px solid var(--border); margin-top:20px; padding-top:12px; }
+.scenario-history-supplement h3 { margin:0; font-size:13px; font-weight:600; }
+.scenario-history-retry { border:1px solid var(--border); border-radius:6px; padding:6px 12px; }

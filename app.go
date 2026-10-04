@@ -167,6 +167,14 @@ func (a *App) GetRecentRuns(limit int) []models.RunRecord {
 	return a.runsRuntimeSvc.GetRecent(limit)
 }
 
+func (a *App) GetScenarioTrainingHistory(name string) ([]runs.ScenarioHistoryPoint, error) {
+	return a.runStore.LoadScenarioHistory(name)
+}
+
+func (a *App) GetPlayedScenarioNames() ([]string, error) {
+	return a.runStore.LoadPlayedScenarioNames()
+}
+
 // GetRunStatsEvents returns the CSV-derived event rows nested under stats.events.
 // They are loaded on demand instead of being included in the bulk recent-runs payload.
 func (a *App) GetRunStatsEvents(filePath string) ([]models.RunStatsEvent, error) {

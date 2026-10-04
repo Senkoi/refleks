@@ -210,7 +210,7 @@ export function ScenarioInfoRow({
       <div
         className={`${cls.nameTextClass} min-w-0 flex items-center overflow-hidden text-foreground`}
       >
-        <span className="block w-full truncate">{scenarioName}</span>
+        <button type="button" className="block w-full truncate text-left hover:text-primary hover:underline" aria-label={`${scenarioName} · 查看训练历史`} aria-haspopup="dialog" onClick={onHistory}>{scenarioName}</button>
       </div>
       <div />
 
