@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"path/filepath"
 	"refleks/internal/models"
 	"strings"
 	"testing"
@@ -144,7 +145,7 @@ func TestRoutineProgressSurvivesHistoryTrimAndVersionChanges(t *testing.T) {
 	if err := s.save(); err != nil {
 		t.Fatal(err)
 	}
-	reopened, err := New(strings.TrimSuffix(s.path, "/adaptive-training.json"))
+	reopened, err := New(filepath.Dir(s.path))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -168,6 +169,7 @@ func TestWorkbenchCachesEvaluationAndClockPayloadExcludesCatalog(t *testing.T) {
 		t.Fatal(err)
 	}
 	first := s.evaluatedAt
+	firstKey := s.evaluationKey
 	s.state.History = make([]Plan, 100)
 	_, _ = s.WorkbenchJSON(nil)
 	if !s.evaluatedAt.Equal(first) {
@@ -187,8 +189,12 @@ func TestWorkbenchCachesEvaluationAndClockPayloadExcludesCatalog(t *testing.T) {
 		t.Fatal("clock poll sent catalog")
 	}
 	runs := levelRuns("Static A", []float64{1, 2, 3}, time.Now())
-	_, _ = s.WorkbenchJSON(runs)
-	if s.evaluatedAt.Equal(first) {
+	if _, err := s.WorkbenchJSON(runs); err != nil {
+		t.Fatal(err)
+	}
+	// Consecutive refreshes may share a clock tick on Windows. The cache key
+	// proves that changed evidence was evaluated without requiring time to pass.
+	if s.evaluationKey == firstKey || s.evaluationKey != evaluationFingerprint(runs, s.dataRevision) {
 		t.Fatal("new evidence did not invalidate")
 	}
 }
