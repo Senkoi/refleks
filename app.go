@@ -121,9 +121,13 @@ func (a *App) startup(ctx context.Context) {
 		if err := a.benchmarkSvc.SyncBenchmarksCache(); err != nil {
 			runtime.LogErrorf(a.ctx, "benchmark definitions sync failed: %v", err)
 		}
-		_, err := a.benchmarkSvc.GetAllBenchmarkProgresses()
+		progress, err := a.benchmarkSvc.GetAllBenchmarkProgresses()
 		if err != nil {
 			runtime.LogErrorf(a.ctx, "benchmark cache sync failed: %v", err)
+		} else if a.trainingSvc != nil {
+			if catalog, e := a.GetBenchmarks(); e == nil {
+				_, _ = a.trainingSvc.Add(training.BenchmarkScenarios(catalog, progress, time.Now()))
+			}
 		}
 	}()
 
@@ -161,6 +165,14 @@ func (a *App) StopWatcher() error {
 // GetRecentRuns returns most recent parsed runs, up to optional limit.
 func (a *App) GetRecentRuns(limit int) []models.RunRecord {
 	return a.runsRuntimeSvc.GetRecent(limit)
+}
+
+func (a *App) GetScenarioTrainingHistory(name string) ([]runs.ScenarioHistoryPoint, error) {
+	return a.runStore.LoadScenarioHistory(name)
+}
+
+func (a *App) GetPlayedScenarioNames() ([]string, error) {
+	return a.runStore.LoadPlayedScenarioNames()
 }
 
 // GetRunStatsEvents returns the CSV-derived event rows nested under stats.events.

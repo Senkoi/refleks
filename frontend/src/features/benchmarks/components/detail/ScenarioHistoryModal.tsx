@@ -1,4 +1,5 @@
 import { Loading, Modal } from "@/shared/components";
+import { ScenarioTrainingHistoryModal } from "@/shared/components/ScenarioTrainingHistoryModal";
 import type { ChartConfig } from "@/shared/components/ui/chart";
 import {
   ChartContainer,
@@ -62,7 +63,7 @@ function getDateFormatter(): Intl.DateTimeFormat {
   return dateFormatter;
 }
 
-export function ScenarioHistoryModal({
+function OnlineScenarioHistoryModal({
   isOpen,
   onClose,
   scenarioName,
@@ -291,4 +292,9 @@ function buildRankBands(
   }
 
   return bands;
+}
+
+export function ScenarioHistoryModal(props: Props) {
+  if (!props.isOpen) return null;
+  return <ScenarioTrainingHistoryModal key={props.scenarioName} scenario={props.scenarioName} onClose={props.onClose} fallback={<OnlineScenarioHistoryModal {...props} />} />;
 }

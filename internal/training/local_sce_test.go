@@ -138,7 +138,7 @@ func TestUploadedSCEArchiveMatchesMechanismSnapshot(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer z.Close()
-	count := 0
+	count, verified, precision := 0, 0, 0
 	for _, f := range z.File {
 		if !strings.HasSuffix(strings.ToLower(f.Name), ".sce") {
 			continue
@@ -166,7 +166,22 @@ func TestUploadedSCEArchiveMatchesMechanismSnapshot(t *testing.T) {
 		if a.Status != "file_parsed_model_unfitted" {
 			t.Fatal("invented fitted difficulty")
 		}
+		a.FilePath = f.Name
+		evaluation := assessCatalog(Scenario{Name: name, LocalAssessment: a, Mechanics: m}, nil, epoch, Preferences{})
+		if evaluation.FileStatus == "verified" {
+			verified++
+		}
+		if evaluation.HasPrecisionReference {
+			precision++
+		}
+		if evaluation.DifficultyStatus == "calibrated" {
+			t.Fatal("file metrics falsely marked as calibrated")
+		}
 		count++
+	}
+	t.Logf("uploaded SCE: %d parsed, %d configuration verified, %d with precision evidence", count, verified, precision)
+	if verified == 0 || precision == 0 {
+		t.Fatal("real downloaded scenes cannot reach the evidence filter")
 	}
 	if count != 58 {
 		t.Fatalf("incomplete archive: %d", count)

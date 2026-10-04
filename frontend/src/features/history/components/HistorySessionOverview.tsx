@@ -1,3 +1,4 @@
+import { ScenarioHistoryLink } from "@/shared/components/ScenarioHistoryLink";
 import { Button, Input } from "@/shared/components";
 import { usePersistedState, useStore } from "@/shared/hooks";
 import { cn, STORAGE_KEYS, useI18n } from "@/shared/lib";
@@ -465,9 +466,7 @@ function ScenarioCard({
 }) {
   const { t } = useI18n();
   return (
-    <button
-      type="button"
-      onClick={onSelect}
+    <div
       className={cn(
         "group relative flex items-center gap-2 overflow-hidden rounded-xl px-3 py-2.5 text-left transition-[transform,color,opacity] duration-220 ease-emphasized will-change-transform active:scale-[0.985]",
         selected ? "shadow-sm" : "bg-surface-subtle",
@@ -484,12 +483,12 @@ function ScenarioCard({
       />
       <div className="relative z-10 min-w-0 flex-1">
         <div className="truncate text-sm font-medium text-foreground">
-          {summary.name}
+          <ScenarioHistoryLink name={summary.name} known />
         </div>
-        <div className="text-xs text-surface-muted-foreground">
+        <button type="button" onClick={onSelect} aria-pressed={selected} aria-label={`${summary.name} · 查看本次训练`} className="text-xs text-surface-muted-foreground hover:text-primary">
           {formatScore(summary.bestScore)} ·{" "}
           {t("history.overview.runs", { count: summary.count })}
-        </div>
+        </button>
       </div>
       {summary.trend === "up" && (
         <TrendingUp className="relative z-10 h-4 w-4 shrink-0 text-green-500" />
@@ -500,6 +499,6 @@ function ScenarioCard({
       {summary.trend === "same" && (
         <Minus className="relative z-10 h-3.5 w-3.5 shrink-0 text-surface-muted-foreground" />
       )}
-    </button>
+    </div>
   );
 }

@@ -1,3 +1,4 @@
+import { ScenarioHistoryLink } from "@/shared/components/ScenarioHistoryLink";
 import { Widget } from "@/shared/components";
 import type { ChartConfig } from "@/shared/components/ui/chart";
 import {
@@ -165,6 +166,7 @@ export function ScenarioTrendChart({
   return (
     <Widget
       title={scenarioName}
+      titleControls={<ScenarioHistoryLink name={scenarioName} known iconOnly />}
       modalTitle={t("history.scenarioTrend.modalTitle", {
         scenario: scenarioName,
       })}

@@ -24,11 +24,12 @@ const runIndexCacheCap = 4096
 // time is verified on every access so external changes (manual edits,
 // restores) trigger a rescan instead of serving a stale listing.
 type runIndex struct {
-	mu     sync.RWMutex
-	dir    string
-	files  []recentFile
-	byName map[string]struct{}
-	dirMod time.Time
+	revision uint64
+	mu       sync.RWMutex
+	dir      string
+	files    []recentFile
+	byName   map[string]struct{}
+	dirMod   time.Time
 
 	cache map[string]storedRunRecord
 }
@@ -93,6 +94,7 @@ func (ix *runIndex) scan(dir string) error {
 	}
 
 	ix.mu.Lock()
+	ix.revision++
 	ix.dir = dir
 	ix.files = files
 	ix.byName = byName
@@ -113,6 +115,7 @@ func (ix *runIndex) add(dir, name string, ts int64) {
 	ix.mu.Lock()
 	defer ix.mu.Unlock()
 
+	ix.revision++
 	if _, exists := ix.byName[name]; exists {
 		// A re-saved file replaces its entry and drops any cached record.
 		for i := range ix.files {
@@ -236,4 +239,10 @@ func (ix *runIndex) trimCacheLocked() {
 		}
 		delete(ix.cache, path)
 	}
+}
+
+func (ix *runIndex) Revision() uint64 {
+	ix.mu.RLock()
+	defer ix.mu.RUnlock()
+	return ix.revision
 }

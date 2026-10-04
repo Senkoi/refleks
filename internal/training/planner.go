@@ -15,6 +15,10 @@ type observation struct {
 	score, duration float64
 	at              time.Time
 	signature       string
+	accuracy        float64
+	accuracyKnown   bool
+	hitsPerSecond   float64
+	speedKnown      bool
 }
 
 func signature(s models.RunStatsSummary) string {
@@ -41,12 +45,21 @@ func observed(runs []models.RunRecord) map[string][]observation {
 		if err != nil {
 			continue
 		}
-		if s.Score < 0 || math.IsNaN(s.Score) || math.IsInf(s.Score, 0) {
+		if s.Score < 0 || math.IsNaN(s.Score) || math.IsInf(s.Score, 0) || s.Duration <= 0 || s.Duration > 3600 || math.IsNaN(s.Duration) || math.IsInf(s.Duration, 0) {
 			continue
 		}
 		sig := signature(s)
 		key := strings.ToLower(s.Scenario)
-		out[key] = append(out[key], observation{s.Score, s.Duration, t, sig})
+		a := s.Accuracy
+		if a > 1 {
+			a /= 100
+		}
+		known := a > 0 && a <= 1 && !math.IsNaN(a) && !math.IsInf(a, 0)
+		if s.HitCount >= 0 && s.MissCount >= 0 && int64(s.HitCount)+int64(s.MissCount) > 0 {
+			a = float64(s.HitCount) / (float64(s.HitCount) + float64(s.MissCount))
+			known = true
+		}
+		out[key] = append(out[key], observation{score: s.Score, duration: s.Duration, at: t, signature: sig, accuracy: a, accuracyKnown: known, hitsPerSecond: float64(s.HitCount) / s.Duration, speedKnown: s.HitCount > 0})
 	}
 	for key := range out {
 		sort.Slice(out[key], func(i, j int) bool { return out[key][i].at.After(out[key][j].at) })
@@ -104,17 +117,10 @@ func SkillProfile(catalog []Scenario, runs []models.RunRecord, p Preferences, no
 				if !selectedBenchmark(p, membership.Name) || len(membership.Thresholds) < 2 {
 					continue
 				}
-				cr := comparable(rows)
-				scores := []float64{}
-				for _, r := range cr {
-					if !r.at.Before(now.AddDate(0, 0, -30)) {
-						scores = append(scores, r.score)
-					}
-				}
-				if len(scores) < 3 {
+				m, samples := recentLevelScore(comparable(rows), now)
+				if samples < 3 {
 					continue
 				}
-				m := median(scores)
 				ts := append([]float64{}, membership.Thresholds...)
 				sort.Float64s(ts)
 				rank := 0.0
@@ -250,9 +256,8 @@ func validatePreferences(p Preferences) error {
 	if math.IsNaN(p.ThresholdRatio) || p.ThresholdRatio < 0.5 || p.ThresholdRatio > 1 {
 		return fmt.Errorf("阈值比例须在 50–100%% 之间")
 	}
-	if len(p.Benchmarks) > 20 {
-		return fmt.Errorf("最多选择 20 套 benchmark")
-	}
+	// Benchmark references are resolved automatically from the bounded catalog.
+	// A former manual selection limit must not reject automatic initialization.
 	return nil
 }
 

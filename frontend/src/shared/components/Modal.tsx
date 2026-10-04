@@ -11,6 +11,7 @@ type ModalProps = {
   width?: string | number;
   height?: string | number;
   className?: string;
+  overlayClassName?: string;
   closeOnOutsideClick?: boolean;
   closeOnEscapeKey?: boolean;
   showCloseButton?: boolean;
@@ -25,6 +26,7 @@ export function Modal({
   width = "90%",
   height = "90%",
   className = "",
+  overlayClassName,
   closeOnOutsideClick = true,
   closeOnEscapeKey = true,
   showCloseButton = true,
@@ -44,6 +46,7 @@ export function Modal({
           className,
         )}
         showCloseButton={showCloseButton}
+        overlayClassName={overlayClassName}
         onOpenAutoFocus={(event) => {
           event.preventDefault();
           requestAnimationFrame(() => {

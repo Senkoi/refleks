@@ -22,10 +22,14 @@ import (
 
 // Store manages the .refleks run directory.
 type Store struct {
-	settingsSvc    *appsettings.Service
-	ctx            context.Context
-	screenProvider screen.Provider
-	encoder        *screen.Encoder
+	trainingMu       sync.Mutex
+	trainingRevision uint64
+	trainingAt       time.Time
+	trainingRows     []models.RunRecord
+	settingsSvc      *appsettings.Service
+	ctx              context.Context
+	screenProvider   screen.Provider
+	encoder          *screen.Encoder
 
 	screenMu             sync.Mutex
 	screenTrimCounts     map[string]int  // in-flight trims keyed by capture session directory
@@ -428,6 +432,40 @@ func (s *Store) LoadRecentRuns(limit int) ([]models.RunRecord, error) {
 		return nil, err
 	}
 
+	return s.loadRunSummaries(selected)
+}
+
+// LoadTrainingRuns always reads the full 45-day training window, regardless
+// of the history page's display limit or configured recent-days preference.
+func (s *Store) LoadTrainingRuns() ([]models.RunRecord, error) {
+	dir, err := s.runsDir()
+	if err != nil {
+		return nil, err
+	}
+	return s.loadTrainingRuns(dir)
+}
+
+func (s *Store) loadTrainingRuns(dir string) ([]models.RunRecord, error) {
+	if err := s.index.ensureScanned(dir); err != nil {
+		return nil, err
+	}
+	// Avoid decompressing a month of records on every two-second UI poll.
+	// New/imported runs and external file changes invalidate the revision.
+	s.trainingMu.Lock()
+	defer s.trainingMu.Unlock()
+	revision := s.index.Revision()
+	if s.trainingRevision != revision || s.trainingAt.IsZero() || time.Since(s.trainingAt) > 5*time.Minute {
+		rows, err := s.loadRunSummaries(s.index.recent(0, 45, 0))
+		if err != nil {
+			return nil, err
+		}
+		s.trainingRows, s.trainingRevision, s.trainingAt = rows, revision, time.Now()
+	}
+	return append([]models.RunRecord(nil), s.trainingRows...), nil
+}
+
+func (s *Store) loadRunSummaries(selected []recentFile) ([]models.RunRecord, error) {
+	var err error
 	replays := s.replayFileSet()
 
 	out := make([]models.RunRecord, 0, len(selected))

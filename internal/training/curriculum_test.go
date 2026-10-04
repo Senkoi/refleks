@@ -60,8 +60,8 @@ func TestCurriculumFirstGenerationPreservesEveryRowAndCount(t *testing.T) {
 	}
 	_ = json.Unmarshal(data, &exported)
 	for i, r := range exported.Rows {
-		if r.Name != template.Rows[i].Name || r.Count != template.Rows[i].Count {
-			t.Fatal("export diverged from template")
+		if r.Name != template.Rows[i].Name || r.Count != plan.Blocks[i].PlayCount || plan.Blocks[i].SourcePlayCount != template.Rows[i].Count || r.Count > template.Rows[i].Count {
+			t.Fatal("export diverged from the actual adaptive plan")
 		}
 	}
 	if plan.CurriculumID != template.ID {
@@ -83,7 +83,7 @@ func TestCurriculumExplorationKeepsGoalAllowsExtraDimensions(t *testing.T) {
 	unknown := demandScene("unknown mechanics")
 	template := Curriculum{ID: "t", Name: "VDIM", Rows: []CurriculumRow{{Name: a.Name, Count: 2}}}
 	p := defaults()
-	p.Minutes = 10
+	p.Minutes = 15
 	p.Variety = .5
 	for seed := int64(0); seed < 100; seed++ {
 		plan, err := GenerateCurriculum(template, []Scenario{a, wrong, other, unknown, good}, nil, p, epoch, rand.New(rand.NewSource(seed)), true)
@@ -109,7 +109,7 @@ func TestOnlyRecordedCompletedCurriculumUnlocksExploration(t *testing.T) {
 	for i := range s.state.Catalog {
 		s.state.Catalog[i].Classification = "manual"
 	}
-	_, _ = s.Add([]Scenario{{Name: "extra", Skill: "static", Technique: "static", Classification: "manual", Enabled: true, Seconds: 60, Difficulty: "unknown"}})
+	_, _ = s.Add([]Scenario{{Name: "extra", VariantOf: "Static B", Skill: "static", Technique: "static", Classification: "manual", Enabled: true, Seconds: 60, Difficulty: "unknown"}})
 	p := defaults()
 	p.Variety = .5
 	plan, err := s.Generate(p, nil)

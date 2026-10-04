@@ -22,16 +22,17 @@ import (
 
 // Watcher monitors a directory for new stats files and emits events.
 type Watcher struct {
-	ctx      context.Context
-	cfg      models.WatcherConfig
-	mu       sync.RWMutex
-	running  bool
-	gen      uint64
-	stopCh   chan struct{}
-	seen     map[string]struct{}
-	inFlight map[string]struct{}
-	mouse    models.MouseTraceProvider
-	runSvc   RunStore
+	initialCatchUp chan struct{}
+	ctx            context.Context
+	cfg            models.WatcherConfig
+	mu             sync.RWMutex
+	running        bool
+	gen            uint64
+	stopCh         chan struct{}
+	seen           map[string]struct{}
+	inFlight       map[string]struct{}
+	mouse          models.MouseTraceProvider
+	runSvc         RunStore
 
 	OnRunParsed func(models.RunRecord)
 }
@@ -77,6 +78,8 @@ func (w *Watcher) Start() error {
 	w.running = true
 	w.gen++
 	currentGen := w.gen
+	done := make(chan struct{})
+	w.initialCatchUp = done
 	w.mu.Unlock()
 
 	// Do not create the directory if it doesn't exist. Just log and continue.
@@ -98,11 +101,30 @@ func (w *Watcher) Start() error {
 	runtime.EventsEmit(w.ctx, constants.EventRunsWatcherStarted, map[string]string{"path": w.cfg.Path})
 
 	if len(catchUpFiles) > 0 {
-		go w.catchUpExisting(catchUpFiles, currentGen)
+		go func() { defer close(done); w.catchUpExisting(catchUpFiles, currentGen) }()
 	}
 
+	if len(catchUpFiles) == 0 {
+		close(done)
+	}
 	go w.loop()
 	return nil
+}
+
+// WaitInitialCatchUp prevents level inference from racing the startup import.
+func (w *Watcher) WaitInitialCatchUp(ctx context.Context) bool {
+	w.mu.RLock()
+	done := w.initialCatchUp
+	w.mu.RUnlock()
+	if done == nil {
+		return true
+	}
+	select {
+	case <-done:
+		return true
+	case <-ctx.Done():
+		return false
+	}
 }
 
 // Stop stops the watcher.

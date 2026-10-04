@@ -25,13 +25,20 @@ type SCEField struct {
 	Line    int    `json:"line"`
 }
 type LocalAssessment struct {
-	Status      string     `json:"status"`
-	FileSHA256  string     `json:"fileSHA256,omitempty"`
-	GameVersion string     `json:"gameVersion,omitempty"`
-	ObservedAt  string     `json:"observedAt,omitempty"`
-	FilePath    string     `json:"filePath,omitempty"`
-	Fields      []SCEField `json:"fields,omitempty"`
-	Issues      []string   `json:"issues,omitempty"`
+	ComparisonSchema     int                   `json:"comparisonSchema,omitempty"`
+	FamilyFingerprint    string                `json:"familyFingerprint,omitempty"`
+	MapDataSHA256        string                `json:"mapDataSHA256,omitempty"`
+	TargetSizes          []TargetSize          `json:"targetSizes,omitempty"`
+	Measurements         []FileMeasurement     `json:"measurements,omitempty"`
+	PrecisionComparisons []PrecisionComparison `json:"precisionComparisons,omitempty"`
+	FilePaths            []string              `json:"filePaths,omitempty"`
+	Status               string                `json:"status"`
+	FileSHA256           string                `json:"fileSHA256,omitempty"`
+	GameVersion          string                `json:"gameVersion,omitempty"`
+	ObservedAt           string                `json:"observedAt,omitempty"`
+	FilePath             string                `json:"filePath,omitempty"`
+	Fields               []SCEField            `json:"fields,omitempty"`
+	Issues               []string              `json:"issues,omitempty"`
 }
 type localParsedSCE struct {
 	name       string
@@ -72,6 +79,7 @@ func ParseLocalSCE(data []byte) (string, *Mechanics, *LocalAssessment, error) {
 	scan := bufio.NewScanner(bytes.NewReader(bytes.TrimPrefix(data, []byte{0xef, 0xbb, 0xbf})))
 	scan.Buffer(make([]byte, 4096), 1<<20)
 	line := 0
+	opaqueConfiguration := false
 	for scan.Scan() {
 		line++
 		s := strings.TrimSpace(scan.Text())
@@ -85,6 +93,8 @@ func ParseLocalSCE(data []byte) (string, *Mechanics, *LocalAssessment, error) {
 		if key, value, ok := strings.Cut(s, "="); ok {
 			i := len(sections) - 1
 			sections[i].fields = append(sections[i].fields, SCEField{Section: sections[i].kind, Key: strings.TrimSpace(key), Raw: strings.TrimSpace(value), Line: line})
+		} else if s != "" && !strings.HasPrefix(s, ";") && !strings.HasPrefix(s, "#") && !strings.HasPrefix(s, "//") {
+			opaqueConfiguration = true
 		}
 	}
 	if err := scan.Err(); err != nil {
@@ -98,6 +108,9 @@ func ParseLocalSCE(data []byte) (string, *Mechanics, *LocalAssessment, error) {
 	digest := sha256.Sum256(data)
 	hash := hex.EncodeToString(digest[:])
 	a := &LocalAssessment{Status: "file_parsed_model_unfitted", FileSHA256: hash, GameVersion: root.value("GameVersion"), Fields: append([]SCEField{}, root.fields...), Issues: []string{"map_geometry_and_total_difficulty_not_fitted"}}
+	if opaqueConfiguration {
+		a.Issues = append(a.Issues, "unsupported_configuration_line")
+	}
 	index := map[string]int{}
 	for i := 1; i < len(sections); i++ {
 		p := sections[i].value("Name")
@@ -233,6 +246,8 @@ func ParseLocalSCE(data []byte) (string, *Mechanics, *LocalAssessment, error) {
 	}
 	sort.Strings(m.Tags)
 	sort.Strings(a.Issues)
+	calculateFileEvidence(a)
+	calculateComparison(data, sections, active, a)
 	return name, m, a, nil
 }
 
@@ -251,7 +266,7 @@ func LocalRoots(game, steam string) []string {
 
 // PollLocal scans bounded roots and waits for the same file metadata on two
 // polls, plus a two-second quiet period. Partial Steam writes are not assessed.
-// Only catalog scenes are evaluated; the active plan's copied blocks stay fixed.
+// Every downloaded scene is added and evaluated; the active plan's copied blocks stay fixed.
 func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 	s.localScanMu.Lock()
 	defer s.localScanMu.Unlock()
@@ -263,12 +278,6 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 	if playlists != "" {
 		s.pollCurricula(playlists)
 	}
-	s.mu.Lock()
-	wanted := map[string]bool{}
-	for _, c := range s.state.Catalog {
-		wanted[strings.ToLower(c.Name)] = true
-	}
-	s.mu.Unlock()
 	visited := map[string]bool{}
 	changed := s.localDirty
 	invalidate := func(path, status string) {
@@ -277,7 +286,13 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 		defer s.mu.Unlock()
 		for i := range s.state.Catalog {
 			c := &s.state.Catalog[i]
-			if c.LocalAssessment != nil && c.LocalAssessment.FilePath == path && c.LocalAssessment.Status != status {
+			matches := c.LocalAssessment != nil && c.LocalAssessment.FilePath == path
+			if c.LocalAssessment != nil {
+				for _, p := range c.LocalAssessment.FilePaths {
+					matches = matches || p == path
+				}
+			}
+			if matches && c.LocalAssessment.Status != status {
 				c.Mechanics = nil
 				if c.Classification == "sce_description" {
 					c.Skill = "unknown"
@@ -344,9 +359,6 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 				invalidate(path, "invalid_local_file")
 				return nil
 			}
-			if !wanted[strings.ToLower(name)] {
-				return nil
-			}
 			a.FilePath = path
 			a.ObservedAt = now.UTC().Format(time.RFC3339)
 			s.localParsed[path] = localParsedSCE{name, m, a}
@@ -374,10 +386,43 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
+	known := map[string]bool{}
+	for _, c := range s.state.Catalog {
+		known[strings.ToLower(c.Name)] = true
+	}
+	names := []string{}
+	for name := range byName {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	for _, name := range names {
+		if !known[name] && len(s.state.Catalog) < 10000 {
+			v := byName[name][0]
+			s.state.Catalog = append(s.state.Catalog, scenarioFromLocal(v.name, v.assessment.FilePath, v.mechanics, v.assessment))
+			changed = true
+		}
+	}
 	for i := range s.state.Catalog {
 		c := &s.state.Catalog[i]
 		versions := byName[strings.ToLower(c.Name)]
 		if len(versions) == 0 {
+			// Persisted assessments must not survive deleted files after an app restart.
+			// A truncated scan cannot prove absence, so retain its previous state.
+			if remaining > 0 && c.LocalAssessment != nil && (c.LocalAssessment.Status == "file_parsed_model_unfitted" || c.LocalAssessment.Status == "ambiguous_local_versions") {
+				status := "local_file_unavailable"
+				paths := append([]string{c.LocalAssessment.FilePath}, c.LocalAssessment.FilePaths...)
+				for _, path := range paths {
+					if visited[path] {
+						status = "waiting_for_stable_local_file"
+					}
+				}
+				c.Mechanics = nil
+				if c.Classification == "sce_description" {
+					c.Skill, c.Technique, c.Classification, c.Enabled = "unknown", "unknown", "inferred", false
+				}
+				c.LocalAssessment = &LocalAssessment{Status: status, FilePaths: paths}
+				changed = true
+			}
 			continue
 		}
 		p := versions[0]
@@ -390,12 +435,16 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 		if conflict {
 			if c.LocalAssessment == nil || c.LocalAssessment.Status != "ambiguous_local_versions" {
 				c.Mechanics = nil
-				c.LocalAssessment = &LocalAssessment{Status: "ambiguous_local_versions", Issues: []string{"same_name_different_content_hashes"}}
+				paths := []string{}
+				for _, v := range versions {
+					paths = append(paths, v.assessment.FilePath)
+				}
+				c.LocalAssessment = &LocalAssessment{Status: "ambiguous_local_versions", FilePaths: paths, Issues: []string{"same_name_different_content_hashes"}}
 				changed = true
 			}
 			continue
 		}
-		if c.LocalAssessment != nil && c.LocalAssessment.Status == "file_parsed_model_unfitted" && c.LocalAssessment.FileSHA256 == p.assessment.FileSHA256 {
+		if c.LocalAssessment != nil && c.LocalAssessment.Status == "file_parsed_model_unfitted" && c.LocalAssessment.FileSHA256 == p.assessment.FileSHA256 && c.LocalAssessment.ComparisonSchema == comparisonSchema {
 			continue
 		}
 		c.Mechanics = p.mechanics
@@ -404,6 +453,7 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 		changed = true
 	}
 	if changed {
+		refreshLocalRelations(s.state.Catalog)
 		if err := s.save(); err != nil {
 			s.localDirty = true
 			s.state.Error = "本地 SCE 评估缓存保存失败：" + err.Error()

@@ -74,13 +74,17 @@ func assessDifficultyFor(s Scenario, rows []observation, now time.Time, p Prefer
 	}
 	valid := []observation{}
 	for _, r := range rows {
-		if !r.at.After(now) && !r.at.Before(now.AddDate(0, 0, -30)) {
+		if !r.at.After(now) && !r.at.Before(now.AddDate(0, 0, -45)) {
 			valid = append(valid, r)
 		}
 	}
 	valid = comparable(valid)
-	e.Samples = len(valid)
-	if len(valid) >= 3 && !ambiguous {
+	score, samples, days := levelScoreWindow(valid, now)
+	e.Samples = samples
+	e.WindowDays = days
+	e.RecentScore = score
+	e.Trend, e.TrendSessions = performanceTrend(valid, now)
+	if samples >= 3 && !ambiguous {
 		// Published thresholds are specific to a benchmark scenario and version.
 		for _, m := range eligible {
 			if len(m.Thresholds) == 0 {
@@ -98,11 +102,6 @@ func assessDifficultyFor(s Scenario, rows []observation, now time.Time, p Prefer
 			if first <= 0 {
 				continue
 			}
-			scores := make([]float64, len(valid))
-			for i, r := range valid {
-				scores[i] = r.score
-			}
-			score := median(scores)
 			switch {
 			case score < first*.75:
 				e.Fit = "challenging"
