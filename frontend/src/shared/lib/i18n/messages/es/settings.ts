@@ -37,7 +37,7 @@ export const settings: SettingsMessages = {
       "Ruta a la carpeta de instalación de KovaaK's, usada para localizar FPSAimTrainer/stats y FPSAimTrainer/performances",
     startWithKovaaks: "Iniciar con KovaaK's",
     startWithKovaaksDescription:
-      "Inicia RefleK's automáticamente al iniciar KovaaK's; RefleK's también se iniciará con Windows",
+      "Inicia AimMeow automáticamente al iniciar KovaaK's; AimMeow también se iniciará con Windows",
     mouseTracking: "Seguimiento del ratón",
     mouseTrackingDescription:
       "Graba el movimiento del ratón durante los escenarios (solo Windows)",
@@ -97,7 +97,8 @@ export const settings: SettingsMessages = {
     description:
       "Controla si las partidas se suben y si los datos identificativos del entorno se eliminan antes de sincronizar.",
     runSync: "Sincronización de partidas",
-    runSyncDescription: "Sube las partidas completadas a RefleK's Index.",
+    serviceUnavailable: "Training stays on this computer. AimMeow has no cloud sync service configured.",
+    runSyncDescription: "Sube las partidas completadas a servicio de sincronización configurado.",
     anonymousMode: "Modo anónimo",
     anonymousModeDescription:
       "Elimina el Steam ID y el nombre de perfil de Steam de los datos del entorno de la partida antes de subirlos mediante la sincronización.",
@@ -111,7 +112,7 @@ export const settings: SettingsMessages = {
     themeLight: "Claro",
     themeCustom: "Personalizado",
     themeCustomDescription:
-      "Personaliza por completo los colores, las fuentes y mucho más editando el archivo de tema personalizado en la carpeta de configuración de RefleK's. Los cambios se aplican después de reiniciar.",
+      "Personaliza por completo los colores, las fuentes y mucho más editando el archivo de tema personalizado en la carpeta de configuración de AimMeow. Los cambios se aplican después de reiniciar.",
     openThemeFile: "Abrir archivo de tema",
     regenerateThemeFile: "Regenerar",
     themeFileRegenerateConfirm:
@@ -149,6 +150,7 @@ export const settings: SettingsMessages = {
     recentRunsMinCountDescription:
       "Si el periodo de días contiene muy pocas partidas, incluye partidas anteriores hasta alcanzar este mínimo",
   },
+  about: { title: "About AimMeow", description: "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.", notices: "Attribution and GPL-3.0 license" },
   footer: {
     clearCache: "Borrar caché",
     saving: "Guardando ajustes...",

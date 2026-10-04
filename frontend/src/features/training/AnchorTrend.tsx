@@ -7,7 +7,7 @@ const shortDate = (at: number) => new Date(at).toLocaleDateString("zh-CN", { mon
 
 export default memo(function AnchorTrend({ anchor }: { anchor: PersonalAnchor }) {
   const points = anchor.points ?? [];
-  if (!points.length) return <p className="training-muted">暂无可比趋势记录</p>;
+  if (!points.length) return <p className="training-muted">再积累一些可比记录，我就能画出趋势啦喵</p>;
   const values = [anchor.medianScore, ...points.map(p => p.score)];
   const low = Math.min(...values), high = Math.max(...values);
   const padding = Math.max((high - low) * .15, high * .05, 1);

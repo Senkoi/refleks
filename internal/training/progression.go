@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 // Experimental ceilings, not claims about an optimal scientific ratio. Keep

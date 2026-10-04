@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 var epoch = time.Date(2026, 9, 29, 12, 0, 0, 0, time.UTC)

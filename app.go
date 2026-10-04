@@ -11,18 +11,18 @@ import (
 	"sync/atomic"
 	"time"
 
-	"refleks/internal/autostart"
-	"refleks/internal/benchmarks"
-	"refleks/internal/cache"
-	"refleks/internal/constants"
-	"refleks/internal/models"
-	"refleks/internal/process"
-	"refleks/internal/runs"
-	"refleks/internal/runs/screen"
-	"refleks/internal/scenarios"
-	appsettings "refleks/internal/settings"
-	"refleks/internal/training"
-	"refleks/internal/updater"
+	"aimmeow/internal/autostart"
+	"aimmeow/internal/benchmarks"
+	"aimmeow/internal/cache"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	"aimmeow/internal/process"
+	"aimmeow/internal/runs"
+	"aimmeow/internal/runs/screen"
+	"aimmeow/internal/scenarios"
+	appsettings "aimmeow/internal/settings"
+	"aimmeow/internal/training"
+	"aimmeow/internal/updater"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
@@ -55,7 +55,7 @@ func NewApp(startedHidden bool) *App { return &App{startedHidden: startedHidden}
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
-	runtime.LogInfo(a.ctx, "RefleK's app starting up")
+	runtime.LogInfo(a.ctx, "AimMeow app starting up")
 	if err := screen.CleanupAbandonedSessions(); err != nil {
 		runtime.LogWarningf(a.ctx, "screen: clean abandoned capture sessions: %v", err)
 	}

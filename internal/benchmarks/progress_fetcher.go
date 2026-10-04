@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/constants"
-	"refleks/internal/steam"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/steam"
 )
 
 const (

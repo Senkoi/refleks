@@ -3,10 +3,10 @@ package steam
 import (
 	"strings"
 
-	"refleks/internal/constants"
-	"refleks/internal/detect"
-	"refleks/internal/models"
-	"refleks/internal/settings"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/detect"
+	"aimmeow/internal/models"
+	"aimmeow/internal/settings"
 )
 
 // GetSteamID returns the Steam ID RefleK's uses for KovaaK's API calls.

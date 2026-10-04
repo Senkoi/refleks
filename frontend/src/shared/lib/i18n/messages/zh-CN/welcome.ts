@@ -5,28 +5,28 @@ import type { WelcomeMessages } from "../en/welcome";
  */
 export const welcome: WelcomeMessages = {
   content: {
-    titleFirstLaunch: "欢迎使用 RefleK's v{version}",
-    titleUpgrade: "欢迎回来，RefleK's v{version}",
+    titleFirstLaunch: "喵，瞄瞄来陪你练啦 · v{version}",
+    titleUpgrade: "回来啦，继续一起练喵 · v{version}",
     introFirstLaunch:
-      "感谢你安装 RefleK's。查看更新日志和文档，快速了解最新功能与改进。",
-    introUpgrade: "欢迎回来。查看更新日志，了解此版本有哪些新内容。",
+      "我是瞄瞄，你的瞄准训练搭子。时间和安排交给我，你专心练就好喵。",
+    introUpgrade: "这次我又学会了一些新本领，点开版本记录看看喵。",
     details:
-      "如需详细了解变更、功能和改进，请访问下方链接的更新日志。它始终会随最新版本说明及时更新。",
+      "先确认游戏目录，再告诉我这次能练多久。想了解具体变化，可以看看下面的版本记录。",
     highlightsTitle: "快速开始",
     highlights: {
-      changelog: "访问更新日志，详细了解版本信息和功能更新。",
-      docs: "查看文档，获取指南、操作说明和故障排除帮助。",
-      customize: "在设置中自定义偏好，让 RefleK's 更适合你的需求。",
-      community: "加入社区，分享你的体验。",
+      changelog: "看看我这次学会了什么。",
+      docs: "遇到不熟悉的地方，使用指南来帮忙。",
+      customize: "去设置里调调外观，让我更合你的眼缘。",
+      community: "把练习体验告诉我，陪瞄瞄一起成长喵。",
     },
     linksTitle: "资源",
-    ctaFirstLaunch: "开始探索",
-    ctaUpgrade: "继续使用",
+    ctaFirstLaunch: "开始一起练",
+    ctaUpgrade: "继续陪我练",
     links: {
       docsLabel: "浏览文档",
-      docsDescription: "RefleK's 的设置指南、操作说明和故障排除信息。",
+      docsDescription: "我把设置步骤和常见问题都放在这里啦。",
       changelogLabel: "阅读更新日志",
-      changelogDescription: "在浏览器中查看完整的版本历史和逐版本说明。",
+      changelogDescription: "看看瞄瞄一路学会了哪些新本领。",
     },
   },
   modal: {
@@ -38,18 +38,18 @@ export const welcome: WelcomeMessages = {
     sectionProfile: "个人资料设置",
     sectionReview: "设置",
     sectionFirstTimeDescription:
-      "选择上传和鼠标轨迹的启动方式。你可以稍后在设置中更改这些选项。",
+      "先决定要不要记录轨迹和录像。以后随时能改，按你舒服的方式来喵。",
     sectionProfileDescription:
-      "选择训练在 RefleK's Index 上的显示方式。你可以稍后在隐私设置中更改此项。",
+      "选择训练在 你配置的同步服务 上的显示方式。你可以稍后在隐私设置中更改此项。",
     sectionReviewDescription:
       "查看当前设置。你可以随时在设置面板中更改这些选项。",
     recommended: "推荐",
     later: "稍后",
     private: "私密",
     index: {
-      label: "RefleK's Index",
+      label: "你配置的同步服务",
       description:
-        "完成的训练可以上传到 RefleK's Index。这是一个共享数据集，为全球玩家群体提供排名、比较和研究数据。",
+        "只有配置了同步服务并开启上传，我才会把完成的训练发送过去。",
     },
     publicProfile: {
       label: "公开个人资料",
@@ -67,21 +67,21 @@ export const welcome: WelcomeMessages = {
         "如果你希望贡献数据，同时避免在上传内容中包含可识别信息，此选项最适合你。",
       bullets: [
         "上传前会清除 Steam ID 和用户名称。",
-        "你的训练仍会帮助共享数据集、分析和研究。",
+        "数据将发送到你选择的服务，请先了解它的用途。",
         "稍后可以在隐私设置中切换回公开。",
       ],
     },
     mouseTraces: {
       label: "鼠标轨迹",
       description:
-        "鼠标轨迹会记录训练过程中的移动，让你之后可以回放和比较。轨迹记录的设计目标是在游戏过程中不产生性能影响。",
+        "我可以记下你练习时的鼠标移动，方便之后回放和比较。你也可以随时关掉。",
       helper: "这只是你的初始选择——稍后可以在常规设置中更改。",
       enabled: {
         label: "启用鼠标轨迹",
         subtitle: "记录受支持训练中的移动。",
-        description: "如果你希望从第一次会话开始就获得更丰富的历史记录和回放工具，此选项最适合你。",
+        description: "想从第一局就能回看操作，让我帮你记下来喵。",
         bullets: [
-          "游戏过程中不会影响性能。",
+          "记录会使用少量资源；如果影响流畅度，可以随时关闭。",
           "可以在历史记录视图中回放和比较训练。",
           "随时可以在常规设置中关闭。",
         ],
@@ -90,7 +90,7 @@ export const welcome: WelcomeMessages = {
         label: "暂时不要",
         subtitle: "先不记录轨迹，随时可以启用。",
         description:
-          "如果你想先熟悉应用，再在几次会话后决定是否记录轨迹，这是一个不错的开始。",
+          "先轻松练几局，熟悉我以后再决定也行喵。",
         bullets: [
           "让首次设置保持简单。",
           "稍后随时可以在常规设置中启用轨迹。",
@@ -101,15 +101,15 @@ export const welcome: WelcomeMessages = {
     screenReplay: {
       label: "屏幕回放",
       description:
-        "录制训练视频回放，让你可以直接在应用中重新观看和分析准星位置、移动以及决策。",
+        "我可以录下你的练习，之后一起看看准星移动和操作细节。",
       helper: "需要 FFmpeg。稍后可以在常规设置中更改。",
       enabled: {
         label: "启用回放录制",
         subtitle: "录制训练过程中的屏幕（硬件加速）。",
         description:
-          "如果你希望结合统计数据和鼠标轨迹直观复盘游戏过程，此选项最适合你。",
+          "想把分数、轨迹和画面一起复盘，可以让我录下来。",
         bullets: [
-          "以 30 fps 录制，并使用硬件 GPU 编码——不占用 CPU。",
+          "默认以 30 fps 录制；优先使用 GPU 编码，不可用时可能改用软件编码。",
           "每场比赛后，回放会作为运行检查器中的新标签页显示。",
           "随时可以在常规设置中关闭。",
         ],

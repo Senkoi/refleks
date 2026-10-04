@@ -137,7 +137,7 @@ func trimOffsets(captureStartMs, firstSegmentStartMs, runStartMs, runEndMs int64
 // order. The copied replay starts at this list's first keyframe boundary; its
 // end is limited by the output-side -to option in TrimRecording.
 func writeConcatList(paths []string) (string, error) {
-	f, err := os.CreateTemp("", "refleks-concat-*.txt")
+	f, err := os.CreateTemp("", "aimmeow-concat-*.txt")
 	if err != nil {
 		return "", err
 	}

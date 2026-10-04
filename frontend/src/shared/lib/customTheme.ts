@@ -15,7 +15,7 @@ import indexCss from "../../index.css?raw";
 const CUSTOM_THEME_STYLE_ID = "refleks-custom-theme";
 
 const TEMPLATE_HEADER = `/* ============================================================
-   RefleK's custom theme
+   AimMeow custom theme
    ============================================================
    This file fully defines the Custom theme. The values below were
    copied from the base theme you had active (Dark by default), so
@@ -31,7 +31,7 @@ const TEMPLATE_HEADER = `/* ====================================================
    only the fonts bundled with the app are available.
 
    Want the official palettes? The built-in themes live in
-   https://github.com/ARm8-2/refleks  (frontend/src/index.css)
+   https://github.com/Senkoi/refleks  (frontend/src/index.css)
 
    Changes apply the next time the app starts. Use "Regenerate" in
    Settings to restore this default template (this overwrites your

@@ -12,8 +12,8 @@ import (
 	"time"
 	"unsafe"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 // Windows raw input-based mouse tracker.
@@ -360,7 +360,7 @@ func (t *trackerWin) winLoop() {
 	defer runtime.UnlockOSThread()
 
 	// Register window class
-	className := utf16PtrFromString("RefleksRawInputWindow")
+	className := utf16PtrFromString("AimMeowRawInputWindow")
 	wndProc := syscall.NewCallback(wndProc)
 
 	hInst, _, _ := procGetModuleHandleW.Call(0)
@@ -382,7 +382,7 @@ func (t *trackerWin) winLoop() {
 	hwnd, _, _ := procCreateWindowExW.Call(
 		0,
 		uintptr(unsafe.Pointer(className)),
-		uintptr(unsafe.Pointer(utf16PtrFromString("refleks_raw_input"))),
+		uintptr(unsafe.Pointer(utf16PtrFromString("aimmeow_raw_input"))),
 		0, // style (invisible)
 		0, 0, 0, 0,
 		0, 0, hInst, 0,

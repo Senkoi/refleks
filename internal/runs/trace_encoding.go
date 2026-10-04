@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/binary"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 // EncodeTraceBase64 encodes points to the compact frontend wire format:

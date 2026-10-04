@@ -11,7 +11,7 @@ export default memo(function AbilityOverview({ levels = [], tiers = {} }: { leve
   const detailId = useId();
   return <section className="training-card training-levels">
     <div className="training-section-title">
-      <h2>自动能力评估 <TrainingHelp label="自动能力评估"><p>这里帮助你选择合适的训练内容。应用优先参考近期训练成绩，记录不足时会参考已有的 Benchmark（基准测试）成绩。</p><p>“训练参考”是选练习模板用的档位，可以在某些场景还没测完时给出。“本组参考段位”需要这组所有必需场景都有有效成绩；两者含义不同。</p><p>尚未测完不表示你是新手。已有成绩仍会影响训练选择；没有足够依据时才暂用 Novice 模板。这里的估计不会改动你的官方 Benchmark 段位。</p></TrainingHelp></h2>
+      <h2>自动能力评估 <TrainingHelp label="自动能力评估"><p>我会先看你近期练得怎么样，再帮你挑合适的内容；记录不够时，也会参考已有的 Benchmark 成绩喵。</p><p>“训练参考”是选练习模板用的档位，可以在某些场景还没测完时给出。“本组参考段位”需要这组所有必需场景都有有效成绩；两者含义不同。</p><p>还没测齐也不用着急喵，我会参考已有成绩；实在没有依据才暂用 Novice 模板。这里的估计不会改动你的官方段位。</p></TrainingHelp></h2>
       <button type="button" className="training-level-toggle" aria-expanded={expanded} aria-controls={detailId} onClick={() => setExpanded(v => !v)}>{expanded ? "收起成绩详情" : "查看成绩详情"}<ChevronDown size={15} aria-hidden="true" /></button>
     </div>
     <div className="training-ability-summary">{Object.entries(themes).map(([theme, label]) => {
@@ -26,7 +26,7 @@ export default memo(function AbilityOverview({ levels = [], tiers = {} }: { leve
       </div>
       <div className="training-level-scroll" role="region" aria-label="各能力成绩详情" tabIndex={expanded ? 0 : -1}>{Object.entries(themes).map(([theme, label]) => {
         const rows = levels.filter(l => l.theme === theme);
-        return <section className="training-level-group" key={theme}><h3>{label}</h3>{!rows.length ? <p className="training-muted">暂无测试成绩</p> : rows.map(l => {
+        return <section className="training-level-group" key={theme}><h3>{label}</h3>{!rows.length ? <p className="training-muted">我还在等你的测试成绩喵</p> : rows.map(l => {
           const full = l.status === "inferred" || l.status === "estimated";
           const rank = !full ? "待补齐" : l.rank === "unranked" ? "低于首档" : l.rank || "待确认";
           const hasBenchmark = l.source === "benchmark" || l.source === "mixed" || l.status === "estimated";

@@ -18,8 +18,8 @@ export const benchmarks: BenchmarksMessages = {
     showRecommended: "显示推荐的基准训练",
     loadingRecommendations: "正在加载用于推荐的基准训练进度...",
     emptySyncing: "等待基准训练目录完成同步...",
-    emptyFavorites: "还没有收藏的基准训练。点击星标即可添加到这里。",
-    emptySearch: "没有基准训练符合你的搜索条件。",
+    emptyFavorites: "还没选好喜欢的测试喵。点一下星标，我就帮你收好。",
+    emptySearch: "这次没找到匹配的测试喵，换个关键词试试。",
     emptyAll: "未找到基准训练。",
     sortOptions: {
       name: "名称",
@@ -103,7 +103,7 @@ export const benchmarks: BenchmarksMessages = {
     ariaLabel: "关于推荐",
     title: "推荐",
     description:
-      "根据你的进度、最近的分数趋势以及你最近运行各场景的时间，显示当前值得运行的场景。",
+      "我会看看你的测试进度、近期分数变化和练习量，帮你挑现在值得练的图喵。",
     completed: "已完成——已达到最高排名",
     topPick: "首选——现在最值得运行",
     stronglyRecommended: "强烈推荐",

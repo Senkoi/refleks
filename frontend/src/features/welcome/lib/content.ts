@@ -25,13 +25,13 @@ function resolveLinks(): WelcomeLink[] {
       label: translate("welcome.content.links.docsLabel"),
       description: translate("welcome.content.links.docsDescription"),
       url: EXTERNAL_LINKS.docs,
-      urlLabel: "refleksapp.com/docs/",
+      urlLabel: "GitHub · 使用指南",
     },
     {
       label: translate("welcome.content.links.changelogLabel"),
       description: translate("welcome.content.links.changelogDescription"),
       url: EXTERNAL_LINKS.changelog,
-      urlLabel: "refleksapp.com/changelog/",
+      urlLabel: "GitHub · 版本记录",
     },
   ];
 }

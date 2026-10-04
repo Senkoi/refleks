@@ -25,6 +25,7 @@ type Settings struct {
 	ReplayStorageLimitGB    int                     `json:"replayStorageLimitGb"`
 	AutostartEnabled        bool                    `json:"autostartEnabled"`
 	AnonymousEnabled        bool                    `json:"anonymousEnabled"`
+	RunSyncAvailable        bool                    `json:"runSyncAvailable"`
 	RunSyncEnabled          bool                    `json:"runSyncEnabled"`
 	ScenarioNotes           map[string]ScenarioNote `json:"scenarioNotes,omitempty"`
 	SessionNotes            map[string]SessionNote  `json:"sessionNotes,omitempty"`

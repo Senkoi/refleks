@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 const dailyTrialProtocol = "daily_trial_v2"

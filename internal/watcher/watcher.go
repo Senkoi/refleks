@@ -16,8 +16,8 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 // Watcher monitors a directory for new stats files and emits events.

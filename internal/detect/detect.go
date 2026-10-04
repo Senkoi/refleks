@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"strings"
 
-	"refleks/internal/constants"
+	"aimmeow/internal/constants"
 )
 
 // SteamInstallDir locates the Steam installation directory on this machine, or

@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func sessionRuns(name string, scores []float64) []models.RunRecord {

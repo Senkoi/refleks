@@ -14,7 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
+	appsettings "aimmeow/internal/settings"
 )
 
 type Service struct {
@@ -55,7 +56,7 @@ func New(dir string) (*Service, error) {
 			return nil, fmt.Errorf("训练数据损坏，未覆盖原文件：%w", err)
 		}
 		if s.state.Version != 1 {
-			return nil, fmt.Errorf("不支持的训练数据版本")
+			return nil, fmt.Errorf("不帮帮瞄瞄的训练数据版本")
 		}
 		// Keep version 1 readable: the new multi-system field extends the JSON
 		// schema without dropping its original benchmark and score cutoffs.
@@ -78,12 +79,12 @@ func New(dir string) (*Service, error) {
 	s.state.Initializing = false
 	if s.state.Error == "应用重新启动，训练已暂停；请确认后继续。" {
 		s.state.Error = ""
-		s.state.Notice = "应用重新启动，训练已暂停；可继续或结束本次。"
+		s.state.Notice = "我回来啦喵，训练已暂停。准备好后继续，也可以结束这次练习。"
 	}
 	if p := s.state.Plan; p != nil && (p.Status == "running" || p.Status == "ready" || p.Status == "waiting") {
 		p.Status = "paused"
 		p.LastTick = 0
-		s.state.Notice = "应用重新启动，训练已暂停；可继续或结束本次。"
+		s.state.Notice = "我回来啦喵，训练已暂停。准备好后继续，也可以结束这次练习。"
 	}
 	return s, nil
 }
@@ -310,9 +311,9 @@ func (s *Service) PrepareStartup(runs []models.RunRecord) (bool, error) {
 		s.state.Initializing = false
 		return false, err
 	}
-	s.state.Notice = "已根据已有 benchmark 成绩与训练历史生成本次列表。"
+	s.state.Notice = "本次列表安排好啦喵，我参考了你已有的测试成绩和训练记录。"
 	if migrated {
-		s.state.Notice = "旧版固定五分钟的暂停列表已归档，记录已保留；本次按最新档位与短组策略重新生成。"
+		s.state.Notice = "旧版列表已归档，练过的记录都留好了喵。这次我按你的训练水平重新安排短组练习。"
 	}
 	return true, s.save()
 }
@@ -340,7 +341,7 @@ func (s *Service) Generate(p Preferences, runs []models.RunRecord) (*Plan, error
 
 func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan, error) {
 	if old := s.state.Plan; old != nil && (old.Status == "running" || old.Status == "ready" || old.Status == "paused" || old.Status == "waiting") {
-		return nil, fmt.Errorf("请先结束当前计划，再生成新计划")
+		return nil, fmt.Errorf("这份还没练完喵。先结束当前训练，我再帮你安排新的。")
 	}
 	now := time.Now()
 	s.syncSessionContextsLocked(runs, now)
@@ -484,7 +485,7 @@ func (s *Service) Action(action string, now time.Time, runs []models.RunRecord) 
 	defer s.mu.Unlock()
 	p := s.state.Plan
 	if p == nil {
-		return "", fmt.Errorf("请先生成计划")
+		return "", fmt.Errorf("先让我安排一份训练列表喵。")
 	}
 	if action == "pause" || action == "finish" {
 		// The watcher can write a finished run before the next two-second poll.
@@ -574,7 +575,7 @@ func (s *Service) expire() {
 	if p != nil && p.Elapsed >= float64(p.Preferences.Minutes*60) {
 		if !p.RemindedEnd {
 			p.RemindedEnd = true
-			p.Reminder = "训练总时长已到。完成当前局后，请在游戏中结束列表并休息。"
+			p.Reminder = "今天安排的时间到啦喵。练完这一局就结束列表，松松爪子休息一下。"
 			s.pendingReminder = p.Reminder
 		}
 		if p.EndedAt == 0 {
@@ -758,7 +759,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 					// changed scenarios. Keep attributing extra runs to this block.
 					if p.Index == len(p.Blocks)-1 {
 						outcome = "list_complete"
-						p.Reminder = "本次列表计划已完成，可以结束训练并休息。"
+						p.Reminder = "这一份练完啦喵！辛苦了，松松爪子休息一下。"
 						s.pendingReminder = p.Reminder
 					}
 				}
@@ -793,7 +794,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 	}
 	if p.Status == "running" && p.Preferences.ExecutionMode == "playlist" && p.Index < len(p.Blocks) && p.BlockElapsed >= float64(p.Blocks[p.Index].Budget) && p.RemindedBlock != p.Index+1 {
 		p.RemindedBlock = p.Index + 1
-		p.Reminder = "当前关卡已达到本次时间预算。完成当前局后，请在游戏中换关或休息。"
+		p.Reminder = "这张图练得差不多啦喵。完成这一局，就换张图或休息一下。"
 		s.pendingReminder = p.Reminder
 	}
 	s.expire()
@@ -830,7 +831,7 @@ func (s *Service) Export() ([]byte, error) {
 func (s *Service) exportLocked() ([]byte, error) {
 	p := s.state.Plan
 	if p == nil {
-		return nil, fmt.Errorf("请先生成计划")
+		return nil, fmt.Errorf("先让我安排一份训练列表喵。")
 	}
 	rows := []map[string]any{}
 	for _, b := range p.Blocks {
@@ -840,7 +841,7 @@ func (s *Service) exportLocked() ([]byte, error) {
 		}
 		rows = append(rows, map[string]any{"scenarioName": b.Scenario.Name, "playCount": count})
 	}
-	return json.MarshalIndent(map[string]any{"playlistName": "Refleks Adaptive " + p.ID, "scenarioList": rows, "isFavorite": false}, "", "  ")
+	return json.MarshalIndent(map[string]any{"playlistName": "AimMeow Training " + p.ID, "scenarioList": rows, "isFavorite": false}, "", "  ")
 }
 
 func (s *Service) evaluateLocked(runs []models.RunRecord, now time.Time) {
@@ -872,7 +873,7 @@ func (s *Service) evaluateLocked(runs []models.RunRecord, now time.Time) {
 		s.state.TemplateTiers[theme] = trainingTier(theme, s.state.PlayerLevels)
 	}
 	s.state.Skills = SkillProfile(s.state.Catalog, runs, automaticReferences(s.state.Catalog, s.state.Preferences), time.Now())
-	s.state.SearchConfigured = os.Getenv("REFLEKS_BRAVE_API_KEY") != ""
+	s.state.SearchConfigured = appsettings.GetEnv("AIMMEOW_BRAVE_API_KEY") != ""
 
 	s.evaluationKey, s.evaluatedAt = key, now
 }

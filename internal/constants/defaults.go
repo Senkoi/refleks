@@ -8,7 +8,7 @@ const (
 	DefaultTheme              = "dark"
 	DefaultFont               = "montserrat"
 	DefaultScale              = "100"
-	DefaultLanguage           = "en"
+	DefaultLanguage           = "zh-CN"
 	DefaultMouseBufferMinutes = 5
 	DefaultRecentRunsDays     = 180
 	DefaultRecentRunsMinCount = 2500

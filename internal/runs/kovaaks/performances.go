@@ -5,7 +5,7 @@ import (
 	"math"
 	"os"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 
 	"google.golang.org/protobuf/encoding/protowire"
 )

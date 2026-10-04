@@ -18,7 +18,7 @@ type playlistOwner struct {
 func playlistHash(b []byte) string { h := sha256.Sum256(b); return hex.EncodeToString(h[:]) }
 
 func atomicPlaylistFile(path string, data []byte) error {
-	tmp, err := os.CreateTemp(filepath.Dir(path), ".refleks-playlist-*")
+	tmp, err := os.CreateTemp(filepath.Dir(path), ".aimmeow-playlist-*")
 	if err != nil {
 		return err
 	}
@@ -40,9 +40,19 @@ func (s *Service) Install(dir string) (string, error) {
 	defer s.mu.Unlock()
 	p := s.state.Plan
 	if p == nil {
-		return "", fmt.Errorf("请先生成计划")
+		return "", fmt.Errorf("先让我安排一份训练列表喵。")
 	}
-	path := filepath.Join(dir, "Refleks-Adaptive-Current.json")
+	path := filepath.Join(dir, "AimMeow-Current.json")
+	legacyPath := filepath.Join(dir, "Refleks-Adaptive-Current.json")
+	active := p.Status == "running" || p.Status == "ready" || p.Status == "paused" || p.Status == "waiting"
+	// A running legacy plan must keep its installed playlist unchanged.
+	if active {
+		if _, err := os.Stat(path); os.IsNotExist(err) {
+			if old, err := os.ReadFile(legacyPath); err == nil && ownsPlaylist(legacyPath, old, p.ID) {
+				return legacyPath, nil
+			}
+		}
+	}
 	// Ownership lives outside the game's playlist JSON schema.
 	ownerPath := path + ".owner"
 	var previous []byte
@@ -59,7 +69,7 @@ func (s *Service) Install(dir string) (string, error) {
 	} else if !os.IsNotExist(err) {
 		return "", err
 	}
-	if p.Status == "running" || p.Status == "ready" || p.Status == "paused" || p.Status == "waiting" {
+	if active {
 		return "", fmt.Errorf("进行中的列表保持固定；请先结束本次训练再安装")
 	}
 	b, err := s.exportLocked()
@@ -70,7 +80,7 @@ func (s *Service) Install(dir string) (string, error) {
 	if err = json.Unmarshal(b, &payload); err != nil {
 		return "", err
 	}
-	payload["playlistName"] = "Refleks Adaptive Current"
+	payload["playlistName"] = "AimMeow Current"
 	b, err = json.MarshalIndent(payload, "", "  ")
 	if err != nil {
 		return "", err
@@ -90,5 +100,20 @@ func (s *Service) Install(dir string) (string, error) {
 		}
 		return "", err
 	}
+	// Remove only an intact slot whose ownership hash we can verify, after
+	// the new slot and marker have both been published successfully.
+	if old, err := os.ReadFile(legacyPath); err == nil && ownsPlaylist(legacyPath, old, "") {
+		if err := os.Remove(legacyPath); err != nil {
+			return path, fmt.Errorf("新列表已安装，但旧列表清理失败：%w", err)
+		}
+		_ = os.Remove(legacyPath + ".owner")
+	}
 	return path, nil
+}
+
+func ownsPlaylist(path string, content []byte, planID string) bool {
+	marker, err := os.ReadFile(path + ".owner")
+	var owner playlistOwner
+	return err == nil && json.Unmarshal(marker, &owner) == nil && owner.Version == 1 &&
+		owner.Hash == playlistHash(content) && (planID == "" || owner.PlanID == planID)
 }

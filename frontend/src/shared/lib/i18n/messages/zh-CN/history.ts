@@ -6,8 +6,8 @@ import type { HistoryMessages } from "../en/history";
  */
 export const history: HistoryMessages = {
   page: {
-    loading: "正在加载训练历史...",
-    loadingProgress: "正在加载训练历史 {loaded}/{total}...",
+    loading: "我正在整理你的训练记录喵…",
+    loadingProgress: "我正在整理记录 {loaded}/{total}…",
     runs: plural({ one: "1 次训练", other: "{count} 次训练" }),
   },
   unknownScenario: "未知场景",
@@ -86,7 +86,7 @@ export const history: HistoryMessages = {
   },
   performanceVsSens: {
     title: "表现与灵敏度",
-    emptyDescription: "运行一个场景即可比较灵敏度和表现。",
+    emptyDescription: "先练一张图，我就能帮你比较灵敏度和表现喵。",
     noRecentScenario:
       "尚未找到最近的场景。运行一次包含 cm/360 数据的训练即可填充此小组件。",
     noUsableSensData: "未找到 {scenario} 的可用灵敏度数据。",
@@ -108,7 +108,7 @@ export const history: HistoryMessages = {
   },
   scenarioRadar: {
     title: "会话场景构成",
-    description: "本次会话中运行过的场景，以及每个场景的运行量。",
+    description: "这些是你这次练过的图，我也记下了每张图练了多少。",
     noActiveSession:
       "还没有活跃会话数据。运行一个场景即可填充此小组件。",
     noScenarioNames: "本次会话中还没有找到场景名称。",
@@ -314,7 +314,7 @@ export const history: HistoryMessages = {
     outsideTrace: plural({ one: "1 次轨迹外", other: "{count} 次轨迹外" }),
     mousePathAnalysis: "鼠标路径分析",
     analysisDescription:
-      "使用时间归一化运动学、轨迹质量、按键转换以及记录的击杀时钟来判断移动形态。现有轨迹不包含目标中心，因此距离使用原始输入单位而非像素。",
+      "我会结合鼠标移动、按键和击杀时间，帮你看看动作是否顺畅。记录里没有目标中心的位置，所以这里的距离是鼠标原始输入量，不能当成画面上的像素喵。",
     overshoot: "过度瞄准",
     undershoot: "瞄准不足",
     optimal: "最佳瞄准",
@@ -326,7 +326,7 @@ export const history: HistoryMessages = {
     avgOvershoot: "平均过度瞄准：{value} 轨迹单位",
     avgUndershoot: "平均瞄准不足：{value} 轨迹单位",
     clickKillHint: "点击下方的击杀以高亮其路径。",
-    noSensSuggested: "未建议训练灵敏度——继续使用当前灵敏度。",
+    noSensSuggested: "未建议训练灵敏度——继续陪我练当前灵敏度。",
     killChipTitle: "击杀 #{index} — {classification}{units} — {eff} 效率",
     traceUnits: "（{value} 轨迹单位）",
     suggestedTrainingSens: "建议训练灵敏度",
@@ -379,7 +379,7 @@ export const history: HistoryMessages = {
     modalTitle: "回放 – {label}",
     waitingStatus: "正在等待回放状态…",
     becomingAvailable: "回放已发布，正在变为可用…",
-    ready: "回放已准备就绪。",
+    ready: "回放准备好啦喵。",
     waitingForFinish: "正在等待回放处理完成…",
     noReplayAvailable: "本次训练没有可用回放。",
     speed: "速度",

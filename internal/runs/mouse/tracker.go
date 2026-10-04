@@ -3,7 +3,7 @@ package mouse
 import (
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 // Provider exposes a time-windowed mouse trace store.

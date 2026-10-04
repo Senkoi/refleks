@@ -5,8 +5,8 @@ package mouse
 import (
 	"time"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 type trackerNoop struct {

@@ -34,7 +34,7 @@ export const settings: SettingsMessages = {
       "Путь к папке установки KovaaK's, где находятся FPSAimTrainer/stats и FPSAimTrainer/performances",
     startWithKovaaks: "Запускать вместе с KovaaK's",
     startWithKovaaksDescription:
-      "Автоматически запускать RefleK's при запуске KovaaK's; RefleK's также будет запускаться вместе с Windows",
+      "Автоматически запускать AimMeow при запуске KovaaK's; AimMeow также будет запускаться вместе с Windows",
     mouseTracking: "Отслеживание мыши",
     mouseTrackingDescription:
       "Записывать движения мыши во время сценариев (только Windows)",
@@ -93,7 +93,8 @@ export const settings: SettingsMessages = {
     description:
       "Управляйте загрузкой забегов и удалением идентифицирующих данных окружения перед синхронизацией.",
     runSync: "Синхронизация забегов",
-    runSyncDescription: "Загружать завершённые забеги в RefleK's Index.",
+    serviceUnavailable: "Training stays on this computer. AimMeow has no cloud sync service configured.",
+    runSyncDescription: "Загружать завершённые забеги в настроенный сервис синхронизации.",
     anonymousMode: "Анонимный режим",
     anonymousModeDescription:
       "Удалять Steam ID и имя профиля Steam из данных окружения забега перед загрузкой при синхронизации.",
@@ -107,7 +108,7 @@ export const settings: SettingsMessages = {
     themeLight: "Светлая",
     themeCustom: "Своя",
     themeCustomDescription:
-      "Полностью настройте цвета, шрифты и другие параметры, изменив файл пользовательской темы в папке конфигурации RefleK's. Изменения применяются после перезапуска.",
+      "Полностью настройте цвета, шрифты и другие параметры, изменив файл пользовательской темы в папке конфигурации AimMeow. Изменения применяются после перезапуска.",
     openThemeFile: "Открыть файл темы",
     regenerateThemeFile: "Создать заново",
     themeFileRegenerateConfirm:
@@ -144,6 +145,7 @@ export const settings: SettingsMessages = {
     recentRunsMinCountDescription:
       "Если за выбранный период слишком мало забегов, загружать более старые, пока не будет достигнут этот минимум",
   },
+  about: { title: "About AimMeow", description: "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.", notices: "Attribution and GPL-3.0 license" },
   footer: {
     clearCache: "Очистить кэш",
     saving: "Сохранение настроек...",

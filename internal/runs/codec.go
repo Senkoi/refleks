@@ -11,8 +11,8 @@ import (
 	"github.com/klauspost/compress/zstd"
 	"github.com/zeebo/xxh3"
 
-	"refleks/internal/models"
-	"refleks/internal/runs/kovaaks"
+	"aimmeow/internal/models"
+	"aimmeow/internal/runs/kovaaks"
 )
 
 const (

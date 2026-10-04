@@ -14,9 +14,22 @@ var envLoadOnce sync.Once
 // to load a .env file (from the app config dir, falling back to current working directory)
 // once per process and then returns the value.
 func GetEnv(key string) string {
-	v := os.Getenv(key)
-	if v != "" {
-		return v
+	keys := []string{key}
+	if suffix, ok := strings.CutPrefix(key, "REFLEKS_"); ok {
+		keys = []string{"AIMMEOW_" + suffix, key}
+	} else if suffix, ok := strings.CutPrefix(key, "AIMMEOW_"); ok {
+		keys = append(keys, "REFLEKS_"+suffix)
+	}
+	lookup := func() string {
+		for _, candidate := range keys {
+			if value := os.Getenv(candidate); strings.TrimSpace(value) != "" {
+				return value
+			}
+		}
+		return ""
+	}
+	if value := lookup(); value != "" {
+		return value
 	}
 	envLoadOnce.Do(func() {
 		// Try $HOME/.refleks/.env
@@ -28,7 +41,7 @@ func GetEnv(key string) string {
 			_ = loadDotEnv(filepath.Join(cwd, ".env"))
 		}
 	})
-	return os.Getenv(key)
+	return lookup()
 }
 
 func loadDotEnv(path string) error {
@@ -49,7 +62,7 @@ func loadDotEnv(path string) error {
 			continue
 		}
 		// allow export FOO=bar syntax
-		if after, ok :=strings.CutPrefix(line, "export "); ok  {
+		if after, ok := strings.CutPrefix(line, "export "); ok {
 			line = strings.TrimSpace(after)
 		}
 		eq := strings.IndexByte(line, '=')

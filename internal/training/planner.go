@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 type observation struct {
@@ -531,7 +531,7 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 			practiceRemaining -= blockBudget
 		}
 		addDemandTime(s, float64(blockBudget), exposure)
-		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: difficulties[s.Name], Role: role, Budget: blockBudget, PlayCount: count, Outcome: "pending", Reason: "匹配能力与难度，并降低近期重复；时长为上限。", Cue: "留意动作质量；本模块到时即可继续，不要求无限重开。"}
+		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: difficulties[s.Name], Role: role, Budget: blockBudget, PlayCount: count, Outcome: "pending", Reason: "我挑了与你当前表现相近的内容，也尽量避开最近重复太多的练习。", Cue: "专心练动作喵，到时间就继续，不用一直重开刷分。"}
 		if p.ExecutionMode == "playlist" {
 			b.Reason = fmt.Sprintf("匹配能力与难度，并降低近期重复；游戏内列表安排 %d 局，次数根据单局长度与近 24 小时、近 7 天的已记录练习量估算。", count)
 		}

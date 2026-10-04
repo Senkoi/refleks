@@ -1,6 +1,8 @@
 package main
 
 import (
+	"aimmeow/internal/constants"
+	"aimmeow/internal/elevation"
 	"context"
 	"embed"
 	"flag"
@@ -8,8 +10,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"refleks/internal/constants"
-	"refleks/internal/elevation"
 	"strings"
 
 	"github.com/wailsapp/wails/v2"
@@ -29,7 +29,7 @@ func main() {
 	app := NewApp(*monitor)
 
 	// The app itself never needs elevation — the installer does. If an
-	// elevated instance was launched (e.g. by the installer's "Run RefleK's"
+	// elevated instance was launched (e.g. by the installer's "Run AimMeow"
 	// step), restart with the user's normal token before doing anything else.
 	// Keeping every instance at the same integrity level matters because the
 	// single-instance lock below wakes a running copy with a window message,
@@ -45,7 +45,7 @@ func main() {
 	}
 
 	err := wails.Run(&options.App{
-		Title:  "RefleK's Adaptive — Alpha",
+		Title:  "瞄瞄 · AimMeow",
 		Width:  1500,
 		Height: 900,
 		AssetServer: &assetserver.Options{
@@ -68,6 +68,10 @@ func main() {
 			return app.beforeClose()
 		},
 		Windows: &windows.Options{
+			// Keep the existing WebView2 profile across the executable rename.
+			// It stores localStorage preferences; the shared single-instance lock
+			// prevents concurrent writers from the old app.
+			WebviewUserDataPath:  legacyWebviewDataPath(),
 			WebviewIsTransparent: false,
 			WindowIsTranslucent:  false,
 			DisableWindowIcon:    false,
@@ -81,6 +85,13 @@ func main() {
 		// Wails did not start, so no runtime context/logger exists yet.
 		fmt.Fprintln(os.Stderr, "Error:", err)
 	}
+}
+
+func legacyWebviewDataPath() string {
+	if base := os.Getenv("AppData"); base != "" {
+		return filepath.Join(base, "refleks.exe")
+	}
+	return ""
 }
 
 // replayAssetHandler serves video replay files from ~/.refleks/replays/ over HTTP.

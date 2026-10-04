@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 type CurriculumRow struct {
@@ -320,7 +320,7 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 		if role == "" {
 			role = "practice"
 		}
-		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: assessDifficultyFor(s, fitObs[strings.ToLower(s.Name)], now, p), Role: role, CurriculumRow: row.RowIndex, CompletedBefore: row.CompletedBefore, SourcePlayCount: originalRowCount(row), PlayCount: row.Count, Budget: timing.Seconds * row.Count, Outcome: "pending", Reason: "保留 VDIM 场景顺序和训练目标；按单局时长、近期重复量与预算分配短组。", Cue: "按原训练目标完成；下载后评估只影响下一次生成。"}
+		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: assessDifficultyFor(s, fitObs[strings.ToLower(s.Name)], now, p), Role: role, CurriculumRow: row.RowIndex, CompletedBefore: row.CompletedBefore, SourcePlayCount: originalRowCount(row), PlayCount: row.Count, Budget: timing.Seconds * row.Count, Outcome: "pending", Reason: "我保留了 VDIM 的顺序和训练目标，再按你的时间和最近练习量安排局数。", Cue: "按列表练完就好喵。我读到场景文件后，会用来安排下一份列表。"}
 		if role == "benchmark" {
 			b.Target = 0
 		}

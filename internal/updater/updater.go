@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/constants"
+	"aimmeow/internal/constants"
 )
 
 // Updater provides update checking and installation helpers.
@@ -43,7 +43,7 @@ func New(owner, repo, current string) *Updater {
 // CleanupAbandonedDownloads removes updater directories left in the OS temp
 // directory after an interrupted or failed update. A successful download must
 // survive the current process because the detached installer uses it after
-// RefleK exits; stale directories are therefore cleaned on the next startup.
+// AimMeow exits; stale directories are therefore cleaned on the next startup.
 func CleanupAbandonedDownloads() error {
 	return cleanupAbandonedDownloads(os.TempDir())
 }
@@ -133,7 +133,7 @@ func (u *Updater) Latest(ctx context.Context) (string, string, error) {
 		return "", "", err
 	}
 	req.Header.Set("Accept", "application/vnd.github+json")
-	req.Header.Set("User-Agent", "refleks-updater")
+	req.Header.Set("User-Agent", "aimmeow-updater")
 	resp, err := u.client.Do(req)
 	if err != nil {
 		return "", "", err
@@ -177,7 +177,7 @@ func (u *Updater) Download(ctx context.Context, version string) (string, error) 
 	if err != nil {
 		return "", err
 	}
-	req.Header.Set("User-Agent", "refleks-updater")
+	req.Header.Set("User-Agent", "aimmeow-updater")
 	// Use a longer timeout for downloading larger assets
 	dlClient := &http.Client{Timeout: time.Duration(constants.UpdaterDownloadTimeoutSeconds) * time.Second}
 	resp, err := dlClient.Do(req)

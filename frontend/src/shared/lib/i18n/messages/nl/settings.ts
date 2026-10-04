@@ -37,7 +37,7 @@ export const settings: SettingsMessages = {
       "Pad naar de KovaaK's installatiemap, gebruikt om FPSAimTrainer/stats en FPSAimTrainer/performances te vinden",
     startWithKovaaks: "Starten met KovaaK's",
     startWithKovaaksDescription:
-      "Start RefleK's automatisch wanneer je KovaaK's start; RefleK's start dan ook met Windows",
+      "Start AimMeow automatisch wanneer je KovaaK's start; AimMeow start dan ook met Windows",
     mouseTracking: "Muisregistratie",
     mouseTrackingDescription:
       "Neem muisbeweging op tijdens scenario's (alleen Windows)",
@@ -96,7 +96,8 @@ export const settings: SettingsMessages = {
     description:
       "Bepaal of runs worden geüpload en of herkenbare omgevingsgegevens vóór synchronisatie worden verwijderd.",
     runSync: "Run-synchronisatie",
-    runSyncDescription: "Upload voltooide runs naar de RefleK's Index.",
+    serviceUnavailable: "Training stays on this computer. AimMeow has no cloud sync service configured.",
+    runSyncDescription: "Upload voltooide runs naar de ingestelde synchronisatiedienst.",
     anonymousMode: "Anonieme modus",
     anonymousModeDescription:
       "Verwijder Steam-ID en Steam-personanaam uit runomgevingsgegevens vóór synchronisatie-uploads.",
@@ -110,7 +111,7 @@ export const settings: SettingsMessages = {
     themeLight: "Licht",
     themeCustom: "Aangepast",
     themeCustomDescription:
-      "Pas kleuren, lettertypen en meer volledig aan door het aangepaste themabestand in je RefleK's-configmap te bewerken. Wijzigingen gelden na een herstart.",
+      "Pas kleuren, lettertypen en meer volledig aan door het aangepaste themabestand in je AimMeow-configmap te bewerken. Wijzigingen gelden na een herstart.",
     openThemeFile: "Themabestand openen",
     regenerateThemeFile: "Opnieuw genereren",
     themeFileRegenerateConfirm:
@@ -147,6 +148,7 @@ export const settings: SettingsMessages = {
     recentRunsMinCountDescription:
       "Als het dagvenster te weinig runs bevat, neem oudere runs op tot dit minimum is bereikt",
   },
+  about: { title: "About AimMeow", description: "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.", notices: "Attribution and GPL-3.0 license" },
   footer: {
     clearCache: "Cache wissen",
     saving: "Instellingen opslaan...",

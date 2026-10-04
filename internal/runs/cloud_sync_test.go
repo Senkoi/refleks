@@ -11,8 +11,8 @@ import (
 	"strings"
 	"testing"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 func TestAnonymizeRunEnvironment(t *testing.T) {
@@ -200,7 +200,7 @@ func TestResolveRunsSyncEndpoint(t *testing.T) {
 	}
 
 	t.Setenv(constants.EnvRunsSyncURLVar, "")
-	if got := resolveRunsSyncEndpoint(); got != constants.RefleksRunsSyncURL {
+	if got := resolveRunsSyncEndpoint(); got != constants.RunsSyncURL {
 		t.Fatalf("endpoint = %q, want default", got)
 	}
 }

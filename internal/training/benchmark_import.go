@@ -2,7 +2,7 @@ package training
 
 import (
 	"math"
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 	"strings"
 	"time"
 )

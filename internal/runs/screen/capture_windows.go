@@ -18,7 +18,7 @@ import (
 	"time"
 	"unsafe"
 
-	"refleks/internal/constants"
+	"aimmeow/internal/constants"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )

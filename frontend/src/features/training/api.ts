@@ -86,7 +86,7 @@ export type TrainingStudy = {
 type Bridge = Record<string, (...args: string[]) => Promise<unknown>>;
 export async function call<T>(method: string, ...args: string[]): Promise<T> {
   const bridge = (window as unknown as { go?: { main?: { App?: Bridge } } }).go?.main?.App;
-  if (!bridge?.[method]) throw new Error("请在 RefleK’s 桌面应用中打开训练模块；浏览器预览无法读取本机训练数据。");
+  if (!bridge?.[method]) throw new Error("请在 瞄瞄 桌面应用中打开训练模块；浏览器预览无法读取本机训练数据。");
   return await bridge[method](...args) as T;
 }
 export async function readState(): Promise<State> {

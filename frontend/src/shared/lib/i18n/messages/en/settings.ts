@@ -38,7 +38,7 @@ export const settings = {
       "Path to the KovaaK's install folder used to locate FPSAimTrainer/stats and FPSAimTrainer/performances",
     startWithKovaaks: "Start with KovaaK's",
     startWithKovaaksDescription:
-      "Automatically launch RefleK's when you start KovaaK's, RefleK's will also start with Windows",
+      "Automatically launch AimMeow when you start KovaaK's, AimMeow will also start with Windows",
     mouseTracking: "Mouse Tracking",
     mouseTrackingDescription:
       "Record mouse movement during scenarios (Windows only)",
@@ -97,7 +97,8 @@ export const settings = {
     description:
       "Control whether runs are uploaded and whether identifying environment data is scrubbed before sync.",
     runSync: "Run Sync",
-    runSyncDescription: "Upload completed runs to the RefleK's Index.",
+    serviceUnavailable: "Training stays on this computer. AimMeow has no cloud sync service configured.",
+    runSyncDescription: "Upload completed runs to your explicitly configured sync service.",
     anonymousMode: "Anonymous Mode",
     anonymousModeDescription:
       "Remove Steam ID and Steam persona name from run environment data before sync uploads.",
@@ -111,7 +112,7 @@ export const settings = {
     themeLight: "Light",
     themeCustom: "Custom",
     themeCustomDescription:
-      "Fully customize colors, fonts, and more by editing the custom theme file in your RefleK's config folder. Changes apply after restart.",
+      "Fully customize colors, fonts, and more by editing the custom theme file in your AimMeow config folder. Changes apply after restart.",
     openThemeFile: "Open Theme File",
     regenerateThemeFile: "Regenerate",
     themeFileRegenerateConfirm:
@@ -147,6 +148,7 @@ export const settings = {
     recentRunsMinCountDescription:
       "If the day window has too few runs, include older runs until this minimum is reached",
   },
+  about: { title: "About AimMeow", description: "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.", notices: "Attribution and GPL-3.0 license" },
   footer: {
     clearCache: "Clear Cache",
     saving: "Saving settings...",

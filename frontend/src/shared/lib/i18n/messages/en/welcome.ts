@@ -2,15 +2,15 @@ import { WidenDeep } from "../types";
 
 /**
  * Welcome feature strings (welcome content resolver + WelcomeModal).
- * Product names (RefleK's, KovaaK's, Steam, FFmpeg, the RefleK's Index)
+ * Product names (AimMeow, KovaaK's, Steam, FFmpeg, the configured sync service)
  * stay as-is inside translated text.
  */
 export const welcome = {
   content: {
-    titleFirstLaunch: "Welcome to RefleK's v{version}",
-    titleUpgrade: "Welcome back to RefleK's v{version}",
+    titleFirstLaunch: "Welcome to AimMeow v{version}",
+    titleUpgrade: "Welcome back to AimMeow v{version}",
     introFirstLaunch:
-      "Thank you for installing RefleK's. Check out the changelog and docs to get up to speed with the latest features and improvements.",
+      "Thank you for installing AimMeow. Check out the changelog and docs to get up to speed with the latest features and improvements.",
     introUpgrade:
       "Welcome back. Check out the changelog to see what's new in this release.",
     details:
@@ -21,7 +21,7 @@ export const welcome = {
         "Visit the changelog for detailed release information and feature updates.",
       docs: "Check the documentation for guides, walkthroughs, and troubleshooting.",
       customize:
-        "Customize your preferences in Settings to tailor RefleK's to your needs.",
+        "Customize your preferences in Settings to tailor AimMeow to your needs.",
       community: "Join the community and share your experience.",
     },
     linksTitle: "Resources",
@@ -30,7 +30,7 @@ export const welcome = {
     links: {
       docsLabel: "Browse the docs",
       docsDescription:
-        "Setup guides, walkthroughs, and troubleshooting for RefleK's.",
+        "Setup guides, walkthroughs, and troubleshooting for AimMeow.",
       changelogLabel: "Read the changelog",
       changelogDescription:
         "See the fuller release history and version-by-version notes in the browser.",
@@ -47,16 +47,16 @@ export const welcome = {
     sectionFirstTimeDescription:
       "Pick how you want your uploads and mouse traces to start. You can change these choices later in Settings.",
     sectionProfileDescription:
-      "Choose how you want your runs to appear on the RefleK's Index. You can change this later in Privacy settings.",
+      "Choose how you want your runs to appear on the configured sync service. You can change this later in Privacy settings.",
     sectionReviewDescription:
       "Review your current settings. You can change these anytime in the Settings panel.",
     recommended: "Recommended",
     later: "Later",
     private: "Private",
     index: {
-      label: "RefleK's Index",
+      label: "configured sync service",
       description:
-        "Completed runs can be uploaded to the RefleK's Index, a shared dataset that feeds rankings, comparisons, and research across the global player base.",
+        "Completed runs can be uploaded to the configured sync service, a shared dataset that feeds rankings, comparisons, and research across the global player base.",
     },
     publicProfile: {
       label: "Public Profile",

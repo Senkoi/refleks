@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func personalScene(t *testing.T, name string, radius int, change string, now time.Time) Scenario {

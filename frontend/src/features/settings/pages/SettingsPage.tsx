@@ -681,7 +681,7 @@ export function SettingsPage() {
                                 </code>{" "}
                                 {t("settings.general.ffmpegMissingSuffix")}{" "}
                                 <code className="rounded bg-surface-muted px-1 py-0.5 font-mono">
-                                  refleks.exe
+                                  aimmeow.exe
                                 </code>
                                 .
                               </p>
@@ -862,11 +862,12 @@ export function SettingsPage() {
               >
                 <SettingsField
                   label={t("settings.privacy.runSync")}
-                  description={t("settings.privacy.runSyncDescription")}
+                  description={t(settings.runSyncAvailable ? "settings.privacy.runSyncDescription" : "settings.privacy.serviceUnavailable")}
                   checkbox
                 >
                   <Checkbox
-                    checked={settings.runSyncEnabled !== false}
+                    disabled={!settings.runSyncAvailable}
+                    checked={settings.runSyncAvailable === true && settings.runSyncEnabled === true}
                     onCheckedChange={(v) =>
                       updateField("runSyncEnabled", v === true, true)
                     }
@@ -879,6 +880,7 @@ export function SettingsPage() {
                   checkbox
                 >
                   <Checkbox
+                    disabled={!settings.runSyncAvailable}
                     checked={settings.anonymousEnabled === true}
                     onCheckedChange={(v) => handleAnonymousChange(v === true)}
                   />
@@ -1142,6 +1144,12 @@ export function SettingsPage() {
               </SettingsSection>
             </div>
           </div>
+
+          <details className="rounded-lg bg-surface p-3 text-sm">
+            <summary className="cursor-pointer">{t("settings.about.title")}</summary>
+            <p className="mt-2 text-surface-muted-foreground">{t("settings.about.description")}</p>
+            <Button variant="link" size="sm" onClick={() => openURL(EXTERNAL_LINKS.notices)}>{t("settings.about.notices")}</Button>
+          </details>
 
           <div className="flex flex-wrap items-center gap-3 pt-1">
             <Button

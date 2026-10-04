@@ -1,4 +1,4 @@
-import { REFLEKS_SYMBOL } from "@/assets";
+import { AIMMEOW_SYMBOL } from "@/assets";
 import {
   Button,
   Checkbox,
@@ -327,9 +327,9 @@ export function BenchmarkProgressTable({
     <section className="relative z-0 space-y-3">
       {shareMode && (
         <div className="flex items-center gap-2 px-1">
-          <img src={REFLEKS_SYMBOL} alt="RefleK's" className="h-12 w-12" />
+          <img src={AIMMEOW_SYMBOL} alt="瞄瞄 AimMeow" className="h-12 w-12" />
           <div>
-            <p className="text-lg font-semibold text-foreground">RefleK's</p>
+            <p className="text-lg font-semibold text-foreground">瞄瞄 · AimMeow</p>
             <p className="text-sm text-surface-muted-foreground">
               {t("benchmarks.progressTable.snapshot")}
             </p>
@@ -644,7 +644,7 @@ export function BenchmarkProgressTable({
 
       {shareMode && (
         <div className="px-1 text-xs text-surface-muted-foreground">
-          refleksapp.com
+          github.com/Senkoi/refleks
         </div>
       )}
 

@@ -1,7 +1,7 @@
 package rankcalc
 
 import (
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func vtEnergy(categories *[]models.ProgressCategory, b *models.Benchmark, d *models.BenchmarkDifficulty) {

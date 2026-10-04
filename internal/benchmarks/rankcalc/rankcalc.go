@@ -2,7 +2,7 @@ package rankcalc
 
 import (
 	"math"
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 // UpdateEnergies calculates and assigns energy values to scenarios and/or groups

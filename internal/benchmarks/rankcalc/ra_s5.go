@@ -1,7 +1,7 @@
 package rankcalc
 
 import (
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 // raS5 implements the energy calculation for Revosect S5.

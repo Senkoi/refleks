@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 // CollectRunEnvironment assembles machine and input metadata captured for a run window.

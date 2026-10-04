@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"math/rand"
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 	"strings"
 	"time"
 )

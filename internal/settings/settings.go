@@ -6,9 +6,9 @@ import (
 	"runtime"
 	"strings"
 
-	"refleks/internal/constants"
-	"refleks/internal/detect"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/detect"
+	"aimmeow/internal/models"
 )
 
 // DefaultSteamInstallDir returns an OS-appropriate default Steam install
@@ -119,13 +119,19 @@ func Default() models.Settings {
 		ReplayStorageLimitGB:    constants.DefaultReplayStorageLimitGB,
 		AutostartEnabled:        false,
 		AnonymousEnabled:        false,
-		RunSyncEnabled:          true,
+		RunSyncAvailable:        strings.TrimSpace(GetEnv(constants.EnvRunsSyncURLVar)) != "",
+		RunSyncEnabled:          false,
 		LastSeenVersion:         "",
 	}
 }
 
 // Sanitize applies defaults to zero/empty fields and returns the updated copy.
 func Sanitize(s models.Settings) models.Settings {
+	// Capability is computed locally, never trusted from imported settings.
+	s.RunSyncAvailable = strings.TrimSpace(GetEnv(constants.EnvRunsSyncURLVar)) != ""
+	if !s.RunSyncAvailable {
+		s.RunSyncEnabled = false
+	}
 	s.SteamInstallDir = NormalizeInstallDir(s.SteamInstallDir)
 	if s.SteamInstallDir == "" {
 		s.SteamInstallDir = DefaultSteamInstallDir()

@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
-	appsettings "refleks/internal/settings"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	appsettings "aimmeow/internal/settings"
 )
 
 // CloudSyncClient uploads newly ingested .refleks files to the configured cloud endpoint.
@@ -36,7 +36,7 @@ func resolveRunsSyncEndpoint() string {
 	if env := strings.TrimSpace(appsettings.GetEnv(constants.EnvRunsSyncURLVar)); env != "" {
 		return env
 	}
-	return constants.RefleksRunsSyncURL
+	return constants.RunsSyncURL
 }
 
 // SyncRunFile posts the run file to the configured endpoint, optionally scrubbing identifying environment fields.

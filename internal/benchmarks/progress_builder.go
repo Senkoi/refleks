@@ -3,8 +3,8 @@ package benchmarks
 import (
 	"strings"
 
-	"refleks/internal/benchmarks/rankcalc"
-	"refleks/internal/models"
+	"aimmeow/internal/benchmarks/rankcalc"
+	"aimmeow/internal/models"
 )
 
 func (s *Service) buildStructuredProgress(raw string, benchmarkID int) (models.BenchmarkProgress, error) {

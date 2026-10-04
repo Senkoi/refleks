@@ -4,8 +4,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 func TestNormalizeInstallDir(t *testing.T) {
@@ -51,7 +51,7 @@ func TestSanitizeEnums(t *testing.T) {
 		}
 	}
 
-	languageTests := map[string]string{"en": "en", "zh-CN": "zh-CN", " zz ": "en", "zz": "en", "": "en"}
+	languageTests := map[string]string{"en": "en", "zh-CN": "zh-CN", " zz ": constants.DefaultLanguage, "zz": constants.DefaultLanguage, "": constants.DefaultLanguage}
 	for in, want := range languageTests {
 		if got := sanitizeLanguage(in); got != want {
 			t.Errorf("sanitizeLanguage(%q) = %q, want %q", in, got, want)

@@ -2,15 +2,15 @@ import type { WelcomeMessages } from "../en/welcome";
 
 /**
  * Traducciones al español para la pantalla de bienvenida.
- * Los nombres de producto (RefleK's, KovaaK's, Steam, FFmpeg y RefleK's
+ * Los nombres de producto (AimMeow, KovaaK's, Steam, FFmpeg y AimMeow
  * Index) se mantienen sin traducir.
  */
 export const welcome: WelcomeMessages = {
   content: {
-    titleFirstLaunch: "Te damos la bienvenida a RefleK's v{version}",
-    titleUpgrade: "Te damos la bienvenida de nuevo a RefleK's v{version}",
+    titleFirstLaunch: "Te damos la bienvenida a AimMeow v{version}",
+    titleUpgrade: "Te damos la bienvenida de nuevo a AimMeow v{version}",
     introFirstLaunch:
-      "Gracias por instalar RefleK's. Consulta el registro de cambios y la documentación para conocer las últimas funciones y mejoras.",
+      "Gracias por instalar AimMeow. Consulta el registro de cambios y la documentación para conocer las últimas funciones y mejoras.",
     introUpgrade:
       "Te damos la bienvenida de nuevo. Consulta el registro de cambios para descubrir las novedades de esta versión.",
     details:
@@ -21,7 +21,7 @@ export const welcome: WelcomeMessages = {
         "Visita el registro de cambios para consultar información detallada de la versión y actualizaciones de funciones.",
       docs: "Consulta la documentación para ver guías, instrucciones paso a paso y soluciones de problemas.",
       customize:
-        "Personaliza tus preferencias en Ajustes para adaptar RefleK's a tus necesidades.",
+        "Personaliza tus preferencias en Ajustes para adaptar AimMeow a tus necesidades.",
       community: "Únete a la comunidad y comparte tu experiencia.",
     },
     linksTitle: "Recursos",
@@ -30,7 +30,7 @@ export const welcome: WelcomeMessages = {
     links: {
       docsLabel: "Explorar la documentación",
       docsDescription:
-        "Guías de configuración, instrucciones paso a paso y soluciones de problemas para RefleK's.",
+        "Guías de configuración, instrucciones paso a paso y soluciones de problemas para AimMeow.",
       changelogLabel: "Leer el registro de cambios",
       changelogDescription:
         "Consulta en el navegador el historial completo de versiones y las notas de cada versión.",
@@ -47,24 +47,24 @@ export const welcome: WelcomeMessages = {
     sectionFirstTimeDescription:
       "Elige cómo quieres comenzar a subir partidas y registrar movimientos del ratón. Puedes cambiar estas opciones más adelante en Ajustes.",
     sectionProfileDescription:
-      "Elige cómo quieres que aparezcan tus partidas en RefleK's Index. Puedes cambiarlo más adelante en los ajustes de privacidad.",
+      "Elige cómo quieres que aparezcan tus partidas en servicio de sincronización configurado. Puedes cambiarlo más adelante en los ajustes de privacidad.",
     sectionReviewDescription:
       "Revisa tus ajustes actuales. Puedes cambiarlos en cualquier momento desde el panel de Ajustes.",
     recommended: "Recomendado",
     later: "Más tarde",
     private: "Privado",
     index: {
-      label: "RefleK's Index",
+      label: "servicio de sincronización configurado",
       description:
-        "Las partidas completadas se pueden subir a RefleK's Index, un conjunto de datos compartido que alimenta las clasificaciones, las comparaciones y la investigación de la comunidad mundial de jugadores.",
+        "Las partidas completadas se pueden subir a servicio de sincronización configurado, un conjunto de datos compartido que alimenta las clasificaciones, las comparaciones y la investigación de la comunidad mundial de jugadores.",
     },
     publicProfile: {
       label: "Perfil público",
-      subtitle: "Mostrar mi nombre de Steam en RefleK's Index.",
+      subtitle: "Mostrar mi nombre de Steam en servicio de sincronización configurado.",
       description:
         "La mejor opción si quieres que tu nombre de Steam aparezca junto a las partidas que subas.",
       bullets: [
-        "Tu nombre de Steam aparecerá en las partidas que subas a RefleK's Index.",
+        "Tu nombre de Steam aparecerá en las partidas que subas a servicio de sincronización configurado.",
         "Puedes cambiar a Anónimo más adelante en los ajustes de privacidad.",
       ],
     },

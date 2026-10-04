@@ -9,11 +9,11 @@ import (
 	"sync"
 	"time"
 
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	appsettings "aimmeow/internal/settings"
+	"aimmeow/internal/training"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
-	"refleks/internal/constants"
-	"refleks/internal/models"
-	appsettings "refleks/internal/settings"
-	"refleks/internal/training"
 )
 
 func (a *App) startTraining() {
@@ -207,7 +207,7 @@ func (a *App) TrainingAction(action string) error {
 func (a *App) TestTrainingReminder() {
 	go func() {
 		time.Sleep(10 * time.Second)
-		showTrainingReminder("Refleks 测试提醒：如果游戏中能看到这条消息，浮层已正常显示。")
+		showTrainingReminder("喵，提醒送到啦！游戏中能看到我，就说明浮层正常。")
 	}()
 }
 
@@ -287,7 +287,7 @@ func (a *App) ImportTrainingBenchmarks() (int, error) {
 	}
 	items := training.BenchmarkScenarios(catalog, progress, time.Now())
 	if len(items) == 0 {
-		return 0, fmt.Errorf("尚无可用 benchmark 关卡定义。请先在 Benchmarks 页面完成同步")
+		return 0, fmt.Errorf("我还没拿到测试关卡喵，先去基准训练页面同步一下。")
 	}
 	return a.trainingSvc.Add(items)
 }
@@ -300,7 +300,7 @@ func (a *App) ExportTrainingPlaylist() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "导出训练列表（次数与计划一致）", DefaultFilename: "Refleks-Adaptive.json", Filters: []runtime.FileFilter{{DisplayName: "KovaaK's playlist", Pattern: "*.json"}}})
+	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "导出瞄瞄训练列表", DefaultFilename: "AimMeow-Training.json", Filters: []runtime.FileFilter{{DisplayName: "KovaaK's playlist", Pattern: "*.json"}}})
 	if err != nil || path == "" {
 		return "", err
 	}
@@ -316,7 +316,7 @@ func (a *App) InstallTrainingPlaylist() (string, error) {
 	base := a.settingsSvc.Get().KovaaksInstallDir
 	gameDir := filepath.Join(base, "FPSAimTrainer")
 	if base == "" {
-		return "", fmt.Errorf("请先在设置中指定 KovaaK's 安装目录")
+		return "", fmt.Errorf("先在设置里告诉我 KovaaK's 装在哪里喵。")
 	}
 	if info, err := os.Stat(gameDir); err != nil || !info.IsDir() {
 		return "", fmt.Errorf("未找到 KovaaK's 游戏目录：%s", gameDir)

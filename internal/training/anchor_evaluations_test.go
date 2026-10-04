@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func evaluationFixture(t *testing.T, now time.Time, minutes, count, seconds int) (*Service, Curriculum, []models.RunRecord) {

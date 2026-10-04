@@ -14,7 +14,7 @@ import (
 	"github.com/yusufpapurcu/wmi"
 	"golang.org/x/sys/windows/registry"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 type win32Processor struct {

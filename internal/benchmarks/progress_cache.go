@@ -3,8 +3,8 @@ package benchmarks
 import (
 	"strings"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 func (s *Service) rebuildScenarioIndexLocked() {

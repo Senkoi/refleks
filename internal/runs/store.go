@@ -11,11 +11,11 @@ import (
 	"sync"
 	"time"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
-	"refleks/internal/runs/kovaaks"
-	"refleks/internal/runs/screen"
-	appsettings "refleks/internal/settings"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	"aimmeow/internal/runs/kovaaks"
+	"aimmeow/internal/runs/screen"
+	appsettings "aimmeow/internal/settings"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )

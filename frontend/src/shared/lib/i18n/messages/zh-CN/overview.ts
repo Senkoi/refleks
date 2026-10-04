@@ -6,8 +6,8 @@ import type { OverviewMessages } from "../en/overview";
  */
 export const overview: OverviewMessages = {
   page: {
-    loadingHistory: "正在加载训练历史...",
-    loadingHistoryProgress: "正在加载训练历史 {loaded}/{total}...",
+    loadingHistory: "我正在整理你的训练记录喵…",
+    loadingHistoryProgress: "我正在整理记录 {loaded}/{total}…",
   },
   benchmarkOverview: {
     title: "基准训练概览",
@@ -51,7 +51,7 @@ export const overview: OverviewMessages = {
   },
   recentScores: {
     title: "最近分数",
-    empty: "运行一个场景即可在此查看最近分数。",
+    empty: "先练一局，我就能把最近分数放在这里喵。",
     score: "分数",
     sessionBest: "会话最佳",
     personalBest: "个人最佳",
@@ -89,7 +89,7 @@ export const overview: OverviewMessages = {
   },
   sessionProgress: {
     title: "会话进度",
-    empty: "运行或导入几次训练即可查看会话进度。",
+    empty: "练几局或导入历史，我就能帮你看看这次的进度。",
     editTarget: "编辑会话目标",
     target: "目标",
     targetAuto: "自动目标",

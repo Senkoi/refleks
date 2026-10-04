@@ -4,7 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 	"time"
 )
 

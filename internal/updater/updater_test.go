@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	"refleks/internal/constants"
+	"aimmeow/internal/constants"
 )
 
 func TestSanitizeVer(t *testing.T) {
@@ -111,7 +111,7 @@ func TestBuildDownloadURL(t *testing.T) {
 	if err != nil {
 		t.Fatalf("BuildDownloadURL: %v", err)
 	}
-	asset := "refleks-1.2.3-windows-amd64-installer.exe"
+	asset := "aimmeow-1.2.3-windows-amd64-installer.exe"
 	want := "https://github.com/owner/repo/releases/download/1.2.3/" + asset
 	if got != want {
 		t.Fatalf("BuildDownloadURL = %q, want %q", got, want)
@@ -137,7 +137,7 @@ func TestLatest(t *testing.T) {
 				if got := r.Header.Get("Accept"); got != "application/vnd.github+json" {
 					t.Errorf("Accept = %q", got)
 				}
-				if got := r.Header.Get("User-Agent"); got != "refleks-updater" {
+				if got := r.Header.Get("User-Agent"); got != "aimmeow-updater" {
 					t.Errorf("User-Agent = %q", got)
 				}
 				return stubResponse(http.StatusOK, `{"tag_name":"v1.4.0","body":"release notes"}`), nil

@@ -1,8 +1,8 @@
-name: Adaptive Alpha Windows
+name: AimMeow Windows
 
 on:
   push:
-    branches: [main, adaptive-alpha, research/scenario-difficulty-preparation]
+    branches: [main, adaptive-alpha, research/scenario-difficulty-preparation, fix/automatic-player-training, "brand/**"]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -47,6 +47,6 @@ jobs:
         run: '& "$(go env GOPATH)\bin\wails.exe" build'
       - uses: actions/upload-artifact@v4
         with:
-          name: refleks-adaptive-windows-alpha
-          path: build/bin/refleks.exe
+          name: aimmeow-windows-alpha
+          path: build/bin/aimmeow.exe
           if-no-files-found: error

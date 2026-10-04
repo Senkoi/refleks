@@ -9,12 +9,13 @@ import (
 	"net"
 	"net/http"
 	"net/url"
-	"os"
 	"path"
 	"regexp"
 	"sort"
 	"strings"
 	"time"
+
+	appsettings "aimmeow/internal/settings"
 )
 
 const maxSourceBytes = 2 << 20
@@ -54,7 +55,7 @@ func fetch(ctx context.Context, raw string, headers map[string]string) ([]byte, 
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("User-Agent", "Refleks-Adaptive-Training/0.1")
+	req.Header.Set("User-Agent", "AimMeow-Training/0.11")
 	for k, v := range headers {
 		req.Header.Set(k, v)
 	}
@@ -237,9 +238,9 @@ func discover(ctx context.Context, focus string) ([]Scenario, Discovery) {
 	} else {
 		d.Warnings = append(d.Warnings, "4BK："+err.Error())
 	}
-	key := os.Getenv("REFLEKS_BRAVE_API_KEY")
+	key := appsettings.GetEnv("AIMMEOW_BRAVE_API_KEY")
 	if key == "" {
-		d.Warnings = append(d.Warnings, "未配置 REFLEKS_BRAVE_API_KEY：本次仅扫描公开资源库，未执行全网搜索。")
+		d.Warnings = append(d.Warnings, "这次先帮你找公开训练资源喵。配置搜索服务后，我还能找到更多作者页面。")
 		return all, d
 	}
 	query := "Kovaaks " + focus + " aim training routine playlist new scenarios"

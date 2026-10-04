@@ -2,20 +2,20 @@ import type { WelcomeMessages } from "../en/welcome";
 
 /**
  * ウェルカム画面の日本語テキスト。
- * 製品名（RefleK's、KovaaK's、Steam、FFmpeg、RefleK's Index）は原文のままです。
+ * 製品名（AimMeow、KovaaK's、Steam、FFmpeg、設定した同期サービス）は原文のままです。
  */
 export const welcome: WelcomeMessages = {
   content: {
-    titleFirstLaunch: "RefleK's v{version}へようこそ",
-    titleUpgrade: "RefleK's v{version}へおかえりなさい",
-    introFirstLaunch: "RefleK'sをインストールしていただきありがとうございます。変更履歴とドキュメントを確認して、最新の機能や改善点をチェックしましょう。",
+    titleFirstLaunch: "AimMeow v{version}へようこそ",
+    titleUpgrade: "AimMeow v{version}へおかえりなさい",
+    introFirstLaunch: "AimMeowをインストールしていただきありがとうございます。変更履歴とドキュメントを確認して、最新の機能や改善点をチェックしましょう。",
     introUpgrade: "おかえりなさい。このリリースの新機能は変更履歴で確認できます。",
     details: "変更点、機能、改善点の詳しい情報は、以下のリンクから変更履歴をご覧ください。最新リリースの情報が常に掲載されています。",
     highlightsTitle: "はじめに",
     highlights: {
       changelog: "変更履歴で、リリースの詳細や機能の更新を確認できます。",
       docs: "ガイド、操作手順、トラブルシューティングはドキュメントをご覧ください。",
-      customize: "設定で好みに合わせてRefleK'sをカスタマイズできます。",
+      customize: "設定で好みに合わせてAimMeowをカスタマイズできます。",
       community: "コミュニティに参加して、体験を共有しましょう。",
     },
     linksTitle: "リソース",
@@ -23,7 +23,7 @@ export const welcome: WelcomeMessages = {
     ctaUpgrade: "トレーニングに戻る",
     links: {
       docsLabel: "ドキュメントを見る",
-      docsDescription: "RefleK'sのセットアップガイド、操作手順、トラブルシューティング。",
+      docsDescription: "AimMeowのセットアップガイド、操作手順、トラブルシューティング。",
       changelogLabel: "変更履歴を読む",
       changelogDescription: "ブラウザーで詳しいリリース履歴とバージョンごとの変更点を確認できます。",
     },
@@ -35,14 +35,14 @@ export const welcome: WelcomeMessages = {
     sectionProfile: "プロフィール設定",
     sectionReview: "設定",
     sectionFirstTimeDescription: "アップロードとマウスの軌跡をどのように開始するか選択します。これらの選択は後から設定で変更できます。",
-    sectionProfileDescription: "RefleK's Indexでプレイをどのように表示するか選択します。後からプライバシー設定で変更できます。",
+    sectionProfileDescription: "設定した同期サービスでプレイをどのように表示するか選択します。後からプライバシー設定で変更できます。",
     sectionReviewDescription: "現在の設定を確認します。これらは設定パネルからいつでも変更できます。",
     recommended: "おすすめ",
     later: "後で",
     private: "非公開",
     index: {
-      label: "RefleK's Index",
-      description: "完了したプレイをRefleK's Indexにアップロードできます。これは世界中のプレイヤーのランキング、比較、研究に活用される共有データセットです。",
+      label: "設定した同期サービス",
+      description: "完了したプレイを設定した同期サービスにアップロードできます。これは世界中のプレイヤーのランキング、比較、研究に活用される共有データセットです。",
     },
     publicProfile: {
       label: "公開プロフィール",

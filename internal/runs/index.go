@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"refleks/internal/constants"
+	"aimmeow/internal/constants"
 )
 
 // runIndexCacheCap bounds the number of parsed run summaries retained in

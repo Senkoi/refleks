@@ -5,10 +5,10 @@ import type { WelcomeMessages } from "../en/welcome";
  */
 export const welcome: WelcomeMessages = {
   content: {
-    titleFirstLaunch: "Welkom bij RefleK's v{version}",
-    titleUpgrade: "Welkom terug bij RefleK's v{version}",
+    titleFirstLaunch: "Welkom bij AimMeow v{version}",
+    titleUpgrade: "Welkom terug bij AimMeow v{version}",
     introFirstLaunch:
-      "Bedankt voor het installeren van RefleK's. Bekijk de changelog en documentatie om op de hoogte te raken van de nieuwste functies en verbeteringen.",
+      "Bedankt voor het installeren van AimMeow. Bekijk de changelog en documentatie om op de hoogte te raken van de nieuwste functies en verbeteringen.",
     introUpgrade:
       "Welkom terug. Bekijk de changelog om te zien wat er nieuw is in deze release.",
     details:
@@ -19,7 +19,7 @@ export const welcome: WelcomeMessages = {
         "Bezoek de changelog voor gedetailleerde release-informatie en functie-updates.",
       docs: "Raadpleeg de documentatie voor handleidingen, walkthroughs en probleemoplossing.",
       customize:
-        "Pas je voorkeuren aan in Instellingen om RefleK's naar wens in te richten.",
+        "Pas je voorkeuren aan in Instellingen om AimMeow naar wens in te richten.",
       community: "Sluit je aan bij de community en deel je ervaring.",
     },
     linksTitle: "Bronnen",
@@ -28,7 +28,7 @@ export const welcome: WelcomeMessages = {
     links: {
       docsLabel: "Documentatie bekijken",
       docsDescription:
-        "Installatiehandleidingen, walkthroughs en probleemoplossing voor RefleK's.",
+        "Installatiehandleidingen, walkthroughs en probleemoplossing voor AimMeow.",
       changelogLabel: "Changelog lezen",
       changelogDescription:
         "Bekijk de volledige releasegeschiedenis en versie-voor-versie-opmerkingen in de browser.",
@@ -45,16 +45,16 @@ export const welcome: WelcomeMessages = {
     sectionFirstTimeDescription:
       "Kies hoe je uploads en muisregistraties moeten starten. Je kunt deze keuzes later wijzigen in de instellingen.",
     sectionProfileDescription:
-      "Kies hoe je runs op de RefleK's Index verschijnen. Je kunt dit later wijzigen in de privacy-instellingen.",
+      "Kies hoe je runs op de ingestelde synchronisatiedienst verschijnen. Je kunt dit later wijzigen in de privacy-instellingen.",
     sectionReviewDescription:
       "Bekijk je huidige instellingen. Je kunt deze op elk moment wijzigen in het instellingenpaneel.",
     recommended: "Aanbevolen",
     later: "Later",
     private: "Privé",
     index: {
-      label: "RefleK's Index",
+      label: "ingestelde synchronisatiedienst",
       description:
-        "Voltooide runs kunnen worden geüpload naar de RefleK's Index, een gedeelde dataset die rankings, vergelijkingen en onderzoek binnen de wereldwijde spelersbasis voedt.",
+        "Voltooide runs kunnen worden geüpload naar de ingestelde synchronisatiedienst, een gedeelde dataset die rankings, vergelijkingen en onderzoek binnen de wereldwijde spelersbasis voedt.",
     },
     publicProfile: {
       label: "Openbaar profiel",

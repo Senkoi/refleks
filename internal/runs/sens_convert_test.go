@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func TestCm360(t *testing.T) {

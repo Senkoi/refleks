@@ -27,7 +27,7 @@ export function groupScenarioHistory(points: ScenarioHistoryPoint[]): ScenarioHi
 type Bridge = Record<string, (...args: unknown[]) => Promise<unknown>>;
 async function invoke<T>(method: string, ...args: unknown[]): Promise<T> {
   const bridge = (window as unknown as {go?: {main?: {App?: Bridge}}}).go?.main?.App;
-  if (!bridge?.[method]) throw new Error("请在 RefleK’s 桌面应用中查看本机训练历史。");
+  if (!bridge?.[method]) throw new Error("请在 瞄瞄 桌面应用中查看本机训练历史。");
   return await bridge[method](...args) as T;
 }
 export async function getScenarioTrainingHistory(name: string) { return await invoke<ScenarioHistoryPoint[] | null>("GetScenarioTrainingHistory", name) ?? []; }

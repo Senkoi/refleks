@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 	"strings"
 	"testing"
 	"time"

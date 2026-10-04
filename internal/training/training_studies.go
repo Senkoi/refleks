@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 // Legacy fixed tests use one familiarization run and two scored runs.
@@ -232,8 +232,8 @@ func measurementBlock(st TrainingStudy, scene Scenario, phase string, obs map[st
 	timing := estimateTiming(scene, obs[strings.ToLower(scene.Name)], now)
 	return Block{Scenario: scene, Role: "assessment", Timing: timing, PlayCount: 3, Budget: 3 * timing.Seconds, Outcome: "pending",
 		Measurement: &MeasurementSpec{StudyID: st.ID, Phase: phase}, AnchorScenario: st.AnchorScenario,
-		Reason: "固定前测/复测：第一局熟悉，后两局取中位成绩；版本、设置或时长变化时不合并比较。",
-		Cue:    "按平常方式完成三局；第一局不计入测量，结果只影响后续计划。"}
+		Reason: "我们回到熟悉的图练三局：第一局找状态，后两局用来观察变化。版本、设置或时长不同，我会分开比较。",
+		Cue:    "按平常节奏练三局就好喵。第一局只找状态，结果用来安排后面的练习。"}
 }
 
 func studyOpen(st TrainingStudy) bool {
@@ -359,8 +359,8 @@ func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunR
 		decision := &SceneDecision{Source: source, Anchor: c.personal, Relation: c.relation, Prediction: c.prediction}
 		bundle.after = []Block{{Scenario: c.scene, Role: "explore", PlayCount: 2, Budget: trialSeconds, Timing: timing, Personalization: decision,
 			Measurement: &MeasurementSpec{StudyID: st.ID, Phase: "trial", ProtocolID: dailyTrialProtocol}, AnchorScenario: c.anchor.Name, Outcome: "pending",
-			Reason: "匹配本地同族配置与布局；仅目标尺寸改变。先完成两局试练，结果用于下一次选择，不换算总体难度。",
-			Cue:    "同族精度试练：保持平常节奏；两局完成后停止追加，观察速度与命中率的组合。"}}
+			Reason: "我找了配置和布局相同、目标大小不同的练习。先试两局，看看适不适合你，感受留给下次安排。",
+			Cue:    "保持平常节奏试两局喵。练完先不加局，我会一起看看速度和命中率。"}}
 		bundle.study = &st
 		return bundle
 	}
