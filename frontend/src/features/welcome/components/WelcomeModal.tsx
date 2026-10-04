@@ -1,4 +1,5 @@
 import { Button, Modal } from "@/shared/components";
+import { AIMMEOW_MASCOT } from "@/assets";
 import { cn, openURL, useI18n } from "@/shared/lib";
 import {
   Clock,
@@ -280,8 +281,9 @@ export function WelcomeModal({
       isOpen={isOpen}
       onClose={onClose}
       title={
-        <span className="text-xl font-semibold leading-tight tracking-tight text-foreground">
-          {content.title}
+        <span className="flex items-center gap-4 text-xl font-semibold leading-tight tracking-tight text-foreground">
+          <img src={AIMMEOW_MASCOT} alt="" aria-hidden="true" width={72} height={72} className="size-[4.5rem] shrink-0 object-contain" />
+          <span>{content.title}</span>
         </span>
       }
       width="61.25rem"

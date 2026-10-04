@@ -2,7 +2,7 @@
 
 喵，我是瞄瞄，你的 KovaaK's 瞄准训练搭子。告诉我这次能练多久，我会结合已有成绩和最近的练习，帮你安排热身、专项练习与少量探索，也会记下每张图的进步。
 
-![瞄瞄黑猫标志](frontend/src/assets/icons/aimmeow_symbol.svg)
+<img src="frontend/src/assets/brand/aimmeow-mascot-512.png" alt="瞄瞄黑猫端举石墨灰 AK" width="240" />
 
 ## 我能帮你做什么
 

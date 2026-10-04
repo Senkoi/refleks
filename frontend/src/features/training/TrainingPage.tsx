@@ -1,4 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { AIMMEOW_MASCOT } from "@/assets";
 import { ArrowRight, ChartNoAxesCombined, Check, Clock3, Compass, Download, Library, Play, RefreshCw, Search, SlidersHorizontal, Target, Upload } from "lucide-react";
 import { openURL } from "@/shared/lib/api";
 import { call, readState, readLiveState, mergeLiveState, planTimeAllocation, type Block, type Preferences, type Scenario, type State } from "./api";
@@ -114,7 +115,7 @@ export default function TrainingPage() {
   const settingsLocked = active || !!busy || !!state?.initializing;
   return <Tabs value={tab} onValueChange={setTab} className="training-page">
     <header className="training-header">
-      <div><div className="training-eyebrow">瞄瞄 / AIMMEOW</div><h1>训练工作台</h1></div>
+      <div className="training-brand"><img src={AIMMEOW_MASCOT} alt="" aria-hidden="true" width={88} height={88} /><div><div className="training-eyebrow">瞄瞄 / AIMMEOW</div><h1>训练工作台</h1></div></div>
       <div className="training-library-count"><Compass size={20} /><strong>{enabled}</strong><span>可编排关卡</span></div>
     </header>
     <TabsList className="training-tabs" aria-label="训练工作台页面">

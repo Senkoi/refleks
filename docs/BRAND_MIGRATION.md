@@ -6,7 +6,7 @@
 
 - Go 模块名及内部导入：`aimmeow`；产品名称：瞄瞄 / AimMeow。
 - 窗口、侧栏、分享图水印、欢迎页、导出文件、提醒、自定义主题说明、开发环境和 README。
-- 黑猫端举深灰 AK 的 SVG 标志、应用 PNG / Windows ICO / 页面图标。
+- 黑猫端举石墨灰 AK 的正式透明 PNG 主形象、应用 PNG / Windows ICO / 页面图标，统一柔紫主题；素材与提示词见 [BRAND_ASSETS.md](BRAND_ASSETS.md)。
 - 可执行文件与安装包 / 便携包 / 校验和：`aimmeow`；版本 `0.11.0`。
 - 自动更新使用 `Senkoi/refleks`。仓库暂未改名；改名时须同步更新此处及前端外链。
 - 移除原作者赞助与 Discord 入口；支持入口指向参与指南，尚未配置自己的收款入口。
