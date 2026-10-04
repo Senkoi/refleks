@@ -48,5 +48,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: aimmeow-windows-alpha
-          path: build/bin/aimmeow.exe
+          path: |
+            build/bin/aimmeow.exe
+            LICENSE
+            THIRD_PARTY_NOTICES.md
+            README.md
           if-no-files-found: error
