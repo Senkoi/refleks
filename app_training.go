@@ -263,6 +263,13 @@ func (a *App) UpdateTrainingScenario(payload string) error {
 	return a.trainingSvc.UpdateScenario(s)
 }
 
+func (a *App) RecordTrainingTrialFeedback(id, feedback string) error {
+	if err := a.trainingReady(); err != nil {
+		return err
+	}
+	return a.trainingSvc.TrialFeedback(id, feedback)
+}
+
 func (a *App) ImportTrainingBenchmarks() (int, error) {
 	if err := a.trainingReady(); err != nil {
 		return 0, err

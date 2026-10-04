@@ -33,6 +33,7 @@ func (s *Service) WorkbenchJSON(runs []models.RunRecord) (string, error) {
 	// Historical execution and template rows are not used by the workbench.
 	view.History = nil
 	view.CurriculumProgress = nil
+	view.RunContexts = nil
 	view.Catalog = append([]Scenario(nil), view.Catalog...)
 	for i := range view.Catalog {
 		view.Catalog[i] = workbenchScenario(view.Catalog[i])
@@ -42,6 +43,7 @@ func (s *Service) WorkbenchJSON(runs []models.RunRecord) (string, error) {
 		p.Blocks = append([]Block(nil), p.Blocks...)
 		for i := range p.Blocks {
 			p.Blocks[i].Scenario = workbenchScenario(p.Blocks[i].Scenario)
+			p.Blocks[i].Observations = nil
 		}
 		view.Plan = &p
 	}
@@ -107,5 +109,10 @@ func (s *Service) checkpoint(now time.Time, important bool) error {
 		return nil
 	}
 	s.checkpointAt = now
+	if important {
+		s.updateStudiesLocked(now)
+		s.dataRevision++
+		s.evaluationKey = ""
+	}
 	return s.persist()
 }

@@ -89,6 +89,10 @@ func curriculumWindow(t Curriculum, catalog []Scenario, runs []models.RunRecord,
 }
 
 func curriculumWindowWithProgress(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, history []Plan, progress RoutineProgress, templates ...Curriculum) (Curriculum, int, int, error) {
+	return curriculumWindowWithReserve(t, catalog, runs, p, now, history, progress, 0, true, templates...)
+}
+
+func curriculumWindowWithReserve(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, history []Plan, progress RoutineProgress, reserved int, legacyTrials bool, templates ...Curriculum) (Curriculum, int, int, error) {
 	if len(t.Rows) == 0 {
 		return t, 0, 0, fmt.Errorf("VDIM 模板没有场景")
 	}
@@ -110,8 +114,8 @@ func curriculumWindowWithProgress(t Curriculum, catalog []Scenario, runs []model
 	}
 	end, used := start, 0
 	totalUsable := p.Minutes * 60 * 9 / 10
-	usable := totalUsable
-	if progress.EverCompleted || curriculumBaseline(t, history) {
+	usable := max(0, totalUsable-reserved)
+	if legacyTrials && (progress.EverCompleted || curriculumBaseline(t, history)) {
 		// Reserve actual eligible whole trials, not an empty fixed percentage.
 		extras, _ := selectProgression(progressionCandidates(t, catalog, runs, p, now, templates), totalUsable, totalUsable, p, rand.New(rand.NewSource(0)))
 		for _, c := range extras {
@@ -139,7 +143,7 @@ func curriculumWindowWithProgress(t Curriculum, catalog []Scenario, runs []model
 			row.Count = progress.Rows[end].Target - progress.Rows[end].Completed
 		}
 		// A required long single run takes precedence over the exploration reserve.
-		if end == start && timing.Seconds > usable && timing.Seconds <= totalUsable {
+		if reserved == 0 && end == start && timing.Seconds > usable && timing.Seconds <= totalUsable {
 			usable = totalUsable
 		}
 		remaining := (usable - used) / timing.Seconds

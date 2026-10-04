@@ -48,6 +48,9 @@ func applyRoutinePlan(t Curriculum, r RoutineProgress, p Plan) RoutineProgress {
 		r.Rows = make([]RowProgress, len(t.Rows))
 	}
 	for j, b := range p.Blocks {
+		if b.Measurement != nil {
+			continue
+		}
 		i := p.CurriculumStart + j
 		if b.CurriculumRow != nil {
 			i = *b.CurriculumRow

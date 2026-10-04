@@ -72,6 +72,7 @@ type Discovery struct {
 }
 
 type Preferences struct {
+	ReviewTheme    string   `json:"-"`
 	PlanningPolicy string   `json:"planningPolicy,omitempty"`
 	CurriculumID   string   `json:"curriculumId,omitempty"`
 	Minutes        int      `json:"minutes"`
@@ -95,6 +96,9 @@ type SkillStatus struct {
 }
 
 type Block struct {
+	Personalization    *SceneDecision     `json:"personalization,omitempty"`
+	Measurement        *MeasurementSpec   `json:"measurement,omitempty"`
+	Observations       []PracticeSample   `json:"observations,omitempty"`
 	CurriculumRow      *int               `json:"curriculumRow,omitempty"`
 	CompletedBefore    int                `json:"completedBefore,omitempty"`
 	LastCompletedAt    int64              `json:"lastCompletedAt,omitempty"`
@@ -137,7 +141,7 @@ type DifficultyEvidence struct {
 	Samples       int                   `json:"samples"`
 }
 
-const currentPlannerVersion = 6
+const currentPlannerVersion = 7
 
 type Plan struct {
 	CurriculumCycle int                `json:"curriculumCycle,omitempty"`
@@ -174,6 +178,9 @@ type Plan struct {
 }
 
 type State struct {
+	PersonalAnchors    []PersonalAnchor           `json:"personalAnchors,omitempty"`
+	TrainingStudies    []TrainingStudy            `json:"trainingStudies,omitempty"`
+	RunContexts        map[string]RunContext      `json:"runContexts,omitempty"`
 	Revision           uint64                     `json:"revision"`
 	ThemePriorities    map[string]ThemePriority   `json:"themePriorities,omitempty"`
 	CurriculumProgress map[string]RoutineProgress `json:"curriculumProgress,omitempty"`

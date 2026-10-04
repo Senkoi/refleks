@@ -29,7 +29,7 @@ func performanceTrend(rows []observation, now time.Time) (string, int) {
 	}
 	sort.Slice(valid, func(i, j int) bool { return valid[i].at.After(valid[j].at) })
 	valid = comparable(valid)
-	type session struct{ scores, accuracy []float64 }
+	type session struct{ scores, accuracy, speed []float64 }
 	sessions := []session{}
 	for i, r := range valid {
 		if i == 0 || valid[i-1].at.Sub(r.at) >= 30*time.Minute {
@@ -43,21 +43,31 @@ func performanceTrend(rows []observation, now time.Time) (string, int) {
 		if r.accuracyKnown {
 			s.accuracy = append(s.accuracy, r.accuracy)
 		}
+		if r.speedKnown {
+			s.speed = append(s.speed, r.hitsPerSecond)
+		}
 	}
 	if len(sessions) < 6 {
 		return "insufficient", len(sessions)
 	}
 	newScores, oldScores, newAccuracy, oldAccuracy := []float64{}, []float64{}, []float64{}, []float64{}
+	newSpeed, oldSpeed := []float64{}, []float64{}
 	for i, s := range sessions {
 		if i < 3 {
 			newScores = append(newScores, median(s.scores))
 			if len(s.accuracy) > 0 {
 				newAccuracy = append(newAccuracy, median(s.accuracy))
 			}
+			if len(s.speed) > 0 {
+				newSpeed = append(newSpeed, median(s.speed))
+			}
 		} else {
 			oldScores = append(oldScores, median(s.scores))
 			if len(s.accuracy) > 0 {
 				oldAccuracy = append(oldAccuracy, median(s.accuracy))
+			}
+			if len(s.speed) > 0 {
+				oldSpeed = append(oldSpeed, median(s.speed))
 			}
 		}
 	}
@@ -75,7 +85,8 @@ func performanceTrend(rows []observation, now time.Time) (string, int) {
 		for _, v := range newAccuracy {
 			declining = declining && v < previousAccuracy*.9
 		}
-		if declining {
+		faster := len(newSpeed) == 3 && len(oldSpeed) == 3 && median(newSpeed) >= median(oldSpeed)*1.05 && median(newScores) >= previous
+		if declining && !faster {
 			return "declining", 6
 		}
 	}
@@ -229,6 +240,9 @@ func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRe
 		}
 		for _, raw := range catalog {
 			c := enrichMechanics(raw)
+			if precisionRelation(anchor, c) != nil {
+				continue
+			} // Dedicated fixed-protocol personal trials own controlled variants.
 			if lowest, ok := audience[strings.ToLower(c.Name)]; ok && lowest > tierIndex(tier)+1 {
 				continue
 			}

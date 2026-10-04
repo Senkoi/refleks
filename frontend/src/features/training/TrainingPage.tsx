@@ -4,12 +4,13 @@ import { openURL } from "@/shared/lib/api";
 import { call, readState, readLiveState, mergeLiveState, type Preferences, type Scenario, type State } from "./api";
 import { catalogPage, filterCatalog, fileLabels, evidenceLabels, type FileFilter, type DifficultyFilter } from "./catalog";
 import "./training.css";
+import PersonalEvidence from "./PersonalEvidence";
 
 const labels: Record<string, string> = { auto: "自动 · 按弱项与周覆盖", static: "静态点击", dynamic: "动态点击", smooth: "平滑追踪", reactive: "反应追踪", switching: "目标切换", unknown: "待分类" };
 const themes: Record<string, string> = { static: "静态点击", dynamic: "动态点击", smooth: "精确追踪", reactive: "反应追踪", switching_speed: "速度切换", switching_evasive: "规避切换" };
 const difficultySources: Record<string, string> = { manual: "手动确认", benchmark: "benchmark 等级", name: "名称推断", playlist: "列表等级推断", unknown: "缺少可靠依据" };
 const fitLabels: Record<string, string> = { challenging: "对你偏难", suitable: "对你合适", comfortable: "对你偏易", unknown: "个人适配未知" };
-const roles: Record<string, string> = { warmup: "热身", practice: "专项练习", explore: "探索", challenge: "进阶挑战", benchmark: "参考测量" };
+const roles: Record<string, string> = { warmup: "热身", practice: "专项练习", explore: "探索", challenge: "进阶挑战", benchmark: "参考测量", assessment: "固定前测 / 复测" };
 const statuses: Record<string, string> = { draft: "待开始", running: "训练中", ready: "下一模块待开始", paused: "已暂停", waiting: "模块到时 · 等待本局结束", completed: "已结束" };
 const outcomes: Record<string,string> = { pending: "待完成", list_complete: "列表次数完成", threshold: "阈值达标", measured: "已测量", time_limit: "模块到时", session_limit: "总时长到达", skipped: "已跳过", missed: "游戏已进入后续关卡" };
 const initial: Preferences = { planningPolicy: "curriculum", minutes: 30, executionMode: "playlist", focus: "auto", difficulty: "any", benchmark: "", variety: .1, thresholdRatio: .9, autoAdvance: false, autoDiscover: true };
@@ -79,12 +80,15 @@ export default function TrainingPage() {
     void poll();
     return () => { cancelled=true; mounted.current = false; fullRequest.current++; clearTimeout(timer); };
   }, [refresh]);
-  async function perform(name: string, fn: () => Promise<unknown>, message = "") {
+  const perform = useCallback(async (name: string, fn: () => Promise<unknown>, message = "") => {
     if (busy) return; setBusy(name); setError(""); setNotice("");
     try { await fn(); await refresh(); if (mounted.current && message) setNotice(message); }
     catch (e) { if (mounted.current) setError(String(e)); }
     finally { if (mounted.current) setBusy(""); }
-  }
+  }, [busy, refresh]);
+  const recordFeedback = useCallback((id: string, value: string) => {
+    void perform("保存试练反馈", () => call("RecordTrainingTrialFeedback", id, value), "反馈已保存，将用于后续计划。");
+  }, [perform]);
   const plan = state?.initializing ? null : state?.plan;
   const active = !!plan && ["running", "ready", "paused", "waiting"].includes(plan.status);
 
@@ -102,7 +106,7 @@ export default function TrainingPage() {
       <div className="training-library-count"><Compass size={20} /><strong>{enabled}</strong><span>可编排关卡</span></div>
     </header>
     <nav className="training-tabs" aria-label="训练模块">
-      {[["plan", "当次计划"], ["discover", "发现内容"], ["catalog", "关卡库"]].map(([id,title]) => <button key={id} className={tab === id ? "selected" : ""} onClick={() => setTab(id)}>{title}</button>)}
+      {[["plan", "当次计划"], ["evidence", "训练评估"], ["discover", "发现内容"], ["catalog", "关卡库"]].map(([id,title]) => <button key={id} className={tab === id ? "selected" : ""} onClick={() => setTab(id)}>{title}</button>)}
     </nav>
     {loadError && <div role="alert" className="training-alert error">{loadError}</div>}
     {state?.initializing && <div role="status" className="training-alert">正在读取已有 benchmark 成绩与近 45 天训练历史，完成后自动生成并安装列表…</div>}
@@ -112,6 +116,7 @@ export default function TrainingPage() {
     {notice && <div role="status" className="training-alert">{notice}</div>}
     {busy && <div role="status" className="training-alert"><RefreshCw size={14} className="animate-spin" /> {busy}…{busy === "发现内容" && " 正在读取多个公开来源，可能需要约 2 分钟。"}</div>}
 
+    {tab === "evidence" && <PersonalEvidence anchors={state?.personalAnchors ?? []} studies={state?.trainingStudies ?? []} busy={!!busy} onFeedback={recordFeedback} />}
     {tab === "plan" && <>
       <div className="training-columns">
         <section className="training-card training-config">
@@ -154,7 +159,7 @@ export default function TrainingPage() {
               {plan.theme && <p className="training-muted">本次 VDIM 专项：{themes[plan.theme] ?? plan.theme}{plan.playerTier && ` · 模板选择参考 ${plan.playerTier}`}{plan.templateTier && ` · 模板档位 ${plan.templateTier}`} · 24 小时内优先续接；否则按水平与近期训练量选择；列表依然由完成记录校正进度。</p>}
               {plan.selectionReason && <p className="training-muted">选择原因：{plan.selectionReason}</p>}
               {plan.tierReason && <p className="training-muted">{plan.tierReason}</p>}
-              <p className="training-muted">本次安排：基础 {clock(plan.blocks.filter(b => b.role !== "challenge" && b.role !== "explore").reduce((s,b) => s+b.budget,0))} · 进阶挑战 {clock(plan.blocks.filter(b => b.role === "challenge").reduce((s,b) => s+b.budget,0))} · 探索 {clock(plan.blocks.filter(b => b.role === "explore").reduce((s,b) => s+b.budget,0))}</p>
+              <p className="training-muted">本次安排：主线 {clock(plan.blocks.filter(b => b.role !== "challenge" && b.role !== "explore" && b.role !== "assessment").reduce((s,b) => s+b.budget,0))} · 前测/复测 {clock(plan.blocks.filter(b => b.role === "assessment").reduce((s,b) => s+b.budget,0))} · 进阶挑战 {clock(plan.blocks.filter(b => b.role === "challenge").reduce((s,b) => s+b.budget,0))} · 探索试练 {clock(plan.blocks.filter(b => b.role === "explore").reduce((s,b) => s+b.budget,0))}</p>
               <div className="training-metrics"><div><strong>{clock(Math.max(0, plan.preferences.minutes * 60 - plan.elapsed))}</strong><span>剩余时间</span></div><div><strong>{clock(plan.recorded)}</strong><span>已记录练习</span></div><div><strong>{plan.blocks.filter(b => b.outcome !== "pending").length} / {plan.blocks.length}</strong><span>训练模块</span></div></div>
               <div className="training-progress"><span style={{ width: `${Math.min(100, plan.elapsed / (plan.preferences.minutes * 60) * 100)}%` }} /></div>
               <div className="training-actions">
@@ -180,11 +185,14 @@ export default function TrainingPage() {
               </div>
               <h3>{b.scenario.name}</h3>
               <p>{b.cue}</p>
+              {b.personalization && <p className="training-fit">个人锚点：{b.personalization.anchor.scenario} · 中位 {b.personalization.anchor.medianScore.toFixed(1)} · {b.personalization.anchor.days} 天 / {b.personalization.anchor.samples} 局</p>}
               {b.difficultyEvidence && <p className="training-fit">{fitLabels[b.difficultyEvidence.fit] ?? "个人适配未知"}{b.difficultyEvidence.samples >= 3 && ` · ${b.difficultyEvidence.windowDays ?? 45} 天窗口 / ${b.difficultyEvidence.samples} 局`}{b.anchorScenario && ` · 训练目标：${b.anchorScenario}`}</p>}
               {b.difficultyEvidence?.trend && b.difficultyEvidence.trend !== "insufficient" && <p>训练表现：{({improving:"持续改善",stable:"近期稳定",declining:"多次训练下降"} as Record<string,string>)[b.difficultyEvidence.trend] ?? "待观察"} · {b.difficultyEvidence.trendSessions} 次可比训练</p>}
               <details>
                 <summary>选图理由与评估依据</summary>
                 <p>{b.reason}</p>
+                {b.personalization?.relation && <p>同族尺寸差分：{b.personalization.relation.profiles.map(p=>`${p.profile} 半径 ${p.radiusRatio.toFixed(3)} 倍`).join("；")}。固定机制与布局下的配置对照，不是段位变化。</p>}
+                {b.personalization?.prediction && <p>{b.personalization.prediction.status === "local_backtest" ? `个人同族响应回放通过 · 预期成绩约 ${b.personalization.prediction.expectedScore?.toFixed(1)}（条件估计）` : "个人响应模型尚未通过留出验证；本次使用历史与方向参照。"} · {b.personalization.prediction.samples} 次配对试练 / {b.personalization.prediction.days} 天</p>}
                 <p>{localStatus(b.scenario.name)}</p>
                 {b.benchmark && <p>本次探索难度参考：{b.benchmark}</p>}
                 {b.difficultyEvidence && <p>机制难度：{b.difficultyEvidence.level} · {difficultySources[b.difficultyEvidence.source] ?? "来源未知"}</p>}
@@ -193,7 +201,7 @@ export default function TrainingPage() {
                 <div className="training-reference-links">{b.scenario.sources?.map((s,i) => /^https:\/\//i.test(s.url) && <button className="training-link" key={i} onClick={() => external(s.url)}>{s.title}</button>)}</div>
               </details>
               <div className="training-block-footer">
-                <span>{b.target > 0 ? `目标 ≥ ${b.target.toFixed(1)}` : b.role === "benchmark" ? "固定完成一次" : "不设分数门槛"}</span>
+                <span>{b.target > 0 ? `目标 ≥ ${b.target.toFixed(1)}` : b.role === "assessment" ? "一局熟悉 · 两局测量" : b.role === "benchmark" ? "固定完成一次" : "不设分数门槛"}</span>
                 <span>{b.runs} 局 · {clock(b.recorded)} · {outcomes[b.outcome]}</span>
                 <button className="training-link" onClick={() => setEditing({ ...b.scenario })}>评价关卡</button>
               </div>

@@ -338,11 +338,14 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 		return nil, fmt.Errorf("请先结束当前计划，再生成新计划")
 	}
 	now := time.Now()
+	s.updateStudiesLocked(now)
+	s.auditTransferExposureLocked(runs, now)
 	rng := rand.New(rand.NewSource(now.UnixNano()))
 	if p.PlanningPolicy != "legacy" {
 		p = automaticTrainingPreferences(p)
 	}
 	planningPreferences := automaticReferences(s.state.Catalog, p)
+	p.ReviewTheme = reviewTheme(s.state.TrainingStudies, now)
 	var plan *Plan
 	var err error
 	if p.PlanningPolicy == "legacy" {
@@ -359,12 +362,44 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 		if err == nil {
 			progress := progressFor(*t, history, s.state.CurriculumProgress)
 			explored := progress.EverCompleted || curriculumBaseline(*t, history)
-			window, start, end, windowErr := curriculumWindowWithProgress(*t, s.state.Catalog, runs, p, now, history, progress, s.state.Curricula...)
+			firstSeconds := 0
+			for i, row := range t.Rows {
+				if !progress.complete() && i < len(progress.Rows) && progress.Rows[i].Target > 0 && progress.Rows[i].Completed >= progress.Rows[i].Target {
+					continue
+				}
+				for _, c := range s.state.Catalog {
+					if strings.EqualFold(row.Name, c.Name) {
+						firstSeconds = estimateTiming(c, observed(runs)[strings.ToLower(c.Name)], now).Seconds
+						break
+					}
+				}
+				break
+			}
+			bundle := preparePersonalization(*t, s.state.Catalog, runs, s.state.RunContexts, s.state.TrainingStudies, now, p, explored, firstSeconds, rng)
+			window, start, end, windowErr := curriculumWindowWithReserve(*t, s.state.Catalog, runs, p, now, history, progress, bundle.seconds(), bundle.seconds() == 0, s.state.Curricula...)
 			if windowErr != nil {
 				return nil, windowErr
 			}
-			plan, err = GenerateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored, s.state.Curricula...)
+			plan, err = GenerateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored && bundle.seconds() == 0, s.state.Curricula...)
 			if err == nil {
+				plan.Blocks = append(append(bundle.before, plan.Blocks...), bundle.after...)
+				if bundle.study != nil {
+					bundle.study.PlanID = plan.ID
+					s.state.TrainingStudies = append(s.state.TrainingStudies, *bundle.study)
+				}
+				anchors := personalAnchors(s.state.Catalog, runs, s.state.RunContexts, now)
+				for i := range plan.Blocks {
+					b := &plan.Blocks[i]
+					a, ok := anchors[strings.ToLower(b.Scenario.Name)]
+					if ok && b.Personalization == nil && b.Measurement == nil {
+						b.Personalization = &SceneDecision{Source: "direct_history", Anchor: a}
+						if a.Status == "stable" && b.Role == "practice" {
+							b.Target = a.MedianScore + max(a.ScoreMAD, a.MedianScore*.02)
+							b.Signature = signatureForPersonalTarget(b.Scenario.Name, runs, now)
+							b.Reason += " 个人目标取近期训练块中位成绩加波动/小幅进步目标；固定局数不变。"
+						}
+					}
+				}
 				plan.CurriculumCycle = progress.Cycle
 				if progress.complete() {
 					plan.CurriculumCycle++
@@ -373,6 +408,9 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 					plan.SelectionReason = "24 小时内优先续接：跳过已完成行，部分完成的行只安排剩余次数。"
 				} else {
 					plan.SelectionReason = ThemePriorities(s.state.Catalog, runs, now)[t.Theme].Evidence
+					if p.ReviewTheme == t.Theme {
+						plan.SelectionReason = "隔日复测已到期；优先测量后继续该分类主线。" + plan.SelectionReason
+					}
 				}
 				plan.CurriculumStart = start
 				plan.CurriculumEnd = end
@@ -385,6 +423,14 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 	}
 	if err != nil {
 		return nil, err
+	}
+	if old := s.state.Plan; old != nil && old.Status == "draft" {
+		for i := range s.state.TrainingStudies {
+			st := &s.state.TrainingStudies[i]
+			if st.PlanID == old.ID && st.Status == "planned" {
+				st.Status = "not_started"
+			}
+		}
 	}
 	if old := s.state.Plan; old != nil && old.Status != "draft" {
 		s.state.History = append(s.state.History, *old)
@@ -569,6 +615,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			p.Recorded += v.Duration
 			b.Runs++
 			b.LastCompletedAt = end.UnixMilli()
+			s.capturePractice(b, r, now)
 			b.Best = math.Max(b.Best, v.Score)
 		}
 		if err := s.checkpoint(now, p.Recorded != previousRecorded); err != nil {
@@ -654,10 +701,15 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			p.Recorded += sum.Duration
 			b.Runs++
 			b.LastCompletedAt = end.UnixMilli()
+			s.capturePractice(b, r, now)
 			b.Best = math.Max(b.Best, sum.Score)
 			if b.Target > 0 && b.Signature != "" && signature(sum) != b.Signature {
 				b.Target = 0
 				b.Reason += " 本模块检测到版本或设置变化，已取消原阈值。"
+			}
+			if b.Target > 0 && b.Personalization != nil && practiceSample(r).Signature != b.Personalization.Anchor.Signature {
+				b.Target = 0
+				b.Reason += " 个人锚点的版本、设置或时长不再可比，取消原目标。"
 			}
 			outcome := ""
 			if p.Preferences.ExecutionMode == "playlist" {
@@ -756,6 +808,15 @@ func (s *Service) evaluateLocked(runs []models.RunRecord, now time.Time) {
 	key := evaluationFingerprint(runs, s.dataRevision)
 	if key == s.evaluationKey && now.Sub(s.evaluatedAt) < 5*time.Minute {
 		return
+	}
+	s.updateStudiesLocked(now)
+	anchors := personalAnchors(s.state.Catalog, runs, s.state.RunContexts, now)
+	s.auditTransferExposureLocked(runs, now)
+	s.state.PersonalAnchors = nil
+	for _, c := range s.state.Catalog {
+		if a, ok := anchors[strings.ToLower(c.Name)]; ok {
+			s.state.PersonalAnchors = append(s.state.PersonalAnchors, a)
+		}
 	}
 	references := automaticReferences(s.state.Catalog, s.state.Preferences)
 	obs := levelObservations(runs, now)

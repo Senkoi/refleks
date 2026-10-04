@@ -192,6 +192,9 @@ func selectCurriculumWithHistory(ts []Curriculum, catalog []Scenario, p Preferen
 	preferred := vdimThemes[day]
 	sort.SliceStable(eligible, func(i, j int) bool {
 		a, b := eligible[i], eligible[j]
+		if p.ReviewTheme != "" && (a.Theme == p.ReviewTheme) != (b.Theme == p.ReviewTheme) {
+			return a.Theme == p.ReviewTheme
+		}
 		if priorities[a.Theme].Priority != priorities[b.Theme].Priority {
 			return priorities[a.Theme].Priority > priorities[b.Theme].Priority
 		}
@@ -232,8 +235,17 @@ func completedCurriculum(p Plan, t Curriculum) bool {
 	if p.CurriculumID != t.ID || p.Status != "completed" || len(p.Blocks) < len(t.Rows) || len(t.Rows) == 0 {
 		return false
 	}
+	blocks := []Block{}
+	for _, b := range p.Blocks {
+		if b.Measurement == nil && b.Role != "explore" && b.Role != "challenge" {
+			blocks = append(blocks, b)
+		}
+	}
+	if len(blocks) < len(t.Rows) {
+		return false
+	}
 	for i, row := range t.Rows {
-		b := p.Blocks[i]
+		b := blocks[i]
 		role := row.Role
 		if role == "" {
 			role = "practice"

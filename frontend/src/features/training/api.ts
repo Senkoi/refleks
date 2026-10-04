@@ -14,6 +14,8 @@ export type Preferences = {
   variety: number; thresholdRatio: number; autoAdvance: boolean; autoDiscover: boolean;
 };
 export type Block = {
+  personalization?: { source: string; anchor: PersonalAnchor; relation?: { direction: string; uniform: boolean; maxDelta: number; profiles: { profile: string; radiusRatio: number; precisionDelta: number }[] }; prediction?: { status: string; expectedScore?: number; samples: number; days: number; validationMAE?: number; baselineMAE?: number } };
+  measurement?: { studyId: string; phase: string };
   timing?: { seconds: number; source: string; samples: number; recentSeconds: number; weeklySeconds: number };
   difficultyEvidence?: { level: string; source: string; fit: string; samples: number; windowDays?: number; trend?: string; trendSessions?: number; recentScore?: number; benchmarks?: Scenario["benchmarks"] };
   anchorScenario?: string; scenario: Scenario; role: string; budget: number; playCount: number; sourcePlayCount?: number; target: number; reason: string; benchmark?: string;
@@ -27,6 +29,8 @@ export type Plan = {
   reminder?: string;
 };
 export type State = {
+  personalAnchors?: PersonalAnchor[];
+  trainingStudies?: TrainingStudy[];
   revision?: number;
   themePriorities?: Record<string,{ priority: number; minutes: number; level?: number; evidence: string }>;
   templateTiers?: Record<string, string>;
@@ -38,6 +42,19 @@ export type State = {
   skills: { skill: string; priority: number; minutes: number; samples: number; evidence: string }[];
   discovery: { updated: string; imported: number; warnings: string[];
     candidates: { title: string; url: string; description: string; sharecodes: string[] }[] };
+};
+
+export type PersonalAnchor = {
+ scenario: string; theme: string; status: string; evidence: string; medianScore: number; scoreMAD: number;
+ accuracy?: number; hitsPerSecond?: number; samples: number; sessions: number; days: number; lastPlayed: number;
+};
+type MeasurementResult = { score: number; samples: number; at: number; accuracy?: number; hitsPerSecond?: number };
+export type TrainingStudy = {
+ transferContaminated?: boolean;
+ id: string; theme: string; anchorScenario: string; trainingScenario: string; transferScenario?: string;
+ status: string; feedback?: string; createdAt: number; dueAt?: number; expiresAt?: number;
+ baseline?: MeasurementResult; trial?: MeasurementResult; retest?: MeasurementResult;
+ transferBaseline?: MeasurementResult; transferRetest?: MeasurementResult; retentionChange?: number; transferChange?: number;
 };
 
 // Separate primitive-only bridge: Wails discovers the exported Go methods at build time.

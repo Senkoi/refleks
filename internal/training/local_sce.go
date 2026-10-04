@@ -25,6 +25,10 @@ type SCEField struct {
 	Line    int    `json:"line"`
 }
 type LocalAssessment struct {
+	ComparisonSchema     int                   `json:"comparisonSchema,omitempty"`
+	FamilyFingerprint    string                `json:"familyFingerprint,omitempty"`
+	MapDataSHA256        string                `json:"mapDataSHA256,omitempty"`
+	TargetSizes          []TargetSize          `json:"targetSizes,omitempty"`
 	Measurements         []FileMeasurement     `json:"measurements,omitempty"`
 	PrecisionComparisons []PrecisionComparison `json:"precisionComparisons,omitempty"`
 	FilePaths            []string              `json:"filePaths,omitempty"`
@@ -75,6 +79,7 @@ func ParseLocalSCE(data []byte) (string, *Mechanics, *LocalAssessment, error) {
 	scan := bufio.NewScanner(bytes.NewReader(bytes.TrimPrefix(data, []byte{0xef, 0xbb, 0xbf})))
 	scan.Buffer(make([]byte, 4096), 1<<20)
 	line := 0
+	opaqueConfiguration := false
 	for scan.Scan() {
 		line++
 		s := strings.TrimSpace(scan.Text())
@@ -88,6 +93,8 @@ func ParseLocalSCE(data []byte) (string, *Mechanics, *LocalAssessment, error) {
 		if key, value, ok := strings.Cut(s, "="); ok {
 			i := len(sections) - 1
 			sections[i].fields = append(sections[i].fields, SCEField{Section: sections[i].kind, Key: strings.TrimSpace(key), Raw: strings.TrimSpace(value), Line: line})
+		} else if s != "" && !strings.HasPrefix(s, ";") && !strings.HasPrefix(s, "#") && !strings.HasPrefix(s, "//") {
+			opaqueConfiguration = true
 		}
 	}
 	if err := scan.Err(); err != nil {
@@ -101,6 +108,9 @@ func ParseLocalSCE(data []byte) (string, *Mechanics, *LocalAssessment, error) {
 	digest := sha256.Sum256(data)
 	hash := hex.EncodeToString(digest[:])
 	a := &LocalAssessment{Status: "file_parsed_model_unfitted", FileSHA256: hash, GameVersion: root.value("GameVersion"), Fields: append([]SCEField{}, root.fields...), Issues: []string{"map_geometry_and_total_difficulty_not_fitted"}}
+	if opaqueConfiguration {
+		a.Issues = append(a.Issues, "unsupported_configuration_line")
+	}
 	index := map[string]int{}
 	for i := 1; i < len(sections); i++ {
 		p := sections[i].value("Name")
@@ -237,6 +247,7 @@ func ParseLocalSCE(data []byte) (string, *Mechanics, *LocalAssessment, error) {
 	sort.Strings(m.Tags)
 	sort.Strings(a.Issues)
 	calculateFileEvidence(a)
+	calculateComparison(data, sections, active, a)
 	return name, m, a, nil
 }
 
@@ -433,7 +444,7 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 			}
 			continue
 		}
-		if c.LocalAssessment != nil && c.LocalAssessment.Status == "file_parsed_model_unfitted" && c.LocalAssessment.FileSHA256 == p.assessment.FileSHA256 {
+		if c.LocalAssessment != nil && c.LocalAssessment.Status == "file_parsed_model_unfitted" && c.LocalAssessment.FileSHA256 == p.assessment.FileSHA256 && c.LocalAssessment.ComparisonSchema == comparisonSchema {
 			continue
 		}
 		c.Mechanics = p.mechanics
@@ -442,6 +453,7 @@ func (s *Service) PollLocal(roots []string, playlists string, now time.Time) {
 		changed = true
 	}
 	if changed {
+		refreshLocalRelations(s.state.Catalog)
 		if err := s.save(); err != nil {
 			s.localDirty = true
 			s.state.Error = "本地 SCE 评估缓存保存失败：" + err.Error()
