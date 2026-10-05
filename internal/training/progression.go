@@ -167,6 +167,7 @@ type progressionCandidate struct {
 	kind      string
 	seconds   int
 	weight    float64
+	neighbor  *ScenarioComparison
 }
 
 func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, templates []Curriculum) []progressionCandidate {
@@ -213,6 +214,7 @@ func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRe
 		addDemandTime(s, estimateTiming(s, obs[strings.ToLower(s.Name)], now).WeeklySeconds, exposure)
 	}
 	groupTiers := trainingGroupTiers(t.Theme, levels)
+	anchors := personalAnchors(catalog, runs, nil, now)
 	for _, row := range t.Rows {
 		if row.Role == "warmup" || row.Role == "benchmark" {
 			continue
@@ -291,7 +293,18 @@ func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRe
 			if len(memberships(c)) > 0 && !aligned && !(kind == "challenge" && (nextRoster || templateReady && adjacent[strings.ToLower(c.Name)])) {
 				continue
 			}
-			result = append(result, progressionCandidate{scenario: c, anchor: anchor, fit: fit, reference: ref, kind: kind, seconds: estimateTiming(c, obs[strings.ToLower(c.Name)], now).Seconds, weight: demandWeight(c, exposure) / (1 + float64(len(obs[strings.ToLower(c.Name)])))})
+			weight := demandWeight(c, exposure) / (1 + float64(len(obs[strings.ToLower(c.Name)])))
+			var neighbor *ScenarioComparison
+			if personal := anchors[strings.ToLower(anchor.Name)]; personal.Status == "stable" {
+				comparison := CompareScenarios(anchor, c)
+				if distance := comparison.Result.NeighborDistance; distance != nil && comparison.Result.PlannerUse == "neighbor_tiebreak_only" {
+					// A bounded preference within the existing evidence/budget gates.
+					// It never creates a challenge, predicts score, or changes rank.
+					weight += .2 / (1 + *distance)
+					neighbor = &comparison
+				}
+			}
+			result = append(result, progressionCandidate{scenario: c, anchor: anchor, fit: fit, reference: ref, kind: kind, seconds: estimateTiming(c, obs[strings.ToLower(c.Name)], now).Seconds, weight: weight, neighbor: neighbor})
 		}
 	}
 

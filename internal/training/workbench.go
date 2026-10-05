@@ -1,10 +1,11 @@
 package training
 
 import (
+	"aimmeow/internal/models"
+	"aimmeow/internal/sceneanalysis"
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
-	"aimmeow/internal/models"
 	"time"
 )
 
@@ -24,16 +25,65 @@ func evaluationFingerprint(runs []models.RunRecord, revision uint64) string {
 	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
+// WorkbenchDTO is a UI contract, not the persisted aggregate. Execution-only
+// polling uses LiveState; history, raw definitions and run contexts stay backend.
+type WorkbenchDTO struct {
+	DemandCoverage    []DemandCoverage         `json:"demandCoverage,omitempty"`
+	Version           int                      `json:"version"`
+	Revision          uint64                   `json:"revision"`
+	Catalog           []Scenario               `json:"catalog"`
+	Preferences       Preferences              `json:"preferences"`
+	Plan              *Plan                    `json:"plan"`
+	Skills            []SkillStatus            `json:"skills"`
+	Discovery         Discovery                `json:"discovery"`
+	PlayerLevels      []PlayerLevel            `json:"playerLevels"`
+	PersonalAnchors   []PersonalAnchor         `json:"personalAnchors,omitempty"`
+	AnchorEvaluations []AnchorEvaluation       `json:"anchorEvaluations,omitempty"`
+	TrainingStudies   []TrainingStudy          `json:"trainingStudies,omitempty"`
+	ThemePriorities   map[string]ThemePriority `json:"themePriorities,omitempty"`
+	TemplateTiers     map[string]string        `json:"templateTiers,omitempty"`
+	Curricula         []Curriculum             `json:"curricula,omitempty"`
+	Initializing      bool                     `json:"initializing"`
+	Notice            string                   `json:"notice"`
+	Error             string                   `json:"error"`
+	SearchConfigured  bool                     `json:"searchConfigured"`
+	RecentPlans       []PlanHistorySummary     `json:"recentPlans"`
+}
+
+type PlanHistorySummary struct {
+	ID         string  `json:"id"`
+	Created    string  `json:"created"`
+	Status     string  `json:"status"`
+	BlockCount int     `json:"blockCount"`
+	Minutes    int     `json:"minutes"`
+	Recorded   float64 `json:"recorded"`
+}
+
+type GenerateRequest struct {
+	Preferences Preferences `json:"preferences"`
+}
+
 func (s *Service) WorkbenchJSON(runs []models.RunRecord) (string, error) {
+	view, err := s.Workbench(runs)
+	if err != nil {
+		return "", err
+	}
+	b, err := json.Marshal(view)
+	return string(b), err
+}
+func (s *Service) Workbench(runs []models.RunRecord) (*WorkbenchDTO, error) {
+
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	s.evaluateLocked(runs, time.Now())
-	view := s.state
-	view.Revision = s.dataRevision
-	// Historical execution and template rows are not used by the workbench.
-	view.History = nil
-	view.CurriculumProgress = nil
-	view.RunContexts = nil
+	st := s.state
+	view := WorkbenchDTO{Version: st.Version, Revision: s.dataRevision, Catalog: st.Catalog, Preferences: st.Preferences, Plan: st.Plan, Skills: st.Skills, Discovery: st.Discovery, PlayerLevels: st.PlayerLevels, PersonalAnchors: st.PersonalAnchors, AnchorEvaluations: st.AnchorEvaluations, TrainingStudies: st.TrainingStudies, ThemePriorities: st.ThemePriorities, TemplateTiers: st.TemplateTiers, Curricula: st.Curricula, Initializing: st.Initializing, Notice: st.Notice, Error: st.Error, SearchConfigured: st.SearchConfigured}
+	view.RecentPlans = []PlanHistorySummary{}
+	view.DemandCoverage = st.DemandCoverage
+	for i := max(0, len(st.History)-10); i < len(st.History); i++ {
+		p := st.History[i]
+		view.RecentPlans = append(view.RecentPlans, PlanHistorySummary{p.ID, p.Created, p.Status, len(p.Blocks), p.Preferences.Minutes, p.Recorded})
+	}
 	view.AnchorEvaluations = append([]AnchorEvaluation(nil), view.AnchorEvaluations...)
 	for i := range view.AnchorEvaluations {
 		view.AnchorEvaluations[i].Result = workbenchMeasurement(view.AnchorEvaluations[i].Result)
@@ -63,7 +113,12 @@ func (s *Service) WorkbenchJSON(runs []models.RunRecord) (string, error) {
 		view.Curricula[i].Rows = nil
 	}
 	b, err := json.Marshal(view)
-	return string(b), err
+	if err != nil {
+		return nil, err
+	}
+	var detached WorkbenchDTO
+	err = json.Unmarshal(b, &detached)
+	return &detached, err
 }
 
 func workbenchMeasurement(r *MeasurementResult) *MeasurementResult {
@@ -80,9 +135,92 @@ func workbenchScenario(s Scenario) Scenario {
 		a := *s.LocalAssessment
 		// Raw parser fields are needed by backend validation, never by the UI.
 		a.Fields = nil
+		if a.Requirements != nil {
+			r := *a.Requirements
+			r.Definitions = nil
+			r.Axes = nil
+			r.Slots = nil
+			r.Hazards = nil
+			r.Influences = nil
+			if r.Map != nil {
+				m := *r.Map
+				m.Objects = nil
+				r.Map = &m
+			}
+			r.Targets = append([]sceneanalysis.Target(nil), r.Targets...)
+			r.Helpers = append([]sceneanalysis.Target(nil), r.Helpers...)
+			for i := range r.Targets {
+				r.Targets[i].DodgeEntries = nil
+				r.Targets[i].Abilities = nil
+				r.Targets[i].Facts = nil
+				r.Targets[i].Windows = nil
+				r.Targets[i].MotionModels = nil
+			}
+			for i := range r.Helpers {
+				r.Helpers[i].DodgeEntries = nil
+				r.Helpers[i].Abilities = nil
+				r.Helpers[i].Facts = nil
+				r.Helpers[i].Windows = nil
+				r.Helpers[i].MotionModels = nil
+			}
+			r.Features = append([]sceneanalysis.Fact(nil), r.Features...)
+			for i := range r.Features {
+				r.Features[i].Sources = nil
+			}
+			a.Requirements = &r
+		}
 		s.LocalAssessment = &a
 	}
 	return s
+}
+
+// SceneRequirements reads one version, including fixed plan snapshots, on
+// demand. Large raw definitions and map point records stay in the audit engine.
+func (s *Service) SceneRequirements(name, hash string) (*sceneanalysis.Descriptor, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	var d *sceneanalysis.Descriptor
+	accept := func(c Scenario) {
+		a := c.LocalAssessment
+		if c.Name == name && a != nil && a.Status == "file_parsed_model_unfitted" && (hash == "" || a.FileSHA256 == hash) && a.Requirements != nil {
+			d = a.Requirements
+		}
+	}
+	for _, c := range s.state.Catalog {
+		accept(c)
+	}
+	if d == nil && hash != "" {
+		if s.state.Plan != nil {
+			for _, b := range s.state.Plan.Blocks {
+				accept(b.Scenario)
+			}
+		}
+		for _, p := range s.state.History {
+			if d != nil {
+				break
+			}
+			for _, b := range p.Blocks {
+				accept(b.Scenario)
+			}
+		}
+	}
+	if d == nil {
+		return nil, fmt.Errorf("没有这张图所选版本的场景需求；请重新扫描或刷新关卡库")
+	}
+	view := *d
+	view.Definitions = nil
+	if view.Map != nil {
+		m := *view.Map
+		m.Objects = nil
+		view.Map = &m
+	}
+	data, err := json.Marshal(view)
+	if err != nil {
+		return nil, err
+	}
+	var detached sceneanalysis.Descriptor
+	err = json.Unmarshal(data, &detached)
+	return &detached, err
 }
 
 type LiveBlock struct {
@@ -111,7 +249,8 @@ type LiveState struct {
 	Plan         *LivePlan `json:"plan"`
 }
 
-func (s *Service) LiveJSON() (string, error) {
+func (s *Service) LiveJSON() (string, error) { b, err := json.Marshal(s.Live()); return string(b), err }
+func (s *Service) Live() LiveState {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	v := LiveState{Revision: s.dataRevision, Initializing: s.state.Initializing, Notice: s.state.Notice, Error: s.state.Error}
@@ -121,8 +260,7 @@ func (s *Service) LiveJSON() (string, error) {
 			v.Plan.Blocks = append(v.Plan.Blocks, LiveBlock{b.Recorded, b.Runs, b.Best, b.Outcome, b.Target, b.Reason})
 		}
 	}
-	b, err := json.Marshal(v)
-	return string(b), err
+	return v
 }
 func (s *Service) checkpoint(now time.Time, important bool) error {
 	if !important && !s.checkpointAt.IsZero() && now.Sub(s.checkpointAt) < 15*time.Second {
@@ -133,6 +271,10 @@ func (s *Service) checkpoint(now time.Time, important bool) error {
 		s.updateStudiesLocked(now)
 		s.dataRevision++
 		s.evaluationKey = ""
+	}
+	if !important && s.repository != nil {
+		s.state.Revision = s.dataRevision
+		return s.repository.SaveExecution(s.state)
 	}
 	return s.persist()
 }

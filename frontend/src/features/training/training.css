@@ -102,3 +102,11 @@
 .training-brand{display:flex;align-items:center;gap:18px;min-width:0}
 .training-brand>img{width:88px;height:88px;object-fit:contain;flex-shrink:0}
 @container training (max-width:850px){.training-brand{gap:12px}.training-brand>img{width:64px;height:64px}}
+
+.training-requirements { margin: .5rem 0; max-width: 100%; }
+.training-requirements summary { cursor: pointer; color: hsl(var(--muted-foreground)); }
+.training-requirements details { margin: .5rem 0; }
+.training-requirements ul { margin: .5rem 0; padding-left: 1.25rem; }
+.training-requirements li { margin: .5rem 0; overflow-wrap: anywhere; }
+.training-requirements p { overflow-wrap: anywhere; }
+.training-requirements select { max-width: min(28rem, 100%); }

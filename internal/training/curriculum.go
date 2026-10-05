@@ -345,7 +345,13 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 				reason = "依据近期稳定达标或持续改善，试探同目标的相邻档位或可训练挑战；不提升正式 benchmark 等级。"
 				cue = "进阶挑战：保持控制质量，比较多次训练的进步，单次低分不触发回退。"
 			}
-			plan.Blocks = append(plan.Blocks, Block{Scenario: c.scenario, Timing: timing, DifficultyEvidence: c.fit, AnchorScenario: c.anchor.Name, Role: c.kind, Benchmark: c.reference.Name, Budget: c.seconds, PlayCount: 1, Outcome: "pending", Reason: reason, Cue: cue})
+			var decision *SceneDecision
+			if c.neighbor != nil {
+				personal := personalAnchors(catalog, runs, nil, now)[strings.ToLower(c.anchor.Name)]
+				decision = &SceneDecision{Source: "requirement_neighbor", Anchor: personal, Requirements: c.neighbor}
+				reason += " 同等候选中参考了与稳定练习图的配置需求距离；未据此升级难度或换算成绩。"
+			}
+			plan.Blocks = append(plan.Blocks, Block{Scenario: c.scenario, Timing: timing, DifficultyEvidence: c.fit, AnchorScenario: c.anchor.Name, Role: c.kind, Benchmark: c.reference.Name, Budget: c.seconds, PlayCount: 1, Outcome: "pending", Reason: reason, Cue: cue, Personalization: decision})
 		}
 		if len(chosen) == 0 {
 			plan.Warnings = append(plan.Warnings, "当前没有满足目标、成绩证据和整局时间预算的进阶或探索变体；保留基础训练，不强行加难。")

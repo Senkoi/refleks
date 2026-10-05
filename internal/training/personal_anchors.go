@@ -69,10 +69,11 @@ type PersonalAnchor struct {
 }
 
 type SceneDecision struct {
-	Source     string              `json:"source"`
-	Anchor     PersonalAnchor      `json:"anchor"`
-	Relation   *PrecisionRelation  `json:"relation,omitempty"`
-	Prediction *ResponsePrediction `json:"prediction,omitempty"`
+	Source       string              `json:"source"`
+	Anchor       PersonalAnchor      `json:"anchor"`
+	Relation     *PrecisionRelation  `json:"relation,omitempty"`
+	Prediction   *ResponsePrediction `json:"prediction,omitempty"`
+	Requirements *ScenarioComparison `json:"requirements,omitempty"`
 }
 
 func finite(v float64) bool { return !math.IsNaN(v) && !math.IsInf(v, 0) }

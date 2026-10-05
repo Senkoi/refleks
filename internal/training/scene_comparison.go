@@ -1,105 +1,82 @@
 package training
 
 import (
-	"crypto/sha256"
-	"encoding/hex"
-	"encoding/json"
+	"aimmeow/internal/sceneanalysis"
+	"fmt"
 	"math"
-	"regexp"
-	"sort"
-	"strings"
 	"time"
 )
 
-const comparisonSchema = 1
+const comparisonSchema = sceneanalysis.ComparisonSchema
 
-type TargetSize struct {
-	Profile string   `json:"profile"`
-	Radius  float64  `json:"radius"`
-	Height  *float64 `json:"height,omitempty"`
+type ScenarioComparison struct {
+	Anchor    string                   `json:"anchor"`
+	Candidate string                   `json:"candidate"`
+	Result    sceneanalysis.Comparison `json:"result"`
+	Precision *PrecisionRelation       `json:"precision,omitempty"`
 }
 
-type PrecisionRelation struct {
-	FamilyFingerprint string                `json:"familyFingerprint"`
-	Profiles          []PrecisionComparison `json:"profiles"`
-	Direction         string                `json:"direction"`
-	MaxDelta          float64               `json:"maxDelta"`
-	Uniform           bool                  `json:"uniform"`
-	UniformDelta      float64               `json:"uniformDelta,omitempty"`
+// A missing legacy task tag may use confirmed native/manual taxonomy. Name
+// guesses never complete the fixed basis; explicit SCE tags keep priority.
+func contextualRequirements(c Scenario) *sceneanalysis.Descriptor {
+	d := c.LocalAssessment.Requirements
+	if d == nil || d.Task != "unknown" {
+		return d
+	}
+	if c.Classification != "manual" && c.Classification != "benchmark" {
+		return d
+	}
+	copy := *d
+	switch c.Skill {
+	case "static", "dynamic":
+		copy.Task = "clicking"
+	case "smooth", "reactive":
+		copy.Task = "tracking"
+	case "switching":
+		copy.Task = "switching"
+	}
+	return &copy
 }
 
-var mapDataHeader = regexp.MustCompile("(?m)^[ \\t]*\\[Map Data\\][ \\t]*\\r?$")
+func CompareScenarios(anchor, candidate Scenario) ScenarioComparison {
+	var a, b *sceneanalysis.Descriptor
+	if anchor.LocalAssessment != nil && anchor.LocalAssessment.Status == "file_parsed_model_unfitted" {
+		a = contextualRequirements(anchor)
+	}
+	if candidate.LocalAssessment != nil && candidate.LocalAssessment.Status == "file_parsed_model_unfitted" {
+		b = contextualRequirements(candidate)
+	}
+	c := ScenarioComparison{Anchor: anchor.Name, Candidate: candidate.Name, Result: sceneanalysis.Compare(a, b, nil)}
+	if anchor.Skill != candidate.Skill || scenarioTheme(anchor) != scenarioTheme(candidate) {
+		c.Result.Kind, c.Result.PlannerUse = "incompatible", "inspect_only"
+		c.Result.NeighborDistance = nil
+		c.Result.Unknown = append(c.Result.Unknown, "training_goal_mismatch")
+		return c
+	}
+	if r := precisionRelation(anchor, candidate); r != nil {
+		c.Precision = r
+		c.Result.Kind, c.Result.Direction, c.Result.PlannerUse = "strict_precision", r.Direction, "controlled_precision_trial"
+	}
+	return c
+}
 
-// Hash all defined configuration and the entire map payload, removing only
-// root editorial labels and reachable non-player hitbox sizes. Unused profile
-// changes, omitted defaults, phases, scoring and motion remain in the hash.
-func calculateComparison(data []byte, sections []sceSection, active map[int]bool, a *LocalAssessment) {
-	a.ComparisonSchema = comparisonSchema
-	location := mapDataHeader.FindIndex(data)
-	if location == nil {
-		return
-	}
-	h := sha256.Sum256(data[location[1]:])
-	a.MapDataSHA256 = hex.EncodeToString(h[:])
-	for _, issue := range a.Issues {
-		if strings.HasPrefix(issue, "unresolved:") || strings.HasPrefix(issue, "unsupported_ability:") || issue == "unsupported_configuration_line" {
-			return
+func (s *Service) CompareScenes(anchor, candidate string) (ScenarioComparison, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	var a, b *Scenario
+	for i := range s.state.Catalog {
+		c := &s.state.Catalog[i]
+		if c.Name == anchor {
+			a = c
+		}
+		if c.Name == candidate {
+			b = c
 		}
 	}
-	player := strings.TrimSuffix(sections[0].value("PlayerProfile"), ".char")
-	if player == "" || sections[0].value("AddedBots") == "" {
-		return
+	if a == nil || b == nil {
+		return ScenarioComparison{}, fmt.Errorf("对照场景不在关卡库中")
 	}
-	canonical := []string{}
-	for i, section := range sections {
-		seen := map[string]bool{}
-		profile := section.value("Name")
-		if i == 0 {
-			profile = ""
-		}
-		target := active[i] && section.kind == "Character Profile" && !strings.EqualFold(profile, player)
-		var size TargetSize
-		size.Profile = profile
-		for _, f := range section.fields {
-			if seen[f.Key] { // Repeated keys have no assumed override semantics.
-				a.Issues = append(a.Issues, "comparison_duplicate_field:"+section.kind+":"+f.Key)
-				return
-			}
-			seen[f.Key] = true
-			if i == 0 && (f.Key == "Name" || f.Key == "Description" || f.Key == "DifficultyTag" || f.Key == "AimSubTypeTag") {
-				continue
-			}
-			if target && (f.Key == "MainBBRadius" || f.Key == "MainBBHeight") {
-				v, ok := configNumber(f.Raw)
-				if !ok || v <= 0 {
-					return
-				}
-				if f.Key == "MainBBRadius" {
-					size.Radius = v
-				} else {
-					size.Height = &v
-				}
-				continue
-			}
-			b, _ := json.Marshal([]string{section.kind, profile, f.Key, f.Raw})
-			canonical = append(canonical, string(b))
-		}
-		if target {
-			if size.Radius <= 0 {
-				return
-			}
-			a.TargetSizes = append(a.TargetSizes, size)
-		}
-	}
-	if len(a.TargetSizes) == 0 {
-		return
-	}
-	sort.Slice(a.TargetSizes, func(i, j int) bool { return a.TargetSizes[i].Profile < a.TargetSizes[j].Profile })
-	sort.Strings(canonical)
-	canonical = append(canonical, "map:"+a.MapDataSHA256)
-	b, _ := json.Marshal(canonical)
-	h = sha256.Sum256(b)
-	a.FamilyFingerprint = hex.EncodeToString(h[:])
+	return CompareScenarios(*a, *b), nil
 }
 
 // Rebuild references when local files change, not on clock/UI refresh. Copy

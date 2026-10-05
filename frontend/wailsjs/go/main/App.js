@@ -10,8 +10,20 @@ export function ClearCache() {
   return window['go']['main']['App']['ClearCache']();
 }
 
+export function CompareTrainingScenes(arg1, arg2) {
+  return window['go']['main']['App']['CompareTrainingScenes'](arg1, arg2);
+}
+
+export function CreateTrainingPlan(arg1) {
+  return window['go']['main']['App']['CreateTrainingPlan'](arg1);
+}
+
 export function DeleteRunReplay(arg1) {
   return window['go']['main']['App']['DeleteRunReplay'](arg1);
+}
+
+export function DiscoverTrainingContent() {
+  return window['go']['main']['App']['DiscoverTrainingContent']();
 }
 
 export function DownloadAndInstallUpdate(arg1) {
@@ -20,6 +32,14 @@ export function DownloadAndInstallUpdate(arg1) {
 
 export function ExportRunReplay(arg1) {
   return window['go']['main']['App']['ExportRunReplay'](arg1);
+}
+
+export function ExportTrainingPlaylist() {
+  return window['go']['main']['App']['ExportTrainingPlaylist']();
+}
+
+export function GenerateTrainingPlan(arg1) {
+  return window['go']['main']['App']['GenerateTrainingPlan'](arg1);
 }
 
 export function GetAllBenchmarkProgresses() {
@@ -50,6 +70,10 @@ export function GetLastScenarioScores(arg1) {
   return window['go']['main']['App']['GetLastScenarioScores'](arg1);
 }
 
+export function GetPlayedScenarioNames() {
+  return window['go']['main']['App']['GetPlayedScenarioNames']();
+}
+
 export function GetRecentRuns(arg1) {
   return window['go']['main']['App']['GetRecentRuns'](arg1);
 }
@@ -78,6 +102,10 @@ export function GetRunTrace(arg1) {
   return window['go']['main']['App']['GetRunTrace'](arg1);
 }
 
+export function GetScenarioTrainingHistory(arg1) {
+  return window['go']['main']['App']['GetScenarioTrainingHistory'](arg1);
+}
+
 export function GetScreenCaptureInfo() {
   return window['go']['main']['App']['GetScreenCaptureInfo']();
 }
@@ -86,8 +114,44 @@ export function GetSettings() {
   return window['go']['main']['App']['GetSettings']();
 }
 
+export function GetTrainingExecution() {
+  return window['go']['main']['App']['GetTrainingExecution']();
+}
+
+export function GetTrainingLiveState() {
+  return window['go']['main']['App']['GetTrainingLiveState']();
+}
+
+export function GetTrainingSceneRequirements(arg1, arg2) {
+  return window['go']['main']['App']['GetTrainingSceneRequirements'](arg1, arg2);
+}
+
+export function GetTrainingState() {
+  return window['go']['main']['App']['GetTrainingState']();
+}
+
+export function GetTrainingWorkbench() {
+  return window['go']['main']['App']['GetTrainingWorkbench']();
+}
+
 export function GetVersion() {
   return window['go']['main']['App']['GetVersion']();
+}
+
+export function ImportTrainingBenchmarks() {
+  return window['go']['main']['App']['ImportTrainingBenchmarks']();
+}
+
+export function ImportTrainingPlaylist() {
+  return window['go']['main']['App']['ImportTrainingPlaylist']();
+}
+
+export function ImportTrainingSource(arg1) {
+  return window['go']['main']['App']['ImportTrainingSource'](arg1);
+}
+
+export function InstallTrainingPlaylist() {
+  return window['go']['main']['App']['InstallTrainingPlaylist']();
 }
 
 export function LaunchKovaaksPlaylist(arg1) {
@@ -106,8 +170,16 @@ export function QuitApp() {
   return window['go']['main']['App']['QuitApp']();
 }
 
+export function RecordTrainingTrialFeedback(arg1, arg2) {
+  return window['go']['main']['App']['RecordTrainingTrialFeedback'](arg1, arg2);
+}
+
 export function RefreshAllBenchmarkProgresses() {
   return window['go']['main']['App']['RefreshAllBenchmarkProgresses']();
+}
+
+export function RefreshTrainingLocal() {
+  return window['go']['main']['App']['RefreshTrainingLocal']();
 }
 
 export function ResetSettings(arg1, arg2, arg3, arg4) {
@@ -142,8 +214,20 @@ export function StopWatcher() {
   return window['go']['main']['App']['StopWatcher']();
 }
 
+export function TestTrainingReminder() {
+  return window['go']['main']['App']['TestTrainingReminder']();
+}
+
+export function TrainingAction(arg1) {
+  return window['go']['main']['App']['TrainingAction'](arg1);
+}
+
 export function UpdateSettings(arg1) {
   return window['go']['main']['App']['UpdateSettings'](arg1);
+}
+
+export function UpdateTrainingScenario(arg1) {
+  return window['go']['main']['App']['UpdateTrainingScenario'](arg1);
 }
 
 export function WriteCustomThemeCSS(arg1) {

@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const ts = require('typescript');
 const vm = require('node:vm');
 const output = ts.transpileModule(fs.readFileSync('src/features/training/api.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
-const sandbox = { exports: {} };
+const sandbox = { exports: {}, require: () => ({}) };
 vm.runInNewContext(output, sandbox);
 const { mergeLiveState } = sandbox.exports;
 

@@ -22,6 +22,7 @@ import (
 	"aimmeow/internal/scenarios"
 	appsettings "aimmeow/internal/settings"
 	"aimmeow/internal/training"
+	"aimmeow/internal/training/orchestration"
 	"aimmeow/internal/updater"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
@@ -31,7 +32,7 @@ import (
 type App struct {
 	trainingSvc    *training.Service
 	trainingErr    error
-	trainingCancel context.CancelFunc
+	trainingRunner *orchestration.Runner
 	ctx            context.Context
 	runsRuntimeSvc *runs.RuntimeService
 	settingsSvc    *appsettings.Service
@@ -658,8 +659,8 @@ func (a *App) hideWindow() {
 // It stops capture and performs best-effort cleanup of temporary segments;
 // startup cleanup removes any files that were locked or left by a forced exit.
 func (a *App) shutdown(ctx context.Context) {
-	if a.trainingCancel != nil {
-		a.trainingCancel()
+	if a.trainingRunner != nil {
+		a.trainingRunner.Stop()
 	}
 	if a.trainingSvc != nil {
 		_, _ = a.trainingSvc.Action("pause", time.Now(), a.GetRecentRuns(0))

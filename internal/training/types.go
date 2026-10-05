@@ -44,19 +44,6 @@ type Scenario struct {
 	ImportedCurriculum *Curriculum           `json:"-"`
 }
 
-// A content snapshot describes demands, not a calibrated difficulty score.
-type Mechanics struct {
-	FileSHA256      string   `json:"fileSHA256"`
-	DeclaredSkill   string   `json:"declaredSkill,omitempty"`
-	DeclaredSeconds int      `json:"declaredSeconds,omitempty"`
-	Tags            []string `json:"tags"`
-	Status          string   `json:"status"`
-	Role            string   `json:"role"`
-	GeometryStatus  string   `json:"geometryStatus"`
-	AngularSize     *float64 `json:"angularSize"`
-	TransitionAngle *float64 `json:"transitionAngle"`
-}
-
 type Candidate struct {
 	Title       string   `json:"title"`
 	URL         string   `json:"url"`
@@ -143,7 +130,7 @@ type DifficultyEvidence struct {
 	Samples       int                   `json:"samples"`
 }
 
-const currentPlannerVersion = 8
+const currentPlannerVersion = 9
 
 type Plan struct {
 	CurriculumCycle int                `json:"curriculumCycle,omitempty"`
@@ -180,6 +167,7 @@ type Plan struct {
 }
 
 type State struct {
+	DemandCoverage     []DemandCoverage           `json:"demandCoverage,omitempty"`
 	AnchorEvaluations  []AnchorEvaluation         `json:"anchorEvaluations,omitempty"`
 	PersonalAnchors    []PersonalAnchor           `json:"personalAnchors,omitempty"`
 	TrainingStudies    []TrainingStudy            `json:"trainingStudies,omitempty"`
