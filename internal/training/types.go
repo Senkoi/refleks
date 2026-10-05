@@ -147,6 +147,7 @@ type Plan struct {
 	CurriculumEnd   int                `json:"curriculumEnd,omitempty"`
 	CurriculumTotal int                `json:"curriculumTotal,omitempty"`
 	Theme           string             `json:"theme,omitempty"`
+	EndReason       string             `json:"endReason,omitempty"`
 	EndedAt         int64              `json:"endedAt,omitempty"`
 	ID              string             `json:"id"`
 	Created         string             `json:"created"`

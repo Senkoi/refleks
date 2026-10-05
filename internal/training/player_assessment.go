@@ -15,6 +15,7 @@ type AssessmentInput struct {
 	Runs        []models.RunRecord
 	Contexts    map[string]RunContext
 	Preferences Preferences
+	SessionGap  time.Duration
 	Now         time.Time
 }
 type PlayerAssessment struct {
@@ -38,7 +39,7 @@ type DemandCoverage struct {
 
 func AssessPlayer(in AssessmentInput) PlayerAssessment {
 	out := PlayerAssessment{Catalog: map[string]*CatalogAssessment{}, Tiers: map[string]string{}, Anchors: []PersonalAnchor{}, Coverage: []DemandCoverage{}}
-	anchors := personalAnchors(in.Catalog, in.Runs, in.Contexts, in.Now)
+	anchors := personalAnchors(in.Catalog, in.Runs, in.Contexts, in.Now, in.SessionGap)
 	references := automaticReferences(in.Catalog, in.Preferences)
 	obs := levelObservations(in.Runs, in.Now)
 	covered := map[string]*DemandCoverage{}

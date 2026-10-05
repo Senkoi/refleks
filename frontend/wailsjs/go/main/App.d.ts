@@ -66,6 +66,10 @@ export function GetTrainingExecution():Promise<training.LiveState>;
 
 export function GetTrainingLiveState():Promise<string>;
 
+export function GetTrainingPlanRunIDs(arg1:string):Promise<Array<string>>;
+
+export function GetTrainingProgress():Promise<training.TrainingProgressDTO>;
+
 export function GetTrainingSceneRequirements(arg1:string,arg2:string):Promise<sceneanalysis.Descriptor>;
 
 export function GetTrainingState():Promise<string>;
@@ -73,6 +77,8 @@ export function GetTrainingState():Promise<string>;
 export function GetTrainingWorkbench():Promise<training.WorkbenchDTO>;
 
 export function GetVersion():Promise<string>;
+
+export function GroupPracticeSessions(arg1:string):Promise<string>;
 
 export function ImportTrainingBenchmarks():Promise<number>;
 
@@ -101,6 +107,8 @@ export function ResetSettings(arg1:boolean,arg2:boolean,arg3:boolean,arg4:boolea
 export function SaveScenarioNote(arg1:string,arg2:string,arg3:string):Promise<void>;
 
 export function SaveSessionNote(arg1:string,arg2:string,arg3:string):Promise<void>;
+
+export function SaveTrainingSessionNote(arg1:string,arg2:string,arg3:string,arg4:Array<string>):Promise<void>;
 
 export function SetAutostart(arg1:boolean):Promise<void>;
 

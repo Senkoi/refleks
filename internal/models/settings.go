@@ -39,6 +39,7 @@ type ScenarioNote struct {
 
 // SessionNote holds user notes and name for a session.
 type SessionNote struct {
-	Name  string `json:"name"`
-	Notes string `json:"notes"`
+	MergedAliases []string `json:"mergedAliases,omitempty"`
+	Name          string   `json:"name"`
+	Notes         string   `json:"notes"`
 }

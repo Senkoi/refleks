@@ -122,6 +122,14 @@ export function GetTrainingLiveState() {
   return window['go']['main']['App']['GetTrainingLiveState']();
 }
 
+export function GetTrainingPlanRunIDs(arg1) {
+  return window['go']['main']['App']['GetTrainingPlanRunIDs'](arg1);
+}
+
+export function GetTrainingProgress() {
+  return window['go']['main']['App']['GetTrainingProgress']();
+}
+
 export function GetTrainingSceneRequirements(arg1, arg2) {
   return window['go']['main']['App']['GetTrainingSceneRequirements'](arg1, arg2);
 }
@@ -136,6 +144,10 @@ export function GetTrainingWorkbench() {
 
 export function GetVersion() {
   return window['go']['main']['App']['GetVersion']();
+}
+
+export function GroupPracticeSessions(arg1) {
+  return window['go']['main']['App']['GroupPracticeSessions'](arg1);
 }
 
 export function ImportTrainingBenchmarks() {
@@ -192,6 +204,10 @@ export function SaveScenarioNote(arg1, arg2, arg3) {
 
 export function SaveSessionNote(arg1, arg2, arg3) {
   return window['go']['main']['App']['SaveSessionNote'](arg1, arg2, arg3);
+}
+
+export function SaveTrainingSessionNote(arg1, arg2, arg3, arg4) {
+  return window['go']['main']['App']['SaveTrainingSessionNote'](arg1, arg2, arg3, arg4);
 }
 
 export function SetAutostart(arg1) {

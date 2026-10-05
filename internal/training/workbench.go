@@ -6,6 +6,7 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
+	"sort"
 	"time"
 )
 
@@ -51,12 +52,77 @@ type WorkbenchDTO struct {
 }
 
 type PlanHistorySummary struct {
-	ID         string  `json:"id"`
-	Created    string  `json:"created"`
-	Status     string  `json:"status"`
-	BlockCount int     `json:"blockCount"`
-	Minutes    int     `json:"minutes"`
-	Recorded   float64 `json:"recorded"`
+	ID              string  `json:"id"`
+	Created         string  `json:"created"`
+	Status          string  `json:"status"`
+	EndReason       string  `json:"endReason,omitempty"`
+	EndedAt         int64   `json:"endedAt,omitempty"`
+	BlockCount      int     `json:"blockCount"`
+	CompletedBlocks int     `json:"completedBlocks"`
+	ProcessedBlocks int     `json:"processedBlocks"`
+	Runs            int     `json:"runs"`
+	TargetRuns      int     `json:"targetRuns"`
+	Minutes         int     `json:"minutes"`
+	Elapsed         float64 `json:"elapsed"`
+	Recorded        float64 `json:"recorded"`
+}
+
+type TrainingProgressDTO struct {
+	Current     *PlanHistorySummary  `json:"current"`
+	RecentPlans []PlanHistorySummary `json:"recentPlans"`
+}
+
+func blockCompleted(b Block, mode string) bool {
+	if b.Runs <= 0 || b.Recorded <= 0 {
+		return false
+	}
+	if mode == "playlist" {
+		return b.Runs >= max(1, b.PlayCount)
+	}
+	return b.Outcome == "threshold" || b.Outcome == "measured" || b.Outcome == "time_limit" || b.Outcome == "list_complete"
+}
+
+func planSummary(p Plan) PlanHistorySummary {
+	v := PlanHistorySummary{ID: p.ID, Created: p.Created, Status: p.Status, EndReason: p.EndReason, EndedAt: p.EndedAt, BlockCount: len(p.Blocks), Minutes: p.Preferences.Minutes, Elapsed: p.Elapsed, Recorded: p.Recorded}
+	for _, b := range p.Blocks {
+		v.Runs += b.Runs
+		v.TargetRuns += max(1, b.PlayCount)
+		if blockCompleted(b, p.Preferences.ExecutionMode) {
+			v.CompletedBlocks++
+		}
+		if b.Outcome != "pending" && b.Outcome != "" {
+			v.ProcessedBlocks++
+		}
+	}
+	return v
+}
+
+// No catalog, assessment refresh or raw runs in the globally shared progress.
+func (s *Service) Progress() TrainingProgressDTO {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	v := TrainingProgressDTO{RecentPlans: []PlanHistorySummary{}}
+	if s.state.Plan != nil {
+		p := planSummary(*s.state.Plan)
+		v.Current = &p
+	}
+	for i := max(0, len(s.state.History)-30); i < len(s.state.History); i++ {
+		v.RecentPlans = append(v.RecentPlans, planSummary(s.state.History[i]))
+	}
+	return v
+}
+
+func (s *Service) PlanRunIDs(id string) []string {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	ids := []string{}
+	for run, ctx := range s.state.RunContexts {
+		if ctx.PlanID == id {
+			ids = append(ids, run)
+		}
+	}
+	sort.Strings(ids)
+	return ids
 }
 
 type GenerateRequest struct {
@@ -82,7 +148,7 @@ func (s *Service) Workbench(runs []models.RunRecord) (*WorkbenchDTO, error) {
 	view.DemandCoverage = st.DemandCoverage
 	for i := max(0, len(st.History)-10); i < len(st.History); i++ {
 		p := st.History[i]
-		view.RecentPlans = append(view.RecentPlans, PlanHistorySummary{p.ID, p.Created, p.Status, len(p.Blocks), p.Preferences.Minutes, p.Recorded})
+		view.RecentPlans = append(view.RecentPlans, planSummary(p))
 	}
 	view.AnchorEvaluations = append([]AnchorEvaluation(nil), view.AnchorEvaluations...)
 	for i := range view.AnchorEvaluations {
@@ -232,6 +298,8 @@ type LiveBlock struct {
 	Reason   string  `json:"reason"`
 }
 type LivePlan struct {
+	EndReason    string      `json:"endReason,omitempty"`
+	EndedAt      int64       `json:"endedAt,omitempty"`
 	ID           string      `json:"id"`
 	Status       string      `json:"status"`
 	Index        int         `json:"index"`
@@ -255,7 +323,7 @@ func (s *Service) Live() LiveState {
 	defer s.mu.Unlock()
 	v := LiveState{Revision: s.dataRevision, Initializing: s.state.Initializing, Notice: s.state.Notice, Error: s.state.Error}
 	if p := s.state.Plan; p != nil {
-		v.Plan = &LivePlan{ID: p.ID, Status: p.Status, Index: p.Index, Elapsed: p.Elapsed, Recorded: p.Recorded, BlockElapsed: p.BlockElapsed, Reminder: p.Reminder}
+		v.Plan = &LivePlan{EndReason: p.EndReason, EndedAt: p.EndedAt, ID: p.ID, Status: p.Status, Index: p.Index, Elapsed: p.Elapsed, Recorded: p.Recorded, BlockElapsed: p.BlockElapsed, Reminder: p.Reminder}
 		for _, b := range p.Blocks {
 			v.Plan.Blocks = append(v.Plan.Blocks, LiveBlock{b.Recorded, b.Runs, b.Best, b.Outcome, b.Target, b.Reason})
 		}

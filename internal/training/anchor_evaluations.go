@@ -6,7 +6,9 @@ import (
 	"strings"
 	"time"
 
+	"aimmeow/internal/constants"
 	"aimmeow/internal/models"
+	"aimmeow/internal/practice"
 )
 
 const dailyTrialProtocol = "daily_trial_v2"
@@ -78,53 +80,34 @@ func validExposure(r models.RunRecord, now time.Time) bool {
 }
 
 func sessionPositions(catalog []Scenario, runs []models.RunRecord, gap time.Duration, now time.Time) map[string]RunContext {
-	if gap <= 0 {
-		gap = 20 * time.Minute
-	}
 	themes := map[string]string{}
 	for _, c := range catalog {
 		themes[strings.ToLower(c.Name)] = scenarioTheme(c)
 	}
-	ordered := []models.RunRecord{}
-	seen := map[string]bool{}
+	records := map[string]models.RunRecord{}
 	for _, r := range runs {
-		if !seen[runKey(r)] && validExposure(r, now) {
-			ordered = append(ordered, r)
-			seen[runKey(r)] = true
+		if _, ok := records[runKey(r)]; !ok {
+			records[runKey(r)] = r
 		}
 	}
-	sort.Slice(ordered, func(i, j int) bool {
-		a, b := parseTime(ordered[i].Stats.Summary.DatePlayed), parseTime(ordered[j].Stats.Summary.DatePlayed)
-		if a.Equal(b) {
-			return runKey(ordered[i]) < runKey(ordered[j])
-		}
-		return a.Before(b)
-	})
 	out := map[string]RunContext{}
-	var last time.Time
-	session, ordinal, elapsed := "", 0, 0.0
-	sceneOrdinals := map[string]int{}
-	sceneSeconds, themeSeconds := map[string]float64{}, map[string]float64{}
-	for _, r := range ordered {
-		p := practiceSample(r)
-		start, end := time.UnixMilli(p.StartedAt), time.UnixMilli(p.At)
-		if last.IsZero() || start.Sub(last) >= gap {
-			session, ordinal, elapsed = "session-"+p.RunID, 0, 0
-			sceneOrdinals = map[string]int{}
-			sceneSeconds, themeSeconds = map[string]float64{}, map[string]float64{}
-		}
-		name := strings.ToLower(r.Stats.Summary.Scenario)
-		theme := themes[name]
-		ordinal++
-		sceneOrdinals[name]++
-		out[p.RunID] = RunContext{ContextVersion: 2, Scenario: r.Stats.Summary.Scenario, At: p.At, Signature: p.Signature,
-			SessionID: session, Ordinal: ordinal, SceneOrdinal: sceneOrdinals[name], PriorSeconds: elapsed,
-			PriorSceneSeconds: sceneSeconds[name], PriorThemeSeconds: themeSeconds[theme], ScoreValid: validPractice(r, now)}
-		elapsed += r.Stats.Summary.Duration
-		sceneSeconds[name] += r.Stats.Summary.Duration
-		themeSeconds[theme] += r.Stats.Summary.Duration
-		if end.After(last) {
-			last = end
+	for _, group := range practice.Group(practice.Entries(runs), gap, now) {
+		ordinal, elapsed := 0, 0.0
+		sceneOrdinals := map[string]int{}
+		sceneSeconds, themeSeconds := map[string]float64{}, map[string]float64{}
+		for _, id := range group.RunIDs {
+			r := records[id]
+			p := practiceSample(r)
+			name := strings.ToLower(r.Stats.Summary.Scenario)
+			theme := themes[name]
+			ordinal++
+			sceneOrdinals[name]++
+			out[id] = RunContext{ContextVersion: 2, Scenario: r.Stats.Summary.Scenario, At: p.At, Signature: p.Signature,
+				SessionID: group.ID, Ordinal: ordinal, SceneOrdinal: sceneOrdinals[name], PriorSeconds: elapsed,
+				PriorSceneSeconds: sceneSeconds[name], PriorThemeSeconds: themeSeconds[theme], ScoreValid: validPractice(r, now)}
+			elapsed += r.Stats.Summary.Duration
+			sceneSeconds[name] += r.Stats.Summary.Duration
+			themeSeconds[theme] += r.Stats.Summary.Duration
 		}
 	}
 	return out
@@ -135,7 +118,7 @@ func (s *Service) SetSessionGap(gap time.Duration) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if gap <= 0 {
-		gap = 20 * time.Minute
+		gap = constants.DefaultSessionGapMinutes * time.Minute
 	}
 	if gap != s.sessionGap {
 		s.sessionGap = gap
@@ -264,7 +247,7 @@ func (s *Service) assessmentRequests(plan *Plan, runs []models.RunRecord, now ti
 	if !s.assessmentAllowed(plan.Theme, now) {
 		return nil
 	}
-	anchors := personalAnchors(s.state.Catalog, runs, s.state.RunContexts, now)
+	anchors := personalAnchors(s.state.Catalog, runs, s.state.RunContexts, now, s.sessionGap)
 	limit := min(180, plan.Preferences.Minutes*60/10)
 	requests := []assessmentRequest{}
 	for i, b := range plan.Blocks {

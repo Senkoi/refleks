@@ -1,6 +1,7 @@
 import { getScenarioName } from "@/features/benchmarks/lib/detailFormatting";
 import { buildStreakActivity } from "@/features/overview/lib/streakActivity";
 import { useStore } from "@/shared/hooks";
+import { runId } from "@/shared/lib/practiceSessions";
 import { getLocale, translate } from "@/shared/lib/i18n";
 import type { RunRecord, Session } from "@/shared/types";
 import { useMemo } from "react";
@@ -217,6 +218,14 @@ export function useRecentSessionSnapshot(): RecentSessionSnapshot {
   }, [isInSession, sessions, locale]);
 }
 
+// Comparison keys come from the same backend contract as personal anchors.
+// Unbound/invalid runs remain visible in history but do not create trends.
+function comparableRun(item:RunRecord):boolean {
+ const s=item.stats?.summary;
+ return !!item.comparisonKey && !!s && Number.isFinite(s.score) && s.score>=0 && Number.isFinite(s.duration) && s.duration>0 && s.timeRemaining<=1 && !(s.pauseCount>0) && !(s.pauseDuration>0) && (s.avgTargetScale===0 || Math.abs(s.avgTargetScale-1)<=.001) && (s.avgTimeDilation===0 || Math.abs(s.avgTimeDilation-1)<=.001) && !(item.stats.events??[]).some(e=>e.cheated);
+}
+function profileKey(item:RunRecord):string {return getScenarioName(item).trim().toLowerCase()+"|"+(item.comparisonKey??"");}
+
 function computeLastRunStats(session: Session) {
   const empty = {
     scenario: "",
@@ -235,7 +244,7 @@ function computeLastRunStats(session: Session) {
 
   const result = {
     scenario,
-    score: score > 0 ? score : null,
+    score: Number.isFinite(score) && score >= 0 ? score : null,
     accuracy: Number.isFinite(accuracy) && accuracy > 0 ? accuracy : null,
     scoreTrend: null as "up" | "down" | "flat" | null,
     accTrend: null as "up" | "down" | "flat" | null,
@@ -243,7 +252,7 @@ function computeLastRunStats(session: Session) {
 
   // Find all runs of same scenario in this session for trend
   const sameScenarioRuns = session.items.filter(
-    (item) => getScenarioName(item).trim() === scenario,
+    (item) => comparableRun(item) && profileKey(item)===profileKey(lastItem),
   );
   if (sameScenarioRuns.length < 3) return result;
 
@@ -254,13 +263,13 @@ function computeLastRunStats(session: Session) {
   const lateRuns = ordered.slice(splitAt);
   if (earlyRuns.length === 0 || lateRuns.length === 0) return result;
 
-  const earlyScores = earlyRuns.map(readRunScore).filter((s) => s > 0);
-  const lateScores = lateRuns.map(readRunScore).filter((s) => s > 0);
+  const earlyScores = earlyRuns.map(readRunScore).filter((s) => s >= 0);
+  const lateScores = lateRuns.map(readRunScore).filter((s) => s >= 0);
   if (earlyScores.length > 0 && lateScores.length > 0) {
     const earlyAvg =
       earlyScores.reduce((a, b) => a + b, 0) / earlyScores.length;
     const lateAvg = lateScores.reduce((a, b) => a + b, 0) / lateScores.length;
-    const delta = earlyAvg > 0 ? (lateAvg - earlyAvg) / earlyAvg : 0;
+    const delta = (lateAvg - earlyAvg) / Math.max(earlyAvg, 1);
     result.scoreTrend = delta > 0.02 ? "up" : delta < -0.02 ? "down" : "flat";
   }
 
@@ -309,14 +318,14 @@ function computeRecentScores(session: Session, allSessions: Session[]) {
   for (const candidateSession of allSessions) {
     for (let index = 0; index < candidateSession.items.length; index++) {
       const item = candidateSession.items[index];
-      if (getScenarioName(item).trim() !== lastScenario) continue;
+      if (!comparableRun(item) || profileKey(item)!==profileKey(session.items[0])) continue;
       const score = readRunScore(item);
-      if (score <= 0) continue;
+      if (score < 0) continue;
       allScenarioRuns.push({
         ts: readRunTimestamp(item),
         score,
         inCurrentSession: candidateSession.id === session.id,
-        runId: item.filePath || `${candidateSession.id}:${index}`,
+        runId: runId(item),
         sessionId: candidateSession.id,
       });
     }
@@ -365,10 +374,10 @@ function readPerformance(
 
   for (const session of previousSessions) {
     for (const item of session.items) {
-      const name = getScenarioName(item).trim();
+      const name = profileKey(item);
       const score = readRunScore(item);
 
-      if (!name || score <= 0) continue;
+      if (!comparableRun(item) || score < 0) continue;
 
       const existing = historyByScenario.get(name);
       if (existing) {
@@ -382,11 +391,11 @@ function readPerformance(
   const comparableDeltas: number[] = [];
 
   for (const item of currentSession.items) {
-    const name = getScenarioName(item).trim();
+    const name = profileKey(item);
     const score = readRunScore(item);
     const history = historyByScenario.get(name);
 
-    if (!name || score <= 0 || !history || history.length < 3) continue;
+    if (!comparableRun(item) || score < 0 || !history || history.length < 3) continue;
 
     const baseline = median(history);
     if (baseline <= 0) continue;
@@ -476,11 +485,11 @@ function recommendSessionLength(
     const percentiles: number[] = [];
 
     for (const item of ordered) {
-      const name = getScenarioName(item).trim();
+      const name = profileKey(item);
       const score = readRunScore(item);
       const profile = scenarioProfiles.get(name);
 
-      if (!name || score <= 0 || !profile || profile.scores.length < 5)
+      if (!comparableRun(item) || score < 0 || !profile || profile.scores.length < 5)
         continue;
       percentiles.push(scoreToPercentile(score, profile));
     }
@@ -626,10 +635,10 @@ function buildScenarioProfiles(
 
   for (const session of sessions) {
     for (const item of session.items) {
-      const name = getScenarioName(item).trim();
+      const name = profileKey(item);
       const score = readRunScore(item);
 
-      if (!name || score <= 0) continue;
+      if (!comparableRun(item) || score < 0) continue;
 
       const existing = byScenario.get(name);
       if (existing) {
@@ -668,10 +677,10 @@ function readWithinSessionTrend(items: RunRecord[]): number | null {
   const scenarioScores = new Map<string, number[]>();
 
   for (const item of [...items].reverse()) {
-    const name = getScenarioName(item).trim();
+    const name = profileKey(item);
     const score = readRunScore(item);
 
-    if (!name || score <= 0) continue;
+    if (!comparableRun(item) || score < 0) continue;
 
     const existing = scenarioScores.get(name);
     if (existing) {

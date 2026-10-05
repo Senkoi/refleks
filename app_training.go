@@ -166,6 +166,18 @@ func (a *App) GetTrainingExecution() (training.LiveState, error) {
 	}
 	return a.trainingSvc.Live(), nil
 }
+func (a *App) GetTrainingProgress() (training.TrainingProgressDTO, error) {
+	if err := a.trainingReady(); err != nil {
+		return training.TrainingProgressDTO{}, err
+	}
+	return a.trainingSvc.Progress(), nil
+}
+func (a *App) GetTrainingPlanRunIDs(id string) ([]string, error) {
+	if err := a.trainingReady(); err != nil {
+		return nil, err
+	}
+	return a.trainingSvc.PlanRunIDs(id), nil
+}
 func (a *App) CreateTrainingPlan(request training.GenerateRequest) (*training.Plan, error) {
 	if err := a.trainingReady(); err != nil {
 		return nil, err

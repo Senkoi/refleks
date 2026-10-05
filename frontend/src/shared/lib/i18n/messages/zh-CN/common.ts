@@ -9,7 +9,7 @@ export const common: CommonMessages = {
     secondary: "次要",
     overview: "概览",
     history: "历史记录",
-    benchmarks: "基准训练",
+    benchmarks: "基准测试",
     favorites: "收藏夹",
     help: "帮助",
     support: "帮帮瞄瞄",
@@ -45,7 +45,7 @@ export const common: CommonMessages = {
   },
   widget: {
     expand: "展开",
-    noSessionLoaded: "未加载会话",
+    noSessionLoaded: "未加载训练时段",
   },
   dialog: {
     close: "关闭",

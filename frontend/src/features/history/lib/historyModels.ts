@@ -9,6 +9,7 @@ import {
   type MessageKey,
 } from "@/shared/lib";
 import type { RunRecord, Session, StatKey } from "@/shared/types";
+import { runId } from "@/shared/lib/practiceSessions";
 
 // Intl formatters are cached per locale so hot paths (e.g. one call per table
 // cell) never rebuild a formatter per invocation.
@@ -357,7 +358,7 @@ const RUN_STAT_FIELDS: RunStatFieldDefinition[] = [
 export function buildHistoryRuns(sessions: Session[]): HistoryRun[] {
   return sessions.flatMap((session) =>
     session.items.map((item, index) => ({
-      id: item.filePath || `${session.id}:${index}`,
+      id: runId(item),
       sessionId: session.id,
       session,
       item,

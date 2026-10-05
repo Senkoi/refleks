@@ -12,6 +12,7 @@ import (
 	"aimmeow/internal/benchmarks"
 	"aimmeow/internal/constants"
 	"aimmeow/internal/models"
+	"aimmeow/internal/practice"
 	"aimmeow/internal/process"
 	"aimmeow/internal/runs/mouse"
 	"aimmeow/internal/runs/screen"
@@ -172,6 +173,9 @@ func (s *RuntimeService) GetRecent(limit int) []models.RunRecord {
 		return nil
 	}
 
+	for i := range records {
+		records[i].ComparisonKey = practice.ComparisonKey(records[i].Stats.Summary)
+	}
 	for i, j := 0, len(records)-1; i < j; i, j = i+1, j-1 {
 		records[i], records[j] = records[j], records[i]
 	}
@@ -539,13 +543,18 @@ func (s *RuntimeService) SaveScenarioNote(scenario, notes, sens string) error {
 }
 
 func (s *RuntimeService) SaveSessionNote(sessionID, name, notes string) error {
+	return s.SaveTrainingSessionNote(sessionID, name, notes, nil)
+}
+
+func (s *RuntimeService) SaveTrainingSessionNote(sessionID, name, notes string, aliases []string) error {
 	current := s.settingsSvc.Get()
 	if current.SessionNotes == nil {
 		current.SessionNotes = make(map[string]models.SessionNote)
 	}
 	current.SessionNotes[sessionID] = models.SessionNote{
-		Name:  name,
-		Notes: notes,
+		MergedAliases: append([]string(nil), aliases...),
+		Name:          name,
+		Notes:         notes,
 	}
 	return s.settingsSvc.Update(current)
 }

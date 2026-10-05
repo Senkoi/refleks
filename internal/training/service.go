@@ -31,6 +31,10 @@ func New(dir string) (*Service, error) {
 		return nil, err
 	}
 	s.state = loaded
+	normalizePlanEnd(s.state.Plan)
+	for i := range s.state.History {
+		normalizePlanEnd(&s.state.History[i])
+	}
 	// Keep version 1 readable: the new multi-system field extends the JSON
 	// schema without dropping its original benchmark and score cutoffs.
 	for i := range s.state.Catalog {
@@ -85,4 +89,22 @@ func (s *Service) Snapshot(runs []models.RunRecord) State {
 	var copy State
 	_ = json.Unmarshal(b, &copy)
 	return copy
+}
+
+// Legacy "completed" meant ended for every reason. Do not invent full completion.
+func normalizePlanEnd(p *Plan) {
+	if p == nil || p.Status != "completed" || p.EndReason != "" {
+		return
+	}
+	p.EndReason = "legacy_unknown"
+	complete := len(p.Blocks) > 0
+	for _, b := range p.Blocks {
+		complete = complete && blockCompleted(b, p.Preferences.ExecutionMode)
+		if b.Outcome == "session_limit" {
+			p.EndReason = "time_budget"
+		}
+	}
+	if complete {
+		p.EndReason = "plan_complete"
+	}
 }
