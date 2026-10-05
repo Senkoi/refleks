@@ -283,6 +283,9 @@ func progressionCandidatesWithReport(t Curriculum, catalog []Scenario, runs []mo
 				continue
 			}
 			ref, aligned := explorationReference(c, levels, p)
+			if !aligned && fit.Fit == "unknown" {
+				ref, aligned = entryProbeReference(c, p)
+			}
 			nextRoster := false
 			for _, m := range memberships(c) {
 				series, _ := benchmarkSeries(m.System)

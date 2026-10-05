@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"path/filepath"
 	"reflect"
+	"strings"
 	"testing"
 	"time"
 
@@ -239,4 +240,80 @@ func TestGuidanceSharesPlanAndDoesNotGenerateOrRewriteIt(t *testing.T) {
 	if next := s.Guidance(runs); next.Mode != "next" || next.Theme != guide.Theme {
 		t.Fatal(next)
 	}
+}
+
+func TestOtherSystemEntryProbesDoNotTransferRanks(t *testing.T) {
+	template, catalog, runs := explorationFixture(epoch)
+	entry := catalog[2]
+	entry.Name, entry.Classification = "Revosect entry scene", "benchmark"
+	entry.Benchmarks = []BenchmarkMembership{{Name: "Revosect S5 / Entry", System: "Revosect S5", NativeDifficulty: "Entry", Category: "Clicking", Group: "Static", Ranks: []string{"first", "second"}, Thresholds: []float64{100, 200}}}
+	higher := entry
+	higher.Name = "Revosect higher scene"
+	higher.Benchmarks = append([]BenchmarkMembership(nil), entry.Benchmarks...)
+	higher.Benchmarks[0].Name, higher.Benchmarks[0].NativeDifficulty = "Revosect S5 / Intermediate", "Intermediate"
+	candidates := progressionCandidates(template, append(catalog[:2], entry, higher), runs, defaults(), epoch, nil, false)
+	if len(candidates) != 1 || candidates[0].scenario.Name != entry.Name || candidates[0].kind != "explore" || candidates[0].fit.Fit != "unknown" {
+		t.Fatal("entry probe invented rank alignment or admitted a higher roster", candidates)
+	}
+	p := automaticReferences([]Scenario{entry, higher}, defaults())
+	if _, ok := explorationReference(entry, PlayerLevels(catalog, runs, epoch), p); ok {
+		t.Fatal("entry discovery changed the formal native-evidence gate")
+	}
+	for i := 0; i < 3; i++ {
+		runs = append(runs, record(fmt.Sprintf("hard-entry-%d", i), entry.Name, 60, 10, epoch.Add(-time.Duration(i+1)*time.Minute)))
+	}
+	if candidates = progressionCandidates(template, append(catalog[:2], entry, higher), runs, defaults(), epoch, nil, false); len(candidates) != 0 {
+		t.Fatal("known poor fit was disguised as an unknown probe", candidates)
+	}
+}
+
+func TestBundledReferencesOfferNonVDIMProbesBeforeFullRoutine(t *testing.T) {
+	s, err := New(t.TempDir())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err = s.InitializeTraining(); err != nil {
+		t.Fatal(err)
+	}
+	for _, template := range s.state.Curricula {
+		if template.Theme != "static" || template.Tier != "novice" {
+			continue
+		}
+		runs := []models.RunRecord{}
+		for _, row := range template.Rows {
+			for i := 0; i < 3; i++ {
+				runs = append(runs, record(fmt.Sprintf("%s-%d", row.Name, i), row.Name, 60, 100, epoch.Add(-time.Duration(i+1)*time.Minute)))
+			}
+		}
+		candidates := progressionCandidates(template, s.state.Catalog, runs, defaults(), epoch, s.state.Curricula, false)
+		isOutside := func(c Scenario) bool {
+			outside := true
+			for _, source := range c.Sources {
+				if strings.Contains(strings.ToUpper(source.Title), "VDIM") {
+					outside = false
+				}
+			}
+			return outside
+		}
+		found := false
+		for _, c := range candidates {
+			if isOutside(c.scenario) && c.kind == "explore" && c.fit.Fit == "unknown" && c.reference.System != "" {
+				t.Logf("bundled non-VDIM candidate: %s (%s)", c.scenario.Name, c.reference.Name)
+				found = true
+				break
+			}
+		}
+		if !found {
+			t.Fatal("real bundled data still restricts candidates to VDIM")
+		}
+		extra, report, _ := selectTrainingExtras(template, s.state.Catalog, runs, nil, nil, defaults(), epoch, false, 60, rand.New(rand.NewSource(1)), s.state.Curricula)
+		for _, block := range extra.after {
+			if isOutside(block.Scenario) {
+				t.Logf("bundled non-VDIM selection: %s (%d exploration seconds)", block.Scenario.Name, report.UsedSeconds)
+				return
+			}
+		}
+		t.Fatal("actual allocation lost all non-VDIM candidates", report)
+	}
+	t.Fatal("bundled static novice routine missing")
 }
