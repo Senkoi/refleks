@@ -138,8 +138,8 @@ func workbenchScenario(s Scenario) Scenario {
 		if a.Requirements != nil {
 			r := *a.Requirements
 			r.Definitions = nil
-			r.Axes = nil
-			r.Slots = nil
+			r.Axes = []sceneanalysis.RequirementAxis{}
+			r.Slots = []sceneanalysis.Slot{}
 			r.Hazards = nil
 			r.Influences = nil
 			if r.Map != nil {
@@ -147,23 +147,23 @@ func workbenchScenario(s Scenario) Scenario {
 				m.Objects = nil
 				r.Map = &m
 			}
-			r.Targets = append([]sceneanalysis.Target(nil), r.Targets...)
-			r.Helpers = append([]sceneanalysis.Target(nil), r.Helpers...)
+			r.Targets = append([]sceneanalysis.Target{}, r.Targets...)
+			r.Helpers = append([]sceneanalysis.Target{}, r.Helpers...)
 			for i := range r.Targets {
 				r.Targets[i].DodgeEntries = nil
 				r.Targets[i].Abilities = nil
-				r.Targets[i].Facts = nil
+				r.Targets[i].Facts = []sceneanalysis.Fact{}
 				r.Targets[i].Windows = nil
 				r.Targets[i].MotionModels = nil
 			}
 			for i := range r.Helpers {
 				r.Helpers[i].DodgeEntries = nil
 				r.Helpers[i].Abilities = nil
-				r.Helpers[i].Facts = nil
+				r.Helpers[i].Facts = []sceneanalysis.Fact{}
 				r.Helpers[i].Windows = nil
 				r.Helpers[i].MotionModels = nil
 			}
-			r.Features = append([]sceneanalysis.Fact(nil), r.Features...)
+			r.Features = append([]sceneanalysis.Fact{}, r.Features...)
 			for i := range r.Features {
 				r.Features[i].Sources = nil
 			}

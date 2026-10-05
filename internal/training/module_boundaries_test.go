@@ -43,6 +43,36 @@ func TestWorkbenchSummaryAndOnDemandVersionedInspection(t *testing.T) {
 		t.Fatal("incorrect content binding accepted")
 	}
 }
+
+func TestWorkbenchRequirementSummaryKeepsEmptyJSONArrays(t *testing.T) {
+	_, _, assessment, err := ParseLocalSCE([]byte(localSCEFixture))
+	if err != nil {
+		t.Fatal(err)
+	}
+	before, _ := json.Marshal(assessment)
+	view := workbenchScenario(Scenario{LocalAssessment: assessment})
+	data, err := json.Marshal(view.LocalAssessment.Requirements)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var wire map[string]json.RawMessage
+	if err := json.Unmarshal(data, &wire); err != nil {
+		t.Fatal(err)
+	}
+	for _, key := range []string{"helpers", "axes", "slots"} {
+		if string(wire[key]) != "[]" {
+			t.Fatalf("%s must be an empty array, got %s", key, wire[key])
+		}
+	}
+	if view.LocalAssessment.Requirements.Targets[0].Facts == nil {
+		t.Fatal("target summary facts must be an empty array")
+	}
+	after, _ := json.Marshal(assessment)
+	if string(before) != string(after) {
+		t.Fatal("workbench summary mutated the stored descriptor")
+	}
+}
+
 func TestGenerationWriteFailureRollsBackPlanAndReservations(t *testing.T) {
 	s, _ := templateFixture(t)
 	old, err := s.Generate(defaults(), nil)

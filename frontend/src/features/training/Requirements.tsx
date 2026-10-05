@@ -57,15 +57,16 @@ export function RequirementDetails({scenario:s}:{scenario:Scenario}){
  },[open,s.name,summary?.fileSHA256]);
  const d=detail ?? summary;
  if(!d)return null;
+ const targets=d.targets ?? [],helpers=d.helpers ?? [];
  const count=d.scoringMin!=null && d.scoringMax!=null ? d.scoringMin===d.scoringMax ? String(d.scoringMin) : `${d.scoringMin}–${d.scoringMax}` : "未知";
  return <details className="training-requirements" onToggle={e=>setOpen(e.currentTarget.open)}><summary>查看六维场景需求</summary>{open && <div>
-  <p>计分候选角色 {d.targets.length} 种 · 辅助角色 {d.helpers.length} 种 · 计分槽位 {count}</p>
+  <p>计分候选角色 {targets.length} 种 · 辅助角色 {helpers.length} 种 · 计分槽位 {count}</p>
   <p className="training-muted">槽位为轮换阶段的候选范围；配置速度上限不等于实际速度。未知值不会按 0 参与排序。</p>
   {!!d.slots?.length && <details><summary>生成与轮换条目</summary>{d.slots.map((slot,i)=><p key={i}>{i+1}. {slot.reference} → {(slot.candidates ?? []).join(" → ") || "未解析"}</p>)}</details>}
   {error && <p role="alert">{error}</p>}{!detail && !error && <p>正在读取此版本的详细需求…</p>}
-  {(d.axes ?? []).map(axis=><details key={axis.key}><summary>{axisLabels[axis.key] ?? axis.key}</summary><ul>{axis.facts.map((f,i)=><FactRow key={i} fact={f}/>)}</ul></details>)}
-  {d.targets.map(t=><div key={t.bot}><small>{t.bot} · {t.dodgeGate==="off" ? "自主 Dodge 关闭" : t.dodgeGate==="candidate_on" ? "自主 Dodge 已配置" : "自主 Dodge 未知"}</small>{t.motionModels?.map((m,i)=><p key={i}>{m.axis==="LR"?"左右":"前后"}间隔 {m.dwellMin}–{m.dwellMax} 配置秒；一维周期假设下，中点间隔的速度峰值 {m.midpointEnvelope?.peakSpeed.toFixed(3)}、位移范围 {m.midpointEnvelope?.centerExcursion.toFixed(3)}。<TrainingHelp label="变向联合推算">速度、加速度和间隔共同决定此理想模型的运动包络。间隔更短也可能变成更慢、更小的抖动，所以不把变向频率单独当作难度系数。这不是游戏目标的实测路径。</TrainingHelp></p>)}</div>)}
-  {d.map && <p>地图声明：生成点 {(d.map.counts.SpawnPoint ?? 0)+(d.map.counts.PlayerSpawn ?? 0)} · 生成体积 {d.map.counts.SpawnVolume ?? 0} · 伤害区域 {d.map.counts.Hurt ?? 0}。尚未验证碰撞、视线、相机与体积尺度。</p>}
+  {(d.axes ?? []).map(axis=><details key={axis.key}><summary>{axisLabels[axis.key] ?? axis.key}</summary><ul>{(axis.facts ?? []).map((f,i)=><FactRow key={i} fact={f}/>)}</ul></details>)}
+  {targets.map(t=><div key={t.bot}><small>{t.bot} · {t.dodgeGate==="off" ? "自主 Dodge 关闭" : t.dodgeGate==="candidate_on" ? "自主 Dodge 已配置" : "自主 Dodge 未知"}</small>{t.motionModels?.map((m,i)=><p key={i}>{m.axis==="LR"?"左右":"前后"}间隔 {m.dwellMin}–{m.dwellMax} 配置秒；一维周期假设下，中点间隔的速度峰值 {m.midpointEnvelope?.peakSpeed.toFixed(3)}、位移范围 {m.midpointEnvelope?.centerExcursion.toFixed(3)}。<TrainingHelp label="变向联合推算">速度、加速度和间隔共同决定此理想模型的运动包络。间隔更短也可能变成更慢、更小的抖动，所以不把变向频率单独当作难度系数。这不是游戏目标的实测路径。</TrainingHelp></p>)}</div>)}
+  {d.map && <p>地图声明：生成点 {d.map.counts ? (d.map.counts.SpawnPoint ?? 0)+(d.map.counts.PlayerSpawn ?? 0) : "未知"} · 生成体积 {d.map.counts ? d.map.counts.SpawnVolume ?? 0 : "未知"} · 伤害区域 {d.map.counts ? d.map.counts.Hurt ?? 0 : "未知"}。尚未验证碰撞、视线、相机与体积尺度。</p>}
   {d.hazards?.map((h,i)=><p key={i}>{h.character} 连续处于伤害区域的条件存活范围：{h.minSeconds}–{h.maxSeconds} 配置秒；假设伤害生效、无免疫或外部治疗，不能据此确认阶段长度。</p>)}
  </div>}</details>;
 }
@@ -80,10 +81,10 @@ export function RequirementCompare({catalog}:{catalog:Scenario[]}){
   <label>候选图<select aria-label="需求候选图" value={b} onChange={e=>select("b",e.target.value)}><option value="">选择已解析场景</option>{available.filter(s=>s.name!==a).map(s=><option key={s.name} value={s.name}>{s.name}</option>)}</select></label>
   <button disabled={!a||!b||a===b||busy} onClick={()=>void run()}>{busy?"比较中…":"比较"}</button></div>
   {error && <p role="alert">{error}</p>}{result && <div><p><strong>{kindLabels[result.result.kind] ?? result.result.kind}</strong> · {directions[result.result.direction] ?? result.result.direction}</p>
-   <table><thead><tr><th>配置维度</th><th>参考图</th><th>候选图</th><th>差值</th></tr></thead><tbody>{result.result.axes.map(axis=><tr key={axis.key}><td>{factLabels[axis.key] ?? axis.key}</td><td>{axis.a?.toFixed(4) ?? "未知"}</td><td>{axis.b?.toFixed(4) ?? "未知"}</td><td>{axis.delta?.toFixed(4) ?? "未知"}</td></tr>)}</tbody></table>
+   <table><thead><tr><th>配置维度</th><th>参考图</th><th>候选图</th><th>差值</th></tr></thead><tbody>{(result.result.axes ?? []).map(axis=><tr key={axis.key}><td>{factLabels[axis.key] ?? axis.key}</td><td>{axis.a?.toFixed(4) ?? "未知"}</td><td>{axis.b?.toFixed(4) ?? "未知"}</td><td>{axis.delta?.toFixed(4) ?? "未知"}</td></tr>)}</tbody></table>
    <p>这些是条件配置描述，不是成功率或总难度分。{result.result.neighborDistance!=null ? "完整、可比的需求只在原有候选范围内辅助排序，不触发自动升级。" : "存在缺失或机制差异，此次不用于整体排序。"}</p>
-   {!!result.result.unknown.length && <details><summary>无法排序的原因</summary><ul>{result.result.unknown.map(reason=><li key={reason}>{reasonText(reason)}</li>)}</ul></details>}
-   {!!result.result.changedMechanisms.length && <p>发生变化的机制：{result.result.changedMechanisms.map(m=>(({map_geometry:"地图几何",configuration_outside_supported_caps:"支持范围以外的配置"} as Record<string,string>)[m] ?? m)).join("、")}</p>}
+   {!!result.result.unknown?.length && <details><summary>无法排序的原因</summary><ul>{result.result.unknown.map(reason=><li key={reason}>{reasonText(reason)}</li>)}</ul></details>}
+   {!!result.result.changedMechanisms?.length && <p>发生变化的机制：{result.result.changedMechanisms.map(m=>(({map_geometry:"地图几何",configuration_outside_supported_caps:"支持范围以外的配置"} as Record<string,string>)[m] ?? m)).join("、")}</p>}
   </div>}
  </div>}</details>;
 }
