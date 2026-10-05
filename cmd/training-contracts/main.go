@@ -16,7 +16,7 @@ func main() {
 	expected := contracts.Generate()
 	if *check {
 		actual, err := os.ReadFile(*path)
-		if err != nil || !bytes.Equal(actual, expected) {
+		if err != nil || !contractsMatch(actual, expected) {
 			fmt.Fprintln(os.Stderr, "training DTO contracts are stale; run go run ./cmd/training-contracts")
 			os.Exit(1)
 		}
@@ -26,4 +26,10 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
+}
+
+func contractsMatch(actual, expected []byte) bool {
+	// Windows checkouts may use CRLF; line endings do not change the contract.
+	actual = bytes.ReplaceAll(actual, []byte("\r\n"), []byte("\n"))
+	return bytes.Equal(actual, expected)
 }
