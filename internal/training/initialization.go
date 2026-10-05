@@ -1,11 +1,12 @@
 package training
 
 import (
+	"aimmeow/internal/models"
 	_ "embed"
 	"encoding/json"
 	"fmt"
+	"math"
 	"math/rand"
-	"aimmeow/internal/models"
 	"strings"
 	"time"
 )
@@ -68,7 +69,16 @@ func (s *Service) InitializeTraining() error {
 }
 
 func automaticTrainingPreferences(p Preferences) Preferences {
-	p.Variety = min(p.Variety, .1)
+	if p.ExplorationMode == "off" || p.ExplorationMode == "" && p.Variety == 0 {
+		p.ExplorationMode = "off"
+		p.Variety = 0
+	} else {
+		p.ExplorationMode = "auto"
+		if p.Variety <= 0 || math.IsNaN(p.Variety) || math.IsInf(p.Variety, 0) {
+			p.Variety = .1
+		}
+		p.Variety = min(p.Variety, .1)
+	}
 	p.PlanningPolicy = "curriculum"
 	p.ExecutionMode = "playlist"
 	p.AutoAdvance = false
@@ -115,9 +125,9 @@ func curriculumWindowWithReserve(t Curriculum, catalog []Scenario, runs []models
 	end, used := start, 0
 	totalUsable := p.Minutes * 60 * 9 / 10
 	usable := max(0, totalUsable-reserved)
-	if legacyTrials && (progress.EverCompleted || curriculumBaseline(t, history)) {
+	if legacyTrials && p.Variety > 0 {
 		// Reserve actual eligible whole trials, not an empty fixed percentage.
-		extras, _ := selectProgression(progressionCandidates(t, catalog, runs, p, now, templates), totalUsable, totalUsable, p, rand.New(rand.NewSource(0)))
+		extras, _ := selectProgression(progressionCandidates(t, catalog, runs, p, now, templates, progress.EverCompleted || curriculumBaseline(t, history)), totalUsable, totalUsable, p, rand.New(rand.NewSource(0)))
 		for _, c := range extras {
 			usable -= c.seconds
 		}

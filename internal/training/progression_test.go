@@ -173,8 +173,8 @@ func TestAdjacentOfficialTemplateTrialsPreserveFoundationAndBudget(t *testing.T)
 		t.Fatal("budget or original sequence changed", challenge, unknown, total)
 	}
 	first, err := GenerateCurriculum(template, pool, runs, p, epoch, rand.New(rand.NewSource(0)), false, templates...)
-	if err != nil || len(first.Blocks) != 1 {
-		t.Fatal("first foundation session changed", err)
+	if err != nil || len(first.Blocks) < 2 || first.Blocks[0].Scenario.Name != base.Name {
+		t.Fatal("familiar task could not progress before full-template completion", err)
 	}
 	// Strict native alignment must not re-admit a stale higher PB after local decline.
 	levels := []PlayerLevel{{Theme: "static", System: "Voltaic S5", NativeDifficulty: "Novice", Category: "Clicking", Group: "Small", Tier: "novice", Status: "inferred"}, {Theme: "static", System: "Voltaic S5", NativeDifficulty: "Advanced", Category: "Clicking", Group: "Small", Tier: "advanced", Status: "estimated"}}

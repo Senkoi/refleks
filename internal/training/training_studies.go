@@ -240,8 +240,12 @@ func studyOpen(st TrainingStudy) bool {
 	return st.Status == "planned" || st.Status == "waiting" || st.Status == "due" || st.Status == "transfer_due"
 }
 
-func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunRecord, contexts map[string]RunContext, studies []TrainingStudy, now time.Time, p Preferences, explored bool, firstSeconds int, rng *rand.Rand) personalizationBundle {
+func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunRecord, contexts map[string]RunContext, studies []TrainingStudy, now time.Time, p Preferences, _ bool, firstSeconds int, rng *rand.Rand, reports ...*ExplorationReport) personalizationBundle {
 	bundle := personalizationBundle{}
+	var report *ExplorationReport
+	if len(reports) > 0 {
+		report = reports[0]
+	}
 	obs := observed(runs)
 	byName := map[string]Scenario{}
 	for _, s := range catalog {
@@ -250,7 +254,7 @@ func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunR
 	available := p.Minutes*60*9/10 - firstSeconds
 	// The selected category and its continuation are immutable. Legacy tests
 	// retain their results/windows but cannot force a category or block a probe.
-	if !explored || p.Variety <= 0 || available <= 0 {
+	if p.Variety <= 0 || available <= 0 {
 		return bundle
 	}
 	anchors := personalAnchors(catalog, runs, contexts, now)
@@ -336,12 +340,14 @@ func preparePersonalization(t Curriculum, catalog []Scenario, runs []models.RunR
 		timing := estimateTiming(c.scene, obs[strings.ToLower(c.scene.Name)], now)
 		trialSeconds := 2 * timing.Seconds
 		if trialSeconds > int(float64(p.Minutes*60*9/10)*min(p.Variety, .1)) {
+			report.reject(c.scene.Name, "whole_run_budget")
 			continue
 		}
 		st := TrainingStudy{ID: fmt.Sprintf("study-%d-%x", now.UnixMilli(), rng.Uint32()), Theme: t.Theme, AnchorScenario: c.anchor.Name,
 			TrainingScenario: c.scene.Name, AnchorHash: c.anchor.LocalAssessment.FileSHA256, TrainingHash: c.scene.LocalAssessment.FileSHA256,
 			Relation: *c.relation, Status: "planned", CreatedAt: now.UnixMilli()}
 		if trialSeconds > available {
+			report.reject(c.scene.Name, "whole_run_budget")
 			continue
 		}
 		st.ProtocolID = dailyTrialProtocol

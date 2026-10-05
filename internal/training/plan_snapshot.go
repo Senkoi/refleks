@@ -5,6 +5,7 @@ import "encoding/json"
 // PlanDefinition is the immutable selection/configuration snapshot. Execution
 // is stored independently; the legacy Plan is assembled only at the boundary.
 type PlanDefinition struct {
+	Exploration     *ExplorationReport `json:"exploration,omitempty"`
 	CurriculumCycle int                `json:"curriculumCycle,omitempty"`
 	SelectionReason string             `json:"selectionReason,omitempty"`
 	Progression     *ProgressionBudget `json:"progression,omitempty"`
@@ -79,6 +80,7 @@ func definePlan(p *Plan) *PlanDefinition {
 		return nil
 	}
 	d := &PlanDefinition{
+		Exploration:     p.Exploration,
 		CurriculumCycle: p.CurriculumCycle,
 		SelectionReason: p.SelectionReason,
 		Progression:     p.Progression,
@@ -167,6 +169,7 @@ func assemblePlan(d *PlanDefinition, e *ExecutionProgress) *Plan {
 		return nil
 	}
 	p := &Plan{
+		Exploration:     d.Exploration,
 		CurriculumCycle: d.CurriculumCycle,
 		SelectionReason: d.SelectionReason,
 		Progression:     d.Progression,

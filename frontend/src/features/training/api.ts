@@ -1,4 +1,4 @@
-import { GetTrainingWorkbench, GetTrainingExecution, CreateTrainingPlan, CompareTrainingScenes, GetTrainingSceneRequirements, GetTrainingProgress, GetTrainingPlanRunIDs } from "@wails/go/main/App";
+import { GetTrainingWorkbench, GetTrainingExecution, CreateTrainingPlan, CompareTrainingScenes, GetTrainingSceneRequirements, GetTrainingProgress, GetTrainingPlanRunIDs, GetTrainingGuidance } from "@wails/go/main/App";
 import type { Block, Preferences, WorkbenchDTO as State, LiveState, Plan, ScenarioComparison } from "./contracts.generated";
 export type { Block, Preferences, Plan, Scenario, PersonalAnchor, TrainingStudy, AnchorEvaluation, LiveState, ScenarioComparison } from "./contracts.generated";
 export type { WorkbenchDTO as State } from "./contracts.generated";
@@ -51,3 +51,4 @@ export async function readRequirements(name:string,hash:string):Promise<import("
 
 export async function readTrainingProgress():Promise<import("./contracts.generated").TrainingProgressDTO>{desktopBridge();return await GetTrainingProgress() as unknown as import("./contracts.generated").TrainingProgressDTO;}
 export async function readPlanRunIDs(id:string):Promise<string[]>{desktopBridge();return await GetTrainingPlanRunIDs(id) ?? [];}
+export async function readTrainingGuidance():Promise<import("./contracts.generated").TrainingGuidance>{desktopBridge();return await GetTrainingGuidance() as unknown as import("./contracts.generated").TrainingGuidance;}

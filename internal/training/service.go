@@ -9,6 +9,7 @@ import (
 )
 
 type Service struct {
+	guidance     guidanceCache
 	mu           sync.Mutex
 	dataRevision uint64
 	assessmentCache

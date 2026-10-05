@@ -59,19 +59,20 @@ type Discovery struct {
 }
 
 type Preferences struct {
-	ReviewTheme    string   `json:"-"`
-	PlanningPolicy string   `json:"planningPolicy,omitempty"`
-	CurriculumID   string   `json:"curriculumId,omitempty"`
-	Minutes        int      `json:"minutes"`
-	ExecutionMode  string   `json:"executionMode"`
-	Focus          string   `json:"focus"`
-	Difficulty     string   `json:"difficulty"`
-	Benchmark      string   `json:"benchmark"`
-	Benchmarks     []string `json:"benchmarks,omitempty"`
-	Variety        float64  `json:"variety"`
-	ThresholdRatio float64  `json:"thresholdRatio"`
-	AutoAdvance    bool     `json:"autoAdvance"`
-	AutoDiscover   bool     `json:"autoDiscover"`
+	ExplorationMode string   `json:"explorationMode,omitempty"`
+	ReviewTheme     string   `json:"-"`
+	PlanningPolicy  string   `json:"planningPolicy,omitempty"`
+	CurriculumID    string   `json:"curriculumId,omitempty"`
+	Minutes         int      `json:"minutes"`
+	ExecutionMode   string   `json:"executionMode"`
+	Focus           string   `json:"focus"`
+	Difficulty      string   `json:"difficulty"`
+	Benchmark       string   `json:"benchmark"`
+	Benchmarks      []string `json:"benchmarks,omitempty"`
+	Variety         float64  `json:"variety"`
+	ThresholdRatio  float64  `json:"thresholdRatio"`
+	AutoAdvance     bool     `json:"autoAdvance"`
+	AutoDiscover    bool     `json:"autoDiscover"`
 }
 
 type SkillStatus struct {
@@ -130,9 +131,10 @@ type DifficultyEvidence struct {
 	Samples       int                   `json:"samples"`
 }
 
-const currentPlannerVersion = 9
+const currentPlannerVersion = 10
 
 type Plan struct {
+	Exploration     *ExplorationReport `json:"exploration,omitempty"`
 	CurriculumCycle int                `json:"curriculumCycle,omitempty"`
 	SelectionReason string             `json:"selectionReason,omitempty"`
 	Progression     *ProgressionBudget `json:"progression,omitempty"`

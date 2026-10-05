@@ -29,6 +29,7 @@ func evaluationFingerprint(runs []models.RunRecord, revision uint64) string {
 // WorkbenchDTO is a UI contract, not the persisted aggregate. Execution-only
 // polling uses LiveState; history, raw definitions and run contexts stay backend.
 type WorkbenchDTO struct {
+	Guidance          TrainingGuidance         `json:"guidance"`
 	DemandCoverage    []DemandCoverage         `json:"demandCoverage,omitempty"`
 	Version           int                      `json:"version"`
 	Revision          uint64                   `json:"revision"`
@@ -68,6 +69,7 @@ type PlanHistorySummary struct {
 }
 
 type TrainingProgressDTO struct {
+	Guidance    *TrainingGuidance    `json:"guidance,omitempty"`
 	Current     *PlanHistorySummary  `json:"current"`
 	RecentPlans []PlanHistorySummary `json:"recentPlans"`
 }
@@ -102,6 +104,9 @@ func (s *Service) Progress() TrainingProgressDTO {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	v := TrainingProgressDTO{RecentPlans: []PlanHistorySummary{}}
+	if !s.state.Initializing {
+		v.Guidance = currentGuidance(s.state.Plan)
+	}
 	if s.state.Plan != nil {
 		p := planSummary(*s.state.Plan)
 		v.Current = &p
@@ -145,6 +150,7 @@ func (s *Service) Workbench(runs []models.RunRecord) (*WorkbenchDTO, error) {
 	st := s.state
 	view := WorkbenchDTO{Version: st.Version, Revision: s.dataRevision, Catalog: st.Catalog, Preferences: st.Preferences, Plan: st.Plan, Skills: st.Skills, Discovery: st.Discovery, PlayerLevels: st.PlayerLevels, PersonalAnchors: st.PersonalAnchors, AnchorEvaluations: st.AnchorEvaluations, TrainingStudies: st.TrainingStudies, ThemePriorities: st.ThemePriorities, TemplateTiers: st.TemplateTiers, Curricula: st.Curricula, Initializing: st.Initializing, Notice: st.Notice, Error: st.Error, SearchConfigured: st.SearchConfigured}
 	view.RecentPlans = []PlanHistorySummary{}
+	view.Guidance = s.guidanceLocked(runs, time.Now())
 	view.DemandCoverage = st.DemandCoverage
 	for i := max(0, len(st.History)-10); i < len(st.History); i++ {
 		p := st.History[i]

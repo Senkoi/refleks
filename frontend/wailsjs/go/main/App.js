@@ -118,6 +118,10 @@ export function GetTrainingExecution() {
   return window['go']['main']['App']['GetTrainingExecution']();
 }
 
+export function GetTrainingGuidance() {
+  return window['go']['main']['App']['GetTrainingGuidance']();
+}
+
 export function GetTrainingLiveState() {
   return window['go']['main']['App']['GetTrainingLiveState']();
 }

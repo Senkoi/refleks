@@ -268,6 +268,22 @@ export type ExecutionProgress = {
   reminder?: string;
 };
 
+export type ExplorationReason = {
+  code: string;
+  count: number;
+  scenes: Array<string>;
+};
+
+export type ExplorationReport = {
+  status: string;
+  eligible: number;
+  selected: Array<string>;
+  limitSeconds: number;
+  usedSeconds: number;
+  unknownSeconds: number;
+  reasons: Array<ExplorationReason>;
+};
+
 export type ExposureSummary = {
   recordedSeconds: number;
   sameSceneSeconds: number;
@@ -297,6 +313,14 @@ export type FileMeasurement = {
 
 export type GenerateRequest = {
   preferences: Preferences;
+};
+
+export type GuidanceItem = {
+  scenario: string;
+  role: string;
+  runs: number;
+  reason: string;
+  origin: string;
 };
 
 export type HazardExposure = {
@@ -473,6 +497,7 @@ export type PersonalAnchor = {
 };
 
 export type Plan = {
+  exploration?: ExplorationReport;
   curriculumCycle?: number;
   selectionReason?: string;
   progression?: ProgressionBudget;
@@ -508,6 +533,7 @@ export type Plan = {
 };
 
 export type PlanDefinition = {
+  exploration?: ExplorationReport;
   curriculumCycle?: number;
   selectionReason?: string;
   progression?: ProgressionBudget;
@@ -598,6 +624,7 @@ export type PrecisionRelation = {
 };
 
 export type Preferences = {
+  explorationMode?: string;
   planningPolicy?: string;
   curriculumId?: string;
   minutes: number;
@@ -742,7 +769,18 @@ export type TimingEstimate = {
   weeklySeconds: number;
 };
 
+export type TrainingGuidance = {
+  mode: string;
+  planId?: string;
+  status?: string;
+  theme?: string;
+  reason: string;
+  items: Array<GuidanceItem>;
+  exploration?: ExplorationReport;
+};
+
 export type TrainingProgressDTO = {
+  guidance?: TrainingGuidance;
   current: PlanHistorySummary | null;
   recentPlans: Array<PlanHistorySummary>;
 };
@@ -776,6 +814,7 @@ export type TrainingStudy = {
 };
 
 export type WorkbenchDTO = {
+  guidance: TrainingGuidance;
   demandCoverage?: Array<DemandCoverage>;
   version: number;
   revision: number;

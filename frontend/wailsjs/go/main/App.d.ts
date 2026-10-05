@@ -64,6 +64,8 @@ export function GetSettings():Promise<models.Settings>;
 
 export function GetTrainingExecution():Promise<training.LiveState>;
 
+export function GetTrainingGuidance():Promise<training.TrainingGuidance>;
+
 export function GetTrainingLiveState():Promise<string>;
 
 export function GetTrainingPlanRunIDs(arg1:string):Promise<Array<string>>;

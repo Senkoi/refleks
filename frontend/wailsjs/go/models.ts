@@ -2616,8 +2616,67 @@ export namespace training {
 		    return a;
 		}
 	}
+	export class ExplorationReason {
+	    code: string;
+	    count: number;
+	    scenes: string[];
+	
+	    static createFrom(source: any = {}) {
+	        return new ExplorationReason(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.code = source["code"];
+	        this.count = source["count"];
+	        this.scenes = source["scenes"];
+	    }
+	}
+	export class ExplorationReport {
+	    status: string;
+	    eligible: number;
+	    selected: string[];
+	    limitSeconds: number;
+	    usedSeconds: number;
+	    unknownSeconds: number;
+	    reasons: ExplorationReason[];
+	
+	    static createFrom(source: any = {}) {
+	        return new ExplorationReport(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.status = source["status"];
+	        this.eligible = source["eligible"];
+	        this.selected = source["selected"];
+	        this.limitSeconds = source["limitSeconds"];
+	        this.usedSeconds = source["usedSeconds"];
+	        this.unknownSeconds = source["unknownSeconds"];
+	        this.reasons = this.convertValues(source["reasons"], ExplorationReason);
+	    }
+	
+		convertValues(a: any, classs: any, asMap: boolean = false): any {
+		    if (!a) {
+		        return a;
+		    }
+		    if (a.slice && a.map) {
+		        return (a as any[]).map(elem => this.convertValues(elem, classs));
+		    } else if ("object" === typeof a) {
+		        if (asMap) {
+		            for (const key of Object.keys(a)) {
+		                a[key] = new classs(a[key]);
+		            }
+		            return a;
+		        }
+		        return new classs(a);
+		    }
+		    return a;
+		}
+	}
 	
 	export class Preferences {
+	    explorationMode?: string;
 	    planningPolicy?: string;
 	    curriculumId?: string;
 	    minutes: number;
@@ -2637,6 +2696,7 @@ export namespace training {
 	
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.explorationMode = source["explorationMode"];
 	        this.planningPolicy = source["planningPolicy"];
 	        this.curriculumId = source["curriculumId"];
 	        this.minutes = source["minutes"];
@@ -2680,6 +2740,26 @@ export namespace training {
 		    }
 		    return a;
 		}
+	}
+	export class GuidanceItem {
+	    scenario: string;
+	    role: string;
+	    runs: number;
+	    reason: string;
+	    origin: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new GuidanceItem(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.scenario = source["scenario"];
+	        this.role = source["role"];
+	        this.runs = source["runs"];
+	        this.reason = source["reason"];
+	        this.origin = source["origin"];
+	    }
 	}
 	export class LiveBlock {
 	    recorded: number;
@@ -2809,6 +2889,7 @@ export namespace training {
 	    }
 	}
 	export class Plan {
+	    exploration?: ExplorationReport;
 	    curriculumCycle?: number;
 	    selectionReason?: string;
 	    progression?: ProgressionBudget;
@@ -2848,6 +2929,7 @@ export namespace training {
 	
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.exploration = this.convertValues(source["exploration"], ExplorationReport);
 	        this.curriculumCycle = source["curriculumCycle"];
 	        this.selectionReason = source["selectionReason"];
 	        this.progression = this.convertValues(source["progression"], ProgressionBudget);
@@ -3031,7 +3113,50 @@ export namespace training {
 	    }
 	}
 	
+	export class TrainingGuidance {
+	    mode: string;
+	    planId?: string;
+	    status?: string;
+	    theme?: string;
+	    reason: string;
+	    items: GuidanceItem[];
+	    exploration?: ExplorationReport;
+	
+	    static createFrom(source: any = {}) {
+	        return new TrainingGuidance(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.mode = source["mode"];
+	        this.planId = source["planId"];
+	        this.status = source["status"];
+	        this.theme = source["theme"];
+	        this.reason = source["reason"];
+	        this.items = this.convertValues(source["items"], GuidanceItem);
+	        this.exploration = this.convertValues(source["exploration"], ExplorationReport);
+	    }
+	
+		convertValues(a: any, classs: any, asMap: boolean = false): any {
+		    if (!a) {
+		        return a;
+		    }
+		    if (a.slice && a.map) {
+		        return (a as any[]).map(elem => this.convertValues(elem, classs));
+		    } else if ("object" === typeof a) {
+		        if (asMap) {
+		            for (const key of Object.keys(a)) {
+		                a[key] = new classs(a[key]);
+		            }
+		            return a;
+		        }
+		        return new classs(a);
+		    }
+		    return a;
+		}
+	}
 	export class TrainingProgressDTO {
+	    guidance?: TrainingGuidance;
 	    current?: PlanHistorySummary;
 	    recentPlans: PlanHistorySummary[];
 	
@@ -3041,6 +3166,7 @@ export namespace training {
 	
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.guidance = this.convertValues(source["guidance"], TrainingGuidance);
 	        this.current = this.convertValues(source["current"], PlanHistorySummary);
 	        this.recentPlans = this.convertValues(source["recentPlans"], PlanHistorySummary);
 	    }
@@ -3142,6 +3268,7 @@ export namespace training {
 		}
 	}
 	export class WorkbenchDTO {
+	    guidance: TrainingGuidance;
 	    demandCoverage?: DemandCoverage[];
 	    version: number;
 	    revision: number;
@@ -3169,6 +3296,7 @@ export namespace training {
 	
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.guidance = this.convertValues(source["guidance"], TrainingGuidance);
 	        this.demandCoverage = this.convertValues(source["demandCoverage"], DemandCoverage);
 	        this.version = source["version"];
 	        this.revision = source["revision"];
