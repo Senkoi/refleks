@@ -1,3 +1,4 @@
+import { trainingStatusLabel } from "@/features/training/progress";
 import { Loading } from "@/shared/components";
 import { useStore } from "@/shared/hooks";
 import { useI18n } from "@/shared/lib";
@@ -10,8 +11,11 @@ import { useHistoryPageState } from "../hooks/useHistoryPageState";
 export function HistoryPage() {
   const { t } = useI18n();
   const allSessions = useStore((s) => s.sessions);
+  const sessionGrouping=useStore(s=>s.sessionGrouping);
+  const sessionError=useStore(s=>s.sessionError);
   const runHydration = useStore((s) => s.runHydration);
   const {
+    planId,setPlanId,plans,planLoading,planError,
     sessions,
     filteredSessions,
     selectedSession,
@@ -52,7 +56,7 @@ export function HistoryPage() {
     clearComparison,
   } = useHistoryPageState();
 
-  if (allSessions.length === 0 && runHydration.loading) {
+  if (allSessions.length === 0 && (runHydration.loading || sessionGrouping)) {
     const label =
       runHydration.total > 0
         ? t("history.page.loadingProgress", {
@@ -66,6 +70,11 @@ export function HistoryPage() {
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden text-sm">
+      <div className="flex flex-wrap items-center gap-3 border-b px-5 py-3">
+        <label className="flex items-center gap-2 text-xs">训练范围<select aria-label="按训练计划筛选对局" value={planId} onChange={e=>setPlanId(e.target.value)} className="max-w-96 rounded border bg-background p-1"><option value="">全部训练时段</option>{planId&&!plans.some(p=>p.id===planId)&&<option value={planId}>所选训练计划</option>}{plans.map(p=><option key={p.id} value={p.id}>{new Date(p.created).toLocaleString()} · {p.minutes} 分钟 · {trainingStatusLabel(p)}</option>)}</select></label>
+        {planId&&<span className="text-xs text-surface-muted-foreground">{planLoading?"正在读取本计划对局…":planError?"计划对局暂时无法读取":sessions.length?"仅显示本计划的对局，按所属训练时段排列":"暂无已关联对局；生成列表不代表完成训练"}</span>}
+        {sessionError&&<span role="alert" className="text-xs text-destructive">{sessionError}</span>}
+      </div>
       <div className="flex min-h-0 flex-1 gap-4 overflow-hidden p-4 xl:p-5">
         <HistorySessionList
           sessions={filteredSessions}

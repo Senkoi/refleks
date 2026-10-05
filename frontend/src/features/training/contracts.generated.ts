@@ -1,6 +1,8 @@
 // Generated from Go training DTOs. DO NOT EDIT.
 // Regenerate: go run ./cmd/training-contracts
 
+export const DEFAULT_SESSION_GAP_MINUTES = 20;
+
 export type AnchorEvaluation = {
   id: string;
   planId: string;
@@ -251,6 +253,7 @@ export type DodgeMotion = {
 export type ExecutionProgress = {
   planId: string;
   blocks: Array<BlockExecution>;
+  endReason?: string;
   endedAt?: number;
   status: string;
   index: number;
@@ -331,6 +334,8 @@ export type LiveBlock = {
 };
 
 export type LivePlan = {
+  endReason?: string;
+  endedAt?: number;
   id: string;
   status: string;
   index: number;
@@ -482,6 +487,7 @@ export type Plan = {
   curriculumEnd?: number;
   curriculumTotal?: number;
   theme?: string;
+  endReason?: string;
   endedAt?: number;
   id: string;
   created: string;
@@ -527,8 +533,15 @@ export type PlanHistorySummary = {
   id: string;
   created: string;
   status: string;
+  endReason?: string;
+  endedAt?: number;
   blockCount: number;
+  completedBlocks: number;
+  processedBlocks: number;
+  runs: number;
+  targetRuns: number;
   minutes: number;
+  elapsed: number;
   recorded: number;
 };
 
@@ -665,6 +678,14 @@ export type SceneDecision = {
   requirements?: ScenarioComparison;
 };
 
+export type SessionGroup = {
+  id: string;
+  startedAt: number;
+  endedAt: number;
+  runIds: Array<string>;
+  legacyIds: Array<string>;
+};
+
 export type SkillStatus = {
   skill: string;
   priority: number;
@@ -719,6 +740,11 @@ export type TimingEstimate = {
   samples: number;
   recentSeconds: number;
   weeklySeconds: number;
+};
+
+export type TrainingProgressDTO = {
+  current: PlanHistorySummary | null;
+  recentPlans: Array<PlanHistorySummary>;
 };
 
 export type TrainingStudy = {

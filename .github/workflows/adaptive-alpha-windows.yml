@@ -2,9 +2,9 @@ name: AimMeow Windows
 
 on:
   push:
-    branches: [main, adaptive-alpha, research/scenario-difficulty-preparation, fix/automatic-player-training, "brand/**"]
+    branches: [main, adaptive-alpha, research/scenario-difficulty-preparation, "fix/**", "brand/**"]
   pull_request:
-    branches: [main]
+    branches: [main, "brand/**"]
   workflow_dispatch:
 
 permissions:

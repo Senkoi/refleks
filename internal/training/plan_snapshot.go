@@ -48,6 +48,7 @@ type BlockDefinition struct {
 type ExecutionProgress struct {
 	PlanID        string           `json:"planId"`
 	Blocks        []BlockExecution `json:"blocks"`
+	EndReason     string           `json:"endReason,omitempty"`
 	EndedAt       int64            `json:"endedAt,omitempty"`
 	Status        string           `json:"status"`
 	Index         int              `json:"index"`
@@ -132,6 +133,7 @@ func executionOf(p *Plan) *ExecutionProgress {
 		return nil
 	}
 	e := &ExecutionProgress{PlanID: p.ID,
+		EndReason:     p.EndReason,
 		EndedAt:       p.EndedAt,
 		Status:        p.Status,
 		Index:         p.Index,
@@ -207,6 +209,7 @@ func assemblePlan(d *PlanDefinition, e *ExecutionProgress) *Plan {
 	if e == nil {
 		return p
 	}
+	p.EndReason = e.EndReason
 	p.EndedAt = e.EndedAt
 	p.Status = e.Status
 	p.Index = e.Index

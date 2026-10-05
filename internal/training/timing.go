@@ -26,6 +26,13 @@ func estimateTiming(s Scenario, rows []observation, now time.Time) TimingEstimat
 		}
 	}
 	durations := []float64{}
+	// Duration is the quantity being estimated, so do not require durations
+	// to be identical. All other measurement conditions remain comparable.
+	for i := range valid {
+		if valid[i].timingSignature != "" {
+			valid[i].signature = valid[i].timingSignature
+		}
+	}
 	for _, r := range comparable(valid) {
 		durations = append(durations, r.duration)
 	}

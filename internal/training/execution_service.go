@@ -84,6 +84,7 @@ func (s *Service) Action(action string, now time.Time, runs []models.RunRecord) 
 		s.clock(now)
 		if p.Status != "completed" {
 			p.Status = "completed"
+			p.EndReason = "manual"
 			p.EndedAt = now.UnixMilli()
 			p.LastTick = 0
 		}
@@ -110,7 +111,7 @@ func (s *Service) clock(now time.Time) {
 
 func (s *Service) expire() {
 	p := s.state.Plan
-	if p != nil && p.Elapsed >= float64(p.Preferences.Minutes*60) {
+	if p != nil && p.Status != "completed" && p.Elapsed >= float64(p.Preferences.Minutes*60) {
 		if !p.RemindedEnd {
 			p.RemindedEnd = true
 			p.Reminder = "今天安排的时间到啦喵。练完这一局就结束列表，松松爪子休息一下。"
@@ -120,6 +121,7 @@ func (s *Service) expire() {
 			p.EndedAt = p.LastTick - int64((p.Elapsed-float64(p.Preferences.Minutes*60))*1000)
 		}
 		p.Status = "completed"
+		p.EndReason = "time_budget"
 		p.LastTick = 0
 		if p.Index < len(p.Blocks) && p.Blocks[p.Index].Outcome == "pending" {
 			p.Blocks[p.Index].Outcome = "session_limit"
@@ -137,6 +139,14 @@ func (s *Service) advance(outcome string, now time.Time) {
 	p.Status = "ready"
 	if p.Index >= len(p.Blocks) {
 		p.Status = "completed"
+		p.EndedAt = now.UnixMilli()
+		p.EndReason = "plan_complete"
+		for _, b := range p.Blocks {
+			if !blockCompleted(b, p.Preferences.ExecutionMode) {
+				p.EndReason = "items_processed"
+				break
+			}
+		}
 		p.LastTick = 0
 	}
 }
@@ -277,7 +287,7 @@ func (s *Service) tickLocked(now time.Time, runs []models.RunRecord) string {
 			b.LastCompletedAt = end.UnixMilli()
 			s.capturePractice(b, r, now)
 			b.Best = math.Max(b.Best, sum.Score)
-			if b.Target > 0 && b.Signature != "" && signature(sum) != b.Signature {
+			if b.Target > 0 && b.Signature != "" && signature(sum) != b.Signature && legacySignature(sum) != b.Signature {
 				b.Target = 0
 				b.Reason += " 本模块检测到版本或设置变化，已取消原阈值。"
 			}

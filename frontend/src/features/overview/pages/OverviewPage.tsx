@@ -18,9 +18,11 @@ export function OverviewPage() {
   const { t } = useI18n();
   const snapshot = useRecentSessionSnapshot();
   const sessions = useStore((s) => s.sessions);
+  const sessionGrouping=useStore(s=>s.sessionGrouping);
+  const sessionError=useStore(s=>s.sessionError);
   const runHydration = useStore((s) => s.runHydration);
 
-  if (sessions.length === 0 && runHydration.loading) {
+  if (sessions.length === 0 && (runHydration.loading || sessionGrouping)) {
     const label =
       runHydration.total > 0
         ? t("overview.page.loadingHistoryProgress", {
@@ -35,6 +37,7 @@ export function OverviewPage() {
   return (
     <div className="flex-1 overflow-auto text-sm">
       <div className="grid min-w-0 gap-4 p-5">
+        {sessionError&&<p role="alert" className="text-destructive">{sessionError}</p>}
         {/* Row 1: Session metrics (2×2) + progress & performance */}
         <div className="grid min-w-0 grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
           <div className="col-span-1 md:col-span-2 xl:col-span-2 grid grid-cols-2 gap-4 min-w-0">

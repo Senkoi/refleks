@@ -1,26 +1,26 @@
 import type { BenchmarksMessages } from "../en/benchmarks";
 
 /**
- * 基准训练功能的简体中文文本；基准训练、场景和排名名称保持不翻译。
+ * 基准测试功能的简体中文文本；基准测试、场景和排名名称保持不翻译。
  */
 export const benchmarks: BenchmarksMessages = {
   explore: {
-    title: "基准训练",
+    title: "基准测试",
     sort: "排序",
     group: "分组",
     random: "随机",
-    randomTitle: "打开随机基准训练",
-    showAll: "显示所有基准训练",
+    randomTitle: "打开随机基准测试",
+    showAll: "显示所有基准测试",
     showFavoritesOnly: "仅显示收藏",
     favorites: "收藏",
     recommended: "推荐",
     hideRecommendations: "隐藏推荐",
-    showRecommended: "显示推荐的基准训练",
-    loadingRecommendations: "正在加载用于推荐的基准训练进度...",
-    emptySyncing: "等待基准训练目录完成同步...",
+    showRecommended: "显示推荐的基准测试",
+    loadingRecommendations: "正在加载用于推荐的基准测试进度...",
+    emptySyncing: "等待基准测试目录完成同步...",
     emptyFavorites: "还没选好喜欢的测试喵。点一下星标，我就帮你收好。",
     emptySearch: "这次没找到匹配的测试喵，换个关键词试试。",
-    emptyAll: "未找到基准训练。",
+    emptyAll: "未找到基准测试。",
     sortOptions: {
       name: "名称",
       abbreviation: "缩写",
@@ -32,19 +32,19 @@ export const benchmarks: BenchmarksMessages = {
     },
     categories: {
       aim: "瞄准组",
-      community: "社区基准训练",
-      notable: "知名创作者基准训练",
+      community: "社区基准测试",
+      notable: "知名创作者基准测试",
       other: "其他",
     },
   },
   detail: {
     difficulty: "难度",
-    playPlaylist: "在 Kovaak's 中运行基准训练列表",
+    playPlaylist: "在 Kovaak's 中运行基准测试列表",
     copied: "已复制！",
     copyScreenshot: "复制进度表截图",
-    favorite: "收藏基准训练",
-    unfavorite: "取消收藏基准训练",
-    notFound: "未找到基准训练。",
+    favorite: "收藏基准测试",
+    unfavorite: "取消收藏基准测试",
+    notFound: "未找到基准测试。",
     unknownDifficulty: "未知难度",
     noProgress: "此难度暂无可用进度数据。",
     clipboardUnsupported: "此环境不支持图像剪贴板。",
@@ -52,7 +52,7 @@ export const benchmarks: BenchmarksMessages = {
   },
   progressTable: {
     title: "进度跟踪器",
-    snapshot: "基准训练进度快照",
+    snapshot: "基准测试进度快照",
     compact: "紧凑",
     enableCompact: "启用紧凑模式",
     disableCompact: "停用紧凑模式",

@@ -20,7 +20,7 @@ func (s *Service) evaluateLocked(runs []models.RunRecord, now time.Time) {
 	s.updateStudiesLocked(now)
 	s.updateAnchorEvaluationsLocked(runs, now)
 	s.auditTransferExposureLocked(runs, now)
-	result := AssessPlayer(AssessmentInput{Catalog: s.state.Catalog, Runs: runs, Contexts: s.state.RunContexts, Preferences: s.state.Preferences, Now: now})
+	result := AssessPlayer(AssessmentInput{Catalog: s.state.Catalog, Runs: runs, Contexts: s.state.RunContexts, Preferences: s.state.Preferences, SessionGap: s.sessionGap, Now: now})
 	s.state.PersonalAnchors = result.Anchors
 	s.state.PlayerLevels = result.Levels
 	s.state.ThemePriorities = result.Priorities

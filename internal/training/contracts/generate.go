@@ -7,11 +7,13 @@ import (
 	"sort"
 	"strings"
 
+	"aimmeow/internal/constants"
+	"aimmeow/internal/practice"
 	"aimmeow/internal/training"
 )
 
 func Generate() []byte {
-	roots := []reflect.Type{reflect.TypeOf(training.WorkbenchDTO{}), reflect.TypeOf(training.LiveState{}), reflect.TypeOf(training.GenerateRequest{}), reflect.TypeOf(training.ScenarioComparison{}), reflect.TypeOf(training.PlanDefinition{}), reflect.TypeOf(training.ExecutionProgress{})}
+	roots := []reflect.Type{reflect.TypeOf(training.TrainingProgressDTO{}), reflect.TypeOf(practice.SessionGroup{}), reflect.TypeOf(training.WorkbenchDTO{}), reflect.TypeOf(training.LiveState{}), reflect.TypeOf(training.GenerateRequest{}), reflect.TypeOf(training.ScenarioComparison{}), reflect.TypeOf(training.PlanDefinition{}), reflect.TypeOf(training.ExecutionProgress{})}
 	types := map[string]reflect.Type{}
 	var visit func(reflect.Type)
 	visit = func(t reflect.Type) {
@@ -69,6 +71,7 @@ func Generate() []byte {
 	sort.Strings(names)
 	var b strings.Builder
 	b.WriteString("// Generated from Go training DTOs. DO NOT EDIT.\n// Regenerate: go run ./cmd/training-contracts\n\n")
+	fmt.Fprintf(&b, "export const DEFAULT_SESSION_GAP_MINUTES = %d;\n\n", constants.DefaultSessionGapMinutes)
 	for _, name := range names {
 		t := types[name]
 		fmt.Fprintf(&b, "export type %s = {\n", name)

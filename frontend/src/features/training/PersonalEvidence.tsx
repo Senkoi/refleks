@@ -24,8 +24,8 @@ export default memo(function PersonalEvidence({ anchors, studies, evaluations, b
  const recent = [...studies].sort((a,b)=>b.createdAt-a.createdAt).slice(0,12);
  const known = [...anchors].sort((a,b)=>b.lastPlayed-a.lastPlayed).slice(0,30);
  return <>
-  <section className="training-card"><h2>个人场景锚点 <TrainingHelp label="个人场景锚点"><p>我把你在熟悉图上的近期通常表现叫作“锚点”，用它来挑相近的练习。偶尔一局高分不会把锚点直接拉高喵。</p><p>点击地图名称可查看训练历史和近期锚点折线。锚点折线上的每个点代表一次练习的中间成绩（中位数），虚线是当前基准。我取近 45 天最近 6 次练习，每次最多 12 局，再取这些中间成绩的中位数，减少偶然高分或低分的影响。</p><p>“暂定”表示记录还少；“波动较大”表示近期表现不够一致；“跨日稳定”需要至少 3 局、跨 2 天，且成绩波动较小。超过 14 天未练会提示“需要更新”。继续正常练习，新成绩就会自动更新锚点。</p><p>更换场景版本、灵敏度、视野或单局时长后，会分开记录，避免把不同条件的分数混在一起。“历史未绑定版本”表示旧记录无法确认使用了哪个场景版本。</p></TrainingHelp></h2>
-   {!known.length ? <p className="training-muted">先练几局，我会帮你建立锚点喵</p> :
+  <section className="training-card"><h2>个人参照成绩 <TrainingHelp label="个人参照成绩"><p>我把你在熟悉图上的近期通常表现叫作“参照成绩”，用它来挑相近的练习。偶尔一局高分不会把参照成绩直接拉高喵。</p><p>点击地图名称可查看训练历史和近期参照成绩折线。参照成绩折线上的每个点代表一个训练时段的中间成绩（中位数），虚线是当前基准。我取近 45 天最近 6 个训练时段，每次最多 12 局，再取这些中间成绩的中位数，减少偶然高分或低分的影响。</p><p>“暂定”表示记录还少；“波动较大”表示近期表现不够一致；“跨日稳定”需要至少 3 局、跨 2 天，且成绩波动较小。超过 14 天未练会提示“需要更新”。继续正常练习，新成绩就会自动更新参照成绩。</p><p>更换场景版本、灵敏度、视野或单局时长后，会分开记录，避免把不同条件的分数混在一起。“历史未绑定版本”表示旧记录无法确认使用了哪个场景版本。</p></TrainingHelp></h2>
+   {!known.length ? <p className="training-muted">先练几局，我会帮你建立参照成绩喵</p> :
    <div className="training-anchor-grid">{known.map(a=><article className="training-anchor-card" key={a.scenario}>
     <div className="training-section-title"><h3><ScenarioHistoryLink name={a.scenario} known supplementary={<AnchorTrend anchor={a} />} /></h3><span className="training-badge">{anchorStatuses[a.status] ?? a.status}</span></div>
     <div className="training-anchor-stats"><strong>{a.medianScore.toFixed(1)} <small>当前基准</small></strong><span>波动 {a.scoreMAD.toFixed(1)}</span>{a.hitsPerSecond != null && <span>{a.hitsPerSecond.toFixed(2)} 命中/秒</span>}{a.accuracy != null && <span>{(a.accuracy*100).toFixed(1)}% 命中率</span>}</div>
@@ -43,7 +43,7 @@ export default memo(function PersonalEvidence({ anchors, studies, evaluations, b
   {!recent.length && <section className="training-card"><p>暂无试练记录 <TrainingHelp label="试练条件">先按主线列表正常练习，积累熟悉图的成绩。应用找到玩法相近、可以确认目标大小差异的新图后，会在探索时间内安排试练。你不需要另行上传场景文件；探索比例为 0 时不会安排额外试练。</TrainingHelp></p></section>}
   {recent.map(st=><section className="training-card" key={st.id}>
    <div className="training-section-title"><div className="training-inline-title"><h3><ScenarioHistoryLink name={st.trainingScenario} known={!!st.trial} /></h3><TrainingHelp label={`${st.trainingScenario}试练`}><p>{st.protocolId === "daily_trial_v2" ? "参照成绩来自你熟悉的图，试练成绩来自这张新图。两张图的分数不能直接比较高低来判断进步；这次主要看看新图是否适合你，不会要求额外复测。" : !st.transferScenario ? "这是一条早期试练记录，会比较熟悉图在试练前后的表现。它没有安排另一张图，因此不提供其他场景的表现变化。" : "这是一条早期试练记录。除了熟悉图，还安排了另一张测试图，看看变化能否体现在其他场景；若两次测试之间单独练过那张图，就不作这项判断。"}</p><p>练完可以告诉我“偏易、合适、偏难”，让我下次挑得更准。懒得填也没关系，接着练就好喵。</p></TrainingHelp></div><span className="training-badge">{studyStatuses[st.status] ?? st.status}</span></div>
-   <p>训练锚点：<ScenarioHistoryLink name={st.anchorScenario} known={!!st.baseline} />{st.transferScenario && <><br/>迁移保留图：<ScenarioHistoryLink name={st.transferScenario} /></>}</p>
+   <p>参照场景：<ScenarioHistoryLink name={st.anchorScenario} known={!!st.baseline} />{st.transferScenario && <><br/>迁移保留图：<ScenarioHistoryLink name={st.transferScenario} /></>}</p>
    <p>{st.protocolId === "daily_trial_v2" ? "熟悉图参考成绩" : "试练前成绩"} {st.baseline?.score.toFixed(1) ?? "待记录"} · 试练 {st.trial?.score.toFixed(1) ?? "待记录"}{st.protocolId !== "daily_trial_v2" && <> · 复测 {st.retest?.score.toFixed(1) ?? "待记录"}</>}</p>
    {st.retentionChange != null && <p>同图保持变化：{change(st.retentionChange)}</p>}
    {st.transferChange != null && <p>保留图迁移变化：{change(st.transferChange)}</p>}

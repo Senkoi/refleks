@@ -1,3 +1,5 @@
+import { useTrainingProgress } from "@/features/training/TrainingProgressProvider";
+import { TrainingPlanProgress } from "./TrainingPlanProgress";
 import {
   Button,
   InfoTooltip,
@@ -201,7 +203,7 @@ function SessionProgressTargetEditor({
   );
 }
 
-export function SessionProgressWidget({
+function FreePracticeProgressWidget({
   snapshot,
 }: {
   snapshot: RecentSessionSnapshot;
@@ -455,4 +457,11 @@ export function SessionProgressWidget({
       </div>
     </Widget>
   );
+}
+
+export function SessionProgressWidget({snapshot}:{snapshot:RecentSessionSnapshot}) {
+ const {data,error,loading}=useTrainingProgress();
+ if(data?.current)return <TrainingPlanProgress plan={data.current} stale={!!error}/>;
+ if(loading || error)return <Widget title="本次训练"><p className="text-xs text-surface-muted-foreground" role={error?"alert":"status"}>{error?"训练进度暂时无法读取，可在工作台查看。":"正在读取训练进度…"}</p></Widget>;
+ return <FreePracticeProgressWidget snapshot={snapshot}/>;
 }

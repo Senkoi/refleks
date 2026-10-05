@@ -384,7 +384,17 @@ func (a *App) GetSettings() models.Settings {
 
 // UpdateSettings updates settings and persists them; applies to watcher if needed.
 func (a *App) UpdateSettings(s models.Settings) error {
-	return a.runsRuntimeSvc.UpdateSettings(s)
+	if err := a.runsRuntimeSvc.UpdateSettings(s); err != nil {
+		return err
+	}
+	a.applyTrainingSessionGap()
+	return nil
+}
+
+func (a *App) applyTrainingSessionGap() {
+	if a.trainingSvc != nil && a.settingsSvc != nil {
+		a.trainingSvc.SetSessionGap(time.Duration(a.settingsSvc.Get().SessionGapMinutes) * time.Minute)
+	}
 }
 
 // Favorites helpers
@@ -444,7 +454,11 @@ func (a *App) ResetSettings(resetConfig, resetFavorites, resetScenarioNotes, res
 		newSettings.SessionNotes = nil
 	}
 
-	return a.runsRuntimeSvc.OverwriteSettings(newSettings)
+	if err := a.runsRuntimeSvc.OverwriteSettings(newSettings); err != nil {
+		return err
+	}
+	a.applyTrainingSessionGap()
+	return nil
 }
 
 // --- App metadata ---

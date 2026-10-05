@@ -22,7 +22,7 @@ export default memo(function AbilityOverview({ levels = [], tiers = {}, coverage
     <div id={detailId} hidden={!expanded} className="training-level-detail">
       <div className="training-level-glossary">
         <span>成绩时间 <TrainingHelp label="成绩时间（窗口）"><p>“近 7 天”表示这次参考了最近七天的成绩，不是要求你连续训练七天。</p><p>每张图先看近 7 天，未找到至少 3 局可比较的完整成绩时，再看近 14、30、45 天。这里显示的是本组用到的最长时间范围。</p><p>若使用了没有达成日期的 Benchmark 成绩，会标记“含已有测试成绩”；这些成绩不会被算成近期训练局数。范围内的成绩不会仅因时间更早就被扣分。</p></TrainingHelp></span>
-        <span>有效场景 <TrainingHelp label="有效场景（覆盖）"><p>“2 / 3 张”表示这一测试组需要三张图，目前有两张具备可用于评估的成绩。它不是训练次数，也不是整个关卡库的完成率。</p><p>一张图有足够的近期完整对局，或有可用的已有 Benchmark 成绩，才会计入。缺少成绩的图不会当成零分。</p></TrainingHelp></span>
+        <span>有效场景 <TrainingHelp label="有效场景（覆盖）"><p>“2 / 3 张”表示这一测试组需要三张图，目前有两张具备可用于评估的成绩。它不是训练次数，也不是整个场景库的完成率。</p><p>一张图有足够的近期完整对局，或有可用的已有 Benchmark 成绩，才会计入。缺少成绩的图不会当成零分。</p></TrainingHelp></span>
         <span>参考段位 <TrainingHelp label="本组参考段位（定级）"><p>等这一组所有必需场景都有有效成绩，才会给出整组参考段位。整组以其中较低的场景段位为准，避免用一张强项图代表整个能力。</p><p>“待补齐”表示还缺场景成绩；“低于首档”表示场景已测齐，但至少一张还没有达到这组最低段位的分数线。它们不是同一种情况。</p><p>含没有日期的已有测试成绩时，段位会标记“暂定”。你可以继续正常训练，新的完整成绩会逐步更新评估。</p></TrainingHelp></span>
       </div>
       <div className="training-level-scroll" role="region" aria-label="各能力成绩详情" tabIndex={expanded ? 0 : -1}>{Object.entries(themes).map(([theme, label]) => {

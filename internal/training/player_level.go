@@ -1,8 +1,8 @@
 package training
 
 import (
-	"math"
 	"aimmeow/internal/models"
+	"math"
 	"sort"
 	"strings"
 	"time"
@@ -127,6 +127,9 @@ func levelObservations(runs []models.RunRecord, now time.Time) map[string][]obse
 		// Scene revisions remain separate; altered scale/time are rejected above.
 		r.Stats.Summary.HorizSens, r.Stats.Summary.VertSens, r.Stats.Summary.FOV = 0, 0, 0
 		r.Stats.Summary.SensScale = ""
+		r.Stats.Summary.DPI = 0
+		r.Stats.Summary.FOVScale = ""
+		r.Stats.Summary.AvgTargetScale = 1
 		r.Stats.Summary.AvgTimeDilation = 1
 		filtered = append(filtered, r)
 	}
