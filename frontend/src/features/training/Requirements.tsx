@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { Component, useEffect, useRef, useState, type ReactNode } from "react";
 import { compareScenes, readRequirements, type Scenario, type ScenarioComparison } from "./api";
 import type { Descriptor, Fact } from "./contracts.generated";
 import TrainingHelp from "./TrainingHelp";
+import { requirementGuide, requirementList } from "./requirementsGuide";
+import { UI_BUILD } from "@/shared/lib/buildInfo";
 
 const axisLabels: Record<string,string> = {
  precision:"精度", motion_and_direction_changes:"运动与变向", spatial_selection_and_transfer:"空间选择与转移",
@@ -41,34 +43,60 @@ function reasonText(value:string) {
  if(value.startsWith("incomplete_fixed_basis:"))return `缺少固定比较项：${factLabels[value.split(":")[1]] ?? value}`;
  return labels[value] ?? value;
 }
-function display(f:Fact){return f.value!=null ? Number(f.value.toFixed(4)).toString() : f.status==="declared" ? (({true:"是",false:"否"} as Record<string,string>)[f.text ?? ""] ?? f.text ?? "空声明") : "未知";}
+function display(f:Fact){return typeof f.value==="number" && Number.isFinite(f.value) ? Number(f.value.toFixed(4)).toString() : f.status==="declared" && typeof f.text==="string" ? ((({true:"是",false:"否"} as Record<string,string>)[f.text] ?? f.text) || "空声明") : "未知";}
 function units(f:Fact){if(f.unit==="configured seconds")return "配置秒";if(f.unit==="reloads per 1000 shots")return "次 / 千发";if(f.unit==="hits")return "次";if(f.unit==="slots")return "槽位";return "";}
 function FactRow({fact:f}:{fact:Fact}){
- return <li><span>{factLabels[f.key] ?? f.key}：<strong>{display(f)} {units(f)}</strong></span><small>{statusLabels[f.status] ?? f.status}{f.sources?.[0] && ` · ${f.sources[0].profile || "场景"}，第 ${f.sources[0].line} 行`}</small>{!!f.conditions?.length && <TrainingHelp label={`${f.key}推算条件`}><p>该值在列出的假设下计算，不能视为实测轨迹、反应时间或实际阶段时长。</p>{f.conditions.map((condition,i)=><p key={i}>{conditionText(condition)}</p>)}</TrainingHelp>}</li>;
+ const source=requirementList(f.sources)[0],conditions=requirementList(f.conditions);
+ return <li><span>{factLabels[f.key] ?? f.key}：<strong>{display(f)} {units(f)}</strong></span><small>{statusLabels[f.status] ?? f.status}{source && ` · ${source.profile || "场景"}，第 ${source.line} 行`}</small>{!!conditions.length && <TrainingHelp label={`${f.key}推算条件`}><p>这个值只在列出的条件成立时适用。</p>{conditions.map((condition,i)=><p key={i}>{conditionText(condition)}</p>)}</TrainingHelp>}</li>;
 }
+
+class RequirementContentBoundary extends Component<{children:ReactNode;scenario:string},{error:Error|null}> {
+ state:{error:Error|null}={error:null};
+ static getDerivedStateFromError(error:Error){return {error};}
+ render(){
+  if(!this.state.error)return this.props.children;
+  return <div role="alert"><p>此场景的训练要求暂时无法展示。关闭后重新打开可重试。</p><details><summary>错误信息</summary><pre>{`${this.props.scenario}\n界面构建：${UI_BUILD}\n${this.state.error.stack ?? this.state.error.message}`}</pre></details></div>;
+ }
+}
+
+function RequirementConfiguration({descriptor:d}:{descriptor:Descriptor}) {
+ const format=(value:number|null|undefined)=>typeof value==="number" && Number.isFinite(value) ? value.toFixed(3) : "未知";
+ return <div className="training-requirement-configuration">
+  <p className="training-muted">下面保留场景文件中的参数与来源。速度上限、轮换名额和推算时间都需要结合游戏表现理解。</p>
+  {!!requirementList(d.slots).length && <details><summary>生成与轮换条目</summary>{requirementList(d.slots).map((slot,i)=><p key={i}>{i+1}. {slot.reference} → {requirementList(slot.candidates).join(" → ") || "未解析"}</p>)}</details>}
+  {requirementList(d.axes).map(axis=><details key={axis.key}><summary>{axisLabels[axis.key] ?? axis.key}</summary><ul>{requirementList(axis.facts).map((fact,i)=><FactRow key={i} fact={fact}/>)}</ul></details>)}
+  {requirementList(d.targets).map(target=><div key={target.bot}><small>{target.bot} · {target.dodgeGate==="off" ? "自主 Dodge 关闭" : target.dodgeGate==="candidate_on" ? "自主 Dodge 已配置" : "自主 Dodge 未知"}</small>{requirementList(target.motionModels).map((model,i)=><p key={i}>{model.axis==="LR"?"左右":"前后"}间隔 {format(model.dwellMin)}–{format(model.dwellMax)} 配置秒；一维周期假设下，速度峰值 {format(model.midpointEnvelope?.peakSpeed)}、位移范围 {format(model.midpointEnvelope?.centerExcursion)}。<TrainingHelp label="变向联合推算">速度、加速度和间隔共同决定这个理想运动模型。间隔更短也可能产生更慢、更小的抖动；游戏里的实际轨迹仍需记录。</TrainingHelp></p>)}</div>)}
+  {d.map && <p>地图声明：生成点 {d.map.counts ? (d.map.counts.SpawnPoint ?? 0)+(d.map.counts.PlayerSpawn ?? 0) : "未知"} · 生成体积 {d.map.counts ? d.map.counts.SpawnVolume ?? 0 : "未知"} · 伤害区域 {d.map.counts ? d.map.counts.Hurt ?? 0 : "未知"}。</p>}
+  {requirementList(d.hazards).map((hazard,i)=><p key={i}>{hazard.character} 连续处于伤害区域的条件存活范围：{format(hazard.minSeconds)}–{format(hazard.maxSeconds)} 配置秒。条件成立时才适用。</p>)}
+ </div>;
+}
+
 export function RequirementDetails({scenario:s}:{scenario:Scenario}){
- const [open,setOpen]=useState(false),[detail,setDetail]=useState<Descriptor|null>(null),[error,setError]=useState("");
+ const [open,setOpen]=useState(false),[technicalOpen,setTechnicalOpen]=useState(false);
+ const [loaded,setLoaded]=useState<{signature:string;data:Descriptor}|null>(null),[problem,setProblem]=useState<{signature:string;text:string}|null>(null);
  const summary=s.localAssessment?.requirements;
+ const signature=`${s.name}\0${summary?.fileSHA256 ?? ""}`;
+ const detail=loaded?.signature===signature ? loaded.data : null;
+ const error=problem?.signature===signature ? problem.text : "";
  useEffect(()=>{
   if(!open || !summary)return;
-  let active=true;setDetail(null);setError("");
-  void readRequirements(s.name,summary.fileSHA256).then(value=>{if(active)setDetail(value);},e=>{if(active)setError(String(e));});
+  let active=true;setLoaded(null);setProblem(null);setTechnicalOpen(false);
+  void readRequirements(s.name,summary.fileSHA256).then(value=>{
+   if(!value || value.fileSHA256!==summary.fileSHA256)throw new Error("场景文件版本不一致，请刷新场景库后重试。");
+   if(active)setLoaded({signature,data:value});
+  }).catch(e=>{if(active)setProblem({signature,text:String(e)});});
   return ()=>{active=false;};
- },[open,s.name,summary?.fileSHA256]);
- const d=detail ?? summary;
- if(!d)return null;
- const targets=d.targets ?? [],helpers=d.helpers ?? [];
- const count=d.scoringMin!=null && d.scoringMax!=null ? d.scoringMin===d.scoringMax ? String(d.scoringMin) : `${d.scoringMin}–${d.scoringMax}` : "未知";
- return <details className="training-requirements" onToggle={e=>setOpen(e.currentTarget.open)}><summary>查看六维场景需求</summary>{open && <div>
-  <p>计分候选角色 {targets.length} 种 · 辅助角色 {helpers.length} 种 · 计分槽位 {count}</p>
-  <p className="training-muted">槽位为轮换阶段的候选范围；配置速度上限不等于实际速度。未知值不会按 0 参与排序。</p>
-  {!!d.slots?.length && <details><summary>生成与轮换条目</summary>{d.slots.map((slot,i)=><p key={i}>{i+1}. {slot.reference} → {(slot.candidates ?? []).join(" → ") || "未解析"}</p>)}</details>}
-  {error && <p role="alert">{error}</p>}{!detail && !error && <p>正在读取此版本的详细需求…</p>}
-  {(d.axes ?? []).map(axis=><details key={axis.key}><summary>{axisLabels[axis.key] ?? axis.key}</summary><ul>{(axis.facts ?? []).map((f,i)=><FactRow key={i} fact={f}/>)}</ul></details>)}
-  {targets.map(t=><div key={t.bot}><small>{t.bot} · {t.dodgeGate==="off" ? "自主 Dodge 关闭" : t.dodgeGate==="candidate_on" ? "自主 Dodge 已配置" : "自主 Dodge 未知"}</small>{t.motionModels?.map((m,i)=><p key={i}>{m.axis==="LR"?"左右":"前后"}间隔 {m.dwellMin}–{m.dwellMax} 配置秒；一维周期假设下，中点间隔的速度峰值 {m.midpointEnvelope?.peakSpeed.toFixed(3)}、位移范围 {m.midpointEnvelope?.centerExcursion.toFixed(3)}。<TrainingHelp label="变向联合推算">速度、加速度和间隔共同决定此理想模型的运动包络。间隔更短也可能变成更慢、更小的抖动，所以不把变向频率单独当作难度系数。这不是游戏目标的实测路径。</TrainingHelp></p>)}</div>)}
-  {d.map && <p>地图声明：生成点 {d.map.counts ? (d.map.counts.SpawnPoint ?? 0)+(d.map.counts.PlayerSpawn ?? 0) : "未知"} · 生成体积 {d.map.counts ? d.map.counts.SpawnVolume ?? 0 : "未知"} · 伤害区域 {d.map.counts ? d.map.counts.Hurt ?? 0 : "未知"}。尚未验证碰撞、视线、相机与体积尺度。</p>}
-  {d.hazards?.map((h,i)=><p key={i}>{h.character} 连续处于伤害区域的条件存活范围：{h.minSeconds}–{h.maxSeconds} 配置秒；假设伤害生效、无免疫或外部治疗，不能据此确认阶段长度。</p>)}
- </div>}</details>;
+ },[open,signature]);
+ if(!summary)return null;
+ return <details className="training-requirements" onToggle={e=>{const next=e.currentTarget.open;setOpen(next);if(!next){setLoaded(null);setProblem(null);setTechnicalOpen(false);}}}><summary>查看场景训练要求</summary>{open && <RequirementContentBoundary key={signature} scenario={s.name}><div>
+  <p className="training-muted">从场景配置了解练习要求，帮助你选择训练内容。<TrainingHelp label="场景训练要求"><p>按六类训练要求整理场景规则：瞄准、追踪、切换、击杀节奏、失误代价和特殊机制。</p><p>“已读取配置”表示找到了对应规则；“条件推算”表示只在列出的条件成立时适用；“待确认”表示信息还不够。这里暂不换算总难度分，也不测量你的反应时间。</p></TrainingHelp></p>
+  {error && <div role="alert"><p>暂时未能读取训练要求，请刷新场景库后重试。</p><details><summary>错误信息</summary><p>{error}</p><small>界面构建：{UI_BUILD}</small></details></div>}
+  {!detail && !error && <p role="status">正在读取此版本的训练要求…</p>}
+  {detail && <>
+   <div className="training-requirement-guide">{requirementGuide(detail).map(item=><section key={item.key} className="training-requirement-item"><div><h4>{item.title}</h4><small>{item.status}</small></div><p>{item.meaning}</p><ul>{item.observations.map((text,i)=><li key={i}>{text}</li>)}</ul></section>)}</div>
+   <details onToggle={e=>setTechnicalOpen(e.currentTarget.open)}><summary>查看详细配置与计算条件</summary>{technicalOpen && <RequirementConfiguration descriptor={detail}/>}</details>
+  </>}
+ </div></RequirementContentBoundary>}</details>;
 }
 export function RequirementCompare({catalog}:{catalog:Scenario[]}){
  const [open,setOpen]=useState(false),[a,setA]=useState(""),[b,setB]=useState("");
