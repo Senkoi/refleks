@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { notifyTrainingChanged } from "./TrainingProgressProvider";
+import { TrainingAdviceWidget } from "./TrainingAdviceWidget";
+import { ExplorationDetails } from "./ExplorationDetails";
 import { completedPractice, trainingStatusLabel } from "./progress";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AIMMEOW_MASCOT } from "@/assets";
@@ -74,7 +76,7 @@ export default function TrainingPage() {
     stateRef.current=s; lastFullAt.current=Date.now();
     setState(s);
     setLoadError("");
-    if (!s.initializing && !hydrated.current) { setPrefs({ ...s.preferences, variety: Math.min(s.preferences.variety, .1), planningPolicy: "curriculum", executionMode: "playlist", autoAdvance: false, curriculumId: "", difficulty: "any", benchmark: "", benchmarks: [] }); hydrated.current = true; }
+    if (!s.initializing && !hydrated.current) { setPrefs({ ...s.preferences, variety: s.preferences.explorationMode === "off" ? 0 : Math.min(s.preferences.variety > 0 ? s.preferences.variety : .1, .1), planningPolicy: "curriculum", executionMode: "playlist", autoAdvance: false, curriculumId: "", difficulty: "any", benchmark: "", benchmarks: [] }); hydrated.current = true; }
   }, []);
   useEffect(() => {
     mounted.current = true;
@@ -141,12 +143,13 @@ export default function TrainingPage() {
           <h2><SlidersHorizontal size={18} /> 今天怎么练 <TrainingHelp label="计划编排"><p>告诉我这次能练多久，我会结合已有成绩和最近练得较少的能力来安排。记录还少的话，我们先从基础模板开始喵。</p><p>上次还没练完、又没超过 24 小时，我会先帮你接上。想练某一项也能指定；交给我时，我会平衡各类练习。</p><p>列表生成后，我们就按顺序练。我会把新成绩留给下一次安排，让你安心练完这一份。</p></TrainingHelp></h2>
           <fieldset>
             <label>可用时间 <TrainingHelp label="可用时间">这是本次训练能用的总时间，包含切图和休息。我会据此安排场景与局数；需要离开时可以暂停计时。</TrainingHelp><div className="training-number"><input aria-label="可用时间" disabled={settingsLocked} type="number" min={5} max={120} value={prefs.minutes} onChange={e => pset("minutes", Number(e.target.value))} /><span>分钟</span></div></label>
-            <div className="training-muted">VDIM · {state?.curricula?.length ?? 0} 套模板</div>
+            <div className="training-muted">主线参考 · VDIM · {state?.curricula?.length ?? 0} 套模板</div>
             <label>训练重点 <TrainingHelp label="训练重点">选择你今天想重点练的能力，或保留“自动”，让应用结合已有成绩和近期训练量安排。未完成的列表在 24 小时内会优先续接。</TrainingHelp><select disabled={settingsLocked} value={prefs.focus} onChange={e => pset("focus", e.target.value)}>{Object.entries(labels).filter(([k]) => k !== "unknown").map(([k,v]) => <option key={k} value={k}>{v}</option>)}</select></label>
-            <label>探索比例 <TrainingHelp label="探索比例">决定本次愿意留多少练习时间尝试新图，最多 10%。设为 0 就不安排额外探索。首次会先练基础列表，之后再加入相关的新练习；进阶挑战由近期表现另行安排，不占这个探索比例。</TrainingHelp><strong>{Math.round(prefs.variety * 100)}%</strong><input aria-label="探索比例" disabled={settingsLocked} type="range" min={0} max={.1} step={.01} value={prefs.variety} onChange={e => pset("variety", Number(e.target.value))} /></label>
+            <label>探索比例 <TrainingHelp label="探索比例">决定本次愿意留多少练习时间尝试新图，最多 10%。设为 0 就关闭探索。相关场景已有三局可比完整记录后可以试练同目标的新图，不必等整套主线练完。普通探索与同家族试练共用额度；进阶挑战依据近期表现另行安排。设置用于下一份列表。</TrainingHelp><strong>{Math.round(prefs.variety * 100)}%</strong><input aria-label="探索比例" disabled={settingsLocked} type="range" min={0} max={.1} step={.01} value={prefs.variety} onChange={e => {const value=Number(e.target.value);setPrefs(old=>({...old,variety:value,explorationMode:value>0?"auto":"off"}));}} /></label>
             <label className="training-checkbox"><input type="checkbox" disabled={settingsLocked} checked={prefs.autoDiscover} onChange={e => pset("autoDiscover", e.target.checked)} /> 应用运行时每周自动发现内容 <TrainingHelp label="自动发现内容">打开后，应用运行期间约每周检查一次新的公开训练资源。发现内容先加入场景库或候选来源，再按训练目标筛选；不会直接改掉当前列表。你也可以在“发现内容”页面手动扫描。</TrainingHelp></label>
             <button className="training-primary" disabled={!state || !!busy || active || !!state?.initializing} onClick={() => perform("生成计划", async () => { await call("GenerateTrainingPlan", JSON.stringify({ ...prefs, curriculumId: "", difficulty: "any", benchmark: "", benchmarks: [], planningPolicy: "curriculum", executionMode: "playlist", autoAdvance: false })); const path = await call<string>("InstallTrainingPlaylist"); setNotice(`本次列表放好啦喵：${path}。后续会复用这个位置。重启 KovaaK’s 后，在 Local Playlists 中打开刚安装的本次列表。`); })}><Target size={16} />生成并安装本次列表 <ArrowRight size={16} /></button>
           </fieldset>
+          {(!plan || plan.status === "completed") && <TrainingAdviceWidget/>}
           {!state?.curricula?.length && <p className="training-muted">正在读取自动初始化的 VDIM 模板；若初始化失败，生成时会显示具体原因。</p>}
         </section>
         <section className="training-main">
@@ -156,8 +159,9 @@ export default function TrainingPage() {
             <div className="training-section-title"><h2><Clock3 size={18} /> {plan ? trainingStatusLabel(plan) : "准备好，再开始"} <TrainingHelp label="计划执行"><p>{plan?.preferences.executionMode === "playlist" ? "在 KovaaK’s 的 Local Playlists 中打开刚安装的本次列表，按列表训练；在这里开始计时。完整对局的成绩会自动记录，游戏负责切换场景。重新开始、切图和休息时计时仍会继续，需要离开时请暂停。提醒不会中断游戏；无边框窗口通常能看到提示，全屏独占时可能只有声音。" : "完成对局后，成绩会自动记录。切图和休息也计入本次时间；需要离开时，请用暂停按钮停下工作台计时。"}</p>{plan && <><p>{plan.theme ? `本次重点是${themes[plan.theme] ?? plan.theme}，训练模板参考 ${plan.templateTier || plan.playerTier || "Novice"} 档。` : "我会按你的可用时间安排这次练习。"}</p><p>24 小时内会优先继续未完成的列表。一个练习项练几局，取决于单局时长、最近练习量和本次可用时间；训练档位只是选择练习的参考，不代表官方段位。</p></>}</TrainingHelp></h2>{plan && <span className="training-badge">{plan.preferences.minutes} 分钟预算</span>}</div>
             {plan ? <>
               {plan.curriculumName && <p className="training-muted">原模板：{plan.curriculumName} · 第 {(plan.curriculumStart ?? 0) + 1}–{plan.curriculumEnd ?? plan.blocks.length} / {plan.curriculumTotal ?? plan.blocks.length} 行</p>}
-              {plan.theme && <p className="training-muted">本次 VDIM 专项：{themes[plan.theme] ?? plan.theme}{plan.playerTier && ` · 模板选择参考 ${plan.playerTier}`}{plan.templateTier && ` · 模板档位 ${plan.templateTier}`}</p>}
+              {plan.theme && <p className="training-muted">本次训练专项：{themes[plan.theme] ?? plan.theme}{plan.playerTier && ` · 模板选择参考 ${plan.playerTier}`}{plan.templateTier && ` · 模板档位 ${plan.templateTier}`}</p>}
               <p className="training-muted">本次安排：主线 {clock(allocation.main)} · 评估补充 {clock(allocation.assessment)} · 进阶挑战 {clock(allocation.challenge)} · 探索试练 {clock(allocation.explore)}</p>
+              {plan.exploration && <ExplorationDetails report={plan.exploration}/>}
               <div className="training-metrics"><div><strong>{clock(Math.max(0, plan.preferences.minutes * 60 - plan.elapsed))}</strong><span>预算剩余时间</span></div><div><strong>{clock(plan.recorded)}</strong><span>已记录练习时长</span></div><div><strong>{plan.blocks.filter(b => completedPractice(b, plan.preferences.executionMode)).length} / {plan.blocks.length}</strong><span>已完成练习项</span></div></div>
               <div className="training-progress"><span style={{ width: `${Math.min(100, plan.elapsed / (plan.preferences.minutes * 60) * 100)}%` }} /></div>
               <div className="training-actions">

@@ -255,6 +255,9 @@ func validatePreferences(p Preferences) error {
 	if math.IsNaN(p.Variety) || p.Variety < 0 || p.Variety > 0.5 {
 		return fmt.Errorf("变化比例须在 0–50%% 之间")
 	}
+	if p.ExplorationMode != "" && p.ExplorationMode != "auto" && p.ExplorationMode != "off" {
+		return fmt.Errorf("无效的探索设置")
+	}
 	if math.IsNaN(p.ThresholdRatio) || p.ThresholdRatio < 0.5 || p.ThresholdRatio > 1 {
 		return fmt.Errorf("阈值比例须在 50–100%% 之间")
 	}

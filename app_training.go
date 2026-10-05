@@ -172,6 +172,12 @@ func (a *App) GetTrainingProgress() (training.TrainingProgressDTO, error) {
 	}
 	return a.trainingSvc.Progress(), nil
 }
+func (a *App) GetTrainingGuidance() (training.TrainingGuidance, error) {
+	if err := a.trainingReady(); err != nil {
+		return training.TrainingGuidance{}, err
+	}
+	return a.trainingSvc.Guidance(a.trainingHistory()), nil
+}
 func (a *App) GetTrainingPlanRunIDs(id string) ([]string, error) {
 	if err := a.trainingReady(); err != nil {
 		return nil, err

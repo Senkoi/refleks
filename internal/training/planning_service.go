@@ -68,25 +68,13 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 		if err == nil {
 			progress := progressFor(*t, history, s.state.CurriculumProgress)
 			explored := progress.EverCompleted || curriculumBaseline(*t, history)
-			firstSeconds := 0
-			for i, row := range t.Rows {
-				if !progress.complete() && i < len(progress.Rows) && progress.Rows[i].Target > 0 && progress.Rows[i].Completed >= progress.Rows[i].Target {
-					continue
-				}
-				for _, c := range s.state.Catalog {
-					if strings.EqualFold(row.Name, c.Name) {
-						firstSeconds = estimateTiming(c, observed(runs)[strings.ToLower(c.Name)], now).Seconds
-						break
-					}
-				}
-				break
-			}
-			bundle := preparePersonalization(*t, s.state.Catalog, runs, s.state.RunContexts, s.state.TrainingStudies, now, p, explored, firstSeconds, rng)
-			window, start, end, windowErr := curriculumWindowWithReserve(*t, s.state.Catalog, runs, p, now, history, progress, bundle.seconds(), bundle.seconds() == 0, s.state.Curricula...)
+			firstSeconds := firstRoutineSeconds(*t, s.state.Catalog, runs, progress, now)
+			bundle, exploration, limits := selectTrainingExtras(*t, s.state.Catalog, runs, s.state.RunContexts, s.state.TrainingStudies, p, now, explored, firstSeconds, rng, s.state.Curricula)
+			window, start, end, windowErr := curriculumWindowWithReserve(*t, s.state.Catalog, runs, p, now, history, progress, bundle.seconds(), false, s.state.Curricula...)
 			if windowErr != nil {
 				return nil, windowErr
 			}
-			plan, err = GenerateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored && bundle.seconds() == 0, s.state.Curricula...)
+			plan, err = generateCurriculum(window, s.state.Catalog, runs, planningPreferences, now, rng, explored, false, s.state.Curricula...)
 			if err == nil {
 				plan.Blocks = append(append(bundle.before, plan.Blocks...), bundle.after...)
 				if !s.scheduleAnchorEvaluationLocked(plan, runs, now) {
@@ -96,7 +84,7 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 						// order and leave the shortened tail for ordinary continuation.
 						w, a, z, e := curriculumWindowWithReserve(*t, s.state.Catalog, runs, p, now, history, progress, bundle.seconds()+requests[0].seconds, false, s.state.Curricula...)
 						if e == nil {
-							candidate, e := GenerateCurriculum(w, s.state.Catalog, runs, planningPreferences, now, rng, false, s.state.Curricula...)
+							candidate, e := generateCurriculum(w, s.state.Catalog, runs, planningPreferences, now, rng, explored, false, s.state.Curricula...)
 							if e == nil {
 								candidate.ID = plan.ID
 								candidate.Blocks = append(append(bundle.before, candidate.Blocks...), bundle.after...)
@@ -107,11 +95,12 @@ func (s *Service) generateLocked(p Preferences, runs []models.RunRecord) (*Plan,
 						}
 					}
 				}
+				plan.Exploration, plan.Progression = exploration, limits
 				if bundle.study != nil {
 					bundle.study.PlanID = plan.ID
 					s.state.TrainingStudies = append(s.state.TrainingStudies, *bundle.study)
 				}
-				anchors := personalAnchors(s.state.Catalog, runs, s.state.RunContexts, now)
+				anchors := personalAnchors(s.state.Catalog, runs, s.state.RunContexts, now, s.sessionGap)
 				for i := range plan.Blocks {
 					b := &plan.Blocks[i]
 					a, ok := anchors[strings.ToLower(b.Scenario.Name)]
