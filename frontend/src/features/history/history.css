@@ -1,0 +1,4 @@
+.history-page { min-width:0; }
+.history-page > div:first-child { overflow-wrap:anywhere; }
+.history-page summary { color:var(--surface-muted-foreground); }
+.history-page button:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }

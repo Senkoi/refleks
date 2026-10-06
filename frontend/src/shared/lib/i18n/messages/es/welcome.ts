@@ -1,3 +1,4 @@
+import { welcome as newMessages } from "../en/welcome";
 import type { WelcomeMessages } from "../en/welcome";
 
 /**
@@ -37,6 +38,8 @@ export const welcome: WelcomeMessages = {
     },
   },
   modal: {
+    moreDetails: newMessages.modal.moreDetails,
+    optionalRecording: newMessages.modal.optionalRecording,
     syncStatusEnabled:
       "La sincronización de partidas está activada. Puedes cambiarlo más adelante en los ajustes de privacidad.",
     syncStatusDisabled:
@@ -60,7 +63,8 @@ export const welcome: WelcomeMessages = {
     },
     publicProfile: {
       label: "Perfil público",
-      subtitle: "Mostrar mi nombre de Steam en servicio de sincronización configurado.",
+      subtitle:
+        "Mostrar mi nombre de Steam en servicio de sincronización configurado.",
       description:
         "La mejor opción si quieres que tu nombre de Steam aparezca junto a las partidas que subas.",
       bullets: [

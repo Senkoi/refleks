@@ -1,3 +1,4 @@
+import { benchmarks as newMessages } from "../en/benchmarks";
 import type { BenchmarksMessages } from "../en/benchmarks";
 
 export const benchmarks: BenchmarksMessages = {
@@ -15,7 +16,8 @@ export const benchmarks: BenchmarksMessages = {
     showRecommended: "Показать рекомендуемые бенчмарки",
     loadingRecommendations: "Загрузка прогресса бенчмарков для рекомендаций...",
     emptySyncing: "Ожидание завершения синхронизации каталога бенчмарков...",
-    emptyFavorites: "Избранных бенчмарков пока нет. Нажмите на звезду у бенчмарка, чтобы добавить его сюда.",
+    emptyFavorites:
+      "Избранных бенчмарков пока нет. Нажмите на звезду у бенчмарка, чтобы добавить его сюда.",
     emptySearch: "Бенчмарки по вашему запросу не найдены.",
     emptyAll: "Бенчмарки не найдены.",
     sortOptions: {
@@ -44,7 +46,8 @@ export const benchmarks: BenchmarksMessages = {
     notFound: "Бенчмарк не найден.",
     unknownDifficulty: "Сложность неизвестна",
     noProgress: "Для этой сложности пока нет данных о прогрессе.",
-    clipboardUnsupported: "Буфер обмена изображениями не поддерживается в этой среде.",
+    clipboardUnsupported:
+      "Буфер обмена изображениями не поддерживается в этой среде.",
     copyFailed: "Не удалось скопировать снимок экрана.",
   },
   progressTable: {
@@ -58,22 +61,25 @@ export const benchmarks: BenchmarksMessages = {
     hideLastPlayed: "Скрыть отметку последней игры",
     viewSettings: "Открыть настройки трекера",
     columnScenario: "Сценарий",
-    columnRec: "Рек.",
+    columnRec: newMessages.progressTable.columnRec,
     columnScore: "Результат",
     details: "Подробности",
     settingsTitle: "Настройки трекера",
     featureColumns: "Столбцы функций",
     columnLabelNotes: "Заметки",
-    columnLabelRecommendations: "Рекомендации",
+    columnLabelRecommendations:
+      newMessages.progressTable.columnLabelRecommendations,
     columnLabelPlay: "Запуск",
     columnLabelHistory: "История",
     rankVisibility: "Видимость рангов",
     autoHideCleared: "Автоматически скрывать пройденные ранги",
     keepVisible: "Оставлять видимыми:",
     resetManual: "Сбросить вручную",
-    hiddenAutoTitle: "Скрыто автоматически, потому что все сценарии уже прошли этот ранг",
+    hiddenAutoTitle:
+      "Скрыто автоматически, потому что все сценарии уже прошли этот ранг",
   },
   rankDistribution: {
+    unrecorded: newMessages.rankDistribution.unrecorded,
     title: "Распределение рангов",
     scopeCategory: "Категория",
     scopeSubcategory: "Подкатегория",
@@ -96,19 +102,8 @@ export const benchmarks: BenchmarksMessages = {
     noData: "Нет данных.",
     avg: "Среднее",
   },
-  recommendationInfo: {
-    ariaLabel: "О рекомендациях",
-    title: "Рекомендации",
-    description:
-      "Какие сценарии сейчас стоит запускать с учётом вашего прогресса, недавней динамики результатов и того, как давно вы играли каждый из них.",
-    completed: "Завершено — достигнут максимальный ранг",
-    topPick: "Лучший выбор — стоит запустить сейчас",
-    stronglyRecommended: "Настоятельно рекомендуется",
-    recommended: "Рекомендуется — ниже среднего или есть улучшение",
-    neutral: "Нейтрально",
-    lowPriority: "Низкий приоритет",
-    avoid: "Пока избегать — высокий результат или отрицательная динамика",
-  },
+  trainingRoles: newMessages.trainingRoles,
+  recommendationInfo: newMessages.recommendationInfo,
   scenarioHistory: {
     title: "История сценария · {scenario}",
     score: "Результат",
@@ -119,9 +114,14 @@ export const benchmarks: BenchmarksMessages = {
     sensPlaceholder: "например, 35.8cm или 0.5",
     copySensitivity: "Скопировать чувствительность",
     notesLabel: "Заметки",
-    notesPlaceholder: "Записывайте стратегию, слабые места и точки для работы...",
+    notesPlaceholder:
+      "Записывайте стратегию, слабые места и точки для работы...",
   },
   scenarioRow: {
+    currentPreview: newMessages.scenarioRow.currentPreview,
+    nextPreview: newMessages.scenarioRow.nextPreview,
+    arrangementDetail: newMessages.scenarioRow.arrangementDetail,
+    notInPreview: newMessages.scenarioRow.notInPreview,
     notesSensitivity: "Заметки и чувствительность",
     recommendationScore: "Оценка рекомендации: {score}",
     playInKovaaks: "Запустить в Kovaak's",

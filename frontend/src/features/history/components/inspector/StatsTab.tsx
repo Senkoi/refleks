@@ -92,16 +92,6 @@ export function StatsTab({
 
   const categories = getCategorizedStats(primaryRun);
 
-  if (categories.length === 0) {
-    return (
-      <div className="flex min-h-40 items-center justify-center rounded-xl bg-surface-subtle p-6 text-center">
-        <p className="text-sm text-surface-muted-foreground">
-          {t("history.stats.noStats")}
-        </p>
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="min-w-0">
@@ -114,7 +104,7 @@ export function StatsTab({
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <HeroStat
           label={t("history.stats.score")}
           value={formatScore(primaryRun.score)}
@@ -127,16 +117,23 @@ export function StatsTab({
           label={t("history.stats.duration")}
           value={formatDurationLabel(primaryRun.durationMs)}
         />
+        <HeroStat
+          label={t("history.stats.avgTtk")}
+          value={readFormattedStat(primaryRun, "avgTtk")}
+        />
       </div>
-
-      {categories.map(({ category, stats }) => (
-        <StatsGroup key={category} label={category}>
-          {stats.map((s) => (
-            <StatRow key={s.label} label={s.label} value={s.value} />
-          ))}
-        </StatsGroup>
-      ))}
-
+      <details>
+        <summary className="cursor-pointer text-xs text-surface-muted-foreground">
+          {t("history.stats.detailedStats")}
+        </summary>
+        {categories.map(({ category, stats }) => (
+          <StatsGroup key={category} label={category}>
+            {stats.map((s) => (
+              <StatRow key={s.label} label={s.label} value={s.value} />
+            ))}
+          </StatsGroup>
+        ))}
+      </details>
       {primaryRun.item.fileName && (
         <div
           className="text-[0.6875rem] text-surface-muted-foreground truncate"
@@ -263,24 +260,29 @@ function CompareStatsView({
         );
       })()}
 
-      {allCategories.map((cat) => {
-        const pMap = primaryMaps.get(cat) ?? new Map<string, string>();
-        const cMap = compareMaps.get(cat) ?? new Map<string, string>();
-        const mergedKeys = [...new Set([...pMap.keys(), ...cMap.keys()])];
-        if (mergedKeys.length === 0) return null;
-        return (
-          <StatsGroup key={cat} label={cat}>
-            {mergedKeys.map((key) => (
-              <CompareStatRow
-                key={key}
-                label={key}
-                a={pMap.get(key) ?? "–"}
-                b={cMap.get(key) ?? "–"}
-              />
-            ))}
-          </StatsGroup>
-        );
-      })}
+      <details>
+        <summary className="cursor-pointer text-xs text-surface-muted-foreground">
+          {t("history.stats.detailedStats")}
+        </summary>
+        {allCategories.map((cat) => {
+          const pMap = primaryMaps.get(cat) ?? new Map<string, string>();
+          const cMap = compareMaps.get(cat) ?? new Map<string, string>();
+          const mergedKeys = [...new Set([...pMap.keys(), ...cMap.keys()])];
+          if (mergedKeys.length === 0) return null;
+          return (
+            <StatsGroup key={cat} label={cat}>
+              {mergedKeys.map((key) => (
+                <CompareStatRow
+                  key={key}
+                  label={key}
+                  a={pMap.get(key) ?? "–"}
+                  b={cMap.get(key) ?? "–"}
+                />
+              ))}
+            </StatsGroup>
+          );
+        })}
+      </details>
     </>
   );
 }

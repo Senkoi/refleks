@@ -1,3 +1,4 @@
+import { settings as newMessages } from "../en/settings";
 import { plural } from "../../plural";
 import type { SettingsMessages } from "../en/settings";
 
@@ -30,6 +31,7 @@ export const settings: SettingsMessages = {
     failedToDownload: "No se pudo descargar la actualización",
   },
   general: {
+    recordingAdvanced: newMessages.general.recordingAdvanced,
     title: "General",
     description: "Carpetas principales y comportamiento de las sesiones.",
     kovaaksInstallFolder: "Carpeta de instalación de KovaaK's",
@@ -93,12 +95,15 @@ export const settings: SettingsMessages = {
     sessionGapMinutes: plural({ one: "1 minuto", other: "{count} minutos" }),
   },
   privacy: {
+    localRecords: newMessages.privacy.localRecords,
     title: "Privacidad",
     description:
       "Controla si las partidas se suben y si los datos identificativos del entorno se eliminan antes de sincronizar.",
     runSync: "Sincronización de partidas",
-    serviceUnavailable: "Training stays on this computer. AimMeow has no cloud sync service configured.",
-    runSyncDescription: "Sube las partidas completadas a servicio de sincronización configurado.",
+    serviceUnavailable:
+      "Training stays on this computer. AimMeow has no cloud sync service configured.",
+    runSyncDescription:
+      "Sube las partidas completadas a servicio de sincronización configurado.",
     anonymousMode: "Modo anónimo",
     anonymousModeDescription:
       "Elimina el Steam ID y el nombre de perfil de Steam de los datos del entorno de la partida antes de subirlos mediante la sincronización.",
@@ -142,7 +147,7 @@ export const settings: SettingsMessages = {
     personaNameDescription:
       "Introduce el nombre de usuario de tu cuenta en kovaaks.com.",
     displayNamePlaceholder: "Nombre para mostrar",
-    dataRetention: "Conservación de datos",
+    dataRetention: newMessages.advanced.dataRetention,
     recentRunsWindow: "Periodo de partidas recientes (días)",
     recentRunsWindowDescription:
       "Solo se cargan y muestran las partidas de los últimos N días",
@@ -150,8 +155,14 @@ export const settings: SettingsMessages = {
     recentRunsMinCountDescription:
       "Si el periodo de días contiene muy pocas partidas, incluye partidas anteriores hasta alcanzar este mínimo",
   },
-  about: { title: "About AimMeow", description: "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.", notices: "Attribution and GPL-3.0 license" },
+  about: {
+    title: "About AimMeow",
+    description:
+      "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.",
+    notices: "Attribution and GPL-3.0 license",
+  },
   footer: {
+    maintenance: newMessages.footer.maintenance,
     clearCache: "Borrar caché",
     saving: "Guardando ajustes...",
     unsavedChanges: "Cambios sin guardar",

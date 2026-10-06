@@ -73,6 +73,18 @@ func (s *Service) save() error {
 	return s.persist()
 }
 
+func (s *Service) SetAutoDiscover(enabled bool) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	previous := s.state.Preferences.AutoDiscover
+	s.state.Preferences.AutoDiscover = enabled
+	if err := s.save(); err != nil {
+		s.state.Preferences.AutoDiscover = previous
+		return err
+	}
+	return nil
+}
+
 func (s *Service) persist() error {
 	s.syncProgressLocked()
 	s.state.Revision = s.dataRevision

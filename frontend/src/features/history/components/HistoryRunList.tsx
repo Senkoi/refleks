@@ -30,6 +30,7 @@ import {
 import { VirtualList } from "./VirtualList";
 
 type Props = {
+  compact?: boolean;
   session: Session | null;
   runs: HistoryRun[];
   query: string;
@@ -50,6 +51,7 @@ type Props = {
 };
 
 export function HistoryRunList({
+  compact = false,
   session,
   runs,
   query,
@@ -74,7 +76,7 @@ export function HistoryRunList({
     <section
       className={cn(
         "flex h-full min-h-0 flex-col overflow-hidden rounded-xl bg-surface shrink-0 transition-[width] duration-200 ease-out",
-        collapsed ? "w-16" : "w-[17.5rem]",
+        compact ? "w-full" : collapsed ? "w-16" : "w-[17.5rem]",
       )}
     >
       {/* Header */}
@@ -226,7 +228,12 @@ export function HistoryRunList({
                     <div className="min-w-0 truncate font-medium text-foreground">
                       <ScenarioHistoryLink name={run.scenarioName} known />
                     </div>
-                    <button type="button" onClick={() => onSelectRun(run.id)} aria-label={`${run.scenarioName} · 查看本局详情`} className="shrink-0 font-semibold text-foreground">
+                    <button
+                      type="button"
+                      onClick={() => onSelectRun(run.id)}
+                      aria-label={`${run.scenarioName} · 查看本局详情`}
+                      className="shrink-0 font-semibold text-foreground"
+                    >
                       {formatScore(run.score)}
                     </button>
                   </div>

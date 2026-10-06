@@ -253,3 +253,7 @@ export function UpdateTrainingScenario(arg1) {
 export function WriteCustomThemeCSS(arg1) {
   return window['go']['main']['App']['WriteCustomThemeCSS'](arg1);
 }
+
+export function SetTrainingAutoDiscover(arg1) {
+  return window['go']['main']['App']['SetTrainingAutoDiscover'](arg1);
+}

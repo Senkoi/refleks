@@ -27,6 +27,7 @@ export const settings: SettingsMessages = {
     failedToDownload: "下载更新失败",
   },
   general: {
+    recordingAdvanced: "轨迹录制高级设置",
     title: "常规",
     description: "告诉我游戏装在哪里，剩下的记录交给我。",
     kovaaksInstallFolder: "KovaaK's 安装文件夹",
@@ -36,9 +37,11 @@ export const settings: SettingsMessages = {
     startWithKovaaksDescription:
       "你打开 KovaaK's 时，我就来陪你练；开启后也会随 Windows 启动。",
     mouseTracking: "鼠标跟踪",
-    mouseTrackingDescription: "我会记下练习时的鼠标移动，方便回看；目前支持 Windows。",
+    mouseTrackingDescription:
+      "我会记下练习时的鼠标移动，方便回看；目前支持 Windows。",
     bufferDuration: "缓冲时长",
-    bufferDurationDescription: "我会在内存里暂存这么多分钟的鼠标移动，方便保存完整对局。",
+    bufferDurationDescription:
+      "我会在内存里暂存这么多分钟的鼠标移动，方便保存完整对局。",
     screenCapture: "屏幕捕获",
     screenCaptureDescription:
       "让我帮你录下练习，之后慢慢复盘喵。需要 Windows 和 FFmpeg。",
@@ -66,7 +69,8 @@ export const settings: SettingsMessages = {
     replayCleanupDescription:
       "我会在启动和保存新回放后清理旧录像，按你设定的期限和空间上限来。",
     replayAgeLimit: "回放保留期限",
-    replayAgeLimitDescription: "超过这段时间的回放，我会自动删除。选“不限”就不按年龄清理。",
+    replayAgeLimitDescription:
+      "超过这段时间的回放，我会自动删除。选“不限”就不按年龄清理。",
     replayAge1d: "1 天",
     replayAge2d: "2 天",
     replayAge4d: "4 天",
@@ -82,14 +86,18 @@ export const settings: SettingsMessages = {
     storage10gb: "10 GB",
     storage25gb: "25 GB",
     sessionGap: "训练分段间隔",
-    sessionGapDescription: "上一局结束后，休息达到这段时间，接下来的对局就记入新的训练时段。",
+    sessionGapDescription:
+      "上一局结束后，休息达到这段时间，接下来的对局就记入新的训练时段。",
     sessionGapMinutes: plural({ one: "1 分钟", other: "{count} 分钟" }),
   },
   privacy: {
+    localRecords: "成绩、轨迹与录像保存在本机。当前未配置同步服务。",
     title: "隐私",
-    description: "训练记录默认留在本机。只有你明确配置同步服务并开启上传，我才会发送。",
+    description:
+      "训练记录默认留在本机。只有你明确配置同步服务并开启上传，我才会发送。",
     runSync: "训练同步",
-    serviceUnavailable: "训练先安心留在本机喵。瞄瞄尚未配置云端同步服务，这里暂不开放上传。",
+    serviceUnavailable:
+      "训练先安心留在本机喵。瞄瞄尚未配置云端同步服务，这里暂不开放上传。",
     runSyncDescription: "把已完成的训练发送到你明确配置的同步服务。",
     anonymousMode: "匿名模式",
     anonymousModeDescription:
@@ -109,7 +117,8 @@ export const settings: SettingsMessages = {
     regenerateThemeFile: "重新生成",
     themeFileRegenerateConfirm:
       "要换回默认主题文件吗？这样会覆盖你自己写的主题，确认好再动爪喵。",
-    themeFileWriteFailed: "我暂时没能保存主题文件喵，检查一下文件夹权限再试试。",
+    themeFileWriteFailed:
+      "我暂时没能保存主题文件喵，检查一下文件夹权限再试试。",
     themeFileOpenFailed: "我暂时没能打开主题文件喵。",
     font: "字体",
     fontDescription: "界面使用的字体系列",
@@ -130,15 +139,22 @@ export const settings: SettingsMessages = {
     personaName: "用户名称",
     personaNameDescription: "请输入你在 kovaaks.com 账户中使用的用户名。",
     displayNamePlaceholder: "显示名称",
-    dataRetention: "数据保留",
+    dataRetention: "历史加载范围",
     recentRunsWindow: "最近训练时间范围（天）",
-    recentRunsWindowDescription: "历史页先显示这段时间的训练；我的训练评估仍按自己的近期范围计算。",
+    recentRunsWindowDescription:
+      "控制历史页初次加载的记录范围，不删除历史。训练评估使用独立的近期窗口。",
     recentRunsMinCount: "最近训练最少数量",
     recentRunsMinCountDescription:
       "近期记录太少时，我会再找一些较早的训练，凑够这个数量。",
   },
-  about: { title: "关于瞄瞄", description: "我是基于 Refleks 成长起来的训练搭子，由 Senkoi 独立维护。感谢原作者和训练社区喵。", notices: "来源、致谢与 GPL-3.0 许可证" },
+  about: {
+    title: "关于瞄瞄",
+    description:
+      "我是基于 Refleks 成长起来的训练搭子，由 Senkoi 独立维护。感谢原作者和训练社区喵。",
+    notices: "来源、致谢与 GPL-3.0 许可证",
+  },
   footer: {
+    maintenance: "应用维护",
     clearCache: "清除缓存",
     saving: "我正在记下你的设置…",
     unsavedChanges: "有未保存的更改",

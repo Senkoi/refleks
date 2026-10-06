@@ -1,3 +1,4 @@
+import { settings as newMessages } from "../en/settings";
 import { plural } from "../../plural";
 import type { SettingsMessages } from "../en/settings";
 
@@ -27,6 +28,7 @@ export const settings: SettingsMessages = {
     failedToDownload: "Не удалось скачать обновление",
   },
   general: {
+    recordingAdvanced: newMessages.general.recordingAdvanced,
     title: "Основные",
     description: "Основные папки и поведение сессий.",
     kovaaksInstallFolder: "Папка установки KovaaK's",
@@ -89,12 +91,15 @@ export const settings: SettingsMessages = {
     sessionGapMinutes: plural({ one: "1 минута", other: "{count} минут" }),
   },
   privacy: {
+    localRecords: newMessages.privacy.localRecords,
     title: "Конфиденциальность",
     description:
       "Управляйте загрузкой забегов и удалением идентифицирующих данных окружения перед синхронизацией.",
     runSync: "Синхронизация забегов",
-    serviceUnavailable: "Training stays on this computer. AimMeow has no cloud sync service configured.",
-    runSyncDescription: "Загружать завершённые забеги в настроенный сервис синхронизации.",
+    serviceUnavailable:
+      "Training stays on this computer. AimMeow has no cloud sync service configured.",
+    runSyncDescription:
+      "Загружать завершённые забеги в настроенный сервис синхронизации.",
     anonymousMode: "Анонимный режим",
     anonymousModeDescription:
       "Удалять Steam ID и имя профиля Steam из данных окружения забега перед загрузкой при синхронизации.",
@@ -137,7 +142,7 @@ export const settings: SettingsMessages = {
     personaNameDescription:
       "Введите имя пользователя из вашей учётной записи на kovaaks.com.",
     displayNamePlaceholder: "Отображаемое имя",
-    dataRetention: "Хранение данных",
+    dataRetention: newMessages.advanced.dataRetention,
     recentRunsWindow: "Период последних забегов (дни)",
     recentRunsWindowDescription:
       "Загружаются и показываются только забеги за последние N дней",
@@ -145,8 +150,14 @@ export const settings: SettingsMessages = {
     recentRunsMinCountDescription:
       "Если за выбранный период слишком мало забегов, загружать более старые, пока не будет достигнут этот минимум",
   },
-  about: { title: "About AimMeow", description: "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.", notices: "Attribution and GPL-3.0 license" },
+  about: {
+    title: "About AimMeow",
+    description:
+      "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.",
+    notices: "Attribution and GPL-3.0 license",
+  },
   footer: {
+    maintenance: newMessages.footer.maintenance,
     clearCache: "Очистить кэш",
     saving: "Сохранение настроек...",
     unsavedChanges: "Есть несохранённые изменения",

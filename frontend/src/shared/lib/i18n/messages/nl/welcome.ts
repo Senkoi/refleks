@@ -1,3 +1,4 @@
+import { welcome as newMessages } from "../en/welcome";
 import type { WelcomeMessages } from "../en/welcome";
 
 /**
@@ -35,6 +36,8 @@ export const welcome: WelcomeMessages = {
     },
   },
   modal: {
+    moreDetails: newMessages.modal.moreDetails,
+    optionalRecording: newMessages.modal.optionalRecording,
     syncStatusEnabled:
       "Run-synchronisatie is momenteel ingeschakeld. Je kunt dit later wijzigen in de privacy-instellingen.",
     syncStatusDisabled:
@@ -125,7 +128,8 @@ export const welcome: WelcomeMessages = {
       },
       disabled: {
         label: "Zonder opname starten",
-        subtitle: "Begin alleen met muisregistratie en voeg schermreplays later toe.",
+        subtitle:
+          "Begin alleen met muisregistratie en voeg schermreplays later toe.",
         description:
           "Een laagdrempelig startpunt. Je kunt replay-opname later inschakelen zodra je vertrouwd bent met de app.",
         bullets: [

@@ -1,3 +1,4 @@
+import { history as newMessages } from "../en/history";
 import { plural } from "../../plural";
 import type { HistoryMessages } from "../en/history";
 
@@ -6,6 +7,23 @@ import type { HistoryMessages } from "../en/history";
  */
 export const history: HistoryMessages = {
   page: {
+    planFilter: newMessages.page.planFilter,
+    allPlans: newMessages.page.allPlans,
+    selectedPlan: newMessages.page.selectedPlan,
+    clearPlanFilter: newMessages.page.clearPlanFilter,
+    planLoading: newMessages.page.planLoading,
+    planError: newMessages.page.planError,
+    planFiltered: newMessages.page.planFiltered,
+    planEmpty: newMessages.page.planEmpty,
+    optionalAnalysis: newMessages.page.optionalAnalysis,
+    sessionOverview: newMessages.page.sessionOverview,
+    sensitivityChart: newMessages.page.sensitivityChart,
+    scenarioChart: newMessages.page.scenarioChart,
+    paneNavigation: newMessages.page.paneNavigation,
+    sessionsPane: newMessages.page.sessionsPane,
+    runsPane: newMessages.page.runsPane,
+    detailPane: newMessages.page.detailPane,
+
     loading: "プレイ履歴を読み込み中...",
     loadingProgress: "プレイ履歴を読み込み中 {loaded}/{total}...",
     runs: plural({ one: "1プレイ", other: "{count}プレイ" }),
@@ -86,8 +104,10 @@ export const history: HistoryMessages = {
   },
   performanceVsSens: {
     title: "パフォーマンスと感度の比較",
-    emptyDescription: "シナリオをプレイすると、感度とパフォーマンスを比較できます。",
-    noRecentScenario: "最近のシナリオはまだありません。このウィジェットを表示するには、cm/360データのあるプレイを行ってください。",
+    emptyDescription:
+      "シナリオをプレイすると、感度とパフォーマンスを比較できます。",
+    noRecentScenario:
+      "最近のシナリオはまだありません。このウィジェットを表示するには、cm/360データのあるプレイを行ってください。",
     noUsableSensData: "{scenario}に利用可能な感度データがありません。",
     inThisSession: "このセッションの{scenario}。",
     metricPlaceholder: "指標",
@@ -107,12 +127,15 @@ export const history: HistoryMessages = {
   },
   scenarioRadar: {
     title: "セッションのシナリオ構成",
-    description: "このセッションでプレイしたシナリオと、それぞれのプレイ量を示します。",
-    noActiveSession: "アクティブなセッションデータはまだありません。このウィジェットを表示するにはシナリオをプレイしてください。",
+    description:
+      "このセッションでプレイしたシナリオと、それぞれのプレイ量を示します。",
+    noActiveSession:
+      "アクティブなセッションデータはまだありません。このウィジェットを表示するにはシナリオをプレイしてください。",
     noScenarioNames: "このセッションにはまだシナリオ名がありません。",
     runs: "プレイ",
   },
   inspector: {
+    environmentDiagnostics: newMessages.inspector.environmentDiagnostics,
     pinned: "固定",
     compare: "比較",
     primary: "メイン",
@@ -135,6 +158,7 @@ export const history: HistoryMessages = {
     selectRunToInspect: "確認するプレイを選択",
   },
   stats: {
+    detailedStats: newMessages.stats.detailedStats,
     score: "スコア",
     accuracy: "正確性",
     duration: "時間",
@@ -245,8 +269,10 @@ export const history: HistoryMessages = {
   },
   analysis: {
     loadingEventData: "イベントデータを読み込み中...",
-    noEventData: "このプレイにはイベントデータがありません。Kovaak'sが統計CSVにイベント詳細を保存する設定になっていることを確認してください。",
-    waitingForFirstKill: "TTKの傾向、正確性と速度の比較、概要統計を計算するため、最初のキルを待っています。",
+    noEventData:
+      "このプレイにはイベントデータがありません。Kovaak'sが統計CSVにイベント詳細を保存する設定になっていることを確認してください。",
+    waitingForFirstKill:
+      "TTKの傾向、正確性と速度の比較、概要統計を計算するため、最初のキルを待っています。",
     accuracyOverTime: "時間経過による正確性",
     accuracyOverTimePinned: "時間経過による正確性 — 固定",
     accuracyOverTimeCompare: "時間経過による正確性 — 比較",
@@ -301,7 +327,8 @@ export const history: HistoryMessages = {
   },
   trace: {
     loading: "軌跡を読み込み中…",
-    noMouseTrace: "マウスの軌跡データがありません。軌跡を記録するには、設定でマウストラッキングを有効にしてください。",
+    noMouseTrace:
+      "マウスの軌跡データがありません。軌跡を記録するには、設定でマウストラッキングを有効にしてください。",
     killsOvershoot: plural({
       one: "オーバーシュート 1件",
       other: "オーバーシュート {count}件",
@@ -324,7 +351,8 @@ export const history: HistoryMessages = {
       other: "軌跡外 {count}件",
     }),
     mousePathAnalysis: "マウス経路分析",
-    analysisDescription: "時間で正規化した運動学、軌跡の品質、ボタン遷移、記録されたキル時刻を使って、動きの形状を分類します。既存の軌跡にはターゲットの中心が含まれないため、距離はピクセルではなく生の入力単位です。",
+    analysisDescription:
+      "時間で正規化した運動学、軌跡の品質、ボタン遷移、記録されたキル時刻を使って、動きの形状を分類します。既存の軌跡にはターゲットの中心が含まれないため、距離はピクセルではなく生の入力単位です。",
     overshoot: "オーバーシュート",
     undershoot: "アンダーシュート",
     optimal: "最適",
@@ -336,7 +364,8 @@ export const history: HistoryMessages = {
     avgOvershoot: "平均オーバーシュート: {value} 軌跡単位",
     avgUndershoot: "平均アンダーシュート: {value} 軌跡単位",
     clickKillHint: "下のキルをクリックすると、その経路が強調表示されます。",
-    noSensSuggested: "トレーニング感度の提案はありません。現在の感度で続けてください。",
+    noSensSuggested:
+      "トレーニング感度の提案はありません。現在の感度で続けてください。",
     killChipTitle: "キル #{index} — {classification}{units} — {eff} 効率",
     traceUnits: "（{value} 軌跡単位）",
     suggestedTrainingSens: "おすすめのトレーニング感度",
@@ -348,7 +377,8 @@ export const history: HistoryMessages = {
     sensClickNote: " クリックのタイミングも影響している可能性があります。",
     sensLowerCm360: "低いcm/360 / 高い感度",
     sensHigherCm360: "高いcm/360 / 低い感度",
-    sensReason: "信頼できるキルの{pct}%に{severity}な{issue}パターンがあります。{clickNote}一時的に{sens} cm/360（{pctChange}% {direction}）でトレーニングしてください。診断されたエラーへの適応を促すため、意図的に大きく調整しています。短いブロックで使用し、その後通常の感度に戻って再評価してください。",
+    sensReason:
+      "信頼できるキルの{pct}%に{severity}な{issue}パターンがあります。{clickNote}一時的に{sens} cm/360（{pctChange}% {direction}）でトレーニングしてください。診断されたエラーへの適応を促すため、意図的に大きく調整しています。短いブロックで使用し、その後通常の感度に戻って再評価してください。",
   },
   traceViewer: {
     back5s: "5秒戻る",
@@ -387,7 +417,8 @@ export const history: HistoryMessages = {
     title: "リプレイ",
     modalTitle: "リプレイ – {label}",
     waitingStatus: "リプレイの状態を待機中…",
-    becomingAvailable: "リプレイを公開しました。利用可能になるまでお待ちください…",
+    becomingAvailable:
+      "リプレイを公開しました。利用可能になるまでお待ちください…",
     ready: "リプレイの準備ができました。",
     waitingForFinish: "リプレイの処理が完了するまで待機中…",
     noReplayAvailable: "このプレイで利用できるリプレイはありません。",
@@ -412,11 +443,14 @@ export const history: HistoryMessages = {
     infoUnavailable: "リプレイ情報を利用できません",
     loadingInfo: "リプレイ情報を読み込み中…",
     deleteTitle: "リプレイを削除",
-    deleteDescription: "このプレイの画面録画を完全に削除します。元に戻せません。",
-    deleteFailed: "このリプレイを削除できませんでした。使用中の他のアプリを閉じて、もう一度お試しください。",
+    deleteDescription:
+      "このプレイの画面録画を完全に削除します。元に戻せません。",
+    deleteFailed:
+      "このリプレイを削除できませんでした。使用中の他のアプリを閉じて、もう一度お試しください。",
     savedTo: "{path}に保存しました",
     exportFailed: "エクスポートに失敗しました。",
     exportFailedMessage: "エクスポートに失敗しました: {message}",
-    playbackError: "このリプレイを再生できませんでした。不完全であるか、対応していないコーデックを使用している可能性があります。",
+    playbackError:
+      "このリプレイを再生できませんでした。不完全であるか、対応していないコーデックを使用している可能性があります。",
   },
 };

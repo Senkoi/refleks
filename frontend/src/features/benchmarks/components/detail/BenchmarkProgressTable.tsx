@@ -31,11 +31,8 @@ import {
   adjustColorForTheme,
   getScenarioName,
 } from "../../lib/detailFormatting";
-import {
-  computeRecommendationScores,
-  selectTopPicks,
-  type ScenarioBenchmarkData,
-} from "../../lib/detailRecommendations";
+import { useTrainingProgress } from "@/features/training/TrainingProgressProvider";
+import { guidanceArrangements } from "@/features/training/guidanceArrangement";
 import { ScenarioHistoryModal } from "./ScenarioHistoryModal";
 import { ScenarioNotesModal } from "./ScenarioNotesModal";
 import { RecommendationInfo } from "./RecommendationInfo";
@@ -99,7 +96,7 @@ export function BenchmarkProgressTable({
     );
   const [showNotesCol, setShowNotesCol] = usePersistedState<boolean>(
     benchmarkDetailProgressStorageKey(benchmark.benchmarkName, "showNotes"),
-    true,
+    false,
   );
   const [showRecCol, setShowRecCol] = usePersistedState<boolean>(
     benchmarkDetailProgressStorageKey(benchmark.benchmarkName, "showRec"),
@@ -111,7 +108,7 @@ export function BenchmarkProgressTable({
   );
   const [showHistoryCol, setShowHistoryCol] = usePersistedState<boolean>(
     benchmarkDetailProgressStorageKey(benchmark.benchmarkName, "showHistory"),
-    true,
+    false,
   );
   const [showSettings, setShowSettings] = useState(false);
   const [settings, setSettings] = useState<Settings | null>(null);
@@ -201,66 +198,14 @@ export function BenchmarkProgressTable({
     return null;
   }, [sessions, wantedNames]);
 
-  const lastSessionCount = useMemo(() => {
-    const map = new Map<string, number>();
-    const lastSession = sessions[0];
-    if (!lastSession) return map;
-
-    for (const item of lastSession.items) {
-      const name = getScenarioName(item);
-      map.set(name, (map.get(name) || 0) + 1);
-    }
-    return map;
-  }, [sessions]);
-
-  const benchmarkData = useMemo(() => {
-    const data = new Map<string, ScenarioBenchmarkData>();
-    for (const category of categories) {
-      for (const group of category.groups) {
-        for (const scenario of group.scenarios) {
-          data.set(scenario.name, {
-            rank: Number(scenario.scenarioRank || 0),
-            score: Number(scenario.score || 0),
-            thresholds: scenario.thresholds || [],
-            category: category.name,
-          });
-        }
-      }
-    }
-    return data;
-  }, [categories]);
-
-  const scenarioCategoryMap = useMemo(() => {
-    const map = new Map<string, string>();
-    for (const category of categories) {
-      for (const group of category.groups) {
-        for (const scenario of group.scenarios) {
-          map.set(scenario.name, category.name);
-        }
-      }
-    }
-    return map;
-  }, [categories]);
-
-  const recommendationScore = useMemo(
-    () =>
-      computeRecommendationScores({
-        wantedNames,
-        lastSessionCount,
-        sessions,
-        benchmarkData,
-      }),
-    [wantedNames, lastSessionCount, sessions, benchmarkData],
-  );
-
-  const topPicks = useMemo(
-    () =>
-      selectTopPicks(
-        recommendationScore,
-        scenarioCategoryMap,
-        Math.max(3, categories.length || 3),
-      ),
-    [recommendationScore, scenarioCategoryMap, categories.length],
+  const {
+    guidance,
+    guidanceError,
+    error: trainingError,
+  } = useTrainingProgress();
+  const arrangements = useMemo(
+    () => guidanceArrangements(guidance, !!guidanceError || !!trainingError),
+    [guidance, guidanceError, trainingError],
   );
 
   const effectiveShowNotesCol = !shareMode && showNotesCol;
@@ -319,17 +264,15 @@ export function BenchmarkProgressTable({
   );
   const labelBackgroundColor = "var(--surface)";
 
-  const getRecommendation = (scenarioName: string) =>
-    recommendationScore.get(scenarioName) ?? 0;
-  const isTopPick = (scenarioName: string) => topPicks.has(scenarioName);
-
   return (
     <section className="relative z-0 space-y-3">
       {shareMode && (
         <div className="flex items-center gap-2 px-1">
           <img src={AIMMEOW_SYMBOL} alt="瞄瞄 AimMeow" className="h-12 w-12" />
           <div>
-            <p className="text-lg font-semibold text-foreground">瞄瞄 · AimMeow</p>
+            <p className="text-lg font-semibold text-foreground">
+              瞄瞄 · AimMeow
+            </p>
             <p className="text-sm text-surface-muted-foreground">
               {t("benchmarks.progressTable.snapshot")}
             </p>
@@ -354,34 +297,6 @@ export function BenchmarkProgressTable({
 
         {!shareMode && (
           <div className="flex flex-wrap items-center gap-2">
-            <Button
-              variant={compactMode ? "secondary" : "ghost"}
-              size="sm"
-              className="h-8 px-3 text-xs"
-              onClick={() => setCompactMode((value) => !value)}
-              aria-pressed={compactMode}
-              title={
-                compactMode
-                  ? t("benchmarks.progressTable.disableCompact")
-                  : t("benchmarks.progressTable.enableCompact")
-              }
-            >
-              {t("benchmarks.progressTable.compact")}
-            </Button>
-            <Button
-              variant={showLastPlayedHighlight ? "secondary" : "ghost"}
-              size="sm"
-              className="h-8 px-3 text-xs"
-              onClick={() => setShowLastPlayedHighlight((value) => !value)}
-              aria-pressed={showLastPlayedHighlight}
-              title={
-                showLastPlayedHighlight
-                  ? t("benchmarks.progressTable.hideLastPlayed")
-                  : t("benchmarks.progressTable.showLastPlayed")
-              }
-            >
-              {t("benchmarks.progressTable.lastPlayed")}
-            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -486,15 +401,6 @@ export function BenchmarkProgressTable({
                         <div className="shrink-0 bg-transparent">
                           <div className={rowSpacingClass}>
                             {group.scenarios.map((scenario) => {
-                              const recommendation = getRecommendation(
-                                scenario.name,
-                              );
-                              const completedThreshold = Math.max(
-                                1,
-                                (scenario.thresholds?.length ?? 0) - 1,
-                              );
-                              const completed =
-                                scenario.scenarioRank >= completedThreshold;
                               const hasSavedNote = Boolean(
                                 settings?.scenarioNotes?.[scenario.name]?.notes,
                               );
@@ -516,9 +422,9 @@ export function BenchmarkProgressTable({
                                     showPlayCol={effectiveShowPlayCol}
                                     showHistoryCol={effectiveShowHistoryCol}
                                     hasSavedNote={hasSavedNote}
-                                    recommendation={recommendation}
-                                    isTopPick={isTopPick(scenario.name)}
-                                    completed={completed}
+                                    arrangement={arrangements.get(
+                                      scenario.name.trim().toLowerCase(),
+                                    )}
                                     animate={!shareMode}
                                     onNotes={() => openNotes(scenario.name)}
                                     onHistory={() =>
@@ -658,6 +564,37 @@ export function BenchmarkProgressTable({
             height="auto"
           >
             <div className="space-y-6 px-6 pb-6">
+              <div className="flex flex-wrap gap-2">
+                {" "}
+                <Button
+                  variant={compactMode ? "secondary" : "ghost"}
+                  size="sm"
+                  className="h-8 px-3 text-xs"
+                  onClick={() => setCompactMode((value) => !value)}
+                  aria-pressed={compactMode}
+                  title={
+                    compactMode
+                      ? t("benchmarks.progressTable.disableCompact")
+                      : t("benchmarks.progressTable.enableCompact")
+                  }
+                >
+                  {t("benchmarks.progressTable.compact")}
+                </Button>
+                <Button
+                  variant={showLastPlayedHighlight ? "secondary" : "ghost"}
+                  size="sm"
+                  className="h-8 px-3 text-xs"
+                  onClick={() => setShowLastPlayedHighlight((value) => !value)}
+                  aria-pressed={showLastPlayedHighlight}
+                  title={
+                    showLastPlayedHighlight
+                      ? t("benchmarks.progressTable.hideLastPlayed")
+                      : t("benchmarks.progressTable.showLastPlayed")
+                  }
+                >
+                  {t("benchmarks.progressTable.lastPlayed")}
+                </Button>
+              </div>
               <div className="space-y-3">
                 <h4 className="text-sm font-semibold text-foreground">
                   {t("benchmarks.progressTable.featureColumns")}

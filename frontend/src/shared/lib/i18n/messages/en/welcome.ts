@@ -17,12 +17,12 @@ export const welcome = {
       "For detailed information about what's changed, features, and improvements, please visit the changelog linked below. It's always kept up to date with the latest release notes.",
     highlightsTitle: "Getting Started",
     highlights: {
-      changelog:
-        "Visit the changelog for detailed release information and feature updates.",
-      docs: "Check the documentation for guides, walkthroughs, and troubleshooting.",
+      changelog: "Confirm the KovaaK’s game folder in Settings.",
+      docs: "Choose your available time in the workbench, then generate and install a list.",
       customize:
-        "Customize your preferences in Settings to tailor AimMeow to your needs.",
-      community: "Join the community and share your experience.",
+        "Open the list in the game’s Local Playlists and start the workbench timer.",
+      community:
+        "Completed runs are recorded automatically. Click a played scene to review its history.",
     },
     linksTitle: "Resources",
     ctaFirstLaunch: "Start exploring",
@@ -37,6 +37,8 @@ export const welcome = {
     },
   },
   modal: {
+    moreDetails: "More details",
+    optionalRecording: "Trace and video settings (optional)",
     syncStatusEnabled:
       "Run Sync is currently enabled. You can change this later in Privacy settings.",
     syncStatusDisabled:
@@ -98,7 +100,8 @@ export const welcome = {
       },
       disabled: {
         label: "Not Right Now",
-        subtitle: "Start without trace capture and enable it whenever you want.",
+        subtitle:
+          "Start without trace capture and enable it whenever you want.",
         description:
           "A good starting point if you want to get familiar with the app first and decide about traces after a few sessions.",
         bullets: [
@@ -112,8 +115,7 @@ export const welcome = {
       label: "Screen Replay",
       description:
         "Record a video replay of your runs so you can rewatch and analyze your crosshair placement, movement, and decision-making directly in the app.",
-      helper:
-        "Requires FFmpeg. Can be changed later in General settings.",
+      helper: "Requires FFmpeg. Can be changed later in General settings.",
       enabled: {
         label: "Enable Replay Recording",
         subtitle: "Capture screen during runs (hardware accelerated).",
@@ -127,7 +129,8 @@ export const welcome = {
       },
       disabled: {
         label: "Start Without Recording",
-        subtitle: "Begin with mouse tracking only and add screen replays whenever.",
+        subtitle:
+          "Begin with mouse tracking only and add screen replays whenever.",
         description:
           "A low-friction starting point. You can enable replay recording later once you're comfortable with the app.",
         bullets: [

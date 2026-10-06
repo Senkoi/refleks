@@ -1,3 +1,4 @@
+import { benchmarks as newMessages } from "../en/benchmarks";
 import type { BenchmarksMessages } from "../en/benchmarks";
 
 /**
@@ -18,7 +19,8 @@ export const benchmarks: BenchmarksMessages = {
     showRecommended: "おすすめのベンチマークを表示",
     loadingRecommendations: "おすすめのためのベンチマーク進捗を読み込み中...",
     emptySyncing: "ベンチマークカタログの同期が完了するまで待機中...",
-    emptyFavorites: "お気に入りのベンチマークはまだありません。ベンチマークに星を付けると、ここに追加されます。",
+    emptyFavorites:
+      "お気に入りのベンチマークはまだありません。ベンチマークに星を付けると、ここに追加されます。",
     emptySearch: "検索に一致するベンチマークはありません。",
     emptyAll: "ベンチマークが見つかりません。",
     sortOptions: {
@@ -61,26 +63,30 @@ export const benchmarks: BenchmarksMessages = {
     hideLastPlayed: "最終プレイの強調表示を隠す",
     viewSettings: "トラッカー設定を表示",
     columnScenario: "シナリオ",
-    columnRec: "推奨",
+    columnRec: newMessages.progressTable.columnRec,
     columnScore: "スコア",
     details: "詳細",
     settingsTitle: "トラッカー設定",
     featureColumns: "表示列",
     columnLabelNotes: "メモ",
-    columnLabelRecommendations: "おすすめ",
+    columnLabelRecommendations:
+      newMessages.progressTable.columnLabelRecommendations,
     columnLabelPlay: "プレイ",
     columnLabelHistory: "履歴",
     rankVisibility: "ランクの表示",
     autoHideCleared: "クリア済みの古いランクを自動的に隠す",
     keepVisible: "表示を維持:",
     resetManual: "手動設定をリセット",
-    hiddenAutoTitle: "すべてのシナリオがこのランクをすでに上回っているため、自動的に非表示です",
+    hiddenAutoTitle:
+      "すべてのシナリオがこのランクをすでに上回っているため、自動的に非表示です",
   },
   rankDistribution: {
+    unrecorded: newMessages.rankDistribution.unrecorded,
     title: "ランク分布",
     scopeCategory: "カテゴリ",
     scopeSubcategory: "サブカテゴリ",
-    descriptionAll: "シナリオが各ランク帯にどのように分布しているかを示します。",
+    descriptionAll:
+      "シナリオが各ランク帯にどのように分布しているかを示します。",
     descriptionCategory: "カテゴリ範囲: {name}",
     descriptionSubcategory: "サブカテゴリ範囲: {name}",
     groupFallback: "グループ {number}",
@@ -99,18 +105,8 @@ export const benchmarks: BenchmarksMessages = {
     noData: "データなし。",
     avg: "平均",
   },
-  recommendationInfo: {
-    ariaLabel: "おすすめについて",
-    title: "おすすめ",
-    description: "進捗、最近のスコアの傾向、最後にプレイしてからの期間に基づき、今プレイする価値のあるシナリオを示します。",
-    completed: "完了 — 最高ランクに到達",
-    topPick: "最優先 — 今プレイするのに最適",
-    stronglyRecommended: "強くおすすめ",
-    recommended: "おすすめ — 平均未満または向上中",
-    neutral: "中立",
-    lowPriority: "優先度低",
-    avoid: "今は避ける — 高水準または下降傾向",
-  },
+  trainingRoles: newMessages.trainingRoles,
+  recommendationInfo: newMessages.recommendationInfo,
   scenarioHistory: {
     title: "シナリオ履歴 · {scenario}",
     score: "スコア",
@@ -124,6 +120,10 @@ export const benchmarks: BenchmarksMessages = {
     notesPlaceholder: "戦略、弱点、重点項目を記録...",
   },
   scenarioRow: {
+    currentPreview: newMessages.scenarioRow.currentPreview,
+    nextPreview: newMessages.scenarioRow.nextPreview,
+    arrangementDetail: newMessages.scenarioRow.arrangementDetail,
+    notInPreview: newMessages.scenarioRow.notInPreview,
     notesSensitivity: "メモと感度",
     recommendationScore: "おすすめスコア: {score}",
     playInKovaaks: "Kovaak'sでプレイ",

@@ -1,3 +1,4 @@
+import { benchmarks as newMessages } from "../en/benchmarks";
 import type { BenchmarksMessages } from "../en/benchmarks";
 
 /**
@@ -20,7 +21,8 @@ export const benchmarks: BenchmarksMessages = {
     showRecommended: "Mostrar benchmarks recomendados",
     loadingRecommendations:
       "Cargando el progreso de los benchmarks para las recomendaciones...",
-    emptySyncing: "Esperando a que termine de sincronizarse el catálogo de benchmarks...",
+    emptySyncing:
+      "Esperando a que termine de sincronizarse el catálogo de benchmarks...",
     emptyFavorites:
       "Aún no hay benchmarks favoritos. Marca un benchmark para añadirlo aquí.",
     emptySearch: "Ningún benchmark coincide con tu búsqueda.",
@@ -66,27 +68,31 @@ export const benchmarks: BenchmarksMessages = {
     hideLastPlayed: "Ocultar resaltado de la última partida",
     viewSettings: "Ver ajustes del seguimiento",
     columnScenario: "Escenario",
-    columnRec: "Rec.",
+    columnRec: newMessages.progressTable.columnRec,
     columnScore: "Puntuación",
     details: "Detalles",
     settingsTitle: "Ajustes del seguimiento",
     featureColumns: "Columnas de funciones",
     columnLabelNotes: "Notas",
-    columnLabelRecommendations: "Recomendaciones",
+    columnLabelRecommendations:
+      newMessages.progressTable.columnLabelRecommendations,
     columnLabelPlay: "Jugar",
     columnLabelHistory: "Historial",
     rankVisibility: "Visibilidad de rangos",
-    autoHideCleared: "Ocultar automáticamente los rangos superados anteriormente",
+    autoHideCleared:
+      "Ocultar automáticamente los rangos superados anteriormente",
     keepVisible: "Mantener visibles:",
     resetManual: "Restablecer manualmente",
     hiddenAutoTitle:
       "Oculto automáticamente porque todos los escenarios ya han superado este rango",
   },
   rankDistribution: {
+    unrecorded: newMessages.rankDistribution.unrecorded,
     title: "Distribución de rangos",
     scopeCategory: "Categoría",
     scopeSubcategory: "Subcategoría",
-    descriptionAll: "Cómo se distribuyen tus escenarios entre los niveles de rango.",
+    descriptionAll:
+      "Cómo se distribuyen tus escenarios entre los niveles de rango.",
     descriptionCategory: "Ámbito de categoría: {name}",
     descriptionSubcategory: "Ámbito de subcategoría: {name}",
     groupFallback: "Grupo {number}",
@@ -105,19 +111,8 @@ export const benchmarks: BenchmarksMessages = {
     noData: "No hay datos.",
     avg: "Media",
   },
-  recommendationInfo: {
-    ariaLabel: "Acerca de las recomendaciones",
-    title: "Recomendaciones",
-    description:
-      "Qué escenarios merece la pena jugar ahora, según tu progreso, las tendencias recientes de puntuación y cuánto hace que jugaste cada uno.",
-    completed: "Completado — rango máximo alcanzado",
-    topPick: "Mejor opción — ideal para jugar ahora",
-    stronglyRecommended: "Muy recomendado",
-    recommended: "Recomendado — por debajo de la media o mejorando",
-    neutral: "Neutro",
-    lowPriority: "Prioridad baja",
-    avoid: "Evitar por ahora — alto nivel o tendencia descendente",
-  },
+  trainingRoles: newMessages.trainingRoles,
+  recommendationInfo: newMessages.recommendationInfo,
   scenarioHistory: {
     title: "Historial del escenario · {scenario}",
     score: "Puntuación",
@@ -132,6 +127,10 @@ export const benchmarks: BenchmarksMessages = {
       "Registra tu estrategia, tus puntos débiles y tus objetivos...",
   },
   scenarioRow: {
+    currentPreview: newMessages.scenarioRow.currentPreview,
+    nextPreview: newMessages.scenarioRow.nextPreview,
+    arrangementDetail: newMessages.scenarioRow.arrangementDetail,
+    notInPreview: newMessages.scenarioRow.notInPreview,
     notesSensitivity: "Notas y sensibilidad",
     recommendationScore: "Puntuación de recomendación: {score}",
     playInKovaaks: "Jugar en KovaaK's",

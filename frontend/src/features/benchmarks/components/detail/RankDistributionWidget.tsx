@@ -1,3 +1,4 @@
+import { usePlayedScenarios } from "@/shared/components/ScenarioHistoryLink";
 import {
   Select,
   SelectContent,
@@ -45,6 +46,7 @@ function buildConicGradient(segments: Segment[]): string {
 
 export function RankDistributionWidget({ progress }: Props) {
   const { t } = useI18n();
+  const played = usePlayedScenarios();
   const [scopeLevel, setScopeLevel] = usePersistedState<ScopeLevel>(
     STORAGE_KEYS.benchmarksDetailRankDistributionScope,
     "all",
@@ -107,11 +109,17 @@ export function RankDistributionWidget({ progress }: Props) {
     const rankDefs = progress.ranks || [];
     const rankCounts = Array.from({ length: rankDefs.length }, () => 0);
     let belowR1 = 0;
+    let unrecorded = 0;
 
     for (const scenario of scopedScenarios) {
       const rank = Number(scenario.scenarioRank || 0);
       if (rank <= 0) {
-        belowR1 += 1;
+        if (
+          Number(scenario.score) > 0 ||
+          played.has(scenario.name.trim().toLowerCase())
+        )
+          belowR1 += 1;
+        else unrecorded += 1;
       } else {
         const index = Math.max(0, Math.min(rankDefs.length - 1, rank - 1));
         rankCounts[index] += 1;
@@ -119,6 +127,13 @@ export function RankDistributionWidget({ progress }: Props) {
     }
 
     const counts: Segment[] = [];
+    if (unrecorded > 0)
+      counts.push({
+        label: t("benchmarks.rankDistribution.unrecorded"),
+        count: unrecorded,
+        color: "var(--surface-muted)",
+        percent: 0,
+      });
     if (belowR1 > 0) {
       counts.push({
         label: t("benchmarks.rankDistribution.belowR1"),
@@ -150,7 +165,7 @@ export function RankDistributionWidget({ progress }: Props) {
       ...segment,
       percent: total > 0 ? (segment.count / total) * 100 : 0,
     }));
-  }, [progress.ranks, scopedScenarios, t]);
+  }, [progress.ranks, scopedScenarios, t, played]);
 
   const totalScenarios = segments.reduce(
     (sum, segment) => sum + segment.count,
