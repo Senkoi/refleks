@@ -1,26 +1,26 @@
 import type { BenchmarksMessages } from "../en/benchmarks";
 
 /**
- * 基准训练功能的简体中文文本；基准训练、场景和排名名称保持不翻译。
+ * 基准测试功能的简体中文文本；基准测试、场景和排名名称保持不翻译。
  */
 export const benchmarks: BenchmarksMessages = {
   explore: {
-    title: "基准训练",
+    title: "基准测试",
     sort: "排序",
     group: "分组",
     random: "随机",
-    randomTitle: "打开随机基准训练",
-    showAll: "显示所有基准训练",
+    randomTitle: "打开随机基准测试",
+    showAll: "显示所有基准测试",
     showFavoritesOnly: "仅显示收藏",
     favorites: "收藏",
     recommended: "推荐",
     hideRecommendations: "隐藏推荐",
-    showRecommended: "显示推荐的基准训练",
-    loadingRecommendations: "正在加载用于推荐的基准训练进度...",
-    emptySyncing: "等待基准训练目录完成同步...",
-    emptyFavorites: "还没有收藏的基准训练。点击星标即可添加到这里。",
-    emptySearch: "没有基准训练符合你的搜索条件。",
-    emptyAll: "未找到基准训练。",
+    showRecommended: "显示推荐的基准测试",
+    loadingRecommendations: "正在加载用于推荐的基准测试进度...",
+    emptySyncing: "等待基准测试目录完成同步...",
+    emptyFavorites: "还没选好喜欢的测试喵。点一下星标，我就帮你收好。",
+    emptySearch: "这次没找到匹配的测试喵，换个关键词试试。",
+    emptyAll: "未找到基准测试。",
     sortOptions: {
       name: "名称",
       abbreviation: "缩写",
@@ -32,19 +32,19 @@ export const benchmarks: BenchmarksMessages = {
     },
     categories: {
       aim: "瞄准组",
-      community: "社区基准训练",
-      notable: "知名创作者基准训练",
+      community: "社区基准测试",
+      notable: "知名创作者基准测试",
       other: "其他",
     },
   },
   detail: {
     difficulty: "难度",
-    playPlaylist: "在 Kovaak's 中运行基准训练列表",
+    playPlaylist: "在 Kovaak's 中运行基准测试列表",
     copied: "已复制！",
     copyScreenshot: "复制进度表截图",
-    favorite: "收藏基准训练",
-    unfavorite: "取消收藏基准训练",
-    notFound: "未找到基准训练。",
+    favorite: "收藏基准测试",
+    unfavorite: "取消收藏基准测试",
+    notFound: "未找到基准测试。",
     unknownDifficulty: "未知难度",
     noProgress: "此难度暂无可用进度数据。",
     clipboardUnsupported: "此环境不支持图像剪贴板。",
@@ -52,7 +52,7 @@ export const benchmarks: BenchmarksMessages = {
   },
   progressTable: {
     title: "进度跟踪器",
-    snapshot: "基准训练进度快照",
+    snapshot: "基准测试进度快照",
     compact: "紧凑",
     enableCompact: "启用紧凑模式",
     disableCompact: "停用紧凑模式",
@@ -61,13 +61,13 @@ export const benchmarks: BenchmarksMessages = {
     hideLastPlayed: "隐藏上次运行高亮",
     viewSettings: "查看跟踪器设置",
     columnScenario: "场景",
-    columnRec: "推荐",
+    columnRec: "训练安排",
     columnScore: "分数",
     details: "详细信息",
     settingsTitle: "跟踪器设置",
     featureColumns: "功能列",
     columnLabelNotes: "备注",
-    columnLabelRecommendations: "推荐",
+    columnLabelRecommendations: "训练安排预览",
     columnLabelPlay: "运行",
     columnLabelHistory: "历史",
     rankVisibility: "排名可见性",
@@ -77,6 +77,7 @@ export const benchmarks: BenchmarksMessages = {
     hiddenAutoTitle: "由于所有场景都已超过此排名，已自动隐藏",
   },
   rankDistribution: {
+    unrecorded: "成绩未记录",
     title: "排名分布",
     scopeCategory: "类别",
     scopeSubcategory: "子类别",
@@ -99,18 +100,19 @@ export const benchmarks: BenchmarksMessages = {
     noData: "没有数据。",
     avg: "平均",
   },
+  trainingRoles: {
+    warmup: "热身",
+    practice: "专项练习",
+    benchmark: "基准测量",
+    assessment: "复测",
+    explore: "探索试练",
+    challenge: "进阶挑战",
+  },
   recommendationInfo: {
-    ariaLabel: "关于推荐",
-    title: "推荐",
+    ariaLabel: "训练安排预览说明",
+    title: "工作台训练安排",
     description:
-      "根据你的进度、最近的分数趋势以及你最近运行各场景的时间，显示当前值得运行的场景。",
-    completed: "已完成——已达到最高排名",
-    topPick: "首选——现在最值得运行",
-    stronglyRecommended: "强烈推荐",
-    recommended: "推荐——低于平均水平或正在进步",
-    neutral: "中性",
-    lowPriority: "低优先级",
-    avoid: "暂时避免——表现强劲或趋势下降",
+      "与工作台使用同一份近期安排预览。本次表示当前固定列表的后续练习，下次表示生成前的方向预览。悬停查看用途和局数；此处不会重新给场景评分或改变列表。",
   },
   scenarioHistory: {
     title: "场景历史 · {scenario}",
@@ -125,6 +127,12 @@ export const benchmarks: BenchmarksMessages = {
     notesPlaceholder: "记录你的策略、弱点和训练重点...",
   },
   scenarioRow: {
+    currentPreview: "本次",
+    nextPreview: "下次",
+    arrangementDetail: "{roles} · {runs} 局（工作台预览）",
+    notInPreview:
+      "未出现在工作台的近期预览中；不表示已排除，也不代表完整计划没有此图。",
+
     notesSensitivity: "备注和灵敏度",
     recommendationScore: "推荐分数：{score}",
     playInKovaaks: "在 Kovaak's 中运行",

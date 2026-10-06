@@ -11,18 +11,19 @@ import (
 	"sync/atomic"
 	"time"
 
-	"refleks/internal/autostart"
-	"refleks/internal/benchmarks"
-	"refleks/internal/cache"
-	"refleks/internal/constants"
-	"refleks/internal/models"
-	"refleks/internal/process"
-	"refleks/internal/runs"
-	"refleks/internal/runs/screen"
-	"refleks/internal/scenarios"
-	appsettings "refleks/internal/settings"
-	"refleks/internal/training"
-	"refleks/internal/updater"
+	"aimmeow/internal/autostart"
+	"aimmeow/internal/benchmarks"
+	"aimmeow/internal/cache"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	"aimmeow/internal/process"
+	"aimmeow/internal/runs"
+	"aimmeow/internal/runs/screen"
+	"aimmeow/internal/scenarios"
+	appsettings "aimmeow/internal/settings"
+	"aimmeow/internal/training"
+	"aimmeow/internal/training/orchestration"
+	"aimmeow/internal/updater"
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
@@ -31,7 +32,7 @@ import (
 type App struct {
 	trainingSvc    *training.Service
 	trainingErr    error
-	trainingCancel context.CancelFunc
+	trainingRunner *orchestration.Runner
 	ctx            context.Context
 	runsRuntimeSvc *runs.RuntimeService
 	settingsSvc    *appsettings.Service
@@ -55,7 +56,7 @@ func NewApp(startedHidden bool) *App { return &App{startedHidden: startedHidden}
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
-	runtime.LogInfo(a.ctx, "RefleK's app starting up")
+	runtime.LogInfo(a.ctx, "AimMeow app starting up")
 	if err := screen.CleanupAbandonedSessions(); err != nil {
 		runtime.LogWarningf(a.ctx, "screen: clean abandoned capture sessions: %v", err)
 	}
@@ -383,7 +384,17 @@ func (a *App) GetSettings() models.Settings {
 
 // UpdateSettings updates settings and persists them; applies to watcher if needed.
 func (a *App) UpdateSettings(s models.Settings) error {
-	return a.runsRuntimeSvc.UpdateSettings(s)
+	if err := a.runsRuntimeSvc.UpdateSettings(s); err != nil {
+		return err
+	}
+	a.applyTrainingSessionGap()
+	return nil
+}
+
+func (a *App) applyTrainingSessionGap() {
+	if a.trainingSvc != nil && a.settingsSvc != nil {
+		a.trainingSvc.SetSessionGap(time.Duration(a.settingsSvc.Get().SessionGapMinutes) * time.Minute)
+	}
 }
 
 // Favorites helpers
@@ -443,7 +454,11 @@ func (a *App) ResetSettings(resetConfig, resetFavorites, resetScenarioNotes, res
 		newSettings.SessionNotes = nil
 	}
 
-	return a.runsRuntimeSvc.OverwriteSettings(newSettings)
+	if err := a.runsRuntimeSvc.OverwriteSettings(newSettings); err != nil {
+		return err
+	}
+	a.applyTrainingSessionGap()
+	return nil
 }
 
 // --- App metadata ---
@@ -658,8 +673,8 @@ func (a *App) hideWindow() {
 // It stops capture and performs best-effort cleanup of temporary segments;
 // startup cleanup removes any files that were locked or left by a forced exit.
 func (a *App) shutdown(ctx context.Context) {
-	if a.trainingCancel != nil {
-		a.trainingCancel()
+	if a.trainingRunner != nil {
+		a.trainingRunner.Stop()
 	}
 	if a.trainingSvc != nil {
 		_, _ = a.trainingSvc.Action("pause", time.Now(), a.GetRecentRuns(0))

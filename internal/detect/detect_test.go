@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"refleks/internal/constants"
+	"aimmeow/internal/constants"
 )
 
 func TestUnescapeVDF(t *testing.T) {

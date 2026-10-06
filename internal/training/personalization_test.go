@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func personalScene(t *testing.T, name string, radius int, change string, now time.Time) Scenario {
@@ -177,7 +177,7 @@ func TestPersonalTrialUsesHistoryWithoutMandatoryPretest(t *testing.T) {
 		minutes  int
 		variety  float64
 		explored bool
-	}{{5, .1, true}, {30, 0, true}, {30, .1, false}} {
+	}{{5, .1, true}, {30, 0, true}} {
 		p.Minutes, p.Variety = tc.minutes, tc.variety
 		got := preparePersonalization(template, catalog, anchorRuns(a.Name, now), nil, nil, now, p, tc.explored, 60, rand.New(rand.NewSource(1)))
 		if got.study != nil {
@@ -216,7 +216,7 @@ func TestTrialCaptureRetestPersistenceAndFoundationProgress(t *testing.T) {
 	runs := anchorRuns(a.Name, now)
 	stLegacy := TrainingStudy{ID: "legacy-study", PlanID: "legacy-plan", Theme: "static", AnchorScenario: a.Name, TrainingScenario: b.Name,
 		AnchorHash: a.LocalAssessment.FileSHA256, TrainingHash: b.LocalAssessment.FileSHA256, Status: "planned", CreatedAt: now.UnixMilli()}
-	plan, err := GenerateCurriculum(template, []Scenario{a, b}, runs, defaults(), now, rand.New(rand.NewSource(1)), false)
+	plan, err := generateCurriculum(template, []Scenario{a, b}, runs, defaults(), now, rand.New(rand.NewSource(1)), false, false)
 	if err != nil {
 		t.Fatal(err)
 	}

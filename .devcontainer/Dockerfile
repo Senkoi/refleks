@@ -33,4 +33,4 @@ ENV PATH=$PATH:$HOME/go/bin
 
 RUN go install github.com/wailsapp/wails/v2/cmd/wails@v2.13.0
 
-WORKDIR /workspaces/refleks
+WORKDIR /workspaces/aimmeow

@@ -6,14 +6,17 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strconv"
 	"sync"
 	"time"
 
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	"aimmeow/internal/sceneanalysis"
+	appsettings "aimmeow/internal/settings"
+	"aimmeow/internal/training"
+	"aimmeow/internal/training/orchestration"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
-	"refleks/internal/constants"
-	"refleks/internal/models"
-	appsettings "refleks/internal/settings"
-	"refleks/internal/training"
 )
 
 func (a *App) startTraining() {
@@ -46,78 +49,62 @@ func (a *App) startTraining() {
 		}
 	})
 	a.pollTrainingLocal(time.Now())
-	ctx, cancel := context.WithCancel(a.ctx)
-	a.trainingCancel = cancel
-	go func() {
-		if catalog, e := a.GetBenchmarks(); e == nil {
-			a.sampleInitialBenchmarkScores(ctx, catalog)
-			progress := map[int]models.BenchmarkProgress{}
-			for _, b := range catalog {
-				for _, d := range b.Difficulties {
-					if p, ok := a.benchmarkSvc.GetCachedBenchmarkProgress(d.KovaaksBenchmarkID); ok {
-						progress[d.KovaaksBenchmarkID] = p
+	a.trainingRunner = orchestration.Start(a.ctx, orchestration.Hooks{
+		Startup: func(ctx context.Context) {
+			if catalog, e := a.GetBenchmarks(); e == nil {
+				a.sampleInitialBenchmarkScores(ctx, catalog)
+				if ctx.Err() != nil {
+					return
+				}
+				progress := map[int]models.BenchmarkProgress{}
+				for _, b := range catalog {
+					for _, d := range b.Difficulties {
+						if p, ok := a.benchmarkSvc.GetCachedBenchmarkProgress(d.KovaaksBenchmarkID); ok {
+							progress[d.KovaaksBenchmarkID] = p
+						}
 					}
 				}
+				_, _ = a.trainingSvc.Add(training.BenchmarkScenarios(catalog, progress, time.Now()))
 			}
-			_, _ = a.trainingSvc.Add(training.BenchmarkScenarios(catalog, progress, time.Now()))
-		}
-		// Catch-up imports existing CSVs asynchronously. Do not infer Novice
-		// merely because those historical runs have not arrived yet.
-		if !a.runsRuntimeSvc.WaitInitialHistory(ctx) {
-			return
-		}
-		history, historyErr := a.runsRuntimeSvc.TrainingRuns()
-		if historyErr != nil {
-			a.trainingSvc.StartupFailed(fmt.Errorf("读取训练历史失败：%w", historyErr))
-		} else {
-			regenerated, prepareErr := a.trainingSvc.PrepareStartup(history)
-			if prepareErr != nil {
-				a.trainingSvc.StartupFailed(fmt.Errorf("启动训练列表生成失败：%w", prepareErr))
-			} else if regenerated {
-				// Update only the owned fixed slot; active sessions and foreign
-				// playlist files keep the existing ownership protection.
-				base := a.settingsSvc.Get().KovaaksInstallDir
-				if base != "" {
-					if _, installErr := a.InstallTrainingPlaylist(); installErr != nil {
-						a.trainingSvc.StartupFailed(fmt.Errorf("启动列表已生成，但安装失败：%w", installErr))
-					}
-				}
-				a.trainingSvc.FinishStartup(nil)
-			}
-		}
-		localTicker := time.NewTicker(15 * time.Second)
-		defer localTicker.Stop()
-		for {
-			select {
-			case <-ctx.Done():
+			// Catch-up imports existing CSVs asynchronously. Do not infer Novice
+			// merely because those historical runs have not arrived yet.
+			if !a.runsRuntimeSvc.WaitInitialHistory(ctx) {
 				return
-			case now := <-localTicker.C:
-				a.pollTrainingLocal(now)
 			}
-		}
-	}()
-	go func() {
-		ticker := time.NewTicker(2 * time.Second)
-		defer ticker.Stop()
-		for {
-			select {
-			case <-ctx.Done():
-				return
-			case now := <-ticker.C:
-				if name := a.trainingSvc.Tick(now, a.trainingExecutionHistory(now)); name != "" {
-					if err := a.LaunchKovaaksScenario(name, "challenge"); err != nil {
-						a.trainingSvc.LaunchFailed(err)
+			history, historyErr := a.runsRuntimeSvc.TrainingRuns()
+			if historyErr != nil {
+				a.trainingSvc.StartupFailed(fmt.Errorf("读取训练历史失败：%w", historyErr))
+			} else {
+				regenerated, prepareErr := a.trainingSvc.PrepareStartup(history)
+				if prepareErr != nil {
+					a.trainingSvc.StartupFailed(fmt.Errorf("启动训练列表生成失败：%w", prepareErr))
+				} else if regenerated {
+					// Update only the owned fixed slot; active sessions and foreign
+					// playlist files keep the existing ownership protection.
+					base := a.settingsSvc.Get().KovaaksInstallDir
+					if base != "" {
+						if _, installErr := a.InstallTrainingPlaylist(); installErr != nil {
+							a.trainingSvc.StartupFailed(fmt.Errorf("启动列表已生成，但安装失败：%w", installErr))
+						}
 					}
-				}
-				if reminder := a.trainingSvc.TakeReminder(); reminder != "" {
-					showTrainingReminder(reminder)
-				}
-				if a.trainingSvc.DiscoveryDue(now) {
-					go func() { _, _ = a.trainingSvc.Discover(ctx) }()
+					a.trainingSvc.FinishStartup(nil)
 				}
 			}
-		}
-	}()
+		},
+		PollLocal: a.pollTrainingLocal,
+		Tick: func(now time.Time) {
+			if name := a.trainingSvc.Tick(now, a.trainingExecutionHistory(now)); name != "" {
+				if err := a.LaunchKovaaksScenario(name, "challenge"); err != nil {
+					a.trainingSvc.LaunchFailed(err)
+				}
+			}
+			if reminder := a.trainingSvc.TakeReminder(); reminder != "" {
+				showTrainingReminder(reminder)
+			}
+		},
+		DiscoveryDue: a.trainingSvc.DiscoveryDue,
+		Discover:     func(ctx context.Context) { _, _ = a.trainingSvc.Discover(ctx) },
+	})
 }
 
 // Startup samples the relevant live rosters in addition to existing caches.
@@ -166,6 +153,58 @@ func (a *App) GetTrainingState() (string, error) {
 	return a.trainingSvc.WorkbenchJSON(a.trainingHistory())
 }
 
+// Typed endpoints are the frontend's source of truth. Legacy JSON endpoints
+// remain readable for existing clients during migration.
+func (a *App) GetTrainingWorkbench() (*training.WorkbenchDTO, error) {
+	if err := a.trainingReady(); err != nil {
+		return nil, err
+	}
+	return a.trainingSvc.Workbench(a.trainingHistory())
+}
+func (a *App) GetTrainingExecution() (training.LiveState, error) {
+	if err := a.trainingReady(); err != nil {
+		return training.LiveState{}, err
+	}
+	return a.trainingSvc.Live(), nil
+}
+func (a *App) GetTrainingProgress() (training.TrainingProgressDTO, error) {
+	if err := a.trainingReady(); err != nil {
+		return training.TrainingProgressDTO{}, err
+	}
+	return a.trainingSvc.Progress(), nil
+}
+func (a *App) GetTrainingGuidance() (training.TrainingGuidance, error) {
+	if err := a.trainingReady(); err != nil {
+		return training.TrainingGuidance{}, err
+	}
+	return a.trainingSvc.Guidance(a.trainingHistory()), nil
+}
+func (a *App) GetTrainingPlanRunIDs(id string) ([]string, error) {
+	if err := a.trainingReady(); err != nil {
+		return nil, err
+	}
+	return a.trainingSvc.PlanRunIDs(id), nil
+}
+func (a *App) CreateTrainingPlan(request training.GenerateRequest) (*training.Plan, error) {
+	if err := a.trainingReady(); err != nil {
+		return nil, err
+	}
+	a.pollTrainingLocal(time.Now())
+	return a.trainingSvc.Generate(request.Preferences, a.trainingHistory())
+}
+func (a *App) CompareTrainingScenes(anchor, candidate string) (training.ScenarioComparison, error) {
+	if err := a.trainingReady(); err != nil {
+		return training.ScenarioComparison{}, err
+	}
+	return a.trainingSvc.CompareScenes(anchor, candidate)
+}
+func (a *App) GetTrainingSceneRequirements(name, hash string) (*sceneanalysis.Descriptor, error) {
+	if err := a.trainingReady(); err != nil {
+		return nil, err
+	}
+	return a.trainingSvc.SceneRequirements(name, hash)
+}
+
 func (a *App) GenerateTrainingPlan(request string) (string, error) {
 	if err := a.trainingReady(); err != nil {
 		return "", err
@@ -207,7 +246,7 @@ func (a *App) TrainingAction(action string) error {
 func (a *App) TestTrainingReminder() {
 	go func() {
 		time.Sleep(10 * time.Second)
-		showTrainingReminder("Refleks 测试提醒：如果游戏中能看到这条消息，浮层已正常显示。")
+		showTrainingReminder("喵，提醒送到啦！游戏中能看到我，就说明浮层正常。")
 	}()
 }
 
@@ -270,6 +309,18 @@ func (a *App) RecordTrainingTrialFeedback(id, feedback string) error {
 	return a.trainingSvc.TrialFeedback(id, feedback)
 }
 
+// Changing discovery preferences does not alter a generated training list.
+func (a *App) SetTrainingAutoDiscover(value string) error {
+	if err := a.trainingReady(); err != nil {
+		return err
+	}
+	enabled, err := strconv.ParseBool(value)
+	if err != nil {
+		return err
+	}
+	return a.trainingSvc.SetAutoDiscover(enabled)
+}
+
 func (a *App) ImportTrainingBenchmarks() (int, error) {
 	if err := a.trainingReady(); err != nil {
 		return 0, err
@@ -287,7 +338,7 @@ func (a *App) ImportTrainingBenchmarks() (int, error) {
 	}
 	items := training.BenchmarkScenarios(catalog, progress, time.Now())
 	if len(items) == 0 {
-		return 0, fmt.Errorf("尚无可用 benchmark 关卡定义。请先在 Benchmarks 页面完成同步")
+		return 0, fmt.Errorf("我还没拿到测试关卡喵，先去基准训练页面同步一下。")
 	}
 	return a.trainingSvc.Add(items)
 }
@@ -300,7 +351,7 @@ func (a *App) ExportTrainingPlaylist() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "导出训练列表（次数与计划一致）", DefaultFilename: "Refleks-Adaptive.json", Filters: []runtime.FileFilter{{DisplayName: "KovaaK's playlist", Pattern: "*.json"}}})
+	path, err := runtime.SaveFileDialog(a.ctx, runtime.SaveDialogOptions{Title: "导出瞄瞄训练列表", DefaultFilename: "AimMeow-Training.json", Filters: []runtime.FileFilter{{DisplayName: "KovaaK's playlist", Pattern: "*.json"}}})
 	if err != nil || path == "" {
 		return "", err
 	}
@@ -316,7 +367,7 @@ func (a *App) InstallTrainingPlaylist() (string, error) {
 	base := a.settingsSvc.Get().KovaaksInstallDir
 	gameDir := filepath.Join(base, "FPSAimTrainer")
 	if base == "" {
-		return "", fmt.Errorf("请先在设置中指定 KovaaK's 安装目录")
+		return "", fmt.Errorf("先在设置里告诉我 KovaaK's 装在哪里喵。")
 	}
 	if info, err := os.Stat(gameDir); err != nil || !info.IsDir() {
 		return "", fmt.Errorf("未找到 KovaaK's 游戏目录：%s", gameDir)

@@ -5,8 +5,8 @@ import (
 	"errors"
 	"time"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 // Service centralizes update-related app logic so UI wiring stays thin.

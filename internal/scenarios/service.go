@@ -7,10 +7,10 @@ import (
 	"net/url"
 	"time"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
-	"refleks/internal/settings"
-	"refleks/internal/steam"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	"aimmeow/internal/settings"
+	"aimmeow/internal/steam"
 )
 
 // Service manages scenario data fetching.

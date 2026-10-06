@@ -1,3 +1,4 @@
+import { settings as newMessages } from "../en/settings";
 import { plural } from "../../plural";
 import type { SettingsMessages } from "../en/settings";
 
@@ -30,6 +31,7 @@ export const settings: SettingsMessages = {
     failedToDownload: "アップデートのダウンロードに失敗しました",
   },
   general: {
+    recordingAdvanced: newMessages.general.recordingAdvanced,
     title: "一般",
     description: "基本フォルダーとセッションの動作。",
     kovaaksInstallFolder: "KovaaK'sのインストールフォルダー",
@@ -37,7 +39,7 @@ export const settings: SettingsMessages = {
       "FPSAimTrainer/statsとFPSAimTrainer/performancesの場所を特定するために使用するKovaaK'sのインストールフォルダーのパス",
     startWithKovaaks: "KovaaK'sと一緒に起動",
     startWithKovaaksDescription:
-      "KovaaK'sの起動時にRefleK'sを自動的に起動します。RefleK'sはWindowsの起動時にも起動します",
+      "KovaaK'sの起動時にAimMeowを自動的に起動します。AimMeowはWindowsの起動時にも起動します",
     mouseTracking: "マウストラッキング",
     mouseTrackingDescription:
       "シナリオ中のマウスの動きを記録します（Windowsのみ）",
@@ -92,11 +94,15 @@ export const settings: SettingsMessages = {
     sessionGapMinutes: plural({ one: "1分", other: "{count}分" }),
   },
   privacy: {
+    localRecords: newMessages.privacy.localRecords,
     title: "プライバシー",
     description:
       "プレイをアップロードするか、同期前に識別につながる環境データを削除するかを設定します。",
     runSync: "プレイの同期",
-    runSyncDescription: "完了したプレイをRefleK's Indexにアップロードします。",
+    serviceUnavailable:
+      "Training stays on this computer. AimMeow has no cloud sync service configured.",
+    runSyncDescription:
+      "完了したプレイを設定した同期サービスにアップロードします。",
     anonymousMode: "匿名モード",
     anonymousModeDescription:
       "同期アップロードの前に、プレイの環境データからSteam IDとSteamのペルソナ名を削除します。",
@@ -110,7 +116,7 @@ export const settings: SettingsMessages = {
     themeLight: "ライト",
     themeCustom: "カスタム",
     themeCustomDescription:
-      "RefleK'sの設定フォルダーにあるカスタムテーマファイルを編集して、色やフォントなどを細かく設定できます。変更は再起動後に反映されます。",
+      "AimMeowの設定フォルダーにあるカスタムテーマファイルを編集して、色やフォントなどを細かく設定できます。変更は再起動後に反映されます。",
     openThemeFile: "テーマファイルを開く",
     regenerateThemeFile: "再生成",
     themeFileRegenerateConfirm:
@@ -138,14 +144,21 @@ export const settings: SettingsMessages = {
     personaNameDescription:
       "kovaaks.comのアカウントで使用しているユーザー名を入力してください。",
     displayNamePlaceholder: "表示名",
-    dataRetention: "データ保持",
+    dataRetention: newMessages.advanced.dataRetention,
     recentRunsWindow: "最近のプレイ期間（日）",
     recentRunsWindowDescription: "過去N日間のプレイのみを読み込んで表示します",
     recentRunsMinCount: "最近のプレイの最小件数",
     recentRunsMinCountDescription:
       "期間内のプレイが少なすぎる場合、この最小件数に達するまで古いプレイを含めます",
   },
+  about: {
+    title: "About AimMeow",
+    description:
+      "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.",
+    notices: "Attribution and GPL-3.0 license",
+  },
   footer: {
+    maintenance: newMessages.footer.maintenance,
     clearCache: "キャッシュをクリア",
     saving: "設定を保存中...",
     unsavedChanges: "未保存の変更",

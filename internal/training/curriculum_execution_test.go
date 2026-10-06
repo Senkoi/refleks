@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func TestAdjacentSameScenarioRowsTrackCountsAndRestart(t *testing.T) {
@@ -139,7 +139,7 @@ func TestManagedPlaylistOwnerFailureRemovesUnownedFile(t *testing.T) {
 	}
 	// A nonempty directory at the marker path forces a portable write failure.
 	other := t.TempDir()
-	owner := filepath.Join(other, "Refleks-Adaptive-Current.json.owner")
+	owner := filepath.Join(other, "AimMeow-Current.json.owner")
 	if err := os.Mkdir(owner, 0700); err != nil {
 		t.Fatal(err)
 	}
@@ -149,7 +149,7 @@ func TestManagedPlaylistOwnerFailureRemovesUnownedFile(t *testing.T) {
 	if _, err := s.Install(other); err == nil {
 		t.Fatal("owner write failure accepted")
 	}
-	if _, err := os.Stat(filepath.Join(other, "Refleks-Adaptive-Current.json")); !os.IsNotExist(err) {
+	if _, err := os.Stat(filepath.Join(other, "AimMeow-Current.json")); !os.IsNotExist(err) {
 		t.Fatal("unowned new playlist left behind", err)
 	}
 }

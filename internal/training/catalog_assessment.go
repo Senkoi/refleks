@@ -20,6 +20,9 @@ type CatalogAssessment struct {
 
 func assessCatalog(s Scenario, rows []observation, now time.Time, p Preferences) *CatalogAssessment {
 	e := &CatalogAssessment{FileStatus: "missing", DifficultyStatus: "unfitted", Fit: "unknown"}
+	// Personal feedback and comparable scores remain useful without a local SCE.
+	fit := assessDifficultyFor(s, rows, now, p)
+	e.Fit, e.Samples = fit.Fit, fit.Samples
 	a := s.LocalAssessment
 	if a == nil {
 		return e
@@ -84,8 +87,6 @@ func assessCatalog(s Scenario, rows []observation, now time.Time, p Preferences)
 			}
 		}
 	}
-	fit := assessDifficultyFor(s, rows, now, p)
-	e.Fit, e.Samples = fit.Fit, fit.Samples
 	e.HasDifficultyEvidence = e.HasPrecisionReference || e.HasBenchmarkReference
 	switch {
 	case e.HasPrecisionReference:

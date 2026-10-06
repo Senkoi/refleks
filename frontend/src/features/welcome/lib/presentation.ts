@@ -29,11 +29,11 @@ function buildPresentation(
     currentVersion,
     showMouseTraceChoice: isFirstLaunch,
     showScreenCaptureChoice: isFirstLaunch,
-    showAnonymousChoice: isFirstLaunch,
+    showAnonymousChoice: isFirstLaunch && settings.runSyncAvailable === true,
     initialAnonymousEnabled: settings.anonymousEnabled === true,
     initialMouseTrackingEnabled: settings.mouseTrackingEnabled === true,
     initialScreenCaptureEnabled: settings.screenCaptureEnabled === true,
-    runSyncEnabled: settings.runSyncEnabled !== false,
+    runSyncEnabled: settings.runSyncAvailable === true && settings.runSyncEnabled === true,
   };
 }
 

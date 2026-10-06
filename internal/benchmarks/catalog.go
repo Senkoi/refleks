@@ -10,9 +10,9 @@ import (
 	"strconv"
 	"strings"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
-	"refleks/internal/settings"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	"aimmeow/internal/settings"
 )
 
 //go:embed benchmarks_fallback.json
@@ -30,7 +30,7 @@ func resolveBenchmarksEndpoint() string {
 	if env := strings.TrimSpace(settings.GetEnv(constants.EnvBenchmarksURLVar)); env != "" {
 		return env
 	}
-	return constants.RefleksBenchmarksURL
+	return constants.CommunityBenchmarksURL
 }
 
 // SyncBenchmarksCache fetches benchmark definitions from API and persists them to cache.

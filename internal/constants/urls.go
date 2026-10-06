@@ -7,14 +7,14 @@ const (
 	// Kovaaks last scores endpoint. Use fmt.Sprintf with username and scenarioName.
 	KovaaksLastScoresURL = "https://kovaaks.com/webapp-backend/user/scenario/last-scores/by-name?username=%s&scenarioName=%s"
 
-	// RefleK's cloud endpoint for run file uploads.
-	RefleksRunsSyncURL = "https://api.refleksapp.com/v1/runs/sync"
+	// AimMeow has no default upload service. Only an explicitly configured endpoint is used.
+	RunsSyncURL = ""
 	// RefleK's benchmark catalog endpoint used by the desktop app on startup.
-	RefleksBenchmarksURL = "https://api.refleksapp.com/v1/benchmarks?view=progress"
+	CommunityBenchmarksURL = "https://api.refleksapp.com/v1/benchmarks?view=progress"
 
 	// --- Updater/GitHub release info ---
 	// GitHub repository owner/name used for update checks and downloads
-	GitHubOwner = "ARm8-2"
+	GitHubOwner = "Senkoi"
 	GitHubRepo  = "refleks"
 	// GitHub API endpoint to retrieve the latest release metadata
 	GitHubLatestReleaseAPI = "https://api.github.com/repos/%s/%s/releases/latest"

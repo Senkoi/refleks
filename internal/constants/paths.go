@@ -12,8 +12,8 @@ const (
 
 	// Prefixes for temporary directories that may survive an interrupted
 	// process and are safe to remove during the next startup.
-	ScreenCaptureTempDirPrefix = "refleks-capture-"
-	UpdaterTempDirPrefix       = "refleks-update-"
+	ScreenCaptureTempDirPrefix = "aimmeow-capture-"
+	UpdaterTempDirPrefix       = "aimmeow-update-"
 
 	KovaaksDataDirName         = "FPSAimTrainer"
 	KovaaksStatsDirName        = "stats"
@@ -40,8 +40,8 @@ const (
 	EnvBenchmarksURLVar = "REFLEKS_BENCHMARKS_URL"
 
 	// Conventional, explicit filename for release assets. Keep in sync with build/windows/installer/project.nsi
-	// Result example: "refleks-0.3.0-windows-amd64-installer.exe"
-	WindowsInstallerNameFmt = "refleks-%s-windows-amd64-installer.exe"
+	// Result example: "aimmeow-0.11.0-windows-amd64-installer.exe"
+	WindowsInstallerNameFmt = "aimmeow-%s-windows-amd64-installer.exe"
 
 	// Cache file names
 	BenchmarksDataCacheFileName    = "benchmarks.json"

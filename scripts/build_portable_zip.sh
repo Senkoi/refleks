@@ -9,7 +9,7 @@ if [[ -z "${V}" ]]; then
 fi
 
 OUTDIR="build/bin"
-EXE="${OUTDIR}/refleks.exe"
+EXE="${OUTDIR}/aimmeow.exe"
 FFMPEG="${OUTDIR}/ffmpeg.exe"
 
 # Check required tools
@@ -35,15 +35,16 @@ mkdir -p "${STAGE}"
 # Always clean up the staging directory on exit (success or failure)
 trap 'rm -rf "${STAGE}"' EXIT
 
-cp "${EXE}" "${STAGE}/refleks.exe"
+cp "${EXE}" "${STAGE}/aimmeow.exe"
 [[ -f "${FFMPEG}" ]] && cp "${FFMPEG}" "${STAGE}/ffmpeg.exe"
 [[ -f LICENSE ]] && cp LICENSE "${STAGE}/"
+cp THIRD_PARTY_NOTICES.md "${STAGE}/"
 
 # README for the portable build
 cat > "${STAGE}/README-portable.txt" << 'EOF'
-RefleK's (portable build)
+AimMeow (portable build)
 
-This ZIP contains the Windows portable build. Extract anywhere and run refleks.exe.
+This ZIP contains the Windows portable build. Extract anywhere and run aimmeow.exe.
 
 Notes:
 - If Microsoft WebView2 Runtime is not installed, please install it for the UI to work:
@@ -62,7 +63,7 @@ fi
 find "${STAGE}" -exec touch -t "${TIMESTAMP}" {} + 2>/dev/null || true
 
 # Zip portable package (fast compression to avoid timeout on large ffmpeg binary)
-ZIP="$(pwd)/${OUTDIR}/refleks-${V}-windows-amd64-portable.zip"
+ZIP="$(pwd)/${OUTDIR}/aimmeow-${V}-windows-amd64-portable.zip"
 (
     cd "${STAGE}" && zip -1 -r -X "${ZIP}" . >/dev/null
 )
@@ -75,8 +76,8 @@ else
 fi
 
 # Checksums
-INST="${OUTDIR}/refleks-${V}-windows-amd64-installer.exe"
-SUMS="${OUTDIR}/refleks-${V}-checksums.txt"
+INST="${OUTDIR}/aimmeow-${V}-windows-amd64-installer.exe"
+SUMS="${OUTDIR}/aimmeow-${V}-checksums.txt"
 rm -f "${SUMS}"
 [[ -f "${INST}" ]] && sha256sum "${INST}" >> "${SUMS}"
 sha256sum "${ZIP}" >> "${SUMS}"

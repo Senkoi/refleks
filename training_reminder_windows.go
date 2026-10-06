@@ -22,13 +22,13 @@ var trainingMessageBeep = trainingUser32.NewProc("MessageBeep")
 
 type trainingPoint struct{ X, Y int32 }
 type trainingMSG struct {
-	Window uintptr
+	Window  uintptr
 	Message uint32
-	_ uint32
-	WParam uintptr
-	LParam uintptr
-	Time uint32
-	Point trainingPoint
+	_       uint32
+	WParam  uintptr
+	LParam  uintptr
+	Time    uint32
+	Point   trainingPoint
 	Private uint32
 }
 
@@ -40,7 +40,7 @@ func showTrainingReminder(message string) {
 		defer runtime.UnlockOSThread()
 		trainingMessageBeep.Call(0x30) // Windows warning sound, including exclusive fullscreen.
 		class, _ := syscall.UTF16PtrFromString("STATIC")
-		label, _ := syscall.UTF16PtrFromString("Refleks 训练提醒\r\n" + message)
+		label, _ := syscall.UTF16PtrFromString("瞄瞄提醒你\r\n" + message)
 		width, _, _ := trainingGetSystemMetrics.Call(0)
 		// WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE;
 		// WS_POPUP | WS_BORDER | SS_CENTER | SS_CENTERIMAGE.

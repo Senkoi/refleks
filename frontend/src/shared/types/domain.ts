@@ -2,6 +2,7 @@ import type { RunRecord } from "./ipc";
 
 export interface Session {
   id: string;
+  legacyIds?: string[];
   start: string; // ISO timestamp of first run in session
   end: string; // ISO timestamp of last run in session
   items: RunRecord[];

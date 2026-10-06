@@ -9,14 +9,15 @@ import (
 
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 
-	"refleks/internal/benchmarks"
-	"refleks/internal/constants"
-	"refleks/internal/models"
-	"refleks/internal/process"
-	"refleks/internal/runs/mouse"
-	"refleks/internal/runs/screen"
-	appsettings "refleks/internal/settings"
-	"refleks/internal/watcher"
+	"aimmeow/internal/benchmarks"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	"aimmeow/internal/practice"
+	"aimmeow/internal/process"
+	"aimmeow/internal/runs/mouse"
+	"aimmeow/internal/runs/screen"
+	appsettings "aimmeow/internal/settings"
+	"aimmeow/internal/watcher"
 )
 
 // RuntimeService coordinates watcher, mouse tracking, and screen capture around the run store.
@@ -172,6 +173,9 @@ func (s *RuntimeService) GetRecent(limit int) []models.RunRecord {
 		return nil
 	}
 
+	for i := range records {
+		records[i].ComparisonKey = practice.ComparisonKey(records[i].Stats.Summary)
+	}
 	for i, j := 0, len(records)-1; i < j; i, j = i+1, j-1 {
 		records[i], records[j] = records[j], records[i]
 	}
@@ -539,13 +543,18 @@ func (s *RuntimeService) SaveScenarioNote(scenario, notes, sens string) error {
 }
 
 func (s *RuntimeService) SaveSessionNote(sessionID, name, notes string) error {
+	return s.SaveTrainingSessionNote(sessionID, name, notes, nil)
+}
+
+func (s *RuntimeService) SaveTrainingSessionNote(sessionID, name, notes string, aliases []string) error {
 	current := s.settingsSvc.Get()
 	if current.SessionNotes == nil {
 		current.SessionNotes = make(map[string]models.SessionNote)
 	}
 	current.SessionNotes[sessionID] = models.SessionNote{
-		Name:  name,
-		Notes: notes,
+		MergedAliases: append([]string(nil), aliases...),
+		Name:          name,
+		Notes:         notes,
 	}
 	return s.settingsSvc.Update(current)
 }
@@ -557,7 +566,7 @@ func (s *RuntimeService) handleRunParsed(rec models.RunRecord) {
 		return
 	}
 
-	if s.runSyncClient == nil || strings.TrimSpace(rec.FilePath) == "" {
+	if s.runSyncClient == nil || strings.TrimSpace(s.runSyncClient.endpoint) == "" || strings.TrimSpace(rec.FilePath) == "" {
 		return
 	}
 

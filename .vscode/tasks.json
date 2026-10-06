@@ -23,7 +23,7 @@
         "kind": "build",
         "isDefault": true
       },
-      "detail": "Build RefleK's app for Windows (cross-compilation)"
+      "detail": "Build AimMeow app for Windows (cross-compilation)"
     },
     {
       "type": "shell",
@@ -89,7 +89,7 @@
       "group": {
         "kind": "build"
       },
-      "detail": "Build portable ZIP: refleks-<version>-windows-amd64-portable.zip and write checksums"
+      "detail": "Build portable ZIP: aimmeow-<version>-windows-amd64-portable.zip and write checksums"
     },
     {
       "label": "Release: Bump + Build Installer + Portable ZIP",

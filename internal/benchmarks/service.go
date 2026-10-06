@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"refleks/internal/cache"
-	"refleks/internal/models"
-	"refleks/internal/settings"
+	"aimmeow/internal/cache"
+	"aimmeow/internal/models"
+	"aimmeow/internal/settings"
 )
 
 const defaultProgressRequestDelay = 2 * time.Second

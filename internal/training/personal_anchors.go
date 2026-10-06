@@ -1,13 +1,14 @@
 package training
 
 import (
-	"fmt"
 	"math"
 	"sort"
 	"strings"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
+	"aimmeow/internal/practice"
 )
 
 type RunContext struct {
@@ -69,10 +70,11 @@ type PersonalAnchor struct {
 }
 
 type SceneDecision struct {
-	Source     string              `json:"source"`
-	Anchor     PersonalAnchor      `json:"anchor"`
-	Relation   *PrecisionRelation  `json:"relation,omitempty"`
-	Prediction *ResponsePrediction `json:"prediction,omitempty"`
+	Source       string              `json:"source"`
+	Anchor       PersonalAnchor      `json:"anchor"`
+	Relation     *PrecisionRelation  `json:"relation,omitempty"`
+	Prediction   *ResponsePrediction `json:"prediction,omitempty"`
+	Requirements *ScenarioComparison `json:"requirements,omitempty"`
 }
 
 func finite(v float64) bool { return !math.IsNaN(v) && !math.IsInf(v, 0) }
@@ -99,10 +101,7 @@ func validPractice(r models.RunRecord, now time.Time) bool {
 	return err == nil && !at.After(now.Add(2*time.Second)) && !at.Before(now.AddDate(0, 0, -45))
 }
 
-func practiceSettings(s models.RunStatsSummary) string {
-	// Duration/scale are part of score comparability, not an ability penalty.
-	return fmt.Sprintf("%s|%s|%.6f|%.6f|%s|%.6f|%.6f|%.0f|%.3f|%.3f", s.GameVersion, s.SensScale, s.HorizSens, s.VertSens, s.FOVScale, s.FOV, s.DPI, s.Duration, s.AvgTargetScale, s.AvgTimeDilation)
-}
+func practiceSettings(s models.RunStatsSummary) string { return practice.SettingsKey(s) }
 
 func practiceSample(r models.RunRecord) PracticeSample {
 	s := r.Stats.Summary
@@ -123,8 +122,12 @@ func practiceSample(r models.RunRecord) PracticeSample {
 	return p
 }
 
-func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[string]RunContext, now time.Time) map[string]PersonalAnchor {
-	positions := sessionPositions(catalog, runs, 20*time.Minute, now)
+func personalAnchors(catalog []Scenario, runs []models.RunRecord, contexts map[string]RunContext, now time.Time, gaps ...time.Duration) map[string]PersonalAnchor {
+	gap := time.Duration(constants.DefaultSessionGapMinutes) * time.Minute
+	if len(gaps) > 0 && gaps[0] > 0 {
+		gap = gaps[0]
+	}
+	positions := sessionPositions(catalog, runs, gap, now)
 	rows := map[string][]PracticeSample{}
 	seen := map[string]bool{}
 	for _, r := range runs {

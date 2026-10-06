@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 // Experimental ceilings, not claims about an optimal scientific ratio. Keep
@@ -160,6 +160,7 @@ func readyForNextTier(m BenchmarkMembership, rows []observation, tier string, no
 }
 
 type progressionCandidate struct {
+	personal  *personalizationBundle
 	scenario  Scenario
 	anchor    Scenario
 	fit       DifficultyEvidence
@@ -167,9 +168,19 @@ type progressionCandidate struct {
 	kind      string
 	seconds   int
 	weight    float64
+	neighbor  *ScenarioComparison
 }
 
-func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, templates []Curriculum) []progressionCandidate {
+func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, templates []Curriculum, baseline ...bool) []progressionCandidate {
+	ready := true
+	if len(baseline) > 0 {
+		ready = baseline[0]
+	}
+	return progressionCandidatesWithReport(t, catalog, runs, p, now, templates, ready, nil)
+}
+
+func progressionCandidatesWithReport(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, templates []Curriculum, baseline bool, report *ExplorationReport) []progressionCandidate {
+	familiar := familiarityObservations(runs, now)
 	levels := PlayerLevels(catalog, runs, now)
 	obs, fitObs := observed(runs), levelObservations(runs, now)
 	p = automaticReferences(catalog, p)
@@ -213,12 +224,17 @@ func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRe
 		addDemandTime(s, estimateTiming(s, obs[strings.ToLower(s.Name)], now).WeeklySeconds, exposure)
 	}
 	groupTiers := trainingGroupTiers(t.Theme, levels)
+	anchors := personalAnchors(catalog, runs, nil, now)
 	for _, row := range t.Rows {
 		if row.Role == "warmup" || row.Role == "benchmark" {
 			continue
 		}
 		anchor, ok := byName[strings.ToLower(row.Name)]
 		if !ok {
+			continue
+		}
+		if !baseline && !familiarPractice(familiar[strings.ToLower(anchor.Name)], now) {
+			report.reject(anchor.Name, "practice_evidence")
 			continue
 		}
 		readyGroups := map[string]bool{}
@@ -243,20 +259,33 @@ func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRe
 		}
 		for _, raw := range catalog {
 			c := enrichMechanics(raw)
+			if !c.Enabled || scenarioTheme(c) != scenarioTheme(anchor) || baseNames[strings.ToLower(c.Name)] {
+				continue
+			}
 			if precisionRelation(anchor, c) != nil {
 				continue
 			} // Dedicated fixed-protocol personal trials own controlled variants.
 			if lowest, ok := audience[strings.ToLower(c.Name)]; ok && lowest > tierIndex(tier)+1 {
+				report.reject(c.Name, "audience_tier")
 				continue
 			}
-			if baseNames[strings.ToLower(c.Name)] || !goalCompatible(anchor, c) || c.Preference == "disliked" {
+			if c.Preference == "disliked" || c.PersonalDifficulty == "hard" {
+				report.reject(c.Name, "feedback")
+				continue
+			}
+			if !explorationGoalCompatible(anchor, c) {
+				report.reject(c.Name, "goal_evidence")
 				continue
 			}
 			fit := assessDifficultyFor(c, fitObs[strings.ToLower(c.Name)], now, p)
 			if fit.Trend == "declining" {
+				report.reject(c.Name, "declining")
 				continue
 			}
 			ref, aligned := explorationReference(c, levels, p)
+			if !aligned && fit.Fit == "unknown" {
+				ref, aligned = entryProbeReference(c, p)
+			}
 			nextRoster := false
 			for _, m := range memberships(c) {
 				series, _ := benchmarkSeries(m.System)
@@ -286,16 +315,29 @@ func progressionCandidates(t Curriculum, catalog []Scenario, runs []models.RunRe
 				kind = "challenge"
 			}
 			if fit.Fit == "challenging" && kind != "challenge" {
+				report.reject(c.Name, "difficulty")
 				continue
 			}
 			if len(memberships(c)) > 0 && !aligned && !(kind == "challenge" && (nextRoster || templateReady && adjacent[strings.ToLower(c.Name)])) {
+				report.reject(c.Name, "benchmark_alignment")
 				continue
 			}
-			result = append(result, progressionCandidate{scenario: c, anchor: anchor, fit: fit, reference: ref, kind: kind, seconds: estimateTiming(c, obs[strings.ToLower(c.Name)], now).Seconds, weight: demandWeight(c, exposure) / (1 + float64(len(obs[strings.ToLower(c.Name)])))})
+			weight := demandWeight(c, exposure) / (1 + float64(len(obs[strings.ToLower(c.Name)])))
+			var neighbor *ScenarioComparison
+			if personal := anchors[strings.ToLower(anchor.Name)]; personal.Status == "stable" {
+				comparison := CompareScenarios(anchor, c)
+				if distance := comparison.Result.NeighborDistance; distance != nil && comparison.Result.PlannerUse == "neighbor_tiebreak_only" {
+					// A bounded preference within the existing evidence/budget gates.
+					// It never creates a challenge, predicts score, or changes rank.
+					weight += .2 / (1 + *distance)
+					neighbor = &comparison
+				}
+			}
+			result = append(result, progressionCandidate{scenario: c, anchor: anchor, fit: fit, reference: ref, kind: kind, seconds: estimateTiming(c, obs[strings.ToLower(c.Name)], now).Seconds, weight: weight, neighbor: neighbor})
 		}
 	}
 
-	return result
+	return deduplicateProgression(result)
 }
 
 func selectProgression(candidates []progressionCandidate, usable, available int, p Preferences, rng *rand.Rand) ([]progressionCandidate, ProgressionBudget) {

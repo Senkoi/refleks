@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"sync"
 
-	"refleks/internal/settings"
+	"aimmeow/internal/settings"
 )
 
 // Service manages application cache.

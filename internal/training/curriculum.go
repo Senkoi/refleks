@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 type CurriculumRow struct {
@@ -283,6 +283,10 @@ func goalCompatible(anchor, candidate Scenario) bool {
 }
 
 func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, rng *rand.Rand, explored bool, templates ...Curriculum) (*Plan, error) {
+	return generateCurriculum(t, catalog, runs, p, now, rng, explored, true, templates...)
+}
+
+func generateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecord, p Preferences, now time.Time, rng *rand.Rand, explored, addExtras bool, templates ...Curriculum) (*Plan, error) {
 	if p.ExecutionMode == "" {
 		p.ExecutionMode = "playlist"
 	}
@@ -320,7 +324,7 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 		if role == "" {
 			role = "practice"
 		}
-		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: assessDifficultyFor(s, fitObs[strings.ToLower(s.Name)], now, p), Role: role, CurriculumRow: row.RowIndex, CompletedBefore: row.CompletedBefore, SourcePlayCount: originalRowCount(row), PlayCount: row.Count, Budget: timing.Seconds * row.Count, Outcome: "pending", Reason: "保留 VDIM 场景顺序和训练目标；按单局时长、近期重复量与预算分配短组。", Cue: "按原训练目标完成；下载后评估只影响下一次生成。"}
+		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: assessDifficultyFor(s, fitObs[strings.ToLower(s.Name)], now, p), Role: role, CurriculumRow: row.RowIndex, CompletedBefore: row.CompletedBefore, SourcePlayCount: originalRowCount(row), PlayCount: row.Count, Budget: timing.Seconds * row.Count, Outcome: "pending", Reason: "我保留了 VDIM 的顺序和训练目标，再按你的时间和最近练习量安排局数。", Cue: "按列表练完就好喵。我读到场景文件后，会用来安排下一份列表。"}
 		if role == "benchmark" {
 			b.Target = 0
 		}
@@ -332,26 +336,19 @@ func GenerateCurriculum(t Curriculum, catalog []Scenario, runs []models.RunRecor
 	if used > usable {
 		return nil, fmt.Errorf("保留模板顺序与次数需约 %d 分钟（含切换）；当前预算 %d 分钟不足，未截断或压缩原列表", (used*10+539)/540, p.Minutes)
 	}
-	// Keep foundation order; after its baseline, add bounded progress trials.
-	if explored {
-		candidates := progressionCandidates(t, catalog, runs, p, now, templates)
-		chosen, limits := selectProgression(candidates, usable, usable-used, p, rng)
-		plan.Progression = &limits
-		for _, c := range chosen {
-			timing := estimateTiming(c.scenario, obs[strings.ToLower(c.scenario.Name)], now)
-			reason := "匹配原训练目标，依据近期适配与训练覆盖选择变体；未知适配由独立时间额度限制。"
-			cue := "完成一次，结果只影响下一份列表。"
-			if c.kind == "challenge" {
-				reason = "依据近期稳定达标或持续改善，试探同目标的相邻档位或可训练挑战；不提升正式 benchmark 等级。"
-				cue = "进阶挑战：保持控制质量，比较多次训练的进步，单次低分不触发回退。"
+	if addExtras {
+		firstSeconds := used
+		extra, report, limits := selectTrainingExtras(t, catalog, runs, nil, nil, p, now, explored, firstSeconds, rng, templates)
+		// Direct callers already chose the main window. Respect remaining time.
+		remaining := usable - used
+		for _, b := range append(extra.before, extra.after...) {
+			if b.Budget <= remaining {
+				plan.Blocks = append(plan.Blocks, b)
+				remaining -= b.Budget
 			}
-			plan.Blocks = append(plan.Blocks, Block{Scenario: c.scenario, Timing: timing, DifficultyEvidence: c.fit, AnchorScenario: c.anchor.Name, Role: c.kind, Benchmark: c.reference.Name, Budget: c.seconds, PlayCount: 1, Outcome: "pending", Reason: reason, Cue: cue})
 		}
-		if len(chosen) == 0 {
-			plan.Warnings = append(plan.Warnings, "当前没有满足目标、成绩证据和整局时间预算的进阶或探索变体；保留基础训练，不强行加难。")
-		}
+		plan.Exploration, plan.Progression = report, limits
 	}
-
-	plan.Warnings = append(plan.Warnings, "保留模板场景顺序；原次数作为上限，单局时长与近期训练量决定本次短组次数。", "首次模板运行不插入探索；后续在剩余预算内追加同目标进阶与探索，当前列表不会实时改写。", "SCE 仅从游戏已保存的本地文件评估；没有文件时保持待评估，不额外下载场景。")
+	plan.Warnings = append(plan.Warnings, "保留主线场景顺序；原次数作为上限，单局时长与近期练习量决定本次短组次数。", "相关练习有足够可比记录后可尝试同目标新场景；探索结果用于下一份列表，当前列表不会实时改写。", "SCE 从游戏已保存的本地文件补充评估；缺少文件的可靠分类场景只做小量试练，不宣称已知难度。")
 	return plan, nil
 }

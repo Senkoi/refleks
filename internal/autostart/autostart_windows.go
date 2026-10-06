@@ -14,12 +14,11 @@ import (
 const (
 	registryKey = `Software\Microsoft\Windows\CurrentVersion\Run`
 
-	// valueName is the current autostart registry value. The app was renamed
-	// from "RefleK's.exe" to "refleks.exe", so legacyValueName is removed
-	// whenever the entry is synced; otherwise a pre-rename entry can keep
-	// launching a binary that no longer exists after an update.
-	valueName       = "refleks"
-	legacyValueName = "RefleK's"
+	// AimMeow uses one canonical entry and removes both prior brand entries
+	// when syncing, so an old registration cannot relaunch a stale binary.
+	valueName         = "aimmeow"
+	previousValueName = "refleks"
+	legacyValueName   = "RefleK's"
 )
 
 // Enable registers the running executable to start at login, optionally with
@@ -56,6 +55,9 @@ func (s *Service) Enable(args string) error {
 	if err := k.SetStringValue(valueName, cmd); err != nil {
 		return err
 	}
+	if err := deleteIfPresent(k, previousValueName); err != nil {
+		return err
+	}
 	return deleteIfPresent(k, legacyValueName)
 }
 
@@ -72,6 +74,9 @@ func (s *Service) Disable() error {
 	defer k.Close()
 
 	if err := deleteIfPresent(k, valueName); err != nil {
+		return err
+	}
+	if err := deleteIfPresent(k, previousValueName); err != nil {
 		return err
 	}
 	return deleteIfPresent(k, legacyValueName)

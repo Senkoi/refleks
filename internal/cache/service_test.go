@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"refleks/internal/settings"
+	"aimmeow/internal/settings"
 )
 
 type testPayload struct {

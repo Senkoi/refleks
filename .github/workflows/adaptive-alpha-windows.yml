@@ -1,10 +1,10 @@
-name: Adaptive Alpha Windows
+name: AimMeow Windows
 
 on:
   push:
-    branches: [main, adaptive-alpha, research/scenario-difficulty-preparation]
+    branches: [main, adaptive-alpha, research/scenario-difficulty-preparation, "fix/**", "brand/**"]
   pull_request:
-    branches: [main]
+    branches: [main, "brand/**"]
   workflow_dispatch:
 
 permissions:
@@ -12,7 +12,8 @@ permissions:
 
 jobs:
   build:
-    runs-on: windows-latest
+    # Keep the Windows toolchain stable instead of following latest-image migrations.
+    runs-on: windows-2022
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -25,6 +26,8 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: frontend/package-lock.json
+      - name: Training contract freshness
+        run: go run ./cmd/training-contracts -check
       - name: Frontend build
         working-directory: frontend
         run: |
@@ -47,6 +50,10 @@ jobs:
         run: '& "$(go env GOPATH)\bin\wails.exe" build'
       - uses: actions/upload-artifact@v4
         with:
-          name: refleks-adaptive-windows-alpha
-          path: build/bin/refleks.exe
+          name: aimmeow-windows-alpha
+          path: |
+            build/bin/aimmeow.exe
+            LICENSE
+            THIRD_PARTY_NOTICES.md
+            README.md
           if-no-files-found: error

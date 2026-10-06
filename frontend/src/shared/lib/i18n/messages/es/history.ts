@@ -1,3 +1,4 @@
+import { history as newMessages } from "../en/history";
 import { plural } from "../../plural";
 import type { HistoryMessages } from "../en/history";
 
@@ -8,6 +9,23 @@ import type { HistoryMessages } from "../en/history";
  */
 export const history: HistoryMessages = {
   page: {
+    planFilter: newMessages.page.planFilter,
+    allPlans: newMessages.page.allPlans,
+    selectedPlan: newMessages.page.selectedPlan,
+    clearPlanFilter: newMessages.page.clearPlanFilter,
+    planLoading: newMessages.page.planLoading,
+    planError: newMessages.page.planError,
+    planFiltered: newMessages.page.planFiltered,
+    planEmpty: newMessages.page.planEmpty,
+    optionalAnalysis: newMessages.page.optionalAnalysis,
+    sessionOverview: newMessages.page.sessionOverview,
+    sensitivityChart: newMessages.page.sensitivityChart,
+    scenarioChart: newMessages.page.scenarioChart,
+    paneNavigation: newMessages.page.paneNavigation,
+    sessionsPane: newMessages.page.sessionsPane,
+    runsPane: newMessages.page.runsPane,
+    detailPane: newMessages.page.detailPane,
+
     loading: "Cargando el historial de partidas...",
     loadingProgress: "Cargando el historial de partidas {loaded}/{total}...",
     runs: plural({ one: "1 partida", other: "{count} partidas" }),
@@ -75,13 +93,15 @@ export const history: HistoryMessages = {
     inspectPersonalBest: "Inspeccionar mejor marca personal",
     allTimePb: "Mejor marca personal histórica",
     attempt: "Intento {count}",
-    saveNameError: "No se pudo actualizar el nombre de la sesión. Inténtalo de nuevo.",
+    saveNameError:
+      "No se pudo actualizar el nombre de la sesión. Inténtalo de nuevo.",
   },
   sessionDetails: {
     title: "Notas de sesión",
     notesLabel: "Notas",
     notesPlaceholder: "Añade notas para esta sesión...",
-    saveError: "No se pudieron guardar las notas de sesión. Inténtalo de nuevo.",
+    saveError:
+      "No se pudieron guardar las notas de sesión. Inténtalo de nuevo.",
   },
   scenarioTrend: {
     modalTitle: "{scenario} — Tendencia",
@@ -92,7 +112,8 @@ export const history: HistoryMessages = {
       "Juega un escenario para comparar la sensibilidad con el rendimiento.",
     noRecentScenario:
       "Aún no se ha encontrado ningún escenario reciente. Juega una partida con datos de cm/360 para completar este widget.",
-    noUsableSensData: "No se han encontrado datos de sensibilidad utilizables para {scenario}.",
+    noUsableSensData:
+      "No se han encontrado datos de sensibilidad utilizables para {scenario}.",
     inThisSession: "{scenario} en esta sesión.",
     metricPlaceholder: "Métrica",
     scopePlaceholder: "Ámbito",
@@ -115,10 +136,12 @@ export const history: HistoryMessages = {
       "Los escenarios jugados en esta sesión y cuánto has jugado cada uno.",
     noActiveSession:
       "Aún no hay datos de la sesión activa. Juega un escenario para completar este widget.",
-    noScenarioNames: "Aún no se han encontrado nombres de escenarios en esta sesión.",
+    noScenarioNames:
+      "Aún no se han encontrado nombres de escenarios en esta sesión.",
     runs: "Partidas",
   },
   inspector: {
+    environmentDiagnostics: newMessages.inspector.environmentDiagnostics,
     pinned: "Fijada",
     compare: "Comparación",
     primary: "Principal",
@@ -141,6 +164,7 @@ export const history: HistoryMessages = {
     selectRunToInspect: "Selecciona una partida para inspeccionarla",
   },
   stats: {
+    detailedStats: newMessages.stats.detailedStats,
     score: "Puntuación",
     accuracy: "Precisión",
     duration: "Duración",
@@ -342,13 +366,16 @@ export const history: HistoryMessages = {
     overshootDesc: "el cursor pasó el objetivo y corrigió de vuelta",
     undershootDesc: "se detuvo antes y realizó microcorrecciones",
     optimalDesc: "aproximación directa con pocas correcciones",
-    unknownDesc: "la cobertura de la traza o las pruebas de tiempo son insuficientes",
+    unknownDesc:
+      "la cobertura de la traza o las pruebas de tiempo son insuficientes",
     avgOvershoot: "Sobrepaso medio: {value} unidades de traza",
     avgUndershoot: "Subpaso medio: {value} unidades de traza",
-    clickKillHint: "Haz clic en una baja de abajo para resaltar su trayectoria.",
+    clickKillHint:
+      "Haz clic en una baja de abajo para resaltar su trayectoria.",
     noSensSuggested:
       "No se sugiere ninguna sensibilidad de entrenamiento: continúa con tu sensibilidad actual.",
-    killChipTitle: "Baja n.º {index} — {classification}{units} — {eff} de eficiencia",
+    killChipTitle:
+      "Baja n.º {index} — {classification}{units} — {eff} de eficiencia",
     traceUnits: "({value} unidades de traza)",
     suggestedTrainingSens: "Sensibilidad de entrenamiento sugerida",
     copySens: "Copiar {value}",
@@ -399,10 +426,12 @@ export const history: HistoryMessages = {
     title: "Repetición",
     modalTitle: "Repetición – {label}",
     waitingStatus: "Esperando el estado de la repetición…",
-    becomingAvailable: "La repetición se ha publicado y estará disponible en breve…",
+    becomingAvailable:
+      "La repetición se ha publicado y estará disponible en breve…",
     ready: "La repetición está lista.",
     waitingForFinish: "Esperando a que termine de procesarse la repetición…",
-    noReplayAvailable: "No hay ninguna repetición disponible para esta partida.",
+    noReplayAvailable:
+      "No hay ninguna repetición disponible para esta partida.",
     speed: "Velocidad",
     back5s: "Retroceder 5 s",
     forward5s: "Avanzar 5 s",

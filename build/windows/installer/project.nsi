@@ -32,7 +32,9 @@ Unicode true
 ####
 ## Include the wails tools
 ####
-!define PRODUCT_EXECUTABLE "refleks.exe"
+!define PRODUCT_EXECUTABLE "aimmeow.exe"
+!define LEGACY_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\RefleK'sRefleK's"
+Var LegacyInstallDir
 !include "wails_tools.nsh"
 !include "LogicLib.nsh"
 
@@ -68,6 +70,7 @@ ManifestDPIAware true
 
 !insertmacro MUI_UNPAGE_INSTFILES # Uinstalling page
 
+!insertmacro MUI_LANGUAGE "SimpChinese"
 !insertmacro MUI_LANGUAGE "English" # Set the Language of the installer
 
 ## The following two statements can be used to sign the installer and the uninstaller. The path to the binaries are provided in %1
@@ -75,7 +78,7 @@ ManifestDPIAware true
 #!finalize 'signtool --file "%1"'
 
 Name "${INFO_PRODUCTNAME}"
-OutFile "..\\..\\bin\\refleks-${INFO_PRODUCTVERSION}-windows-${ARCH}-installer.exe" # Name of the installer's file.
+OutFile "..\\..\\bin\\aimmeow-${INFO_PRODUCTVERSION}-windows-${ARCH}-installer.exe" # Name of the installer's file.
 InstallDir "$PROGRAMFILES64\${INFO_COMPANYNAME}\${INFO_PRODUCTNAME}" # Default installing folder ($PROGRAMFILES is Program Files folder).
 ShowInstDetails show # This will always show the installation details.
 
@@ -88,6 +91,12 @@ Function .onInit
    ; handoff) still replaces the installation that launched the update.
    SetRegView 64
    ReadRegStr $0 HKLM "${UNINST_KEY}" "DisplayIcon"
+   ${If} $0 == ""
+       ReadRegStr $0 HKLM "${LEGACY_UNINST_KEY}" "DisplayIcon"
+       ${If} $0 != ""
+           ${GetParent} "$0" $LegacyInstallDir
+       ${EndIf}
+   ${EndIf}
    ${If} $0 != ""
        ${GetParent} "$0" $1
        ${If} $1 != ""
@@ -112,6 +121,8 @@ Section
     ; installer while the old process is still shutting down, and deleting the
     ; live install directory can fail or make NSIS abort during the file page.
     ClearErrors
+    nsExec::Exec `taskkill /F /IM "aimmeow.exe"`
+    ClearErrors
     nsExec::Exec `taskkill /F /IM "refleks.exe"`
     ClearErrors
     nsExec::Exec `taskkill /F /IM "RefleK's.exe"`
@@ -121,26 +132,32 @@ Section
     ; replaced by wails.files below; the remaining application files are
     ; intentionally preserved so an update does not depend on deleting a live
     ; directory.
+    Delete "$INSTDIR\refleks.exe"
     Delete "$INSTDIR\RefleK's.exe"
     Delete "$INSTDIR\uninstall.exe"
 
     SetOutPath $INSTDIR
 
     !insertmacro wails.files
+    File "..\..\..\LICENSE"
+    File "..\..\..\THIRD_PARTY_NOTICES.md"
 
     ; Keep the autostart registration working across updates. The app was
     ; renamed from "RefleK's.exe" to "refleks.exe", and a stale entry can point
     ; at a binary that no longer exists (or at an old install directory), which
     ; would silently fail at login. Preserve the user's choice by re-registering
     ; the new executable under a single canonical value name.
+    ReadRegStr $2 HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "aimmeow"
     ReadRegStr $0 HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "refleks"
     ReadRegStr $1 HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "RefleK's"
     DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "refleks"
     DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "RefleK's"
-    ${If} $0 != ""
-        WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "refleks" '"$INSTDIR\${PRODUCT_EXECUTABLE}" --monitor'
+    ${If} $2 != ""
+        WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "aimmeow" '"$INSTDIR\${PRODUCT_EXECUTABLE}" --monitor'
+    ${ElseIf} $0 != ""
+        WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "aimmeow" '"$INSTDIR\${PRODUCT_EXECUTABLE}" --monitor'
     ${ElseIf} $1 != ""
-        WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "refleks" '"$INSTDIR\${PRODUCT_EXECUTABLE}" --monitor'
+        WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "aimmeow" '"$INSTDIR\${PRODUCT_EXECUTABLE}" --monitor'
     ${EndIf}
 
   	; FFmpeg for screen recording
@@ -153,17 +170,27 @@ Section
     !insertmacro wails.associateCustomProtocols
 
     !insertmacro wails.writeUninstaller
+
+    ; Retire old installation metadata only when actually replacing that
+    ; installation. A separate copy at another path is not removed.
+    ${If} $LegacyInstallDir != ""
+    ${AndIf} $INSTDIR == $LegacyInstallDir
+        DeleteRegKey HKLM "${LEGACY_UNINST_KEY}"
+        Delete "$SMPROGRAMS\RefleK's.lnk"
+        Delete "$DESKTOP\RefleK's.lnk"
+    ${EndIf}
 SectionEnd
 
 Section "uninstall"
     !insertmacro wails.setShellContext
 
     RMDir /r "$AppData\${PRODUCT_EXECUTABLE}" # Remove the WebView2 DataPath
-    RMDir /r "$AppData\RefleK's.exe"          # Legacy WebView2 DataPath (pre-rename)
+    ; Shared legacy WebView2 profile and ~/.refleks training data are kept.
 
     RMDir /r $INSTDIR
 
     ; Remove the autostart entry so the app is not launched after uninstall.
+    DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "aimmeow"
     DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "refleks"
     DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "RefleK's"
 

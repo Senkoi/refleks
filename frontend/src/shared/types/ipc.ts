@@ -81,6 +81,7 @@ export interface RunStatsEvent {
 export type StatKey = keyof RunStatsSummary;
 
 export interface RunRecord {
+  comparisonKey?: string;
   fileVersion: number;
   filePath: string;
   fileName: string;
@@ -232,6 +233,7 @@ export interface Settings {
   autostartEnabled?: boolean;
   anonymousEnabled?: boolean;
   runSyncEnabled?: boolean;
+  runSyncAvailable?: boolean;
   scenarioNotes?: Record<string, ScenarioNote>;
   sessionNotes?: Record<string, SessionNote>;
 }
@@ -242,6 +244,7 @@ export interface ScenarioNote {
 }
 
 export interface SessionNote {
+  mergedAliases?: string[];
   name: string;
   notes: string;
 }

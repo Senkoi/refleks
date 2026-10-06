@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"sync"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 // Service manages application settings.

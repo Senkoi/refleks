@@ -1,3 +1,4 @@
+import { history as newMessages } from "../en/history";
 import { plural } from "../../plural";
 import type { HistoryMessages } from "../en/history";
 
@@ -8,6 +9,23 @@ import type { HistoryMessages } from "../en/history";
  */
 export const history: HistoryMessages = {
   page: {
+    planFilter: newMessages.page.planFilter,
+    allPlans: newMessages.page.allPlans,
+    selectedPlan: newMessages.page.selectedPlan,
+    clearPlanFilter: newMessages.page.clearPlanFilter,
+    planLoading: newMessages.page.planLoading,
+    planError: newMessages.page.planError,
+    planFiltered: newMessages.page.planFiltered,
+    planEmpty: newMessages.page.planEmpty,
+    optionalAnalysis: newMessages.page.optionalAnalysis,
+    sessionOverview: newMessages.page.sessionOverview,
+    sensitivityChart: newMessages.page.sensitivityChart,
+    scenarioChart: newMessages.page.scenarioChart,
+    paneNavigation: newMessages.page.paneNavigation,
+    sessionsPane: newMessages.page.sessionsPane,
+    runsPane: newMessages.page.runsPane,
+    detailPane: newMessages.page.detailPane,
+
     loading: "Run-geschiedenis laden...",
     loadingProgress: "Run-geschiedenis laden {loaded}/{total}...",
     runs: plural({ one: "1 run", other: "{count} runs" }),
@@ -120,6 +138,7 @@ export const history: HistoryMessages = {
     runs: "Runs",
   },
   inspector: {
+    environmentDiagnostics: newMessages.inspector.environmentDiagnostics,
     pinned: "Primair",
     compare: "Vergelijking",
     primary: "Primair",
@@ -142,6 +161,7 @@ export const history: HistoryMessages = {
     selectRunToInspect: "Selecteer een run om te inspecteren",
   },
   stats: {
+    detailedStats: newMessages.stats.detailedStats,
     score: "Score",
     accuracy: "Nauwkeurigheid",
     duration: "Duur",

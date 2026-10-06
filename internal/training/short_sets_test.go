@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 	"testing"
 	"time"
 )

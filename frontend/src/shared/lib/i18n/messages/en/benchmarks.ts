@@ -21,8 +21,7 @@ export const benchmarks = {
     recommended: "Recommended",
     hideRecommendations: "Hide recommendations",
     showRecommended: "Show recommended benchmarks",
-    loadingRecommendations:
-      "Loading benchmark progress for recommendations...",
+    loadingRecommendations: "Loading benchmark progress for recommendations...",
     emptySyncing: "Waiting for the benchmark catalog to finish syncing...",
     emptyFavorites:
       "No favorite benchmarks yet. Star a benchmark to add it here.",
@@ -69,13 +68,13 @@ export const benchmarks = {
     hideLastPlayed: "Hide last played highlight",
     viewSettings: "View tracker settings",
     columnScenario: "Scenario",
-    columnRec: "Rec",
+    columnRec: "Training",
     columnScore: "Score",
     details: "Details",
     settingsTitle: "Tracker Settings",
     featureColumns: "Feature Columns",
     columnLabelNotes: "Notes",
-    columnLabelRecommendations: "Recommendations",
+    columnLabelRecommendations: "Training preview",
     columnLabelPlay: "Play",
     columnLabelHistory: "History",
     rankVisibility: "Rank Visibility",
@@ -86,6 +85,7 @@ export const benchmarks = {
       "Hidden automatically because every scenario is already past this rank",
   },
   rankDistribution: {
+    unrecorded: "No recorded score",
     title: "Rank Distribution",
     scopeCategory: "Category",
     scopeSubcategory: "Subcategory",
@@ -108,18 +108,19 @@ export const benchmarks = {
     noData: "No data.",
     avg: "Avg",
   },
+  trainingRoles: {
+    warmup: "Warmup",
+    practice: "Practice",
+    benchmark: "Benchmark",
+    assessment: "Retest",
+    explore: "Exploration",
+    challenge: "Challenge",
+  },
   recommendationInfo: {
-    ariaLabel: "About recommendations",
-    title: "Recommendations",
+    ariaLabel: "About the training preview",
+    title: "Workbench training arrangement",
     description:
-      "Which scenarios are worth playing right now, based on your progress, recent score trends, and how recently you played each one.",
-    completed: "Completed — max rank reached",
-    topPick: "Top pick — best to play now",
-    stronglyRecommended: "Strongly recommended",
-    recommended: "Recommended — below average or improving",
-    neutral: "Neutral",
-    lowPriority: "Low priority",
-    avoid: "Avoid for now — strong or trending down",
+      "Uses the same upcoming preview as the workbench. Current shows upcoming practice in the fixed list; Next is a preview before generation. Hover for role and runs. This does not rescore scenes or change the list.",
   },
   scenarioHistory: {
     title: "Scenario History · {scenario}",
@@ -131,10 +132,15 @@ export const benchmarks = {
     sensPlaceholder: "e.g. 35.8cm or 0.5",
     copySensitivity: "Copy sensitivity",
     notesLabel: "Notes",
-    notesPlaceholder:
-      "Track your strategy, weaknesses, and focus points...",
+    notesPlaceholder: "Track your strategy, weaknesses, and focus points...",
   },
   scenarioRow: {
+    currentPreview: "Current",
+    nextPreview: "Next",
+    arrangementDetail: "{roles} · {runs} runs (workbench preview)",
+    notInPreview:
+      "Not in the workbench's upcoming preview. This does not mean excluded or absent from the full plan.",
+
     notesSensitivity: "Notes & Sensitivity",
     recommendationScore: "Recommendation score: {score}",
     playInKovaaks: "Play in Kovaak's",

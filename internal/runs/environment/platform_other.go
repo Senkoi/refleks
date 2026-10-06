@@ -5,7 +5,7 @@ package environment
 import (
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func collectPlatformEnvironment(env *models.RunEnvironment, start, end time.Time) {

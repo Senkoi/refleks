@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func TestTrainingTierKeepsGoalEvidenceWithoutChangingAchievementTier(t *testing.T) {

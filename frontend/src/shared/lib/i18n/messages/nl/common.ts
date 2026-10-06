@@ -1,7 +1,7 @@
 import type { CommonMessages } from "../en/common";
 
 /**
- * Nederlandse vertalingen (Nederlands). Productnamen (RefleK's, KovaaK's,
+ * Nederlandse vertalingen (Nederlands). Productnamen (AimMeow, KovaaK's,
  * Discord) blijven onvertaald.
  */
 export const common: CommonMessages = {

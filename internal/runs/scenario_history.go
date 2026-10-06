@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/runs/kovaaks"
+	"aimmeow/internal/runs/kovaaks"
 )
 
 // ScenarioHistoryPoint contains chart data only, never trace or event payloads.

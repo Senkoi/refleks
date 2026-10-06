@@ -18,3 +18,5 @@ button.scenario-history-link:focus-visible { outline:2px solid var(--primary); o
 .scenario-history-supplement { border-top:1px solid var(--border); margin-top:20px; padding-top:12px; }
 .scenario-history-supplement h3 { margin:0; font-size:13px; font-weight:600; }
 .scenario-history-retry { border:1px solid var(--border); border-radius:6px; padding:6px 12px; }
+
+.scenario-history-name { overflow-wrap:anywhere; white-space:normal; max-width:100%; }

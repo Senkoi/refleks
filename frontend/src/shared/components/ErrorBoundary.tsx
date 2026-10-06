@@ -1,5 +1,6 @@
 import { Component, type ReactNode } from "react";
 import { I18nContext, type I18nContextValue } from "@/shared/lib/i18n";
+import { UI_BUILD } from "@/shared/lib/buildInfo";
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -43,6 +44,7 @@ export class ErrorBoundary extends Component<
             <div className="text-surface-muted-foreground text-sm break-words whitespace-pre-wrap">
               {this.state.error.message}
             </div>
+            <div className="text-xs text-surface-muted-foreground">界面构建：{UI_BUILD}</div>
             {this.state.error?.stack && (
               <div className="text-[0.6875rem] text-surface-muted-foreground whitespace-pre-wrap bg-surface-muted border rounded p-2 overflow-auto max-h-48">
                 {this.state.error.stack}

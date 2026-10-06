@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"time"
 
-	"refleks/internal/constants"
+	"aimmeow/internal/constants"
 )
 
 const filenamePatternPrefix = `^(?P<name>.+?)\s-\s.*?-\s(?P<dt>\d{4}\.\d{2}\.\d{2}-\d{2}\.\d{2}\.\d{2})`

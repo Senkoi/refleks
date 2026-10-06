@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func TestParseBenchmarkID(t *testing.T) {

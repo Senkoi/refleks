@@ -1,4 +1,4 @@
-module refleks
+module aimmeow
 
 go 1.25.0
 

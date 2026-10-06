@@ -1,7 +1,7 @@
 package training
 
 import (
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 	"regexp"
 	"sort"
 	"strconv"

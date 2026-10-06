@@ -1,4 +1,4 @@
-import { DISCORD_SYMBOL, KO_FI_SYMBOL } from "@/assets";
+import { AIMMEOW_SYMBOL } from "@/assets";
 import { useI18n } from "@/shared/lib/i18n";
 import {
   Tooltip,
@@ -19,7 +19,6 @@ import {
   Target,
   HelpCircle,
   LayoutGrid,
-  PanelLeft,
   Settings,
   TrendingUp,
 } from "lucide-react";
@@ -223,19 +222,10 @@ export function Sidebar({ open, onToggle }: SidebarProps) {
     >
       <aside className="flex h-full min-h-0 flex-col overflow-hidden bg-sidebar text-sidebar-foreground">
         <div className="p-2">
-          <SidebarItem
-            icon={<PanelLeft />}
-            label="RefleK's"
-            onClick={onToggle}
-            open={open}
-            trailing={
-              version ? (
-                <span className="text-xs text-surface-muted-foreground">
-                  v{version}
-                </span>
-              ) : null
-            }
-          />
+          <button type="button" onClick={onToggle} aria-label="瞄瞄 · AimMeow" aria-expanded={open} className="flex min-h-12 w-full items-center gap-3 rounded-xl text-left outline-none transition-colors hover:bg-sidebar-accent focus-visible:ring-2 focus-visible:ring-sidebar-ring">
+            <img src={AIMMEOW_SYMBOL} alt="" width={40} height={40} className="size-10 shrink-0 object-contain" />
+            {open && <span className="min-w-0 flex-1"><span className="block text-base font-semibold">瞄瞄</span><span className="block text-[10px] tracking-wider text-sidebar-foreground-muted">AimMeow{version ? ` · v${version}` : ""}</span></span>}
+          </button>
         </div>
 
         <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-2 pb-2">
@@ -332,13 +322,13 @@ export function Sidebar({ open, onToggle }: SidebarProps) {
             <SidebarItem
               icon={
                 <img
-                  src={DISCORD_SYMBOL}
+                  src={AIMMEOW_SYMBOL}
                   alt=""
                   className="size-[1.125rem] shrink-0"
                 />
               }
-              label="Discord"
-              onClick={() => openURL(EXTERNAL_LINKS.discord)}
+              label="聊聊瞄瞄"
+              onClick={() => openURL(EXTERNAL_LINKS.community)}
               open={open}
             />
             <SidebarItem
@@ -350,7 +340,7 @@ export function Sidebar({ open, onToggle }: SidebarProps) {
             <SidebarItem
               icon={
                 <img
-                  src={KO_FI_SYMBOL}
+                  src={AIMMEOW_SYMBOL}
                   alt=""
                   className="size-[1.125rem] shrink-0"
                 />

@@ -44,3 +44,23 @@ func explorationReference(s Scenario, levels []PlayerLevel, p Preferences) (Benc
 	}
 	return BenchmarkMembership{}, false
 }
+
+// An unassessed entry roster is a bounded discovery opportunity, not a rank
+// equivalence between systems. Only the explicit entry rosters of supported
+// bundled systems may bypass missing personal coverage; higher rosters retain
+// the ordinary native-evidence gate.
+func entryProbeReference(s Scenario, p Preferences) (BenchmarkMembership, bool) {
+	if s.Classification != "benchmark" {
+		return BenchmarkMembership{}, false
+	}
+	for _, m := range memberships(s) {
+		if !selectedBenchmark(p, m.Name) || !validRankCutoffs(m) || m.Category == "" && m.Group == "" {
+			continue
+		}
+		series, _ := benchmarkSeries(m.System)
+		if series == "revosect" && strings.EqualFold(m.NativeDifficulty, "Entry") || series == "viscose benchmarks" && strings.EqualFold(m.NativeDifficulty, "Easier") {
+			return m, true
+		}
+	}
+	return BenchmarkMembership{}, false
+}

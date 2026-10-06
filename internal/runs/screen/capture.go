@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"refleks/internal/constants"
+	"aimmeow/internal/constants"
 )
 
 // CaptureConfig contains all settings that affect a capture session. A

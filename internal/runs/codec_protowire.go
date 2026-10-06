@@ -8,7 +8,7 @@ import (
 
 	"google.golang.org/protobuf/encoding/protowire"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 // ---- section envelope ----

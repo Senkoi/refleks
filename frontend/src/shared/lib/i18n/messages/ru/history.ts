@@ -1,8 +1,26 @@
+import { history as newMessages } from "../en/history";
 import { plural } from "../../plural";
 import type { HistoryMessages } from "../en/history";
 
 export const history: HistoryMessages = {
   page: {
+    planFilter: newMessages.page.planFilter,
+    allPlans: newMessages.page.allPlans,
+    selectedPlan: newMessages.page.selectedPlan,
+    clearPlanFilter: newMessages.page.clearPlanFilter,
+    planLoading: newMessages.page.planLoading,
+    planError: newMessages.page.planError,
+    planFiltered: newMessages.page.planFiltered,
+    planEmpty: newMessages.page.planEmpty,
+    optionalAnalysis: newMessages.page.optionalAnalysis,
+    sessionOverview: newMessages.page.sessionOverview,
+    sensitivityChart: newMessages.page.sensitivityChart,
+    scenarioChart: newMessages.page.scenarioChart,
+    paneNavigation: newMessages.page.paneNavigation,
+    sessionsPane: newMessages.page.sessionsPane,
+    runsPane: newMessages.page.runsPane,
+    detailPane: newMessages.page.detailPane,
+
     loading: "Загрузка истории забегов...",
     loadingProgress: "Загрузка истории забегов {loaded}/{total}...",
     runs: plural({ one: "1 забег", other: "{count} забегов" }),
@@ -83,10 +101,12 @@ export const history: HistoryMessages = {
   },
   performanceVsSens: {
     title: "Производительность и чувствительность",
-    emptyDescription: "Запустите сценарий, чтобы сравнить чувствительность и производительность.",
+    emptyDescription:
+      "Запустите сценарий, чтобы сравнить чувствительность и производительность.",
     noRecentScenario:
       "Недавних сценариев пока нет. Запустите забег с данными cm/360, чтобы заполнить этот виджет.",
-    noUsableSensData: "Нет подходящих данных о чувствительности для {scenario}.",
+    noUsableSensData:
+      "Нет подходящих данных о чувствительности для {scenario}.",
     inThisSession: "{scenario} в этой сессии.",
     metricPlaceholder: "Метрика",
     scopePlaceholder: "Охват",
@@ -105,13 +125,15 @@ export const history: HistoryMessages = {
   },
   scenarioRadar: {
     title: "Состав сценариев сессии",
-    description: "Сценарии, сыгранные в этой сессии, и то, сколько вы играли каждый из них.",
+    description:
+      "Сценарии, сыгранные в этой сессии, и то, сколько вы играли каждый из них.",
     noActiveSession:
       "Данных активной сессии пока нет. Запустите сценарий, чтобы заполнить этот виджет.",
     noScenarioNames: "В этой сессии пока не найдено названий сценариев.",
     runs: "Забеги",
   },
   inspector: {
+    environmentDiagnostics: newMessages.inspector.environmentDiagnostics,
     pinned: "Закреплённый",
     compare: "Сравнение",
     primary: "Основной",
@@ -134,6 +156,7 @@ export const history: HistoryMessages = {
     selectRunToInspect: "Выберите забег для просмотра",
   },
   stats: {
+    detailedStats: newMessages.stats.detailedStats,
     score: "Результат",
     accuracy: "Точность",
     duration: "Длительность",
@@ -306,10 +329,19 @@ export const history: HistoryMessages = {
       "Нет данных о траектории мыши. Включите отслеживание мыши в настройках, чтобы записывать траектории.",
     killsOvershoot: plural({ one: "1 перелёт", other: "{count} перелётов" }),
     killsUndershoot: plural({ one: "1 недолёт", other: "{count} недолётов" }),
-    killsOptimal: plural({ one: "1 оптимальный", other: "{count} оптимальных" }),
-    killsUnknown: plural({ one: "1 неизвестный", other: "{count} неизвестных" }),
+    killsOptimal: plural({
+      one: "1 оптимальный",
+      other: "{count} оптимальных",
+    }),
+    killsUnknown: plural({
+      one: "1 неизвестный",
+      other: "{count} неизвестных",
+    }),
     pathEff: "{value} эфф. траектории",
-    outsideTrace: plural({ one: "1 вне траектории", other: "{count} вне траектории" }),
+    outsideTrace: plural({
+      one: "1 вне траектории",
+      other: "{count} вне траектории",
+    }),
     mousePathAnalysis: "Анализ траектории мыши",
     analysisDescription:
       "Использует нормализованную по времени кинематику, качество траектории, переходы кнопок и записанные моменты убийств, чтобы классифицировать характер движения. Существующие траектории не содержат центры целей, поэтому расстояния указаны в единицах необработанного ввода, а не в пикселях.",
@@ -324,8 +356,10 @@ export const history: HistoryMessages = {
     avgOvershoot: "Средний перелёт: {value} единиц траектории",
     avgUndershoot: "Средний недолёт: {value} единиц траектории",
     clickKillHint: "Нажмите на убийство ниже, чтобы выделить его траекторию.",
-    noSensSuggested: "Тренировочная чувствительность не предложена — продолжайте с текущей чувствительностью.",
-    killChipTitle: "Убийство №{index} — {classification}{units} — эффективность {eff}",
+    noSensSuggested:
+      "Тренировочная чувствительность не предложена — продолжайте с текущей чувствительностью.",
+    killChipTitle:
+      "Убийство №{index} — {classification}{units} — эффективность {eff}",
     traceUnits: "({value} единиц траектории)",
     suggestedTrainingSens: "Рекомендуемая тренировочная чувствительность",
     copySens: "Скопировать {value}",

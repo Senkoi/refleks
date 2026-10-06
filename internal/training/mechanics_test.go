@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func demandScene(name string, tags ...string) Scenario {

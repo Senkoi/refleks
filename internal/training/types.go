@@ -44,19 +44,6 @@ type Scenario struct {
 	ImportedCurriculum *Curriculum           `json:"-"`
 }
 
-// A content snapshot describes demands, not a calibrated difficulty score.
-type Mechanics struct {
-	FileSHA256      string   `json:"fileSHA256"`
-	DeclaredSkill   string   `json:"declaredSkill,omitempty"`
-	DeclaredSeconds int      `json:"declaredSeconds,omitempty"`
-	Tags            []string `json:"tags"`
-	Status          string   `json:"status"`
-	Role            string   `json:"role"`
-	GeometryStatus  string   `json:"geometryStatus"`
-	AngularSize     *float64 `json:"angularSize"`
-	TransitionAngle *float64 `json:"transitionAngle"`
-}
-
 type Candidate struct {
 	Title       string   `json:"title"`
 	URL         string   `json:"url"`
@@ -72,19 +59,20 @@ type Discovery struct {
 }
 
 type Preferences struct {
-	ReviewTheme    string   `json:"-"`
-	PlanningPolicy string   `json:"planningPolicy,omitempty"`
-	CurriculumID   string   `json:"curriculumId,omitempty"`
-	Minutes        int      `json:"minutes"`
-	ExecutionMode  string   `json:"executionMode"`
-	Focus          string   `json:"focus"`
-	Difficulty     string   `json:"difficulty"`
-	Benchmark      string   `json:"benchmark"`
-	Benchmarks     []string `json:"benchmarks,omitempty"`
-	Variety        float64  `json:"variety"`
-	ThresholdRatio float64  `json:"thresholdRatio"`
-	AutoAdvance    bool     `json:"autoAdvance"`
-	AutoDiscover   bool     `json:"autoDiscover"`
+	ExplorationMode string   `json:"explorationMode,omitempty"`
+	ReviewTheme     string   `json:"-"`
+	PlanningPolicy  string   `json:"planningPolicy,omitempty"`
+	CurriculumID    string   `json:"curriculumId,omitempty"`
+	Minutes         int      `json:"minutes"`
+	ExecutionMode   string   `json:"executionMode"`
+	Focus           string   `json:"focus"`
+	Difficulty      string   `json:"difficulty"`
+	Benchmark       string   `json:"benchmark"`
+	Benchmarks      []string `json:"benchmarks,omitempty"`
+	Variety         float64  `json:"variety"`
+	ThresholdRatio  float64  `json:"thresholdRatio"`
+	AutoAdvance     bool     `json:"autoAdvance"`
+	AutoDiscover    bool     `json:"autoDiscover"`
 }
 
 type SkillStatus struct {
@@ -143,9 +131,10 @@ type DifficultyEvidence struct {
 	Samples       int                   `json:"samples"`
 }
 
-const currentPlannerVersion = 8
+const currentPlannerVersion = 10
 
 type Plan struct {
+	Exploration     *ExplorationReport `json:"exploration,omitempty"`
 	CurriculumCycle int                `json:"curriculumCycle,omitempty"`
 	SelectionReason string             `json:"selectionReason,omitempty"`
 	Progression     *ProgressionBudget `json:"progression,omitempty"`
@@ -160,6 +149,7 @@ type Plan struct {
 	CurriculumEnd   int                `json:"curriculumEnd,omitempty"`
 	CurriculumTotal int                `json:"curriculumTotal,omitempty"`
 	Theme           string             `json:"theme,omitempty"`
+	EndReason       string             `json:"endReason,omitempty"`
 	EndedAt         int64              `json:"endedAt,omitempty"`
 	ID              string             `json:"id"`
 	Created         string             `json:"created"`
@@ -180,6 +170,7 @@ type Plan struct {
 }
 
 type State struct {
+	DemandCoverage     []DemandCoverage           `json:"demandCoverage,omitempty"`
 	AnchorEvaluations  []AnchorEvaluation         `json:"anchorEvaluations,omitempty"`
 	PersonalAnchors    []PersonalAnchor           `json:"personalAnchors,omitempty"`
 	TrainingStudies    []TrainingStudy            `json:"trainingStudies,omitempty"`

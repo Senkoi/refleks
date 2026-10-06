@@ -6,7 +6,7 @@ import (
 	"math"
 	"strings"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 type rawRank struct {

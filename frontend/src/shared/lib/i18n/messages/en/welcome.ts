@@ -2,27 +2,27 @@ import { WidenDeep } from "../types";
 
 /**
  * Welcome feature strings (welcome content resolver + WelcomeModal).
- * Product names (RefleK's, KovaaK's, Steam, FFmpeg, the RefleK's Index)
+ * Product names (AimMeow, KovaaK's, Steam, FFmpeg, the configured sync service)
  * stay as-is inside translated text.
  */
 export const welcome = {
   content: {
-    titleFirstLaunch: "Welcome to RefleK's v{version}",
-    titleUpgrade: "Welcome back to RefleK's v{version}",
+    titleFirstLaunch: "Welcome to AimMeow v{version}",
+    titleUpgrade: "Welcome back to AimMeow v{version}",
     introFirstLaunch:
-      "Thank you for installing RefleK's. Check out the changelog and docs to get up to speed with the latest features and improvements.",
+      "Thank you for installing AimMeow. Check out the changelog and docs to get up to speed with the latest features and improvements.",
     introUpgrade:
       "Welcome back. Check out the changelog to see what's new in this release.",
     details:
       "For detailed information about what's changed, features, and improvements, please visit the changelog linked below. It's always kept up to date with the latest release notes.",
     highlightsTitle: "Getting Started",
     highlights: {
-      changelog:
-        "Visit the changelog for detailed release information and feature updates.",
-      docs: "Check the documentation for guides, walkthroughs, and troubleshooting.",
+      changelog: "Confirm the KovaaK’s game folder in Settings.",
+      docs: "Choose your available time in the workbench, then generate and install a list.",
       customize:
-        "Customize your preferences in Settings to tailor RefleK's to your needs.",
-      community: "Join the community and share your experience.",
+        "Open the list in the game’s Local Playlists and start the workbench timer.",
+      community:
+        "Completed runs are recorded automatically. Click a played scene to review its history.",
     },
     linksTitle: "Resources",
     ctaFirstLaunch: "Start exploring",
@@ -30,13 +30,15 @@ export const welcome = {
     links: {
       docsLabel: "Browse the docs",
       docsDescription:
-        "Setup guides, walkthroughs, and troubleshooting for RefleK's.",
+        "Setup guides, walkthroughs, and troubleshooting for AimMeow.",
       changelogLabel: "Read the changelog",
       changelogDescription:
         "See the fuller release history and version-by-version notes in the browser.",
     },
   },
   modal: {
+    moreDetails: "More details",
+    optionalRecording: "Trace and video settings (optional)",
     syncStatusEnabled:
       "Run Sync is currently enabled. You can change this later in Privacy settings.",
     syncStatusDisabled:
@@ -47,16 +49,16 @@ export const welcome = {
     sectionFirstTimeDescription:
       "Pick how you want your uploads and mouse traces to start. You can change these choices later in Settings.",
     sectionProfileDescription:
-      "Choose how you want your runs to appear on the RefleK's Index. You can change this later in Privacy settings.",
+      "Choose how you want your runs to appear on the configured sync service. You can change this later in Privacy settings.",
     sectionReviewDescription:
       "Review your current settings. You can change these anytime in the Settings panel.",
     recommended: "Recommended",
     later: "Later",
     private: "Private",
     index: {
-      label: "RefleK's Index",
+      label: "configured sync service",
       description:
-        "Completed runs can be uploaded to the RefleK's Index, a shared dataset that feeds rankings, comparisons, and research across the global player base.",
+        "Completed runs can be uploaded to the configured sync service, a shared dataset that feeds rankings, comparisons, and research across the global player base.",
     },
     publicProfile: {
       label: "Public Profile",
@@ -98,7 +100,8 @@ export const welcome = {
       },
       disabled: {
         label: "Not Right Now",
-        subtitle: "Start without trace capture and enable it whenever you want.",
+        subtitle:
+          "Start without trace capture and enable it whenever you want.",
         description:
           "A good starting point if you want to get familiar with the app first and decide about traces after a few sessions.",
         bullets: [
@@ -112,8 +115,7 @@ export const welcome = {
       label: "Screen Replay",
       description:
         "Record a video replay of your runs so you can rewatch and analyze your crosshair placement, movement, and decision-making directly in the app.",
-      helper:
-        "Requires FFmpeg. Can be changed later in General settings.",
+      helper: "Requires FFmpeg. Can be changed later in General settings.",
       enabled: {
         label: "Enable Replay Recording",
         subtitle: "Capture screen during runs (hardware accelerated).",
@@ -127,7 +129,8 @@ export const welcome = {
       },
       disabled: {
         label: "Start Without Recording",
-        subtitle: "Begin with mouse tracking only and add screen replays whenever.",
+        subtitle:
+          "Begin with mouse tracking only and add screen replays whenever.",
         description:
           "A low-friction starting point. You can enable replay recording later once you're comfortable with the app.",
         bullets: [

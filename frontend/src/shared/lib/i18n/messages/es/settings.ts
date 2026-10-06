@@ -1,3 +1,4 @@
+import { settings as newMessages } from "../en/settings";
 import { plural } from "../../plural";
 import type { SettingsMessages } from "../en/settings";
 
@@ -30,6 +31,7 @@ export const settings: SettingsMessages = {
     failedToDownload: "No se pudo descargar la actualización",
   },
   general: {
+    recordingAdvanced: newMessages.general.recordingAdvanced,
     title: "General",
     description: "Carpetas principales y comportamiento de las sesiones.",
     kovaaksInstallFolder: "Carpeta de instalación de KovaaK's",
@@ -37,7 +39,7 @@ export const settings: SettingsMessages = {
       "Ruta a la carpeta de instalación de KovaaK's, usada para localizar FPSAimTrainer/stats y FPSAimTrainer/performances",
     startWithKovaaks: "Iniciar con KovaaK's",
     startWithKovaaksDescription:
-      "Inicia RefleK's automáticamente al iniciar KovaaK's; RefleK's también se iniciará con Windows",
+      "Inicia AimMeow automáticamente al iniciar KovaaK's; AimMeow también se iniciará con Windows",
     mouseTracking: "Seguimiento del ratón",
     mouseTrackingDescription:
       "Graba el movimiento del ratón durante los escenarios (solo Windows)",
@@ -93,11 +95,15 @@ export const settings: SettingsMessages = {
     sessionGapMinutes: plural({ one: "1 minuto", other: "{count} minutos" }),
   },
   privacy: {
+    localRecords: newMessages.privacy.localRecords,
     title: "Privacidad",
     description:
       "Controla si las partidas se suben y si los datos identificativos del entorno se eliminan antes de sincronizar.",
     runSync: "Sincronización de partidas",
-    runSyncDescription: "Sube las partidas completadas a RefleK's Index.",
+    serviceUnavailable:
+      "Training stays on this computer. AimMeow has no cloud sync service configured.",
+    runSyncDescription:
+      "Sube las partidas completadas a servicio de sincronización configurado.",
     anonymousMode: "Modo anónimo",
     anonymousModeDescription:
       "Elimina el Steam ID y el nombre de perfil de Steam de los datos del entorno de la partida antes de subirlos mediante la sincronización.",
@@ -111,7 +117,7 @@ export const settings: SettingsMessages = {
     themeLight: "Claro",
     themeCustom: "Personalizado",
     themeCustomDescription:
-      "Personaliza por completo los colores, las fuentes y mucho más editando el archivo de tema personalizado en la carpeta de configuración de RefleK's. Los cambios se aplican después de reiniciar.",
+      "Personaliza por completo los colores, las fuentes y mucho más editando el archivo de tema personalizado en la carpeta de configuración de AimMeow. Los cambios se aplican después de reiniciar.",
     openThemeFile: "Abrir archivo de tema",
     regenerateThemeFile: "Regenerar",
     themeFileRegenerateConfirm:
@@ -141,7 +147,7 @@ export const settings: SettingsMessages = {
     personaNameDescription:
       "Introduce el nombre de usuario de tu cuenta en kovaaks.com.",
     displayNamePlaceholder: "Nombre para mostrar",
-    dataRetention: "Conservación de datos",
+    dataRetention: newMessages.advanced.dataRetention,
     recentRunsWindow: "Periodo de partidas recientes (días)",
     recentRunsWindowDescription:
       "Solo se cargan y muestran las partidas de los últimos N días",
@@ -149,7 +155,14 @@ export const settings: SettingsMessages = {
     recentRunsMinCountDescription:
       "Si el periodo de días contiene muy pocas partidas, incluye partidas anteriores hasta alcanzar este mínimo",
   },
+  about: {
+    title: "About AimMeow",
+    description:
+      "Independently maintained by Senkoi, based on Refleks. Thanks to the upstream contributors and training community.",
+    notices: "Attribution and GPL-3.0 license",
+  },
   footer: {
+    maintenance: newMessages.footer.maintenance,
     clearCache: "Borrar caché",
     saving: "Guardando ajustes...",
     unsavedChanges: "Cambios sin guardar",

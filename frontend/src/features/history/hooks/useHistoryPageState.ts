@@ -1,3 +1,5 @@
+import { useTrainingPlanFilter } from "./useTrainingPlanFilter";
+import { runId } from "@/shared/lib/practiceSessions";
 import { usePersistedState, useStore } from "@/shared/hooks";
 import { STORAGE_KEYS } from "@/shared/lib";
 import { useCallback, useEffect, useMemo, useRef } from "react";
@@ -14,7 +16,10 @@ export type RunSortKey =
 export type SessionSortKey = "newest" | "oldest" | "most-runs" | "longest";
 
 export function useHistoryPageState() {
-  const sessions = useStore((state) => state.sessions);
+  const allSessions = useStore((state) => state.sessions);
+  const planFilter=useTrainingPlanFilter();
+  const {planId,planRunIds}=planFilter;
+  const sessions=useMemo(()=>planId?allSessions.map(s=>({...s,items:s.items.filter(r=>planRunIds.has(runId(r)))})).filter(s=>s.items.length>0):allSessions,[allSessions,planId,planRunIds]);
 
   const [selectedSessionId, setSelectedSessionId] = usePersistedState<
     string | null
@@ -71,7 +76,7 @@ export function useHistoryPageState() {
     false,
   );
 
-  const allRuns = useMemo(() => buildHistoryRuns(sessions), [sessions]);
+  const allRuns = useMemo(() => buildHistoryRuns(allSessions), [allSessions]);
   const runsById = useMemo(
     () => new Map(allRuns.map((run) => [run.id, run])),
     [allRuns],
@@ -90,19 +95,15 @@ export function useHistoryPageState() {
 
   const selectedSession = useMemo(
     () =>
-      sessions.find((session) => session.id === selectedSessionId) ??
+      sessions.find((session) => session.id === selectedSessionId || session.legacyIds?.includes(selectedSessionId ?? "")) ??
       sessions[0] ??
       null,
     [sessions, selectedSessionId],
   );
 
   useEffect(() => {
-    const fallback = sessions[0]?.id ?? null;
-    const next =
-      selectedSessionId &&
-      sessions.some((session) => session.id === selectedSessionId)
-        ? selectedSessionId
-        : fallback;
+    const match = sessions.find(session => session.id === selectedSessionId || session.legacyIds?.includes(selectedSessionId ?? ""));
+    const next = match?.id ?? sessions[0]?.id ?? null;
 
     if (next !== selectedSessionId) {
       setSelectedSessionId(next);
@@ -124,6 +125,14 @@ export function useHistoryPageState() {
     }
   }, [compareRunId, primaryRunId, runsById, setCompareRunId]);
 
+  const previousPlan = useRef(planId);
+  useEffect(()=>{
+    if(previousPlan.current!==planId || planId && primaryRunId && !planRunIds.has(primaryRunId)) {
+      setPrimaryRunId(null);setCompareRunId(null);setRunInspectorOpen(false);
+    }
+    previousPlan.current=planId;
+  },[planId,planRunIds,primaryRunId,setPrimaryRunId,setCompareRunId,setRunInspectorOpen]);
+
   // Start from closed so persisted open state also runs the same collapse behavior on first mount.
   const wasInspectorOpen = useRef(false);
   useEffect(() => {
@@ -144,8 +153,8 @@ export function useHistoryPageState() {
   );
 
   const sessionRuns = useMemo(
-    () => allRuns.filter((run) => run.sessionId === selectedSession?.id),
-    [allRuns, selectedSession],
+    () => allRuns.filter((run) => run.sessionId === selectedSession?.id && (!planId || planRunIds.has(run.id))),
+    [allRuns, selectedSession, planId,planRunIds],
   );
 
   const filteredSessionRuns = useMemo(
@@ -267,6 +276,7 @@ export function useHistoryPageState() {
   };
 
   return {
+    ...planFilter,
     sessions,
     filteredSessions: sortedFilteredSessions,
     selectedSession,

@@ -6,7 +6,7 @@ import (
 	"encoding/binary"
 	"testing"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func TestEncodeTraceBase64(t *testing.T) {

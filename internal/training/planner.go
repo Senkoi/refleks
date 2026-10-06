@@ -8,29 +8,28 @@ import (
 	"strings"
 	"time"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
+	"aimmeow/internal/practice"
 )
 
 type observation struct {
 	score, duration float64
 	at              time.Time
 	signature       string
+	timingSignature string
 	accuracy        float64
 	accuracyKnown   bool
 	hitsPerSecond   float64
 	speedKnown      bool
 }
 
-func signature(s models.RunStatsSummary) string {
+func signature(s models.RunStatsSummary) string { return practice.ComparisonKey(s) }
+
+func legacySignature(s models.RunStatsSummary) string {
 	return fmt.Sprintf("%s|%s|%.4f|%.4f|%.4f|%.4f", s.Hash, s.SensScale, s.HorizSens, s.VertSens, s.FOV, s.AvgTimeDilation)
 }
 
-func runKey(r models.RunRecord) string {
-	if r.FilePath != "" {
-		return r.FilePath
-	}
-	return r.FileName + "|" + r.Stats.Summary.DatePlayed + "|" + r.Stats.Summary.Scenario
-}
+func runKey(r models.RunRecord) string { return practice.RunID(r) }
 
 func observed(runs []models.RunRecord) map[string][]observation {
 	out := map[string][]observation{}
@@ -49,6 +48,9 @@ func observed(runs []models.RunRecord) map[string][]observation {
 			continue
 		}
 		sig := signature(s)
+		timingSummary := s
+		timingSummary.Duration = 0
+		timingSig := signature(timingSummary)
 		key := strings.ToLower(s.Scenario)
 		a := s.Accuracy
 		if a > 1 {
@@ -59,7 +61,7 @@ func observed(runs []models.RunRecord) map[string][]observation {
 			a = float64(s.HitCount) / (float64(s.HitCount) + float64(s.MissCount))
 			known = true
 		}
-		out[key] = append(out[key], observation{score: s.Score, duration: s.Duration, at: t, signature: sig, accuracy: a, accuracyKnown: known, hitsPerSecond: float64(s.HitCount) / s.Duration, speedKnown: s.HitCount > 0})
+		out[key] = append(out[key], observation{score: s.Score, duration: s.Duration, at: t, signature: sig, timingSignature: timingSig, accuracy: a, accuracyKnown: known, hitsPerSecond: float64(s.HitCount) / s.Duration, speedKnown: s.HitCount > 0})
 	}
 	for key := range out {
 		sort.Slice(out[key], func(i, j int) bool { return out[key][i].at.After(out[key][j].at) })
@@ -252,6 +254,9 @@ func validatePreferences(p Preferences) error {
 	}
 	if math.IsNaN(p.Variety) || p.Variety < 0 || p.Variety > 0.5 {
 		return fmt.Errorf("变化比例须在 0–50%% 之间")
+	}
+	if p.ExplorationMode != "" && p.ExplorationMode != "auto" && p.ExplorationMode != "off" {
+		return fmt.Errorf("无效的探索设置")
 	}
 	if math.IsNaN(p.ThresholdRatio) || p.ThresholdRatio < 0.5 || p.ThresholdRatio > 1 {
 		return fmt.Errorf("阈值比例须在 50–100%% 之间")
@@ -531,7 +536,7 @@ func Generate(catalog []Scenario, runs []models.RunRecord, p Preferences, now ti
 			practiceRemaining -= blockBudget
 		}
 		addDemandTime(s, float64(blockBudget), exposure)
-		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: difficulties[s.Name], Role: role, Budget: blockBudget, PlayCount: count, Outcome: "pending", Reason: "匹配能力与难度，并降低近期重复；时长为上限。", Cue: "留意动作质量；本模块到时即可继续，不要求无限重开。"}
+		b := Block{Scenario: s, Timing: timing, DifficultyEvidence: difficulties[s.Name], Role: role, Budget: blockBudget, PlayCount: count, Outcome: "pending", Reason: "我挑了与你当前表现相近的内容，也尽量避开最近重复太多的练习。", Cue: "专心练动作喵，到时间就继续，不用一直重开刷分。"}
 		if p.ExecutionMode == "playlist" {
 			b.Reason = fmt.Sprintf("匹配能力与难度，并降低近期重复；游戏内列表安排 %d 局，次数根据单局长度与近 24 小时、近 7 天的已记录练习量估算。", count)
 		}

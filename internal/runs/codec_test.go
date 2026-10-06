@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"testing"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 )
 
 func TestReadRecordFileRealRun(t *testing.T) {

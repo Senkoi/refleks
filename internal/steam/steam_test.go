@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 func writeSteamLoginUsers(t *testing.T, steamDir string) {

@@ -1,6 +1,7 @@
 package models
 
 type RunRecord struct {
+	ComparisonKey   string              `json:"comparisonKey,omitempty"`
 	FileVersion     uint8               `json:"fileVersion"`
 	FilePath        string              `json:"filePath"`
 	FileName        string              `json:"fileName"`

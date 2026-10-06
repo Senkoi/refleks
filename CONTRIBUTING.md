@@ -1,4 +1,4 @@
-# Contributing to RefleK's Desktop
+# Contributing to AimMeow Desktop
 
 Thank you for your interest in contributing! We welcome bug reports, feature requests, and code contributions.
 
@@ -19,7 +19,7 @@ When reporting a bug, please include:
 We recommend using the VS Code Dev Container to get started quickly without installing dependencies locally.
 
 1.  **Dev Container:** Use the **Dev Containers: Clone Repository in Container Volume...** command in VS Code.
-2.  **Local Setup:** If you prefer local setup, you will need Go 1.23+, Node.js 18+, and the Wails v2 CLI.
+2.  **Local Setup:** If you prefer local setup, you will need Go 1.25+, Node.js 22+, and the Wails v2 CLI.
 
 ### Running the App
 

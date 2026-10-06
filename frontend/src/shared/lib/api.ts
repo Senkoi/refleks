@@ -29,6 +29,7 @@ import {
   ResetSettings as _ResetSettings,
   SaveScenarioNote as _SaveScenarioNote,
   SaveSessionNote as _SaveSessionNote,
+  SaveTrainingSessionNote as _SaveTrainingSessionNote,
   SetAutostart as _SetAutostart,
   SetFavoriteBenchmarks as _SetFavoriteBenchmarks,
   StartWatcher as _StartWatcher,
@@ -136,8 +137,10 @@ export async function saveSessionNote(
   sessionID: string,
   name: string,
   notes: string,
+  mergedAliases?:string[],
 ): Promise<void> {
-  await _SaveSessionNote(sessionID, name, notes);
+  if(mergedAliases)await _SaveTrainingSessionNote(sessionID,name,notes,mergedAliases);
+  else await _SaveSessionNote(sessionID, name, notes);
 }
 
 export async function getVersion(): Promise<string> {

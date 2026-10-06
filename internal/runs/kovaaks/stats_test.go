@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"refleks/internal/models"
+	"aimmeow/internal/models"
 
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"

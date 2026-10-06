@@ -1,12 +1,11 @@
 package training
 
 import (
+	"aimmeow/internal/models"
 	"encoding/json"
 	"fmt"
 	"math/rand"
-	"os"
 	"path/filepath"
-	"refleks/internal/models"
 	"strings"
 	"testing"
 	"time"
@@ -207,12 +206,10 @@ func TestClockCheckpointBatchesButRecordedRunsSaveImmediately(t *testing.T) {
 	_, _ = s.Action("start", epoch, nil)
 	s.Tick(epoch.Add(2*time.Second), nil)
 	read := func() State {
-		data, err := os.ReadFile(s.path)
+		st, err := newStateRepository(s.path).Load(State{})
 		if err != nil {
 			t.Fatal(err)
 		}
-		var st State
-		_ = json.Unmarshal(data, &st)
 		return st
 	}
 	first := read().Plan.Elapsed

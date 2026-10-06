@@ -18,7 +18,6 @@ import type { BenchmarkProgress } from "@/shared/types";
 import { useMemo } from "react";
 import {
   adjustColorForTheme,
-  formatNumber,
   normalizedRankProgress,
 } from "../../lib/detailFormatting";
 
@@ -29,7 +28,6 @@ type Props = {
 type StrengthRow = {
   label: string;
   percent: number;
-  avgScore: number;
   color: string;
   rankName: string;
 };
@@ -67,8 +65,7 @@ function StrengthBarRow({
           {row.label}
         </div>
         <div className="text-xs text-surface-muted-foreground">
-          {row.rankName} · {t("benchmarks.strength.avg")}{" "}
-          {formatNumber(row.avgScore, 1)}
+          {row.rankName}
         </div>
       </div>
 
@@ -164,7 +161,6 @@ export function StrengthWidget({ progress }: Props) {
         return {
           label,
           percent: 0,
-          avgScore: 0,
           color,
           rankName: t("benchmarks.strength.unranked"),
         };
@@ -180,11 +176,6 @@ export function StrengthWidget({ progress }: Props) {
       const average =
         values.reduce((sum, value) => sum + value, 0) / values.length;
       const percent = Math.round(average * 100);
-      const avgScore =
-        scenarios.reduce(
-          (sum, scenario) => sum + Number(scenario.score || 0),
-          0,
-        ) / scenarios.length;
 
       const rankIndex = rankDefs.length
         ? Math.max(
@@ -199,7 +190,6 @@ export function StrengthWidget({ progress }: Props) {
       return {
         label,
         percent,
-        avgScore,
         color: adjustColorForTheme(
           rankDefs[rankIndex]?.color || color || "var(--primary)",
           CARD_BACKGROUND,

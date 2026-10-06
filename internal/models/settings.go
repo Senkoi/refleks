@@ -25,6 +25,7 @@ type Settings struct {
 	ReplayStorageLimitGB    int                     `json:"replayStorageLimitGb"`
 	AutostartEnabled        bool                    `json:"autostartEnabled"`
 	AnonymousEnabled        bool                    `json:"anonymousEnabled"`
+	RunSyncAvailable        bool                    `json:"runSyncAvailable"`
 	RunSyncEnabled          bool                    `json:"runSyncEnabled"`
 	ScenarioNotes           map[string]ScenarioNote `json:"scenarioNotes,omitempty"`
 	SessionNotes            map[string]SessionNote  `json:"sessionNotes,omitempty"`
@@ -38,6 +39,7 @@ type ScenarioNote struct {
 
 // SessionNote holds user notes and name for a session.
 type SessionNote struct {
-	Name  string `json:"name"`
-	Notes string `json:"notes"`
+	MergedAliases []string `json:"mergedAliases,omitempty"`
+	Name          string   `json:"name"`
+	Notes         string   `json:"notes"`
 }

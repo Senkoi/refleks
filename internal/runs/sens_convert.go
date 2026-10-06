@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"refleks/internal/constants"
-	"refleks/internal/models"
+	"aimmeow/internal/constants"
+	"aimmeow/internal/models"
 )
 
 // cm360 converts horizontal sensitivity data into centimeters per 360-degree turn.
