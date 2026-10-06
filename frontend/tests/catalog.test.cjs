@@ -29,3 +29,16 @@ test('all catalog entries remain reachable after the first hundred and after fil
   assert.equal(catalogPage(rows, 2).page, 0);
   assert.equal(catalogPage([], 9).pages, 1);
 });
+
+test('user filters search Chinese types and distinguish played, liked and excluded scenes', () => {
+  const entries = [
+    {name:'Played static', skill:'static', enabled:true, preference:'liked', evaluation:{fileStatus:'missing',fit:'suitable'}},
+    {name:'New dynamic', skill:'dynamic', enabled:true, preference:'neutral'},
+    {name:'Excluded static', skill:'static', enabled:false, preference:'disliked'},
+  ];
+  const played = new Set(['played static']);
+  assert.deepEqual(names(filterCatalog(entries, '静态点击', 'all', 'all', {experience:'played'}, played)), ['Played static']);
+  assert.deepEqual(names(filterCatalog(entries, '', 'all', 'all', {experience:'unplayed',skill:'static'}, played)), ['Excluded static']);
+  assert.deepEqual(names(filterCatalog(entries, '', 'all', 'all', {feedback:'liked'}, played)), ['Played static']);
+  assert.deepEqual(names(filterCatalog(entries, '', 'all', 'all', {feedback:'excluded'}, played)), ['Excluded static']);
+});

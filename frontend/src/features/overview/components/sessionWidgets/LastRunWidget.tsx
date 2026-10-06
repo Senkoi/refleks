@@ -1,3 +1,4 @@
+import { ScenarioHistoryLink } from "@/shared/components/ScenarioHistoryLink";
 import { Widget, WidgetEmpty } from "@/shared/components";
 import { useI18n } from "@/shared/lib";
 import { Activity, Crosshair } from "lucide-react";
@@ -41,12 +42,11 @@ export function LastRunWidget({
       title={t("overview.lastRun.title")}
       headerAction={
         lastRunScenario ? (
-          <span
-            className="max-w-[7.5rem] truncate text-[0.6875rem] text-surface-muted-foreground"
-            title={lastRunScenario}
-          >
-            {lastRunScenario}
-          </span>
+          <ScenarioHistoryLink
+            name={lastRunScenario}
+            known
+            className="max-w-56 text-[0.6875rem] text-surface-muted-foreground"
+          />
         ) : null
       }
     >

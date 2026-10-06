@@ -282,7 +282,14 @@ export function WelcomeModal({
       onClose={onClose}
       title={
         <span className="flex items-center gap-4 text-xl font-semibold leading-tight tracking-tight text-foreground">
-          <img src={AIMMEOW_MASCOT} alt="" aria-hidden="true" width={72} height={72} className="size-[4.5rem] shrink-0 object-contain" />
+          <img
+            src={AIMMEOW_MASCOT}
+            alt=""
+            aria-hidden="true"
+            width={72}
+            height={72}
+            className="size-[4.5rem] shrink-0 object-contain"
+          />
           <span>{content.title}</span>
         </span>
       }
@@ -299,7 +306,10 @@ export function WelcomeModal({
           <div className="rounded-xl bg-surface px-5 py-4 shadow-sm">
             <p className="text-sm leading-6 text-foreground">{content.intro}</p>
 
-            <div className="mt-2.5 space-y-2.5">
+            <details className="mt-2.5 space-y-2.5">
+              <summary className="cursor-pointer text-xs text-surface-muted-foreground">
+                {t("welcome.modal.moreDetails")}
+              </summary>
               {content.details.map((detail) => (
                 <p
                   key={detail}
@@ -308,163 +318,172 @@ export function WelcomeModal({
                   {detail}
                 </p>
               ))}
-            </div>
+            </details>
           </div>
 
           {(showMouseTraceChoice ||
             showScreenCaptureChoice ||
             showAnonymousChoice) && (
-            <WelcomeSection
-              title={
-                showMouseTraceChoice
-                  ? t("welcome.modal.sectionFirstTime")
-                  : showAnonymousChoice
-                    ? t("welcome.modal.sectionProfile")
-                    : t("welcome.modal.sectionReview")
-              }
-              description={
-                showMouseTraceChoice
-                  ? t("welcome.modal.sectionFirstTimeDescription")
-                  : showAnonymousChoice
-                    ? t("welcome.modal.sectionProfileDescription")
-                    : t("welcome.modal.sectionReviewDescription")
-              }
-            >
-              <div className="space-y-3">
-                {showAnonymousChoice && (
-                  <ChoiceGroup
-                    icon={<Database className="h-3.5 w-3.5" />}
-                    label={t("welcome.modal.index.label")}
-                    description={t("welcome.modal.index.description")}
-                    helper={syncStatus}
-                  >
-                    <ChoiceCard
-                      eyebrow={t("welcome.modal.recommended")}
-                      eyebrowTone="primary"
-                      label={t("welcome.modal.publicProfile.label")}
-                      subtitle={t("welcome.modal.publicProfile.subtitle")}
-                      description={t("welcome.modal.publicProfile.description")}
-                      bullets={[
-                        t("welcome.modal.publicProfile.bullets.0"),
-                        t("welcome.modal.publicProfile.bullets.1"),
-                      ]}
-                      selected={privacyMode === "public"}
-                      onSelect={() => setPrivacyMode("public")}
-                      icon={<Globe2 className="h-4 w-4" />}
-                    />
+            <details className="rounded-xl bg-surface p-4">
+              <summary className="cursor-pointer text-sm">
+                {t("welcome.modal.optionalRecording")}
+              </summary>
+              <WelcomeSection
+                title={
+                  showMouseTraceChoice
+                    ? t("welcome.modal.sectionFirstTime")
+                    : showAnonymousChoice
+                      ? t("welcome.modal.sectionProfile")
+                      : t("welcome.modal.sectionReview")
+                }
+                description={
+                  showMouseTraceChoice
+                    ? t("welcome.modal.sectionFirstTimeDescription")
+                    : showAnonymousChoice
+                      ? t("welcome.modal.sectionProfileDescription")
+                      : t("welcome.modal.sectionReviewDescription")
+                }
+              >
+                <div className="space-y-3">
+                  {showAnonymousChoice && (
+                    <ChoiceGroup
+                      icon={<Database className="h-3.5 w-3.5" />}
+                      label={t("welcome.modal.index.label")}
+                      description={t("welcome.modal.index.description")}
+                      helper={syncStatus}
+                    >
+                      <ChoiceCard
+                        eyebrow={t("welcome.modal.recommended")}
+                        eyebrowTone="primary"
+                        label={t("welcome.modal.publicProfile.label")}
+                        subtitle={t("welcome.modal.publicProfile.subtitle")}
+                        description={t(
+                          "welcome.modal.publicProfile.description",
+                        )}
+                        bullets={[
+                          t("welcome.modal.publicProfile.bullets.0"),
+                          t("welcome.modal.publicProfile.bullets.1"),
+                        ]}
+                        selected={privacyMode === "public"}
+                        onSelect={() => setPrivacyMode("public")}
+                        icon={<Globe2 className="h-4 w-4" />}
+                      />
 
-                    <ChoiceCard
-                      eyebrow={t("welcome.modal.private")}
-                      label={t("welcome.modal.anonymous.label")}
-                      subtitle={t("welcome.modal.anonymous.subtitle")}
-                      description={t("welcome.modal.anonymous.description")}
-                      bullets={[
-                        t("welcome.modal.anonymous.bullets.0"),
-                        t("welcome.modal.anonymous.bullets.1"),
-                        t("welcome.modal.anonymous.bullets.2"),
-                      ]}
-                      selected={privacyMode === "anonymous"}
-                      onSelect={() => setPrivacyMode("anonymous")}
-                      icon={<EyeOff className="h-4 w-4" />}
-                    />
-                  </ChoiceGroup>
-                )}
+                      <ChoiceCard
+                        eyebrow={t("welcome.modal.private")}
+                        label={t("welcome.modal.anonymous.label")}
+                        subtitle={t("welcome.modal.anonymous.subtitle")}
+                        description={t("welcome.modal.anonymous.description")}
+                        bullets={[
+                          t("welcome.modal.anonymous.bullets.0"),
+                          t("welcome.modal.anonymous.bullets.1"),
+                          t("welcome.modal.anonymous.bullets.2"),
+                        ]}
+                        selected={privacyMode === "anonymous"}
+                        onSelect={() => setPrivacyMode("anonymous")}
+                        icon={<EyeOff className="h-4 w-4" />}
+                      />
+                    </ChoiceGroup>
+                  )}
 
-                {showMouseTraceChoice && (
-                  <ChoiceGroup
-                    icon={<MousePointer2 className="h-3.5 w-3.5" />}
-                    label={t("welcome.modal.mouseTraces.label")}
-                    description={t("welcome.modal.mouseTraces.description")}
-                    helper={t("welcome.modal.mouseTraces.helper")}
-                  >
-                    <ChoiceCard
-                      eyebrow={t("welcome.modal.recommended")}
-                      eyebrowTone="primary"
-                      label={t("welcome.modal.mouseTraces.enabled.label")}
-                      subtitle={t("welcome.modal.mouseTraces.enabled.subtitle")}
-                      description={t(
-                        "welcome.modal.mouseTraces.enabled.description",
-                      )}
-                      bullets={[
-                        t("welcome.modal.mouseTraces.enabled.bullets.0"),
-                        t("welcome.modal.mouseTraces.enabled.bullets.1"),
-                        t("welcome.modal.mouseTraces.enabled.bullets.2"),
-                      ]}
-                      selected={mouseTraceMode === "enabled"}
-                      onSelect={() => setMouseTraceMode("enabled")}
-                      icon={<MousePointer2 className="h-4 w-4" />}
-                    />
+                  {showMouseTraceChoice && (
+                    <ChoiceGroup
+                      icon={<MousePointer2 className="h-3.5 w-3.5" />}
+                      label={t("welcome.modal.mouseTraces.label")}
+                      description={t("welcome.modal.mouseTraces.description")}
+                      helper={t("welcome.modal.mouseTraces.helper")}
+                    >
+                      <ChoiceCard
+                        eyebrow={t("welcome.modal.recommended")}
+                        eyebrowTone="primary"
+                        label={t("welcome.modal.mouseTraces.enabled.label")}
+                        subtitle={t(
+                          "welcome.modal.mouseTraces.enabled.subtitle",
+                        )}
+                        description={t(
+                          "welcome.modal.mouseTraces.enabled.description",
+                        )}
+                        bullets={[
+                          t("welcome.modal.mouseTraces.enabled.bullets.0"),
+                          t("welcome.modal.mouseTraces.enabled.bullets.1"),
+                          t("welcome.modal.mouseTraces.enabled.bullets.2"),
+                        ]}
+                        selected={mouseTraceMode === "enabled"}
+                        onSelect={() => setMouseTraceMode("enabled")}
+                        icon={<MousePointer2 className="h-4 w-4" />}
+                      />
 
-                    <ChoiceCard
-                      eyebrow={t("welcome.modal.later")}
-                      label={t("welcome.modal.mouseTraces.disabled.label")}
-                      subtitle={t(
-                        "welcome.modal.mouseTraces.disabled.subtitle",
-                      )}
-                      description={t(
-                        "welcome.modal.mouseTraces.disabled.description",
-                      )}
-                      bullets={[
-                        t("welcome.modal.mouseTraces.disabled.bullets.0"),
-                        t("welcome.modal.mouseTraces.disabled.bullets.1"),
-                        t("welcome.modal.mouseTraces.disabled.bullets.2"),
-                      ]}
-                      selected={mouseTraceMode === "disabled"}
-                      onSelect={() => setMouseTraceMode("disabled")}
-                      icon={<Clock className="h-4 w-4" />}
-                    />
-                  </ChoiceGroup>
-                )}
+                      <ChoiceCard
+                        eyebrow={t("welcome.modal.later")}
+                        label={t("welcome.modal.mouseTraces.disabled.label")}
+                        subtitle={t(
+                          "welcome.modal.mouseTraces.disabled.subtitle",
+                        )}
+                        description={t(
+                          "welcome.modal.mouseTraces.disabled.description",
+                        )}
+                        bullets={[
+                          t("welcome.modal.mouseTraces.disabled.bullets.0"),
+                          t("welcome.modal.mouseTraces.disabled.bullets.1"),
+                          t("welcome.modal.mouseTraces.disabled.bullets.2"),
+                        ]}
+                        selected={mouseTraceMode === "disabled"}
+                        onSelect={() => setMouseTraceMode("disabled")}
+                        icon={<Clock className="h-4 w-4" />}
+                      />
+                    </ChoiceGroup>
+                  )}
 
-                {showScreenCaptureChoice && (
-                  <ChoiceGroup
-                    icon={<MonitorPlay className="h-3.5 w-3.5" />}
-                    label={t("welcome.modal.screenReplay.label")}
-                    description={t("welcome.modal.screenReplay.description")}
-                    helper={t("welcome.modal.screenReplay.helper")}
-                  >
-                    <ChoiceCard
-                      eyebrow={t("welcome.modal.recommended")}
-                      eyebrowTone="primary"
-                      label={t("welcome.modal.screenReplay.enabled.label")}
-                      subtitle={t(
-                        "welcome.modal.screenReplay.enabled.subtitle",
-                      )}
-                      description={t(
-                        "welcome.modal.screenReplay.enabled.description",
-                      )}
-                      bullets={[
-                        t("welcome.modal.screenReplay.enabled.bullets.0"),
-                        t("welcome.modal.screenReplay.enabled.bullets.1"),
-                        t("welcome.modal.screenReplay.enabled.bullets.2"),
-                      ]}
-                      selected={screenCaptureMode === "enabled"}
-                      onSelect={() => setScreenCaptureMode("enabled")}
-                      icon={<MonitorPlay className="h-4 w-4" />}
-                    />
+                  {showScreenCaptureChoice && (
+                    <ChoiceGroup
+                      icon={<MonitorPlay className="h-3.5 w-3.5" />}
+                      label={t("welcome.modal.screenReplay.label")}
+                      description={t("welcome.modal.screenReplay.description")}
+                      helper={t("welcome.modal.screenReplay.helper")}
+                    >
+                      <ChoiceCard
+                        eyebrow={t("welcome.modal.recommended")}
+                        eyebrowTone="primary"
+                        label={t("welcome.modal.screenReplay.enabled.label")}
+                        subtitle={t(
+                          "welcome.modal.screenReplay.enabled.subtitle",
+                        )}
+                        description={t(
+                          "welcome.modal.screenReplay.enabled.description",
+                        )}
+                        bullets={[
+                          t("welcome.modal.screenReplay.enabled.bullets.0"),
+                          t("welcome.modal.screenReplay.enabled.bullets.1"),
+                          t("welcome.modal.screenReplay.enabled.bullets.2"),
+                        ]}
+                        selected={screenCaptureMode === "enabled"}
+                        onSelect={() => setScreenCaptureMode("enabled")}
+                        icon={<MonitorPlay className="h-4 w-4" />}
+                      />
 
-                    <ChoiceCard
-                      eyebrow={t("welcome.modal.later")}
-                      label={t("welcome.modal.screenReplay.disabled.label")}
-                      subtitle={t(
-                        "welcome.modal.screenReplay.disabled.subtitle",
-                      )}
-                      description={t(
-                        "welcome.modal.screenReplay.disabled.description",
-                      )}
-                      bullets={[
-                        t("welcome.modal.screenReplay.disabled.bullets.0"),
-                        t("welcome.modal.screenReplay.disabled.bullets.1"),
-                        t("welcome.modal.screenReplay.disabled.bullets.2"),
-                      ]}
-                      selected={screenCaptureMode === "disabled"}
-                      onSelect={() => setScreenCaptureMode("disabled")}
-                      icon={<Clock className="h-4 w-4" />}
-                    />
-                  </ChoiceGroup>
-                )}
-              </div>
-            </WelcomeSection>
+                      <ChoiceCard
+                        eyebrow={t("welcome.modal.later")}
+                        label={t("welcome.modal.screenReplay.disabled.label")}
+                        subtitle={t(
+                          "welcome.modal.screenReplay.disabled.subtitle",
+                        )}
+                        description={t(
+                          "welcome.modal.screenReplay.disabled.description",
+                        )}
+                        bullets={[
+                          t("welcome.modal.screenReplay.disabled.bullets.0"),
+                          t("welcome.modal.screenReplay.disabled.bullets.1"),
+                          t("welcome.modal.screenReplay.disabled.bullets.2"),
+                        ]}
+                        selected={screenCaptureMode === "disabled"}
+                        onSelect={() => setScreenCaptureMode("disabled")}
+                        icon={<Clock className="h-4 w-4" />}
+                      />
+                    </ChoiceGroup>
+                  )}
+                </div>
+              </WelcomeSection>
+            </details>
           )}
 
           <WelcomeSection title={content.highlightsTitle}>
@@ -480,22 +499,27 @@ export function WelcomeModal({
             </div>
           </WelcomeSection>
 
-          <WelcomeSection
-            title={content.linksTitle}
-            description={t("welcome.modal.resourcesDescription")}
-          >
-            <div className="grid gap-2.5 md:grid-cols-2">
-              {content.links.map((link) => (
-                <ResourceCard
-                  key={link.url}
-                  label={link.label}
-                  description={link.description}
-                  url={link.url}
-                  urlLabel={link.urlLabel}
-                />
-              ))}
-            </div>
-          </WelcomeSection>
+          <details className="rounded-xl bg-surface p-4">
+            <summary className="cursor-pointer text-sm">
+              {content.linksTitle}
+            </summary>
+            <WelcomeSection
+              title={content.linksTitle}
+              description={t("welcome.modal.resourcesDescription")}
+            >
+              <div className="grid gap-2.5 md:grid-cols-2">
+                {content.links.map((link) => (
+                  <ResourceCard
+                    key={link.url}
+                    label={link.label}
+                    description={link.description}
+                    url={link.url}
+                    urlLabel={link.urlLabel}
+                  />
+                ))}
+              </div>
+            </WelcomeSection>
+          </details>
         </div>
       </div>
 

@@ -6,6 +6,22 @@ import type { HistoryMessages } from "../en/history";
  */
 export const history: HistoryMessages = {
   page: {
+    planFilter: "按训练计划筛选",
+    allPlans: "全部训练时段",
+    selectedPlan: "所选训练计划",
+    clearPlanFilter: "本计划筛选 · 清除 ×",
+    planLoading: "正在读取本计划对局…",
+    planError: "计划对局暂时无法读取",
+    planFiltered: "仅显示本计划对局",
+    planEmpty: "暂无已关联对局；生成列表不代表完成训练",
+    optionalAnalysis: "更多分析",
+    sessionOverview: "训练时段概览",
+    sensitivityChart: "表现与灵敏度",
+    scenarioChart: "场景分布",
+    paneNavigation: "历史页面板",
+    sessionsPane: "训练时段",
+    runsPane: "对局列表",
+    detailPane: "详情",
     loading: "我正在整理你的训练记录喵…",
     loadingProgress: "我正在整理记录 {loaded}/{total}…",
     runs: plural({ one: "1 局", other: "{count} 局" }),
@@ -109,12 +125,12 @@ export const history: HistoryMessages = {
   scenarioRadar: {
     title: "训练时段场景构成",
     description: "这些是你这次练过的图，我也记下了每张图练了多少。",
-    noActiveSession:
-      "还没有活跃训练时段数据。运行一个场景即可填充此小组件。",
+    noActiveSession: "还没有活跃训练时段数据。运行一个场景即可填充此小组件。",
     noScenarioNames: "本次训练时段中还没有找到场景名称。",
     runs: "训练",
   },
   inspector: {
+    environmentDiagnostics: "环境诊断",
     pinned: "已固定",
     compare: "比较",
     primary: "主要",
@@ -137,6 +153,7 @@ export const history: HistoryMessages = {
     selectRunToInspect: "选择一次训练进行查看",
   },
   stats: {
+    detailedStats: "详细统计与环境参数",
     score: "分数",
     accuracy: "准确率",
     duration: "时长",
@@ -306,8 +323,14 @@ export const history: HistoryMessages = {
   trace: {
     loading: "正在加载轨迹…",
     noMouseTrace: "没有鼠标轨迹数据。请在设置中启用鼠标跟踪以记录轨迹。",
-    killsOvershoot: plural({ one: "1 次过度瞄准", other: "{count} 次过度瞄准" }),
-    killsUndershoot: plural({ one: "1 次瞄准不足", other: "{count} 次瞄准不足" }),
+    killsOvershoot: plural({
+      one: "1 次过度瞄准",
+      other: "{count} 次过度瞄准",
+    }),
+    killsUndershoot: plural({
+      one: "1 次瞄准不足",
+      other: "{count} 次瞄准不足",
+    }),
     killsOptimal: plural({ one: "1 次最佳瞄准", other: "{count} 次最佳瞄准" }),
     killsUnknown: plural({ one: "1 次未知", other: "{count} 次未知" }),
     pathEff: "{value} 路径效率",
@@ -403,8 +426,7 @@ export const history: HistoryMessages = {
     infoUnavailable: "回放信息不可用",
     loadingInfo: "正在加载回放信息…",
     deleteTitle: "删除回放",
-    deleteDescription:
-      "这将永久删除本次训练的屏幕录制，且无法撤销。",
+    deleteDescription: "这将永久删除本次训练的屏幕录制，且无法撤销。",
     deleteFailed: "无法删除此回放。请关闭正在使用它的其他应用后重试。",
     savedTo: "已保存到 {path}",
     exportFailed: "导出失败。",

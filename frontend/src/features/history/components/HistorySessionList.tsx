@@ -31,6 +31,7 @@ import {
 import { VirtualList } from "./VirtualList";
 
 type Props = {
+  compact?: boolean;
   sessions: Session[];
   selectedSessionId: string | null;
   collapsed: boolean;
@@ -45,6 +46,7 @@ type Props = {
 };
 
 export function HistorySessionList({
+  compact = false,
   sessions,
   selectedSessionId,
   collapsed,
@@ -63,7 +65,7 @@ export function HistorySessionList({
     <aside
       className={cn(
         "flex h-full min-h-0 flex-col overflow-hidden rounded-xl bg-surface shrink-0 transition-[width] duration-200 ease-out",
-        collapsed ? "w-16" : "w-[16.25rem]",
+        compact ? "w-full" : collapsed ? "w-16" : "w-[16.25rem]",
       )}
     >
       {/* Header */}

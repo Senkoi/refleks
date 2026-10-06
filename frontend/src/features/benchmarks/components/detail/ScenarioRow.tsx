@@ -12,7 +12,6 @@ import {
   computeFillColor,
   formatNumber,
 } from "../../lib/detailFormatting";
-import { RecommendationIndicator } from "./RecommendationIndicator";
 
 type RGB = { r: number; g: number; b: number };
 
@@ -81,7 +80,7 @@ function thresholdTextOnFillColor(fillColor: string): string {
 export const SCENARIO_COLUMN_WIDTH = 15;
 export const GAP_COLUMN_WIDTH = 0.5;
 export const NOTES_COLUMN_WIDTH = 2;
-export const RECOMMEND_COLUMN_WIDTH = 2.5;
+export const RECOMMEND_COLUMN_WIDTH = 5;
 export const ACTION_COLUMN_WIDTH = 2;
 export const SCORE_COLUMN_WIDTH = 3.75;
 export const RANK_MIN_COLUMN_WIDTH = 7;
@@ -163,9 +162,7 @@ type ScenarioInfoRowProps = {
   showPlayCol: boolean;
   showHistoryCol: boolean;
   hasSavedNote: boolean;
-  recommendation: number;
-  isTopPick: boolean;
-  completed: boolean;
+  arrangement?: { mode: "current" | "next"; runs: number; roles: string[] };
   animate?: boolean;
   onNotes: () => void;
   onHistory: () => void;
@@ -182,9 +179,7 @@ export function ScenarioInfoRow({
   showPlayCol,
   showHistoryCol,
   hasSavedNote,
-  recommendation,
-  isTopPick,
-  completed,
+  arrangement,
   animate = true,
   onNotes,
   onHistory,
@@ -210,7 +205,15 @@ export function ScenarioInfoRow({
       <div
         className={`${cls.nameTextClass} min-w-0 flex items-center overflow-hidden text-foreground`}
       >
-        <button type="button" className="block w-full truncate text-left hover:text-primary hover:underline" aria-label={`${scenarioName} · 查看训练历史`} aria-haspopup="dialog" onClick={onHistory}>{scenarioName}</button>
+        <button
+          type="button"
+          className="block w-full truncate text-left hover:text-primary hover:underline"
+          aria-label={`${scenarioName} · 查看训练历史`}
+          aria-haspopup="dialog"
+          onClick={onHistory}
+        >
+          {scenarioName}
+        </button>
       </div>
       <div />
 
@@ -236,17 +239,35 @@ export function ScenarioInfoRow({
 
       {showRecCol && (
         <div
-          className="flex items-center justify-center"
-          title={t("benchmarks.scenarioRow.recommendationScore", {
-            score: recommendation,
-          })}
+          className="flex items-center justify-center text-xs"
+          title={
+            arrangement
+              ? t("benchmarks.scenarioRow.arrangementDetail", {
+                  runs: arrangement.runs,
+                  roles: arrangement.roles
+                    .map((role) =>
+                      t(
+                        `benchmarks.trainingRoles.${role}` as Parameters<
+                          typeof t
+                        >[0],
+                      ),
+                    )
+                    .join(" / "),
+                })
+              : t("benchmarks.scenarioRow.notInPreview")
+          }
         >
-          <RecommendationIndicator
-            compact={cls.compact}
-            score={recommendation}
-            isTopPick={isTopPick}
-            isCompleted={completed}
-          />
+          {arrangement ? (
+            <span className="rounded bg-primary/10 px-1.5 py-1 text-primary">
+              {t(
+                arrangement.mode === "current"
+                  ? "benchmarks.scenarioRow.currentPreview"
+                  : "benchmarks.scenarioRow.nextPreview",
+              )}
+            </span>
+          ) : (
+            <span className="text-surface-muted-foreground">—</span>
+          )}
         </div>
       )}
 

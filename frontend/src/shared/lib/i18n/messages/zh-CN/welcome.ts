@@ -14,10 +14,10 @@ export const welcome: WelcomeMessages = {
       "先确认游戏目录，再告诉我这次能练多久。想了解具体变化，可以看看下面的版本记录。",
     highlightsTitle: "快速开始",
     highlights: {
-      changelog: "看看我这次学会了什么。",
-      docs: "遇到不熟悉的地方，使用指南来帮忙。",
-      customize: "去设置里调调外观，让我更合你的眼缘。",
-      community: "把练习体验告诉我，陪瞄瞄一起成长喵。",
+      changelog: "确认设置里的 KovaaK’s 游戏目录。",
+      docs: "到训练工作台选择时间，生成并安装列表。",
+      customize: "在游戏的 Local Playlists 打开本次列表，开始工作台计时。",
+      community: "完整对局会自动记录；点击练过的场景名称回看成绩。",
     },
     linksTitle: "资源",
     ctaFirstLaunch: "开始一起练",
@@ -30,8 +30,9 @@ export const welcome: WelcomeMessages = {
     },
   },
   modal: {
-    syncStatusEnabled:
-      "训练同步当前已启用。你可以稍后在隐私设置中更改此项。",
+    moreDetails: "更多介绍",
+    optionalRecording: "轨迹与录像设置（可选）",
+    syncStatusEnabled: "训练同步当前已启用。你可以稍后在隐私设置中更改此项。",
     syncStatusDisabled:
       "训练同步当前已在设置中关闭。如果之后启用，将使用此选择。",
     sectionFirstTime: "首次设置",
@@ -48,8 +49,7 @@ export const welcome: WelcomeMessages = {
     private: "私密",
     index: {
       label: "你配置的同步服务",
-      description:
-        "只有配置了同步服务并开启上传，我才会把完成的训练发送过去。",
+      description: "只有配置了同步服务并开启上传，我才会把完成的训练发送过去。",
     },
     publicProfile: {
       label: "公开个人资料",
@@ -89,8 +89,7 @@ export const welcome: WelcomeMessages = {
       disabled: {
         label: "暂时不要",
         subtitle: "先不记录轨迹，随时可以启用。",
-        description:
-          "先轻松练几局，熟悉我以后再决定也行喵。",
+        description: "先轻松练几局，熟悉我以后再决定也行喵。",
         bullets: [
           "让首次设置保持简单。",
           "稍后随时可以在常规设置中启用轨迹。",
@@ -100,14 +99,12 @@ export const welcome: WelcomeMessages = {
     },
     screenReplay: {
       label: "屏幕回放",
-      description:
-        "我可以录下你的练习，之后一起看看准星移动和操作细节。",
+      description: "我可以录下你的练习，之后一起看看准星移动和操作细节。",
       helper: "需要 FFmpeg。稍后可以在常规设置中更改。",
       enabled: {
         label: "启用回放录制",
         subtitle: "录制训练过程中的屏幕（硬件加速）。",
-        description:
-          "想把分数、轨迹和画面一起复盘，可以让我录下来。",
+        description: "想把分数、轨迹和画面一起复盘，可以让我录下来。",
         bullets: [
           "默认以 30 fps 录制；优先使用 GPU 编码，不可用时可能改用软件编码。",
           "每场比赛后，回放会作为运行检查器中的新标签页显示。",

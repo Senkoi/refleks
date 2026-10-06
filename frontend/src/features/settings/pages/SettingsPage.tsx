@@ -586,7 +586,10 @@ export function SettingsPage() {
                 </SettingsField>
 
                 {settings.mouseTrackingEnabled && (
-                  <div className="space-y-3 pl-6">
+                  <details className="space-y-3 pl-6">
+                    <summary className="cursor-pointer text-xs">
+                      {t("settings.general.recordingAdvanced")}
+                    </summary>
                     <SettingsField
                       label={t("settings.general.bufferDuration")}
                       description={t(
@@ -608,7 +611,7 @@ export function SettingsPage() {
                         className="w-20 text-center"
                       />
                     </SettingsField>
-                  </div>
+                  </details>
                 )}
 
                 <SettingsField
@@ -831,61 +834,57 @@ export function SettingsPage() {
                     </SettingsField>
                   </div>
                 )}
+              </SettingsSection>
 
-                <SettingsField
-                  label={t("settings.general.sessionGap")}
-                  description={t("settings.general.sessionGapDescription")}
-                >
-                  <Select
-                    value={String(settings.sessionGapMinutes)}
-                    onValueChange={(v) =>
-                      updateField("sessionGapMinutes", parseInt(v, 10), true)
-                    }
+              {settings.runSyncAvailable ? (
+                <>
+                  <SettingsSection
+                    title={t("settings.privacy.title")}
+                    description={t("settings.privacy.description")}
                   >
-                    <SelectTrigger className="h-8 w-max min-w-[8rem] text-xs">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {sessionGapOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </SettingsField>
-              </SettingsSection>
+                    <SettingsField
+                      label={t("settings.privacy.runSync")}
+                      description={t(
+                        settings.runSyncAvailable
+                          ? "settings.privacy.runSyncDescription"
+                          : "settings.privacy.serviceUnavailable",
+                      )}
+                      checkbox
+                    >
+                      <Checkbox
+                        disabled={!settings.runSyncAvailable}
+                        checked={
+                          settings.runSyncAvailable === true &&
+                          settings.runSyncEnabled === true
+                        }
+                        onCheckedChange={(v) =>
+                          updateField("runSyncEnabled", v === true, true)
+                        }
+                      />
+                    </SettingsField>
 
-              <SettingsSection
-                title={t("settings.privacy.title")}
-                description={t("settings.privacy.description")}
-              >
-                <SettingsField
-                  label={t("settings.privacy.runSync")}
-                  description={t(settings.runSyncAvailable ? "settings.privacy.runSyncDescription" : "settings.privacy.serviceUnavailable")}
-                  checkbox
-                >
-                  <Checkbox
-                    disabled={!settings.runSyncAvailable}
-                    checked={settings.runSyncAvailable === true && settings.runSyncEnabled === true}
-                    onCheckedChange={(v) =>
-                      updateField("runSyncEnabled", v === true, true)
-                    }
-                  />
-                </SettingsField>
-
-                <SettingsField
-                  label={t("settings.privacy.anonymousMode")}
-                  description={t("settings.privacy.anonymousModeDescription")}
-                  checkbox
-                >
-                  <Checkbox
-                    disabled={!settings.runSyncAvailable}
-                    checked={settings.anonymousEnabled === true}
-                    onCheckedChange={(v) => handleAnonymousChange(v === true)}
-                  />
-                </SettingsField>
-              </SettingsSection>
+                    <SettingsField
+                      label={t("settings.privacy.anonymousMode")}
+                      description={t(
+                        "settings.privacy.anonymousModeDescription",
+                      )}
+                      checkbox
+                    >
+                      <Checkbox
+                        disabled={!settings.runSyncAvailable}
+                        checked={settings.anonymousEnabled === true}
+                        onCheckedChange={(v) =>
+                          handleAnonymousChange(v === true)
+                        }
+                      />
+                    </SettingsField>
+                  </SettingsSection>
+                </>
+              ) : (
+                <p className="rounded-xl bg-surface p-4 text-xs text-surface-muted-foreground">
+                  {t("settings.privacy.localRecords")}
+                </p>
+              )}
             </div>
 
             <div className="space-y-4">
@@ -1018,6 +1017,33 @@ export function SettingsPage() {
 
                 {showAdvanced && (
                   <div className="space-y-4 pt-2">
+                    {" "}
+                    <SettingsField
+                      label={t("settings.general.sessionGap")}
+                      description={t("settings.general.sessionGapDescription")}
+                    >
+                      <Select
+                        value={String(settings.sessionGapMinutes)}
+                        onValueChange={(v) =>
+                          updateField(
+                            "sessionGapMinutes",
+                            parseInt(v, 10),
+                            true,
+                          )
+                        }
+                      >
+                        <SelectTrigger className="h-8 w-max min-w-[8rem] text-xs">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {sessionGapOptions.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </SettingsField>
                     <div className="space-y-3">
                       <div className="text-xs font-medium uppercase tracking-wide text-surface-muted-foreground">
                         {t("settings.advanced.steam")}
@@ -1082,7 +1108,6 @@ export function SettingsPage() {
                         </SettingsField>
                       </div>
                     </div>
-
                     <div className="space-y-3 pt-4">
                       <div className="text-xs font-medium uppercase tracking-wide text-surface-muted-foreground">
                         {t("settings.advanced.dataRetention")}
@@ -1146,26 +1171,22 @@ export function SettingsPage() {
           </div>
 
           <details className="rounded-lg bg-surface p-3 text-sm">
-            <summary className="cursor-pointer">{t("settings.about.title")}</summary>
-            <p className="mt-2 text-surface-muted-foreground">{t("settings.about.description")}</p>
-            <Button variant="link" size="sm" onClick={() => openURL(EXTERNAL_LINKS.notices)}>{t("settings.about.notices")}</Button>
+            <summary className="cursor-pointer">
+              {t("settings.about.title")}
+            </summary>
+            <p className="mt-2 text-surface-muted-foreground">
+              {t("settings.about.description")}
+            </p>
+            <Button
+              variant="link"
+              size="sm"
+              onClick={() => openURL(EXTERNAL_LINKS.notices)}
+            >
+              {t("settings.about.notices")}
+            </Button>
           </details>
 
           <div className="flex flex-wrap items-center gap-3 pt-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsResetOpen(true)}
-            >
-              {t("common.actions.reset")}
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsClearCacheOpen(true)}
-            >
-              {t("settings.footer.clearCache")}
-            </Button>
             <span className="text-xs text-surface-muted-foreground">
               {isSaving
                 ? t("settings.footer.saving")
@@ -1182,10 +1203,31 @@ export function SettingsPage() {
             >
               {isSaving ? t("common.actions.saving") : t("common.actions.save")}
             </Button>
-            <Button variant="destructive" size="sm" onClick={() => quitApp()}>
-              {t("settings.footer.quitApp")}
-            </Button>
           </div>
+          <details className="rounded-lg bg-surface p-3">
+            <summary className="cursor-pointer text-xs">
+              {t("settings.footer.maintenance")}
+            </summary>
+            <div className="mt-3 flex flex-wrap gap-3">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsResetOpen(true)}
+              >
+                {t("common.actions.reset")}
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsClearCacheOpen(true)}
+              >
+                {t("settings.footer.clearCache")}
+              </Button>
+              <Button variant="destructive" size="sm" onClick={() => quitApp()}>
+                {t("settings.footer.quitApp")}
+              </Button>
+            </div>
+          </details>
         </div>
       </div>
 

@@ -131,3 +131,5 @@ export function UpdateSettings(arg1:models.Settings):Promise<void>;
 export function UpdateTrainingScenario(arg1:string):Promise<void>;
 
 export function WriteCustomThemeCSS(arg1:string):Promise<void>;
+
+export function SetTrainingAutoDiscover(arg1:string):Promise<void>;

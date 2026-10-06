@@ -12,7 +12,7 @@ function load(path,dependencies={},globals={}) {
 }
 const widget=({title,children})=>React.createElement('section',null,title,children);
 const link=({to,children,...props})=>React.createElement('a',{href:to,...props},children);
-const {trainingStatusLabel}=load('src/features/training/progress.ts');
+const progressHelpers=load('src/features/training/progress.ts');
 const exploration=load('src/features/training/ExplorationDetails.tsx',{
  '@/shared/components/ui/popover':{Popover:({children})=>React.createElement('div',null,children),PopoverTrigger:({children})=>children,PopoverContent:({children})=>React.createElement('aside',null,children)},
 });
@@ -21,7 +21,7 @@ function advice(state) {
  return load('src/features/training/TrainingAdviceWidget.tsx',{
   'react-router-dom':{Link:link},'@/shared/components':{Widget:widget},
   '@/shared/components/ScenarioHistoryLink':{ScenarioHistoryLink:({name})=>React.createElement('button',null,name)},
-  './TrainingProgressProvider':{useTrainingProgress:()=>state},'./progress':{trainingStatusLabel},'./ExplorationDetails':exploration,
+  './TrainingProgressProvider':{useTrainingProgress:()=>state},'./progress':progressHelpers,'./ExplorationDetails':exploration,
  });
 }
 test('overview displays the fixed workbench plan instead of independently recommending benchmark scenes',()=>{
@@ -68,4 +68,27 @@ test('active plan polling stays lightweight and an in-flight evidence event refr
  evidenceEvent();deferred.resolve({mode:'next',items:[],reason:'older response'});deferred=null;await flush();
  const timer=[...timers.values()].at(-1);timer();await flush();
  assert.equal(guidanceReads,2);assert.equal(state.guidance.reason,'next');cleanup();
+});
+
+test('benchmark arrangement uses the workbench preview, merges repeated scenes, and never rates absent scenes',()=>{
+ const {guidanceArrangements}=load('src/features/training/guidanceArrangement.ts');
+ const guidance={...current, items:[...current.items,{scenario:'  workbench b ',role:'assessment',runs:1},{scenario:'done',role:'practice',runs:0}]};
+ const result=guidanceArrangements(guidance);
+ assert.equal(result.get('workbench b').mode,'current');
+ assert.equal(result.get('workbench b').runs,3);
+ assert.deepEqual(Array.from(result.get('workbench b').roles),['practice','assessment']);
+ assert.equal(result.has('done'),false);
+ assert.equal(result.has('unrelated benchmark a'),false);
+ assert.equal(guidanceArrangements(guidance,true).size,0);
+ assert.equal(guidanceArrangements({...guidance,mode:'unavailable'}).size,0);
+ assert.equal(guidanceArrangements({...guidance,mode:'next'}).get('workbench b').mode,'next');
+});
+test('overview combines actual progress with guidance and preserves completion versus skipped counts',()=>{
+ const training=advice({guidance:current,data:{current:{id:'fixed-plan',status:'paused',completedBlocks:1,blockCount:4,runs:3,targetRuns:8,minutes:30,elapsed:420,recorded:180}}});
+ const html=renderToStaticMarkup(React.createElement(training.TrainingAdviceWidget,{showProgress:true}));
+ assert.match(html,/1 \/ 4 项完成/);
+ assert.match(html,/计划练习完成率/);
+ assert.match(html,/aria-valuenow="25"/);
+ assert.match(html,/Workbench B/);
+ assert.match(html,/history\?plan=fixed-plan/);
 });

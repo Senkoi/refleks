@@ -10,6 +10,23 @@ import { WidenDeep } from "../types";
  */
 export const history = {
   page: {
+    planFilter: "Filter by training plan",
+    allPlans: "All practice sessions",
+    selectedPlan: "Selected training plan",
+    clearPlanFilter: "Plan filter · Clear ×",
+    planLoading: "Loading plan runs…",
+    planError: "Unable to load plan runs",
+    planFiltered: "Showing only runs associated with this plan",
+    planEmpty:
+      "No associated runs; generating a list does not complete training",
+    optionalAnalysis: "More analysis",
+    sessionOverview: "Session overview",
+    sensitivityChart: "Performance and sensitivity",
+    scenarioChart: "Scenario distribution",
+    paneNavigation: "History panels",
+    sessionsPane: "Sessions",
+    runsPane: "Runs",
+    detailPane: "Details",
     loading: "Loading run history...",
     loadingProgress: "Loading run history {loaded}/{total}...",
     runs: plural({ one: "1 run", other: "{count} runs" }),
@@ -121,6 +138,7 @@ export const history = {
     runs: "Runs",
   },
   inspector: {
+    environmentDiagnostics: "Environment diagnostics",
     pinned: "Pinned",
     compare: "Compare",
     primary: "Primary",
@@ -143,6 +161,7 @@ export const history = {
     selectRunToInspect: "Select a run to inspect",
   },
   stats: {
+    detailedStats: "Detailed statistics and environment",
     score: "Score",
     accuracy: "Accuracy",
     duration: "Duration",

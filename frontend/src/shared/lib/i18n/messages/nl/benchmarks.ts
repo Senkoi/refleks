@@ -1,3 +1,4 @@
+import { benchmarks as newMessages } from "../en/benchmarks";
 import type { BenchmarksMessages } from "../en/benchmarks";
 
 /**
@@ -19,8 +20,7 @@ export const benchmarks: BenchmarksMessages = {
     recommended: "Aanbevolen",
     hideRecommendations: "Aanbevelingen verbergen",
     showRecommended: "Aanbevolen benchmarks tonen",
-    loadingRecommendations:
-      "Benchmarkvoortgang laden voor aanbevelingen...",
+    loadingRecommendations: "Benchmarkvoortgang laden voor aanbevelingen...",
     emptySyncing:
       "Wachten tot de benchmarkcatalogus klaar is met synchroniseren...",
     emptyFavorites:
@@ -52,8 +52,7 @@ export const benchmarks: BenchmarksMessages = {
     unfavorite: "Benchmark niet meer favoriet",
     notFound: "Benchmark niet gevonden.",
     unknownDifficulty: "Onbekende moeilijkheidsgraad",
-    noProgress:
-      "Nog geen voortgangsgegevens voor deze moeilijkheidsgraad.",
+    noProgress: "Nog geen voortgangsgegevens voor deze moeilijkheidsgraad.",
     clipboardUnsupported:
       "Afbeeldingsklembord wordt niet ondersteund in deze omgeving.",
     copyFailed: "Screenshot kopiëren mislukt.",
@@ -69,13 +68,14 @@ export const benchmarks: BenchmarksMessages = {
     hideLastPlayed: "Laatst-gespeeld-markering verbergen",
     viewSettings: "Trackerinstellingen bekijken",
     columnScenario: "Scenario",
-    columnRec: "Aanb.",
+    columnRec: newMessages.progressTable.columnRec,
     columnScore: "Score",
     details: "Details",
     settingsTitle: "Trackerinstellingen",
     featureColumns: "Functiekolommen",
     columnLabelNotes: "Notities",
-    columnLabelRecommendations: "Aanbevelingen",
+    columnLabelRecommendations:
+      newMessages.progressTable.columnLabelRecommendations,
     columnLabelPlay: "Afspelen",
     columnLabelHistory: "Geschiedenis",
     rankVisibility: "Rankzichtbaarheid",
@@ -86,11 +86,11 @@ export const benchmarks: BenchmarksMessages = {
       "Automatisch verborgen omdat elk scenario al voorbij deze rank is",
   },
   rankDistribution: {
+    unrecorded: newMessages.rankDistribution.unrecorded,
     title: "Rankverdeling",
     scopeCategory: "Categorie",
     scopeSubcategory: "Subcategorie",
-    descriptionAll:
-      "Hoe je scenario's zijn verdeeld over de rankniveaus.",
+    descriptionAll: "Hoe je scenario's zijn verdeeld over de rankniveaus.",
     descriptionCategory: "Categoriebereik: {name}",
     descriptionSubcategory: "Subcategoriebereik: {name}",
     groupFallback: "Groep {number}",
@@ -109,19 +109,8 @@ export const benchmarks: BenchmarksMessages = {
     noData: "Geen gegevens.",
     avg: "Gem.",
   },
-  recommendationInfo: {
-    ariaLabel: "Over aanbevelingen",
-    title: "Aanbevelingen",
-    description:
-      "Welke scenario's nu de moeite waard zijn om te spelen, op basis van je voortgang, recente scoretrends en hoe lang geleden je elk scenario hebt gespeeld.",
-    completed: "Voltooid — hoogste rank bereikt",
-    topPick: "Topkeuze — speel dit nu",
-    stronglyRecommended: "Sterk aanbevolen",
-    recommended: "Aanbevolen — onder gemiddelde of verbeterend",
-    neutral: "Neutraal",
-    lowPriority: "Lage prioriteit",
-    avoid: "Vermijd voor nu — sterk of dalend",
-  },
+  trainingRoles: newMessages.trainingRoles,
+  recommendationInfo: newMessages.recommendationInfo,
   scenarioHistory: {
     title: "Scenariogeschiedenis · {scenario}",
     score: "Score",
@@ -136,6 +125,10 @@ export const benchmarks: BenchmarksMessages = {
       "Leg je strategie, zwakke punten en aandachtspunten vast...",
   },
   scenarioRow: {
+    currentPreview: newMessages.scenarioRow.currentPreview,
+    nextPreview: newMessages.scenarioRow.nextPreview,
+    arrangementDetail: newMessages.scenarioRow.arrangementDetail,
+    notInPreview: newMessages.scenarioRow.notInPreview,
     notesSensitivity: "Notities en gevoeligheid",
     recommendationScore: "Aanbevelingsscore: {score}",
     playInKovaaks: "Afspelen in KovaaK's",

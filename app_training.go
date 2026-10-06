@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strconv"
 	"sync"
 	"time"
 
@@ -306,6 +307,18 @@ func (a *App) RecordTrainingTrialFeedback(id, feedback string) error {
 		return err
 	}
 	return a.trainingSvc.TrialFeedback(id, feedback)
+}
+
+// Changing discovery preferences does not alter a generated training list.
+func (a *App) SetTrainingAutoDiscover(value string) error {
+	if err := a.trainingReady(); err != nil {
+		return err
+	}
+	enabled, err := strconv.ParseBool(value)
+	if err != nil {
+		return err
+	}
+	return a.trainingSvc.SetAutoDiscover(enabled)
 }
 
 func (a *App) ImportTrainingBenchmarks() (int, error) {
